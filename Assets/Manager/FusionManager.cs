@@ -1,0 +1,128 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FusionManager : MonoBehaviour
+{
+    private int followingUnitNum = 0;
+    [SerializeField]
+    private int unitNum = 0;
+    [SerializeField]
+    private int enemyUnitNum = 0;
+
+    //private int a = 0;
+
+    private bool isAround = false;
+
+    public UnitScript[] unitScript = null;
+    public EnemyScript[] enemyScript = null;
+    public BuildingScript buildingScript = null;
+    public EnemyBuildingScript enemyBuildingScript = null;
+
+    private GameManager gameManager = null;
+
+    private GameObject[] fusionObject = null;
+
+    private bool monsterSpawned = false;
+
+    private bool isDowned = false;
+    private bool isUped = false;
+
+    private bool isFollow = false;
+
+    // Start is called before the first frame update
+
+    void Start()
+    {
+        buildingScript = FindObjectOfType<BuildingScript>();
+        enemyBuildingScript = FindObjectOfType<EnemyBuildingScript>();
+        gameManager = GameManager.Instance;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        unitScript = FindObjectsOfType(typeof(UnitScript)) as UnitScript[];
+        enemyScript = FindObjectsOfType(typeof(EnemyScript)) as EnemyScript[];
+    }
+    public bool GetIsFollow()
+    {
+        return isFollow;
+    }
+    public void SetIsFollow(bool a)
+    {
+        isFollow = a;
+    }
+    public bool GetIsUped()
+    {
+        return isUped;
+    }
+    public void SetIsUped(bool a)
+    {
+        isUped = a;
+    }
+    public bool GetIsDowned()
+    {
+        return isDowned;
+    }
+    public void SetIsDowned(bool a)
+    {
+        isDowned = a;
+    }
+    public bool GetIsAround()
+    {
+        return isAround;
+    }
+    public void SetIsAround(bool a)
+    {
+        isAround = a;
+    }
+    public int GetFollowingUnitNum()
+    {
+        return followingUnitNum;
+    }
+    public void SetFollowingUnitNum(int a)
+    {
+        followingUnitNum = a;
+    }
+    public int GetUnitNum()
+    {
+        return unitNum;
+    }
+    public void SetUnitNum(int a)
+    {
+        unitNum = a;
+    }
+    public int GetEnemyUnitNum()
+    {
+        return enemyUnitNum;
+    }
+    public void SetEnemyUnitNum(int a)
+    {
+        enemyUnitNum = a;
+    }
+    public void clickMouseCheck()
+    {
+        isAround = false;
+        monsterSpawned = false;
+        isDowned = true;
+        isUped = false;
+    }
+    public void upClickMouseCheck()
+    {
+        isFollow = false;
+        isDowned = false;
+        isUped = true;
+        StartCoroutine(UpedRe());
+    }
+    private IEnumerator UpedRe()
+    {
+        yield return new WaitForSeconds(0.1f);
+        isUped = false;
+    }
+    public void Fusion(GameObject unit1, GameObject unit2, int nextObjectNum)
+    {
+        // nextObjectNum은 FusionObject배열의 호출 때 인덱스로 쓰인다.
+    }
+    
+}
