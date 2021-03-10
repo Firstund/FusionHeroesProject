@@ -440,7 +440,8 @@ public class UnitScript : MonoBehaviour
                 }
                 if(fusionManager.unitScript[a].GetThisUnitNum() < thisUnitNum) // 해당 unit오브젝트가 먼저 소환된 오브젝트인지 체크
                 {
-                    if (objectDistanceArray[a] < LShortestForwardDistance)
+                    if (objectDistanceArray[a] < LShortestForwardDistance) // 이 코드는 사이드 이펙트가 발생한다.
+                                                                           // 사이드 이펙트에 대비하거나 다른 코드를 이용해보자.
                     {
                         LShortestForwardDistance = objectDistanceArray[a];
                         shortestForwardDistance = LShortestForwardDistance;
