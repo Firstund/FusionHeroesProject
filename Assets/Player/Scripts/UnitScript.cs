@@ -8,6 +8,8 @@ public class UnitScript : MonoBehaviour
     //공격대기시간, 소환 대기시간 설정할것.
     FusionManager fusionManager = null;
     GameManager gameManager = null;
+    [SerializeField]
+    private Slider slider = null;
 
     [SerializeField]
     private float attackDistance = 2f;
@@ -112,6 +114,7 @@ public class UnitScript : MonoBehaviour
         int unitNum = fusionManager.GetUnitNum() + 1;
         thisUnitNum = unitNum;
         fusionManager.SetUnitNum(unitNum);
+        SetMaxHealth();
     }
 
     void Update()
@@ -129,6 +132,7 @@ public class UnitScript : MonoBehaviour
         EDCheck();
         FusionCheck();
         Move();
+        HealthBar();
         DestroyCheck();
 
         if(gameManager.GetCST())
@@ -184,6 +188,17 @@ public class UnitScript : MonoBehaviour
             }
             attackedCheck = false;
         }
+    }
+    private void SetMaxHealth()
+    {
+        slider.maxValue = heart;
+        slider.value = heart;
+        slider.minValue = 0;
+
+    }
+    private void HealthBar()
+    {
+        slider.value = heart;
     }
     private IEnumerator IsAroundSet()
     {

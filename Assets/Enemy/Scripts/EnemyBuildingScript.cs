@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyBuildingScript : MonoBehaviour
 {
     //enemy 자동소환기능 넣기
     FusionManager fusionManager = null;
+    [SerializeField]
+    private Slider slider = null;
     [SerializeField]
     private AudioSource audi = null;
     [SerializeField]
@@ -55,15 +58,28 @@ public class EnemyBuildingScript : MonoBehaviour
         fusionManager.SetEnemyUnitNum(enemyUnitNum);
         
         firstHeart = heart;
+        SetMaxHealth();
     }
 
     // Update is called once per frame
     void Update()
     {
         currentPosition = transform.localPosition;
+        HealthBar();
         Breaking();
         Spawn();
         umiko();
+    }
+     private void SetMaxHealth()
+    {
+        slider.maxValue = heart;
+        slider.value = heart;
+        slider.minValue = 0;
+
+    }
+    private void HealthBar()
+    {
+        slider.value = heart;
     }
     private void umiko()
     {

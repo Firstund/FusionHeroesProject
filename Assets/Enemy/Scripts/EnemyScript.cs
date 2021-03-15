@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class EnemyScript : MonoBehaviour
     FusionManager fusionManager = null;
     GameManager gameManager = null;
 
+   [SerializeField]
+    private Slider slider = null;
     //private TestUnitScript testUnitScript = null;
     [SerializeField]
     private UnitScript shortestScript = null;
@@ -84,6 +87,7 @@ public class EnemyScript : MonoBehaviour
         int enemyUnitNum = fusionManager.GetEnemyUnitNum() + 1;
         thisUnitNum = enemyUnitNum;
         fusionManager.SetEnemyUnitNum(enemyUnitNum);
+        SetMaxHealth();
     }
 
     // Update is called once per frame
@@ -100,7 +104,19 @@ public class EnemyScript : MonoBehaviour
         if (gameManager.GetCST())
             AttackCheck();
         Move();
+        HealthBar();
         DestroyCheck();
+    }
+    private void SetMaxHealth()
+    {
+        slider.maxValue = heart;
+        slider.value = heart;
+        slider.minValue = 0;
+
+    }
+    private void HealthBar()
+    {
+        slider.value = heart;
     }
     public Vector2 GetCurrentPosition()
     {

@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingScript : MonoBehaviour
 {
     FusionManager fusionManager = null;
+    [SerializeField]
+    private Slider slider = null;
     [SerializeField]
     private AudioSource audi = null;
     [SerializeField]
@@ -35,15 +38,27 @@ public class BuildingScript : MonoBehaviour
         fusionManager.SetUnitNum(unitNum);
        
         firstHeart = heart;
+        SetMaxHealth();
     }
 
     // Update is called once per frame
     void Update()
     {
         currentPosition = transform.localPosition;
+        HealthBar();
         breaking();
     }
+    private void SetMaxHealth()
+    {
+        slider.maxValue = heart;
+        slider.value = heart;
+        slider.minValue = 0;
 
+    }
+    private void HealthBar()
+    {
+        slider.value = heart;
+    }
     public float getHe()
     {
         return heart;
