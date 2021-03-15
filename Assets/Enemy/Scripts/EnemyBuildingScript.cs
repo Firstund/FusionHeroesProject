@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class EnemyBuildingScript : MonoBehaviour
 {
     //enemy 자동소환기능 넣기
-    FusionManager fusionManager = null;
     [SerializeField]
     private Slider slider = null;
+    FusionManager fusionManager = null;
     [SerializeField]
     private AudioSource audi = null;
     [SerializeField]
