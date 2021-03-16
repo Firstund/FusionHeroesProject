@@ -289,7 +289,10 @@ public class UnitScript : MonoBehaviour
     {
         if (heart <= 0f)
         {
-            Destroye(gameObject);
+            anim.Play("Dead");
+
+            if(anim.GetAnimatorTransitionInfo(0).IsName("Dead"))
+                Destroye(gameObject);
         }
     }
     private void Destroye(GameObject obj)
