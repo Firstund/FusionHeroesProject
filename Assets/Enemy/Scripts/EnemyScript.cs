@@ -42,6 +42,7 @@ public class EnemyScript : MonoBehaviour
     private float attackDelay = 2f;
     [SerializeField]
     private float speed = 0f;
+    private float firstSpeed = 0f;
     [SerializeField]
     private float totalAtk = 0f;
 
@@ -70,10 +71,16 @@ public class EnemyScript : MonoBehaviour
     private bool buildingIsShortest = false;//building이 shortest일 때 true. unit이 shortest일 때 false
     [SerializeField]
     private bool attackOne = true;
+    [SerializeField]
+    private bool isDead = false;
 
     private Vector2 currentPosition = Vector2.zero;//
 
     // Start is called before the first frame update
+    void Awake()
+    {
+        firstSpeed = speed;
+    }
     void Start()
     {
         gameObject.transform.SetParent(null, true);
@@ -103,6 +110,7 @@ public class EnemyScript : MonoBehaviour
 
         if (gameManager.GetCST())
             AttackCheck();
+
         Move();
         HealthBar();
         DestroyCheck();
@@ -117,6 +125,15 @@ public class EnemyScript : MonoBehaviour
     private void HealthBar()
     {
         slider.value = heart;
+    }
+      private void CheckHe()
+    {
+        if(heart <= 0)
+        {
+            ap = 0f;
+            speed = 0f;
+            isDead = true;
+        }
     }
     public Vector2 GetCurrentPosition()
     {
@@ -158,9 +175,8 @@ public class EnemyScript : MonoBehaviour
     void Move()
     {
         int stopByObjectDistance = 1;
-
      
-            if (!attackedCheck)
+            if (!attackedCheck && !isDead)
                 anim.Play("WalkL");
 
             if (buildingIsShortest)
@@ -168,18 +184,34 @@ public class EnemyScript : MonoBehaviour
                 stopByObjectDistance = 5;
             }
 
+            if(shortestScript != null)
+                if(shortestScript.getHe() <= 0f)
+                {
+                    speed = 0f;
+                }
+                else
+                {
+                    speed = firstSpeed;
+                }
+
             if ((shortestForwardDistance > 1) && (shortestDistance > stopByObjectDistance))
-                transform.Translate(Vector2.left * speed * Time.deltaTime);
-    
+                speed = firstSpeed;
+            else
+            {
+                speed = 0f;
+            }
+
+            CheckHe();
+
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
     }
     private IEnumerator ReTrue(float time)
     {
         yield return new WaitForSeconds(time);
         attackedCheck = false;
-
     }
     private IEnumerator Attack(bool attackOne)
-    {
+    {    
         ////단일공격
         if (strongest1Script == null)
         {
@@ -189,7 +221,9 @@ public class EnemyScript : MonoBehaviour
                 if (!attackedCheck)
                 {
                     attackedCheck = true;
-                    anim.Play("AttackL");
+
+                    if(!isDead)
+                        anim.Play("AttackL");
 
                     yield return new WaitForSeconds(attackDelay);
                     //공격 애니메이션 출력
@@ -235,7 +269,9 @@ public class EnemyScript : MonoBehaviour
                 if (!attackedCheck)
                 {
                     attackedCheck = true;
-                    anim.Play("AttackL");
+
+                    if(!isDead)
+                        anim.Play("AttackL");
 
                     yield return new WaitForSeconds(attackDelay);
                     //공격 애니메이션 출력
@@ -282,7 +318,9 @@ public class EnemyScript : MonoBehaviour
                     //anim.Play("TestAnimationAttack");
                     yield return new WaitForSeconds(attackDelay);
                     //공격 애니메이션 출력
-                    anim.Play("AttackL");
+
+                    if(!isDead)
+                        anim.Play("AttackL");
 
                     for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
                     {
@@ -307,7 +345,6 @@ public class EnemyScript : MonoBehaviour
                     attackedCheck = false;
                 }
             }
-
 }
 public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float minimumD, float maximumD)
     {
@@ -426,6 +463,7 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
     }
     public void EDCheck()
     {
+        bool shortestForwardIsSet = false;
         float LShortestForwardDistance = 100f;
 
         FirstODSet();
@@ -452,7 +490,12 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
                     {
                         LShortestForwardDistance = enemyObjectDistanceArray[a];
                         shortestForwardDistance = LShortestForwardDistance;
+                        shortestForwardIsSet = true;
                     }
+                }
+                 if(!shortestForwardIsSet)
+                {
+                    shortestForwardDistance = 10f;
                 }
             }
         }
@@ -466,10 +509,17 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
     private void DestroyCheck()
     {
         if (heart <= 0f)
-            Destroye();
+        {
+            anim.Play("Dead");
+
+            StartCoroutine(Destroye());
+        }
     }
-    private void Destroye()
+    private IEnumerator Destroye()
     {
+        yield return new WaitForSeconds(0.7f);
+        
+
         int enemyUnitNum = fusionManager.GetEnemyUnitNum() - 1;
         fusionManager.SetEnemyUnitNum(enemyUnitNum);
 
@@ -481,5 +531,9 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
     public int GetThisUnitNum()
     {
         return thisUnitNum;
+    }
+    public bool GetIsDead()
+    {
+        return isDead;
     }
 }

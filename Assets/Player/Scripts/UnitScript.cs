@@ -23,6 +23,7 @@ public class UnitScript : MonoBehaviour
     private float attackDelay = 2f;
     [SerializeField]
     private float speed = 0f;
+    private float firstSpeed = 0f;
     [SerializeField]
     private float totalAtk = 0f;
 
@@ -72,6 +73,8 @@ public class UnitScript : MonoBehaviour
     private float shortestDistance = 10f;
     [SerializeField]
     private float shortestForwardDistance = 10f;
+    private UnitScript shortestForwardScipt = null;
+    
     [SerializeField]
     private float shortestEnemyDistance = 10f;
     //
@@ -97,9 +100,16 @@ public class UnitScript : MonoBehaviour
     private bool mouseCheck = false;
     [SerializeField]
     private bool followingMouse = false;
-
     [SerializeField]
+    private bool isDead = false;
+
     public bool isFollow = false;
+   
+
+    void Awake()
+    {
+        firstSpeed = speed;
+    }
 
     void Start()
     {
@@ -149,8 +159,9 @@ public class UnitScript : MonoBehaviour
         if (!attackedCheck && !onlyOneFollowUnitNum)
         {
             attackedCheck = true;
-
-            anim.Play("AttackR");
+            
+            if(!isDead)
+                anim.Play("AttackR");
 
             yield return new WaitForSeconds(attackDelay);
             //공격 애니메이션 출력
@@ -199,6 +210,14 @@ public class UnitScript : MonoBehaviour
     private void HealthBar()
     {
         slider.value = heart;
+    }
+    private void CheckHe()
+    {
+        if(heart <= 0)
+        {
+            ap = 0f;
+            speed = 0f;
+        }
     }
     private IEnumerator IsAroundSet()
     {
@@ -290,15 +309,22 @@ public class UnitScript : MonoBehaviour
         if (heart <= 0f)
         {
             anim.Play("Dead");
+            speed = 0f;
+            ap = 0f;
 
-            if(anim.GetAnimatorTransitionInfo(0).IsName("Dead"))
-                Destroye(gameObject);
+            isDead = true;
+
+            StartCoroutine(Destroye(gameObject));
         }
     }
-    private void Destroye(GameObject obj)
+    private IEnumerator Destroye(GameObject obj)
     {
+        yield return new WaitForSeconds(0.7f);
+        
+
         int unitNum = fusionManager.GetUnitNum() - 1;
         fusionManager.SetUnitNum(unitNum);
+        
         Destroy(obj);
     }
     private void AttackCheck()
@@ -324,15 +350,36 @@ public class UnitScript : MonoBehaviour
     {
         int stopByEnemyDistance = 1;
 
-        if (!attackedCheck)
+        if (!attackedCheck && !isDead)
             anim.Play("WalkR");
 
         if(buildingIsShortest)
         {
             stopByEnemyDistance = 5;
         }
-        if((shortestForwardDistance > 1) && (shortestEnemyDistance > stopByEnemyDistance))
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
+
+        if(shortestScript != null)
+        {
+                if(shortestScript.getHe() <= 0f)
+                {
+                    speed = firstSpeed;
+                }
+                else
+                {
+                    speed = 0f;
+                }
+        }
+
+        if ((shortestForwardDistance > 1) && (shortestEnemyDistance > stopByEnemyDistance))
+            speed = firstSpeed;
+        else
+        {
+            speed = 0f;
+        }
+
+        CheckHe();
+
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
     #region fusion, levelUp 관련 함수들
     public void FusionCheck()
@@ -432,6 +479,7 @@ public class UnitScript : MonoBehaviour
     }
     public void ODCheck()//이 함수 복사, 수정 후 Enemy의 위치를 구하는 함수로 변환
     {
+        bool shortestForwardIsSet = false;
         float LShortestDistance = 100f;
         float LShortestForwardDistance = 100f;
 
@@ -463,7 +511,14 @@ public class UnitScript : MonoBehaviour
                     {
                         LShortestForwardDistance = objectDistanceArray[a];
                         shortestForwardDistance = LShortestForwardDistance;
+                        shortestForwardScipt = fusionManager.unitScript[a];
+                        shortestForwardIsSet = true;
                     }
+                }
+
+                if(!shortestForwardIsSet)
+                {
+                    shortestForwardDistance = 10f;
                 }
             }
         }

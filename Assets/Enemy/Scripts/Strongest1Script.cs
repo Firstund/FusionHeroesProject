@@ -50,7 +50,8 @@ public class Strongest1Script : MonoBehaviour
             skillUsed = true;
             canUseSkill1 = false;
 
-            anim.Play("strongest1Warp");
+            if(!thisObjectScript.GetIsDead())
+                anim.Play("strongest1Warp");
 
             float time = 0.3f;
 
@@ -69,7 +70,9 @@ public class Strongest1Script : MonoBehaviour
     private IEnumerator skill1Re()
     {
         yield return new WaitForSeconds(skill1Wait);
-        canUseSkill1 = true;
+
+        if(!thisObjectScript.GetIsDead())
+            canUseSkill1 = true;
     }
     private IEnumerator skill2()
     {
@@ -79,7 +82,8 @@ public class Strongest1Script : MonoBehaviour
             skillUsed = true;
             canUseSkill2 = false;     
 
-            anim.Play("Strongest1Attack2");
+            if(!thisObjectScript.GetIsDead())
+                anim.Play("Strongest1Attack2");
 
             float time = 1f;
 
@@ -98,7 +102,9 @@ public class Strongest1Script : MonoBehaviour
     private IEnumerator skill2Re()
     {
         yield return new WaitForSeconds(skill2Wait);
-        canUseSkill2 = true;
+        
+        if(!thisObjectScript.GetIsDead())
+            canUseSkill2 = true;
     }
     public bool GetSkillUsed()
     {
