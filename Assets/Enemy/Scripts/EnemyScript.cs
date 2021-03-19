@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class EnemyScript : MonoBehaviour
 {
     //자동소환, 소환대기시간 설정할것
+    //사거리문제 해결해야함
     FusionManager fusionManager = null;
     GameManager gameManager = null;
 
@@ -27,6 +28,7 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField]
     private float attackDistance = 2f;
+    // private int stopByObjectDistance = 0;
     [SerializeField]
     private float minimumD = 0f;
     [SerializeField]
@@ -102,8 +104,8 @@ public class EnemyScript : MonoBehaviour
     {
         currentPosition = transform.localPosition;
 
-        objectDistanceArray = new float[fusionManager.GetUnitNum()];
-        enemyObjectDistanceArray = new float[fusionManager.GetEnemyUnitNum()];
+        objectDistanceArray = new float[fusionManager.GetUnitNum()]; // 에러
+        enemyObjectDistanceArray = new float[fusionManager.GetEnemyUnitNum()]; // 에러
 
         EDCheck();
         ODCheck();
@@ -174,14 +176,19 @@ public class EnemyScript : MonoBehaviour
     }
     void Move()
     {
-        int stopByObjectDistance = 1;
+        // stopByObjectDistance = 1;
      
             if (!attackedCheck && !isDead)
                 anim.Play("WalkL");
 
             if (buildingIsShortest)
             {
-                stopByObjectDistance = 5;
+                // stopByObjectDistance = 5;
+                attackDistance = 5;
+            } 
+            else
+            {
+                attackDistance = 1;
             }
 
             if(shortestScript != null)
@@ -194,7 +201,8 @@ public class EnemyScript : MonoBehaviour
                     speed = firstSpeed;
                 }
 
-            if ((shortestForwardDistance > 1) && (shortestDistance > stopByObjectDistance))
+            // if ((shortestForwardDistance > 1) && (shortestDistance > stopByObjectDistance))
+            if ((shortestForwardDistance > 1) && (shortestDistance > attackDistance))
                 speed = firstSpeed;
             else
             {
@@ -423,12 +431,14 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
     }
     private void AttackCheck()
     {
+        // float _attackDistance = attackDistance + stopByObjectDistance;
+
         if (shortestDistance < attackDistance)
         {
             StartCoroutine(Attack(attackOne));
         }
     }
-    private void FirstODSet()
+    private void FirstODSet() // FirstEDSet
     {
             objectDistanceArray[0] = Vector2.Distance(fusionManager.buildingScript.currentPosition, currentPosition);
             
@@ -517,16 +527,20 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
     }
     private IEnumerator Destroye()
     {
-        yield return new WaitForSeconds(0.7f);
+        if(!isDead)
+        {
+            isDead = true;
+            int enemyUnitNum = fusionManager.GetEnemyUnitNum() - 1;
+            fusionManager.SetEnemyUnitNum(enemyUnitNum);
+
+            int money = gameManager.GetMoney() + plusMoney;
+
+            yield return new WaitForSeconds(0.7f);
         
+            gameManager.SetMoney(money);
 
-        int enemyUnitNum = fusionManager.GetEnemyUnitNum() - 1;
-        fusionManager.SetEnemyUnitNum(enemyUnitNum);
-
-        int money = gameManager.GetMoney() + plusMoney;
-        gameManager.SetMoney(money);
-
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
     public int GetThisUnitNum()
     {

@@ -1,0 +1,17 @@
+diff a/Assets/Enemy/Scripts/EnemyBuildingScript.cs b/Assets/Enemy/Scripts/EnemyBuildingScript.cs	(rejected hunks)
+@@ -1,12 +1,15 @@
+ ﻿using System.Collections;
+ using System.Collections.Generic;
+ using UnityEngine;
++using UnityEngine.UI;
+ 
+ public class EnemyBuildingScript : MonoBehaviour
+ {
+     //enemy 자동소환기능 넣기
+     FusionManager fusionManager = null;
+     [SerializeField]
++    private Slider slider = null;
++    [SerializeField]
+     private AudioSource audi = null;
+     [SerializeField]
+     private AudioClip destroy1 = null;

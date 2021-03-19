@@ -133,8 +133,8 @@ public class UnitScript : MonoBehaviour
         currentPosition = transform.localPosition;
         isFollow = fusionManager.GetIsFollow();
 
-        objectDistanceArray = new float[fusionManager.GetUnitNum()];
-        enemyObjectDistanceArray = new float[fusionManager.GetEnemyUnitNum()];
+        objectDistanceArray = new float[fusionManager.GetUnitNum()]; // 에러
+        enemyObjectDistanceArray = new float[fusionManager.GetEnemyUnitNum()]; // 에러
 
         onClickMouse();
 
@@ -298,7 +298,7 @@ public class UnitScript : MonoBehaviour
     }
     private void FirstODSet()
     {
-        enemyObjectDistanceArray[0] = Vector2.Distance(fusionManager.enemyBuildingScript.currentPosition, currentPosition);
+        enemyObjectDistanceArray[0] = Vector2.Distance(fusionManager.enemyBuildingScript.currentPosition, currentPosition); // 에러
 
         //buildingScript를 shortest로 지정
         buildingIsShortest = true;
@@ -312,20 +312,22 @@ public class UnitScript : MonoBehaviour
             speed = 0f;
             ap = 0f;
 
-            isDead = true;
-
             StartCoroutine(Destroye(gameObject));
         }
     }
     private IEnumerator Destroye(GameObject obj)
     {
-        yield return new WaitForSeconds(0.7f);
+        if(!isDead)
+        {
+            isDead = true;
         
+            int unitNum = fusionManager.GetUnitNum() - 1;
+            fusionManager.SetUnitNum(unitNum);
 
-        int unitNum = fusionManager.GetUnitNum() - 1;
-        fusionManager.SetUnitNum(unitNum);
+            yield return new WaitForSeconds(0.7f);
         
-        Destroy(obj);
+            Destroy(obj);
+        }
     }
     private void AttackCheck()
     {
