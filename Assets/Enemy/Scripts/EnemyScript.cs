@@ -134,7 +134,6 @@ public class EnemyScript : MonoBehaviour
         {
             ap = 0f;
             speed = 0f;
-            isDead = true;
         }
     }
     public Vector2 GetCurrentPosition()
