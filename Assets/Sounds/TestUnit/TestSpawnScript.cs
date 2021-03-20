@@ -8,13 +8,13 @@ public class TestSpawnScript : MonoBehaviour
 
     [SerializeField]
     private GameObject spawnThis = null;
-    [SerializeField]
     private Transform spawnPosition = null;
     [SerializeField]
     private int spawnMoney = 5;
     void Start()
     {
         gameManager = GameManager.Instance;
+        spawnPosition = gameManager.GetUnitSpawnPosition();
     }
    public void SpawnUnit()
     {

@@ -180,16 +180,6 @@ public class EnemyScript : MonoBehaviour
             if (!attackedCheck && !isDead)
                 anim.Play("WalkL");
 
-            if (buildingIsShortest)
-            {
-                // stopByObjectDistance = 5;
-                attackDistance = 5;
-            } 
-            else
-            {
-                attackDistance = 1;
-            }
-
             if(shortestScript != null)
                 if(shortestScript.getHe() <= 0f)
                 {
@@ -430,8 +420,6 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
     }
     private void AttackCheck()
     {
-        // float _attackDistance = attackDistance + stopByObjectDistance;
-
         if (shortestDistance < attackDistance)
         {
             StartCoroutine(Attack(attackOne));
@@ -439,11 +427,11 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
     }
     private void FirstODSet() // FirstEDSet
     {
-            objectDistanceArray[0] = Vector2.Distance(fusionManager.buildingScript.currentPosition, currentPosition);
+        objectDistanceArray[0] = Vector2.Distance(gameManager.GetUnitSpawnPosition().position, currentPosition);
             
-                //buildingScript를 shortest로 지정
-                buildingIsShortest = true;
-                shortestDistance = objectDistanceArray[0];
+        //buildingScript를 shortest로 지정
+        buildingIsShortest = true;
+        shortestDistance = objectDistanceArray[0];
             
     }
     private void ODCheck()

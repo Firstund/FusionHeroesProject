@@ -222,7 +222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4323624078091657384}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.63, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 7960087324531578868}
@@ -345,6 +345,7 @@ MonoBehaviour:
   buildingIsShortest: 0
   mouseCheck: 0
   followingMouse: 0
+  isDead: 0
   isFollow: 0
 --- !u!82 &8793330566932159277
 AudioSource:

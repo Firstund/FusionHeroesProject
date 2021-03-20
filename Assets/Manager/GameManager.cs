@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private Transform unitSpawnPosition = null;
+    [SerializeField]
+    private Transform enemyUnitSpawnPosition = null;
     private bool canTimeStop = true;
     private static GameManager instance;
 
@@ -68,5 +72,13 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
         else
             Time.timeScale = 1;
+    }
+    public Transform GetUnitSpawnPosition()
+    {
+        return unitSpawnPosition;
+    }
+    public Transform GetEnemyUnitSpawnPosition()
+    {
+        return enemyUnitSpawnPosition;
     }
 }

@@ -9,6 +9,7 @@ public class EnemyBuildingScript : MonoBehaviour
     [SerializeField]
     private Slider slider = null;
     FusionManager fusionManager = null;
+    GameManager gameManager = null;
     [SerializeField]
     private AudioSource audi = null;
     [SerializeField]
@@ -16,7 +17,6 @@ public class EnemyBuildingScript : MonoBehaviour
 
     private Animator anim = null;
 
-    [SerializeField]
     private Transform spawnPosition = null;
 
     [SerializeField]
@@ -49,7 +49,9 @@ public class EnemyBuildingScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameManager.Instance;
         fusionManager = FindObjectOfType<FusionManager>();
+        spawnPosition = gameManager.GetEnemyUnitSpawnPosition();
 
         audi = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();

@@ -298,7 +298,7 @@ public class UnitScript : MonoBehaviour
     }
     private void FirstODSet()
     {
-        enemyObjectDistanceArray[0] = Vector2.Distance(fusionManager.enemyBuildingScript.currentPosition, currentPosition); // 에러
+        enemyObjectDistanceArray[0] = Vector2.Distance(gameManager.GetEnemyUnitSpawnPosition().position, currentPosition);
 
         //buildingScript를 shortest로 지정
         buildingIsShortest = true;
@@ -333,16 +333,7 @@ public class UnitScript : MonoBehaviour
     {
         if (!followingMouse)
         {
-            //
-            float usingDistance;
-       
-            if (buildingIsShortest)
-                usingDistance = attackDistance + 2f; // 건물 오브젝트의 currentPosition이 꽤 안쪽에 있어 근접 유닛이 공격할 때
-                                                     // 건물 이미지 안으로 들어가는 사이드 이펙트를 해결하기 위함.
-            else
-                usingDistance = attackDistance;
-            //
-            if (shortestEnemyDistance < usingDistance)
+            if (shortestEnemyDistance < attackDistance)
             {
                 StartCoroutine(Attack());
             }
