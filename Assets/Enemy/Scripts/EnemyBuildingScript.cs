@@ -33,7 +33,9 @@ public class EnemyBuildingScript : MonoBehaviour
 
     [SerializeField]
     private float heart = 10000f;
+    private float heartUp = 1000f;
     private float dp = 10f;
+    private float dpUp = 1f;
 
     private float firstHeart = 0f;
 
@@ -67,6 +69,7 @@ public class EnemyBuildingScript : MonoBehaviour
     void Update()
     {
         currentPosition = transform.localPosition;
+        setStat();
         HealthBar();
         Breaking();
         Spawn();
@@ -122,10 +125,14 @@ public class EnemyBuildingScript : MonoBehaviour
         return d;
 
     }
-    public void setStat(float he, float d)
+    public void SetHP(float he)
     {
         heart = he;
-        dp = d;
+    }
+    private void setStat()
+    {
+        heart = firstHeart + heartUp;
+        dp =  dpUp;
     }
     void Spawn()
     {

@@ -315,8 +315,11 @@ MonoBehaviour:
   slider: {fileID: 3052960253844545953}
   attackDistance: 10
   heart: 10
+  heartUp: 2
   ap: 3
+  apUp: 0.5
   dp: 0
+  dpUp: 0.25
   attackDelay: 0.9
   speed: 1
   totalAtk: 0
@@ -328,6 +331,7 @@ MonoBehaviour:
   onlyOneFollowUnitNum: 0
   unitId: 101
   thisUnitNum: 0
+  thisUnitNO: 0
   unitLev: 1
   levelUpCost: 10
   clickableX: 1

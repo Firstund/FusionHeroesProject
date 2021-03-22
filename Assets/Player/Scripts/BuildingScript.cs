@@ -17,9 +17,11 @@ public class BuildingScript : MonoBehaviour
 
     [SerializeField]
     private float heart = 10000f;
-    private float dp = 10f;
-
     private float firstHeart = 0f;
+    [SerializeField]
+    private float heartUp = 1000f;
+    private float dp = 10f;
+    private float dpUp = 1f;
 
     private bool destroy1Played = false;
     private bool destroy2Played = false;
@@ -27,6 +29,10 @@ public class BuildingScript : MonoBehaviour
     public Vector2 currentPosition = Vector2.zero;
 
     // Start is called before the first frame update
+    void Awake()
+    {
+        firstHeart = heart;
+    }
     void Start()
     {
         fusionManager = FindObjectOfType<FusionManager>();
@@ -36,8 +42,7 @@ public class BuildingScript : MonoBehaviour
 
         int unitNum = fusionManager.GetUnitNum() + 1;
         fusionManager.SetUnitNum(unitNum);
-       
-        firstHeart = heart;
+ 
         SetMaxHealth();
     }
 
@@ -45,6 +50,7 @@ public class BuildingScript : MonoBehaviour
     void Update()
     {
         currentPosition = transform.localPosition;
+        setStat();
         HealthBar();
         breaking();
     }
@@ -67,10 +73,13 @@ public class BuildingScript : MonoBehaviour
     {
         return dp;
     }
-    public void setStat(float he, float d)
+    public void SetHP(float he)
     {
         heart = he;
-        dp = d;
+    }
+    private void setStat()
+    {
+        heart = firstHeart + heartUp;
     }
     void breaking()
     {

@@ -463,8 +463,11 @@ MonoBehaviour:
   minimumD: 0
   maximumD: 3
   heart: 10
+  heartUp: 1
   ap: 3
+  apUp: 0.5
   dp: 0
+  dpUp: 0.25
   attackDelay: 0.9
   speed: 1
   totalAtk: 0

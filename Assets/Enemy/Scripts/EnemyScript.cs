@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class EnemyScript : MonoBehaviour
 {
     //자동소환, 소환대기시간 설정할것
-    //사거리문제 해결해야함
     FusionManager fusionManager = null;
     GameManager gameManager = null;
 
@@ -37,9 +36,16 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     private float heart = 100f;
     [SerializeField]
+    private float heartUp = 1000f;
+    [SerializeField]
     private float ap = 2f;
     [SerializeField]
+    private float apUp = 1f;
+
+    [SerializeField]
     private float dp = 2f;
+    [SerializeField]
+    private float dpUp = 0.25f;
     [SerializeField]
     private float attackDelay = 2f;
     [SerializeField]
@@ -53,7 +59,8 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField]
     private int plusMoney = 25;
-    private int thisUnitNum = 0;
+    private int thisUnitNum = 0; // 현재 오브젝트들중 몇번째 오브젝트인가 -> 공격체크에 쓰임
+    private int thisUnitNO = 0; // 게임 전체에서 몇번째 소환됬는가 -> 유닛의 이동에 쓰임
 
     [SerializeField]
     private float[] objectDistanceArray;
@@ -96,6 +103,13 @@ public class EnemyScript : MonoBehaviour
         int enemyUnitNum = fusionManager.GetEnemyUnitNum() + 1;
         thisUnitNum = enemyUnitNum;
         fusionManager.SetEnemyUnitNum(enemyUnitNum);
+
+        int enemyUnitNO = fusionManager.GetEnemyUnitNO() + 1;
+        thisUnitNO = enemyUnitNO;
+        fusionManager.SetEnemyUnitNO(enemyUnitNO);
+
+        setStat();
+
         SetMaxHealth();
     }
 
@@ -104,8 +118,8 @@ public class EnemyScript : MonoBehaviour
     {
         currentPosition = transform.localPosition;
 
-        objectDistanceArray = new float[fusionManager.GetUnitNum()]; // 에러
-        enemyObjectDistanceArray = new float[fusionManager.GetEnemyUnitNum()]; // 에러
+        objectDistanceArray = new float[fusionManager.GetUnitNum()];
+        enemyObjectDistanceArray = new float[fusionManager.GetEnemyUnitNum()];
 
         EDCheck();
         ODCheck();
@@ -122,7 +136,6 @@ public class EnemyScript : MonoBehaviour
         slider.maxValue = heart;
         slider.value = heart;
         slider.minValue = 0;
-
     }
     private void HealthBar()
     {
@@ -155,10 +168,15 @@ public class EnemyScript : MonoBehaviour
         return d;
 
     }
-    public void setStat(float he, float d)
+    public void SetHP(float he)
     {
         heart = he;
-        dp = d;
+    }
+    private void setStat()
+    {
+        heart += heartUp; // heartUp * 라운드 수
+        ap += apUp;
+        dp += dpUp;
     }
     public float GetShortestDistance()
     {
@@ -238,7 +256,7 @@ public class EnemyScript : MonoBehaviour
                             totalAtk = 1;
                         }
                         shortestHeart -= totalAtk;
-                        fusionManager.buildingScript.setStat(shortestHeart, shortestDp);
+                        fusionManager.buildingScript.SetHP(shortestHeart);
                     }
                     else if (shortestScript != null)
                     {
@@ -252,7 +270,7 @@ public class EnemyScript : MonoBehaviour
                             totalAtk = 1;
                         }
                         shortestHeart -= totalAtk; //단일공격
-                        shortestScript.setStat(shortestHeart, shortestDp);
+                        shortestScript.SetHP(shortestHeart);
 
                     }
                     attackedCheck = false;
@@ -286,7 +304,7 @@ public class EnemyScript : MonoBehaviour
                             totalAtk = 1;
                         }
                         shortestHeart -= totalAtk;
-                        fusionManager.buildingScript.setStat(shortestHeart, shortestDp);
+                        fusionManager.buildingScript.SetHP(shortestHeart);
                     }
                     else if (shortestScript != null)
                     {
@@ -300,8 +318,7 @@ public class EnemyScript : MonoBehaviour
                             totalAtk = 1;
                         }
                         shortestHeart -= totalAtk; //단일공격
-                        shortestScript.setStat(shortestHeart, shortestDp);
-
+                        shortestScript.SetHP(shortestHeart);
                     }
                     attackedCheck = false;
                 }
@@ -335,7 +352,7 @@ public class EnemyScript : MonoBehaviour
 
                             heart -= totalAtk;
 
-                            fusionManager.unitScript[a].setStat(heart, dp);
+                            fusionManager.unitScript[a].SetHP(heart);
 
                         }
                     }
@@ -370,7 +387,7 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
                         totalAtk = 1;
                     }
                     shortestHeart -= totalAtk;
-                    fusionManager.buildingScript.setStat(shortestHeart, shortestDp);
+                    fusionManager.buildingScript.SetHP(shortestHeart);
                 }
                 else if (shortestScript != null)
                 {
@@ -384,7 +401,7 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
                         totalAtk = 1;
                     }
                     shortestHeart -= totalAtk; //단일공격
-                    shortestScript.setStat(shortestHeart, shortestDp);
+                    shortestScript.SetHP(shortestHeart);
 
                 }
             }
@@ -412,8 +429,7 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
 
                         heart -= totalAtk;
 
-                    fusionManager.unitScript[a].setStat(heart, dp);
-
+                    fusionManager.unitScript[a].SetHP(shortestHeart);
                     }
                 }
             }
@@ -481,7 +497,7 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
                         buildingIsShortest = false;
                     }
                 }
-                if(fusionManager.enemyScript[a].GetThisUnitNum() < thisUnitNum)
+                if(fusionManager.enemyScript[a].GetThisUnitNO() < thisUnitNO) // unitScript에도 이거 적용할것
                 {
                     if (enemyObjectDistanceArray[a] < LShortestForwardDistance)
                     {
@@ -528,6 +544,10 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
 
             Destroy(gameObject);
         }
+    }
+    public int GetThisUnitNO()
+    {
+        return thisUnitNO;
     }
     public int GetThisUnitNum()
     {

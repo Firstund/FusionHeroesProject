@@ -16,9 +16,15 @@ public class UnitScript : MonoBehaviour
     [SerializeField]
     private float heart = 100f;
     [SerializeField]
+    private float heartUp = 5f;
+    [SerializeField]
     private float ap = 2f;
     [SerializeField]
+    private float apUp = 0.5f;
+    [SerializeField]
     private float dp = 2f;
+    [SerializeField]
+    private float dpUp = 0.25f;
     [SerializeField]
     private float attackDelay = 2f;
     [SerializeField]
@@ -52,7 +58,9 @@ public class UnitScript : MonoBehaviour
     [SerializeField]
     private int unitId = 01; // 유닛의 종류
     [SerializeField]
-    private int thisUnitNum = 0; // 이 유닛이 몇번째 소환됬는가
+    private int thisUnitNum = 0; // 현재 소환된 오브젝트들 중 몇번째 오브젝트인가
+    [SerializeField]
+    private int thisUnitNO = 0; // 게임 전체에서 몇 번째 소환된 오브젝트인가
     [SerializeField]
     private int unitLev = 01; // 유닛의 레벨
     [SerializeField]
@@ -102,10 +110,8 @@ public class UnitScript : MonoBehaviour
     private bool followingMouse = false;
     [SerializeField]
     private bool isDead = false;
-
     public bool isFollow = false;
    
-
     void Awake()
     {
         firstSpeed = speed;
@@ -124,6 +130,11 @@ public class UnitScript : MonoBehaviour
         int unitNum = fusionManager.GetUnitNum() + 1;
         thisUnitNum = unitNum;
         fusionManager.SetUnitNum(unitNum);
+
+        int unitNO = fusionManager.GetUnitNO() + 1;
+        thisUnitNO = unitNO;
+        fusionManager.SetUnitNO(unitNO);
+
         SetMaxHealth();
     }
 
@@ -133,8 +144,8 @@ public class UnitScript : MonoBehaviour
         currentPosition = transform.localPosition;
         isFollow = fusionManager.GetIsFollow();
 
-        objectDistanceArray = new float[fusionManager.GetUnitNum()]; // 에러
-        enemyObjectDistanceArray = new float[fusionManager.GetEnemyUnitNum()]; // 에러
+        objectDistanceArray = new float[fusionManager.GetUnitNum()];
+        enemyObjectDistanceArray = new float[fusionManager.GetEnemyUnitNum()];
 
         onClickMouse();
 
@@ -179,7 +190,7 @@ public class UnitScript : MonoBehaviour
 
                 shortestHeart -= totalAtk;
 
-                fusionManager.enemyBuildingScript.setStat(shortestHeart, shortestDp);
+                fusionManager.enemyBuildingScript.SetHP(shortestHeart);
             }
             else if (shortestEnemyScript != null)
             {
@@ -195,7 +206,7 @@ public class UnitScript : MonoBehaviour
 
                 shortestHeart -= totalAtk; //단일공격
 
-                shortestEnemyScript.setStat(shortestHeart, shortestDp);
+                shortestEnemyScript.SetHP(shortestHeart);
             }
             attackedCheck = false;
         }
@@ -221,6 +232,7 @@ public class UnitScript : MonoBehaviour
     }
     private IEnumerator IsAroundSet()
     {
+
         yield return new WaitForSeconds(0.1f);
         fusionManager.SetIsAround(false);
 
@@ -230,6 +242,7 @@ public class UnitScript : MonoBehaviour
 
         Destroy(gameObject);
     }
+    #region GetSet
     public Vector2 GetCurrentPosition()
     {
         return currentPosition;
@@ -282,6 +295,10 @@ public class UnitScript : MonoBehaviour
     {
         return thisUnitNum;
     }
+    public int GetThisUnitNO()
+    {
+        return thisUnitNO;
+    }
     public float getHe()
     {
         return heart;
@@ -291,10 +308,24 @@ public class UnitScript : MonoBehaviour
         return dp;
 
     }
-    public void setStat(float he, float d)
+    #endregion
+    public void SetHP(float he)
     {
         heart = he;
-        dp = d;
+    }
+    private void setStat() 
+    {             
+        // 이렇게 되면 유닛의 스탯 증가가 나중에 기하급수적으로 늘게된다. 
+        /*         
+        heart += heartUp * unitLev;
+        dp += dpUp * unitLev;
+        ap += apUp * unitLev;
+        */
+        // 기획에 따라 이렇게 할 수도 있지만, 지금은 스탯의 증가를 등차수열로 하자.
+
+        heart += heartUp * unitLev;
+        dp += dpUp * unitLev;
+        ap += apUp * unitLev;
     }
     private void FirstODSet()
     {
@@ -427,6 +458,8 @@ public class UnitScript : MonoBehaviour
             int a = shortestScript.GetUnitLev() + 1;
             shortestScript.SetUnitLev(a);
 
+            shortestScript.setStat();
+
             StartCoroutine(IsAroundSet());
         }
         else
@@ -497,10 +530,9 @@ public class UnitScript : MonoBehaviour
                         }
                     }
                 }
-                if(fusionManager.unitScript[a].GetThisUnitNum() < thisUnitNum) // 해당 unit오브젝트가 먼저 소환된 오브젝트인지 체크
+                if(fusionManager.unitScript[a].GetThisUnitNO() < thisUnitNO) // 해당 unit오브젝트가 먼저 소환된 오브젝트인지 체크
                 {
-                    if (objectDistanceArray[a] < LShortestForwardDistance) // 이 코드는 사이드 이펙트가 발생한다.
-                                                                           // 사이드 이펙트에 대비하거나 다른 코드를 이용해보자.
+                    if (objectDistanceArray[a] < LShortestForwardDistance)
                     {
                         LShortestForwardDistance = objectDistanceArray[a];
                         shortestForwardDistance = LShortestForwardDistance;

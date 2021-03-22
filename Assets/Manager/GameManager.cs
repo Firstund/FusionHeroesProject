@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class SaveData
+{
+    public int roundNum = 1;
+    public int money = 10;
+    public int plusMoney = 1;
+    public float plusMoenyTime = 1f; // 저장데이터, 후에 적용
+}
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
