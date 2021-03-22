@@ -193,7 +193,13 @@ public class EnemyScript : MonoBehaviour
     }
     void Move()
     {
-        // stopByObjectDistance = 1;
+        float stopByObjectDistance = 1f;
+
+        if(attackDistance < stopByObjectDistance)
+        {
+            stopByObjectDistance = attackDistance;
+        }
+
      
             if (!attackedCheck && !isDead)
                 anim.Play("WalkL");
@@ -208,8 +214,7 @@ public class EnemyScript : MonoBehaviour
                     speed = firstSpeed;
                 }
 
-            // if ((shortestForwardDistance > 1) && (shortestDistance > stopByObjectDistance))
-            if ((shortestForwardDistance > 1) && (shortestDistance > attackDistance))
+            if ((shortestForwardDistance > 1) && (shortestDistance > stopByObjectDistance))
                 speed = firstSpeed;
             else
             {
@@ -242,7 +247,7 @@ public class EnemyScript : MonoBehaviour
 
                     yield return new WaitForSeconds(attackDelay);
                     //공격 애니메이션 출력
-                    audi.Play();
+                        audi.Play();
 
                     if (buildingIsShortest)
                     {
@@ -255,7 +260,9 @@ public class EnemyScript : MonoBehaviour
                         {
                             totalAtk = 1;
                         }
+
                         shortestHeart -= totalAtk;
+
                         fusionManager.buildingScript.SetHP(shortestHeart);
                     }
                     else if (shortestScript != null)
@@ -303,7 +310,9 @@ public class EnemyScript : MonoBehaviour
                         {
                             totalAtk = 1;
                         }
+
                         shortestHeart -= totalAtk;
+
                         fusionManager.buildingScript.SetHP(shortestHeart);
                     }
                     else if (shortestScript != null)

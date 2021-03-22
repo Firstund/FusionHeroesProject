@@ -372,7 +372,12 @@ public class UnitScript : MonoBehaviour
     }
     void Move()
     {
-        int stopByEnemyDistance = 1;
+        float stopByEnemyDistance = 1f;
+
+        if(attackDistance < stopByEnemyDistance)
+        {
+            stopByEnemyDistance = attackDistance;
+        }
 
         if (!attackedCheck && !isDead)
             anim.Play("WalkR");

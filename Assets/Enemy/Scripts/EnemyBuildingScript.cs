@@ -69,7 +69,7 @@ public class EnemyBuildingScript : MonoBehaviour
     void Update()
     {
         currentPosition = transform.localPosition;
-        setStat();
+
         HealthBar();
         Breaking();
         Spawn();
@@ -129,7 +129,7 @@ public class EnemyBuildingScript : MonoBehaviour
     {
         heart = he;
     }
-    private void setStat()
+    private void setStat() // 나중에 건물 업그레이드 기능을 넣었을 때 제대로 작동시킬것
     {
         heart = firstHeart + heartUp;
         dp =  dpUp;
