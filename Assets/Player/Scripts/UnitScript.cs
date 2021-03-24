@@ -5,12 +5,27 @@ using UnityEngine.UI;
 
 public class UnitScript : MonoBehaviour
 {
+    // 버그발생
+    // 유닛을 레벨업 혹은 퓨전할 때 유닛을 끌어다 놓는 순간 다시 클릭하면 
+    //동작이 제대로 수행되지 않는다.
+    
     //공격대기시간, 소환 대기시간 설정할것.
     FusionManager fusionManager = null;
     GameManager gameManager = null;
     [SerializeField]
     private Slider slider = null;
 
+    [SerializeField]
+    private int unitId = 01; // 유닛의 종류
+                             // 첫번째 자리: (이 유닛을 소환하기 위해 필요한 퓨전 수 + 1)
+                             // 두번째 자리: 0 (특수 케이스가 떠오를 때를 대비)
+                             // 세번째 자리: unitId의 첫번째 자리가 같은 숫자들 중 이 유닛이 생긴 순서
+    [SerializeField]
+    private int[] fusionUnitId = new int[5]; // 이 유닛과 퓨전할 수 있는 유닛들의 유닛 아이디
+    [SerializeField]
+    private GameObject[] nextUnit = new GameObject[5]; // 이 유닛이 퓨전한 후 나올수 있는 유닛들,
+                                                       // 인덱스 값은 해당 유닛의 아이디의 (세번째 숫자 - 1)로 설정한다.
+                                                       // 첫번 째 배열에 들어가는 유닛의 아이디는 무조건 이 스크립트의 unitId값이다.
     [SerializeField]
     private float attackDistance = 2f;
     [SerializeField]
@@ -50,13 +65,8 @@ public class UnitScript : MonoBehaviour
     private Animator anim = null;
 
     [SerializeField]
-    private GameObject nextLevel = null;
-
-    [SerializeField]
     private bool onlyOneFollowUnitNum = false;
 
-    [SerializeField]
-    private int unitId = 01; // 유닛의 종류
     [SerializeField]
     private int thisUnitNum = 0; // 현재 소환된 오브젝트들 중 몇번째 오브젝트인가
     [SerializeField]
@@ -82,7 +92,7 @@ public class UnitScript : MonoBehaviour
     [SerializeField]
     private float shortestForwardDistance = 10f;
     private UnitScript shortestForwardScipt = null;
-    
+
     [SerializeField]
     private float shortestEnemyDistance = 10f;
     //
@@ -111,7 +121,7 @@ public class UnitScript : MonoBehaviour
     [SerializeField]
     private bool isDead = false;
     public bool isFollow = false;
-   
+
     void Awake()
     {
         firstSpeed = speed;
@@ -156,13 +166,13 @@ public class UnitScript : MonoBehaviour
         HealthBar();
         DestroyCheck();
 
-        if(gameManager.GetCST())
-        AttackCheck();
+        if (gameManager.GetCST())
+            AttackCheck();
 
-            if (followingCheck)
-            {
-                gameManager.SetCSt(false);
-            }
+        if (followingCheck)
+        {
+            gameManager.SetCSt(false);
+        }
     }
     private IEnumerator Attack()
     {
@@ -170,13 +180,13 @@ public class UnitScript : MonoBehaviour
         if (!attackedCheck && !onlyOneFollowUnitNum)
         {
             attackedCheck = true;
-            
-            if(!isDead)
+
+            if (!isDead)
                 anim.Play("AttackR");
 
             yield return new WaitForSeconds(attackDelay);
             //공격 애니메이션 출력
-                audi.Play();
+            audi.Play();
             if (buildingIsShortest)
             {
                 shortestHeart = fusionManager.enemyBuildingScript.getHe(shortestHeart);
@@ -224,7 +234,7 @@ public class UnitScript : MonoBehaviour
     }
     private void CheckHe()
     {
-        if(heart <= 0)
+        if (heart <= 0)
         {
             ap = 0f;
             speed = 0f;
@@ -236,10 +246,11 @@ public class UnitScript : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         fusionManager.SetIsAround(false);
 
-        int unitNum = fusionManager.GetUnitNum() - 1;
+        int unitNum = fusionManager.GetUnitNum() - 2;
 
         fusionManager.SetUnitNum(unitNum);
 
+        Destroy(shortestScript.gameObject);
         Destroy(gameObject);
     }
     #region GetSet
@@ -313,8 +324,8 @@ public class UnitScript : MonoBehaviour
     {
         heart = he;
     }
-    private void setStat() 
-    {             
+    private void setStat()
+    {
         // 이렇게 되면 유닛의 스탯 증가가 나중에 기하급수적으로 늘게된다. 
         /*         
         heart += heartUp * unitLev;
@@ -348,15 +359,15 @@ public class UnitScript : MonoBehaviour
     }
     private IEnumerator Destroye(GameObject obj)
     {
-        if(!isDead)
+        if (!isDead)
         {
             isDead = true;
-        
+
             int unitNum = fusionManager.GetUnitNum() - 1;
             fusionManager.SetUnitNum(unitNum);
 
             yield return new WaitForSeconds(0.7f);
-        
+
             Destroy(obj);
         }
     }
@@ -374,7 +385,7 @@ public class UnitScript : MonoBehaviour
     {
         float stopByEnemyDistance = 1f;
 
-        if(attackDistance < stopByEnemyDistance)
+        if (attackDistance < stopByEnemyDistance)
         {
             stopByEnemyDistance = attackDistance;
         }
@@ -382,21 +393,21 @@ public class UnitScript : MonoBehaviour
         if (!attackedCheck && !isDead)
             anim.Play("WalkR");
 
-        if(buildingIsShortest)
+        if (buildingIsShortest)
         {
             stopByEnemyDistance = 5;
         }
 
-        if(shortestScript != null)
+        if (shortestScript != null)
         {
-                if(shortestScript.getHe() <= 0f)
-                {
-                    speed = firstSpeed;
-                }
-                else
-                {
-                    speed = 0f;
-                }
+            if (shortestScript.getHe() <= 0f)
+            {
+                speed = firstSpeed;
+            }
+            else
+            {
+                speed = 0f;
+            }
         }
 
         if ((shortestForwardDistance > 1) && (shortestEnemyDistance > stopByEnemyDistance))
@@ -433,16 +444,16 @@ public class UnitScript : MonoBehaviour
                 fusionManager.SetFollowingUnitNum(0);
                 followingCheck = false;
             }
-           
+
             if (shortestDistance < clickableX && !fusionManager.GetIsAround() && gameManager.GetMoney() >= levelUpCost)
             {
-                 LevelUp(unitId, shortestScript.unitId, unitLev, shortestScript.unitLev); 
+                LevelUp(shortestScript.unitId, unitLev, shortestScript.unitLev);
             }
             else
             {
                 ComeBack();
             }
-            
+
             mouseCheck = false;
         }
     }
@@ -451,173 +462,214 @@ public class UnitScript : MonoBehaviour
         followingMouse = false;
         transform.localPosition = firstPosition;
     }
-    public void LevelUp(int aId, int bId, int aLev, int bLev)
+    public void LevelUp(int id, int aLev, int bLev)
     {
-        if ((aId == bId) && (aLev == bLev))
+        int money = 0;
+        for (int i = 0; i < 5; i++)
         {
-            fusionManager.SetIsAround(true);
-            int money = gameManager.GetMoney() - levelUpCost;
-
-            gameManager.SetMoney(money);
-
-            int a = shortestScript.GetUnitLev() + 1;
-            shortestScript.SetUnitLev(a);
-
-            shortestScript.setStat();
-
-            StartCoroutine(IsAroundSet());
-        }
-        else
-        {
-            ComeBack();
-        }
-
-        gameManager.SetCSt(true);
-
-    }
-    #endregion
-    #region distance 관련 함수들
-    public void EDCheck()
-    {
-        FirstODSet();
-        if (fusionManager.GetEnemyUnitNum() > 0)
-        {
-            for (int a = 0; a < fusionManager.GetEnemyUnitNum() - 1; a++)
+            if (id == fusionUnitId[i])
             {
-                enemyObjectDistanceArray[a] = Vector2.Distance(fusionManager.enemyScript[a].GetCurrentPosition(), currentPosition);
-
-                if (enemyObjectDistanceArray[a] < shortestEnemyDistance &&  // shortest 갱신을 위한 조건문
-                    fusionManager.enemyScript[a].GetCurrentPosition().x >= currentPosition.x - 0.5f) // 해당 enemyScript가 전방에 있는지 체크하기 위한 조건문                                                                                
+                switch (i)
                 {
-                    bool arrayDistanceCheck = (enemyObjectDistanceArray[a] == 0);
+                    case 0: // 그냥 유닛의 레벨만 오름
+                    // levelUpCost 지정
+                        fusionManager.SetIsAround(true);
+                        money = gameManager.GetMoney() - levelUpCost;
 
-                    if (!arrayDistanceCheck)
-                    {
-                        shortestEnemyScript = fusionManager.enemyScript[a];
-                        shortestEnemyDistance = enemyObjectDistanceArray[a];
-                        buildingIsShortest = false;
-                    }
+                        gameManager.SetMoney(money);
+
+                        int a = shortestScript.GetUnitLev() + 1;
+                        shortestScript.SetUnitLev(a);
+
+                        shortestScript.setStat();
+
+                        StartCoroutine(IsAroundSet());
+                        break;
+                    case 1: // 여기부터 퓨전
+                        fusionManager.SetIsAround(true);
+                        money = gameManager.GetMoney() - levelUpCost;
+
+                        Instantiate(nextUnit[i], transform);
+
+                        gameManager.SetMoney(money);
+
+                        StartCoroutine(IsAroundSet());
+
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
                 }
-
             }
-        }
-        else
-        {
-            attackedCheck = false;
-            shortestEnemyDistance = 100f;
-            shortestEnemyScript = null;
+            // if ((aId == bId) && (aLev == bLev))
+            // {
+            //     fusionManager.SetIsAround(true);
+            //     int money = gameManager.GetMoney() - levelUpCost;
+
+            //     gameManager.SetMoney(money);
+
+            //     int a = shortestScript.GetUnitLev() + 1;
+            //     shortestScript.SetUnitLev(a);
+
+            //     shortestScript.setStat();
+
+            //     StartCoroutine(IsAroundSet());
+            // }
+            // else
+            // {
+            //     ComeBack();
+            // }
+
+            gameManager.SetCSt(true);
+
         }
     }
-    public void ODCheck()//이 함수 복사, 수정 후 Enemy의 위치를 구하는 함수로 변환
-    {
-        bool shortestForwardIsSet = false;
-        float LShortestDistance = 100f;
-        float LShortestForwardDistance = 100f;
-
-        FirstODSet();
-        for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
+        #endregion
+        #region distance 관련 함수들
+        public void EDCheck()
         {
-            if (fusionManager.unitScript[a] != null)
+            FirstODSet();
+            if (fusionManager.GetEnemyUnitNum() > 0)
             {
-                objectDistanceArray[a] = Vector2.Distance(fusionManager.unitScript[a].currentPosition, currentPosition);
-
-                if (objectDistanceArray[a] < LShortestDistance)
+                for (int a = 0; a < fusionManager.GetEnemyUnitNum() - 1; a++)
                 {
-                    bool arrayDistanceCheck = (objectDistanceArray[a] == 0);
+                    enemyObjectDistanceArray[a] = Vector2.Distance(fusionManager.enemyScript[a].GetCurrentPosition(), currentPosition);
 
-                    if (!arrayDistanceCheck)
+                    if (enemyObjectDistanceArray[a] < shortestEnemyDistance &&  // shortest 갱신을 위한 조건문
+                        fusionManager.enemyScript[a].GetCurrentPosition().x >= currentPosition.x - 0.5f) // 해당 enemyScript가 전방에 있는지 체크하기 위한 조건문                                                                                
                     {
-                        if (fusionManager.unitScript[a] != this)
+                        bool arrayDistanceCheck = (enemyObjectDistanceArray[a] == 0);
+
+                        if (!arrayDistanceCheck)
                         {
-                            shortestScript = fusionManager.unitScript[a];
-                            LShortestDistance = objectDistanceArray[a];
-                            shortestDistance = LShortestDistance;
+                            shortestEnemyScript = fusionManager.enemyScript[a];
+                            shortestEnemyDistance = enemyObjectDistanceArray[a];
+                            buildingIsShortest = false;
                         }
                     }
+
                 }
-                if(fusionManager.unitScript[a].GetThisUnitNO() < thisUnitNO) // 해당 unit오브젝트가 먼저 소환된 오브젝트인지 체크
+            }
+            else
+            {
+                attackedCheck = false;
+                shortestEnemyDistance = 100f;
+                shortestEnemyScript = null;
+            }
+        }
+        public void ODCheck()//이 함수 복사, 수정 후 Enemy의 위치를 구하는 함수로 변환
+        {
+            bool shortestForwardIsSet = false;
+            float LShortestDistance = 100f;
+            float LShortestForwardDistance = 100f;
+
+            FirstODSet();
+            for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
+            {
+                if (fusionManager.unitScript[a] != null)
                 {
-                    if (objectDistanceArray[a] < LShortestForwardDistance)
+                    objectDistanceArray[a] = Vector2.Distance(fusionManager.unitScript[a].currentPosition, currentPosition);
+
+                    if (objectDistanceArray[a] < LShortestDistance)
                     {
-                        LShortestForwardDistance = objectDistanceArray[a];
-                        shortestForwardDistance = LShortestForwardDistance;
-                        shortestForwardScipt = fusionManager.unitScript[a];
-                        shortestForwardIsSet = true;
+                        bool arrayDistanceCheck = (objectDistanceArray[a] == 0);
+
+                        if (!arrayDistanceCheck)
+                        {
+                            if (fusionManager.unitScript[a] != this)
+                            {
+                                shortestScript = fusionManager.unitScript[a];
+                                LShortestDistance = objectDistanceArray[a];
+                                shortestDistance = LShortestDistance;
+                            }
+                        }
+                    }
+                    if (fusionManager.unitScript[a].GetThisUnitNO() < thisUnitNO) // 해당 unit오브젝트가 먼저 소환된 오브젝트인지 체크
+                    {
+                        if (objectDistanceArray[a] < LShortestForwardDistance)
+                        {
+                            LShortestForwardDistance = objectDistanceArray[a];
+                            shortestForwardDistance = LShortestForwardDistance;
+                            shortestForwardScipt = fusionManager.unitScript[a];
+                            shortestForwardIsSet = true;
+                        }
+                    }
+
+                    if (!shortestForwardIsSet)
+                    {
+                        shortestForwardDistance = 10f;
                     }
                 }
-
-                if(!shortestForwardIsSet)
-                {
-                    shortestForwardDistance = 10f;
-                }
             }
         }
-    }
-    #endregion
-    public void followCheck()
-    {
-        bool a = fusionManager.GetFollowingUnitNum() < 2;
-
-        if (a)
-            followingCheck = true;
-
-    }
-    public void moveByMouse()
-    {
-        if (isFollow)
+        #endregion
+        public void followCheck()
         {
+            bool a = fusionManager.GetFollowingUnitNum() < 2;
 
-            bool canFollow = (mouseDistance < clickableX);
+            if (a)
+                followingCheck = true;
 
-            if (canFollow)
-            {
-                if ((!onlyOneFollowUnitNum))
-                {
-                    onlyOneFollowUnitNum = true;
-
-                    int followingUnitNum = 
-                        fusionManager.GetFollowingUnitNum() + 1;
-                    fusionManager.SetFollowingUnitNum(followingUnitNum);
-
-                    followCheck();
-                }
-                if (followingCheck)
-                {
-                    currentPosition = targetPosition;
-
-                    transform.localPosition = currentPosition;
-
-                    followingMouse = true;
-                }
-                else
-                {
-                    mouseCheck = false;
-                }
-            }
         }
-    }
-    public void onClickMouse()
-    {
-        if (Input.GetMouseButton(0))
+        public void moveByMouse()
         {
-            fusionManager.SetIsFollow(true);
-            fusionManager.SetIsAround(false);
-
-            if (!(firstPositionSet))
+            if (isFollow)
             {
-                firstPosition = currentPosition;
-                firstPositionSet = true;
-            }
 
-            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseDistance = Vector2.Distance(currentPosition, targetPosition);
+                bool canFollow = (mouseDistance < clickableX);
 
-            if (mouseDistance < clickableX)
-            {
-                mouseCheck = true;
+                if (canFollow)
+                {
+                    if ((!onlyOneFollowUnitNum))
+                    {
+                        onlyOneFollowUnitNum = true;
+
+                        int followingUnitNum =
+                            fusionManager.GetFollowingUnitNum() + 1;
+                        fusionManager.SetFollowingUnitNum(followingUnitNum);
+
+                        followCheck();
+                    }
+                    if (followingCheck)
+                    {
+                        currentPosition = targetPosition;
+
+                        transform.localPosition = currentPosition;
+
+                        followingMouse = true;
+                    }
+                    else
+                    {
+                        mouseCheck = false;
+                    }
+                }
             }
-            moveByMouse();
         }
+        public void onClickMouse()
+        {
+            if (Input.GetMouseButton(0))
+            {
+                fusionManager.SetIsFollow(true);
+                fusionManager.SetIsAround(false);
+
+                if (!(firstPositionSet))
+                {
+                    firstPosition = currentPosition;
+                    firstPositionSet = true;
+                }
+
+                targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mouseDistance = Vector2.Distance(currentPosition, targetPosition);
+
+                if (mouseDistance < clickableX)
+                {
+                    mouseCheck = true;
+                }
+                moveByMouse();
+            }
+        }
+
     }
-    
-}
