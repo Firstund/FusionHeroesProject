@@ -459,6 +459,7 @@ MonoBehaviour:
   shortestEnemyScript: {fileID: 0}
   strongest1Script: {fileID: 0}
   audi: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: a46be8093b0ad2f4db669b20f9620df4, type: 3}
   attackDistance: 10
   minimumD: 0
   maximumD: 3

@@ -9,7 +9,7 @@ public class EnemyScript : MonoBehaviour
     FusionManager fusionManager = null;
     GameManager gameManager = null;
 
-   [SerializeField]
+    [SerializeField]
     private Slider slider = null;
     //private TestUnitScript testUnitScript = null;
     [SerializeField]
@@ -21,6 +21,8 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField]
     private AudioSource audi = null;
+    [SerializeField]
+    private AudioClip attackSound = null;
     private Animator anim = null;
 
     //단일공격때 필요
@@ -79,27 +81,24 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     private bool buildingIsShortest = false;//building이 shortest일 때 true. unit이 shortest일 때 false
     [SerializeField]
-    private bool attackOne = true;
-    [SerializeField]
     private bool isDead = false;
 
-    private Vector2 currentPosition = Vector2.zero;//
+    private Vector2 currentPosition = new Vector2(100f, 100f);//
 
     // Start is called before the first frame update
     void Awake()
     {
-        firstSpeed = speed;
-    }
-    void Start()
-    {
         gameObject.transform.SetParent(null, true);
-
         fusionManager = FindObjectOfType<FusionManager>();
         gameManager = GameManager.Instance;
         anim = GetComponent<Animator>();
         audi = GetComponent<AudioSource>();
         strongest1Script = GetComponent<Strongest1Script>();
 
+        firstSpeed = speed;
+    }
+    void Start()
+    {
         int enemyUnitNum = fusionManager.GetEnemyUnitNum() + 1;
         thisUnitNum = enemyUnitNum;
         fusionManager.SetEnemyUnitNum(enemyUnitNum);
@@ -141,9 +140,9 @@ public class EnemyScript : MonoBehaviour
     {
         slider.value = heart;
     }
-      private void CheckHe()
+    private void CheckHe()
     {
-        if(heart <= 0)
+        if (heart <= 0)
         {
             ap = 0f;
             speed = 0f;
@@ -195,142 +194,139 @@ public class EnemyScript : MonoBehaviour
     {
         float stopByObjectDistance = 1f;
 
-        if(attackDistance < stopByObjectDistance)
+        if (attackDistance < stopByObjectDistance)
         {
             stopByObjectDistance = attackDistance;
         }
 
-     
-            if (!attackedCheck && !isDead)
-                anim.Play("WalkL");
 
-            if(shortestScript != null)
-                if(shortestScript.getHe() <= 0f)
-                {
-                    speed = 0f;
-                }
-                else
-                {
-                    speed = firstSpeed;
-                }
+        if (!attackedCheck && !isDead)
+            anim.Play("WalkL");
 
-            if ((shortestForwardDistance > 1) && (shortestDistance > stopByObjectDistance))
-                speed = firstSpeed;
-            else
+        if (shortestScript != null)
+            if (shortestScript.getHe() <= 0f)
             {
                 speed = 0f;
             }
+            else
+            {
+                speed = firstSpeed;
+            }
 
-            CheckHe();
+        if ((shortestForwardDistance > 1) && (shortestDistance > stopByObjectDistance))
+            speed = firstSpeed;
+        else
+        {
+            speed = 0f;
+        }
 
-            transform.Translate(Vector2.left * speed * Time.deltaTime);
+        CheckHe();
+
+        transform.Translate(Vector2.left * speed * Time.deltaTime);
     }
     private IEnumerator ReTrue(float time)
     {
         yield return new WaitForSeconds(time);
         attackedCheck = false;
     }
-    private IEnumerator Attack(bool attackOne)
-    {    
+    private IEnumerator Attack()
+    {
         ////단일공격
         if (strongest1Script == null)
         {
-            if (attackOne)
+
+            if (!attackedCheck)
             {
+                attackedCheck = true;
 
-                if (!attackedCheck)
+                if (!isDead)
+                    anim.Play("AttackL");
+
+                yield return new WaitForSeconds(attackDelay);
+                //공격 애니메이션 출력
+                audi.Play();
+
+                if (buildingIsShortest)
                 {
-                    attackedCheck = true;
+                    shortestHeart = fusionManager.buildingScript.getHe();
+                    shortestDp = fusionManager.buildingScript.getD();
 
-                    if(!isDead)
-                        anim.Play("AttackL");
+                    totalAtk = (ap - shortestDp);
 
-                    yield return new WaitForSeconds(attackDelay);
-                    //공격 애니메이션 출력
-                        audi.Play();
-
-                    if (buildingIsShortest)
+                    if (totalAtk <= 0)
                     {
-                        shortestHeart = fusionManager.buildingScript.getHe();
-                        shortestDp = fusionManager.buildingScript.getD();
-
-                        totalAtk = (ap - shortestDp);
-
-                        if (totalAtk <= 0)
-                        {
-                            totalAtk = 1;
-                        }
-
-                        shortestHeart -= totalAtk;
-
-                        fusionManager.buildingScript.SetHP(shortestHeart);
+                        totalAtk = 1;
                     }
-                    else if (shortestScript != null)
-                    {
-                        shortestHeart = shortestScript.getHe();
-                        shortestDp = shortestScript.getD();
 
-                        totalAtk = (ap - shortestDp);//데미지 공식 적용
+                    shortestHeart -= totalAtk;
 
-                        if (totalAtk <= 0)
-                        {
-                            totalAtk = 1;
-                        }
-                        shortestHeart -= totalAtk; //단일공격
-                        shortestScript.SetHP(shortestHeart);
-
-                    }
-                    attackedCheck = false;
+                    fusionManager.buildingScript.SetHP(shortestHeart);
                 }
+                else if (shortestScript != null)
+                {
+                    shortestHeart = shortestScript.getHe();
+                    shortestDp = shortestScript.getD();
+
+                    totalAtk = (ap - shortestDp);//데미지 공식 적용
+
+                    if (totalAtk <= 0)
+                    {
+                        totalAtk = 1;
+                    }
+                    shortestHeart -= totalAtk; //단일공격
+                    shortestScript.SetHP(shortestHeart);
+
+                }
+                attackedCheck = false;
             }
+
         }
         else if (!strongest1Script.GetSkillUsed())
-            if (attackOne)
+
+            if (!attackedCheck)
             {
+                attackedCheck = true;
 
-                if (!attackedCheck)
+                if (!isDead)
+                    anim.Play("AttackL");
+
+                yield return new WaitForSeconds(attackDelay);
+                audi.clip = attackSound;
+                //공격 애니메이션 출력
+                audi.Play();
+
+                if (buildingIsShortest)
                 {
-                    attackedCheck = true;
+                    shortestHeart = fusionManager.buildingScript.getHe();
+                    shortestDp = fusionManager.buildingScript.getD();
 
-                    if(!isDead)
-                        anim.Play("AttackL");
+                    totalAtk = (ap - shortestDp);
 
-                    yield return new WaitForSeconds(attackDelay);
-                    //공격 애니메이션 출력
-                    audi.Play();
-
-                    if (buildingIsShortest)
+                    if (totalAtk <= 0)
                     {
-                        shortestHeart = fusionManager.buildingScript.getHe();
-                        shortestDp = fusionManager.buildingScript.getD();
-
-                        totalAtk = (ap - shortestDp);
-
-                        if (totalAtk <= 0)
-                        {
-                            totalAtk = 1;
-                        }
-
-                        shortestHeart -= totalAtk;
-
-                        fusionManager.buildingScript.SetHP(shortestHeart);
+                        totalAtk = 1;
                     }
-                    else if (shortestScript != null)
-                    {
-                        shortestHeart = shortestScript.getHe();
-                        shortestDp = shortestScript.getD();
 
-                        totalAtk = (ap - shortestDp);//데미지 공식 적용
+                    shortestHeart -= totalAtk;
 
-                        if (totalAtk <= 0)
-                        {
-                            totalAtk = 1;
-                        }
-                        shortestHeart -= totalAtk; //단일공격
-                        shortestScript.SetHP(shortestHeart);
-                    }
-                    attackedCheck = false;
+                    fusionManager.buildingScript.SetHP(shortestHeart);
                 }
+                else if (shortestScript != null)
+                {
+                    shortestHeart = shortestScript.getHe();
+                    shortestDp = shortestScript.getD();
+
+                    totalAtk = (ap - shortestDp);//데미지 공식 적용
+
+                    if (totalAtk <= 0)
+                    {
+                        totalAtk = 1;
+                    }
+                    shortestHeart -= totalAtk; //단일공격
+                    shortestScript.SetHP(shortestHeart);
+                }
+                attackedCheck = false;
+
             }
             else
             {
@@ -341,8 +337,10 @@ public class EnemyScript : MonoBehaviour
                     //anim.Play("TestAnimationAttack");
                     yield return new WaitForSeconds(attackDelay);
                     //공격 애니메이션 출력
+                    audi.clip = attackSound;
+                    audi.Play();
 
-                    if(!isDead)
+                    if (!isDead)
                         anim.Play("AttackL");
 
                     for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
@@ -368,8 +366,8 @@ public class EnemyScript : MonoBehaviour
                     attackedCheck = false;
                 }
             }
-}
-public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float minimumD, float maximumD)
+    }
+    public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float minimumD, float maximumD)
     {
         StartCoroutine(AttackSkill(attackOne, ap, attackDelay, minimumD, maximumD));
     }
@@ -377,87 +375,85 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
     {
         //단일공격
 
-            if (attackOne)
+        if (attackOne)
+        {
+
+            yield return new WaitForSeconds(attackDelay);
+
+            if (buildingIsShortest)
             {
+                shortestHeart = fusionManager.buildingScript.getHe();
+                shortestDp = fusionManager.buildingScript.getD();
 
-                yield return new WaitForSeconds(attackDelay);
+                totalAtk = (ap - shortestDp);
 
-                audi.Play();
-
-                if (buildingIsShortest)
+                if (totalAtk <= 0)
                 {
-                    shortestHeart = fusionManager.buildingScript.getHe();
-                    shortestDp = fusionManager.buildingScript.getD();
-
-                    totalAtk = (ap - shortestDp);
-
-                    if (totalAtk <= 0)
-                    {
-                        totalAtk = 1;
-                    }
-                    shortestHeart -= totalAtk;
-                    fusionManager.buildingScript.SetHP(shortestHeart);
+                    totalAtk = 1;
                 }
-                else if (shortestScript != null)
-                {
-                    shortestHeart = shortestScript.getHe();
-                    shortestDp = shortestScript.getD();
-
-                    totalAtk = (ap - shortestDp);//데미지 공식 적용
-
-                    if (totalAtk <= 0)
-                    {
-                        totalAtk = 1;
-                    }
-                    shortestHeart -= totalAtk; //단일공격
-                    shortestScript.SetHP(shortestHeart);
-
-                }
+                shortestHeart -= totalAtk;
+                fusionManager.buildingScript.SetHP(shortestHeart);
             }
-            else
+            else if (shortestScript != null)
             {
-                //광역공격
+                shortestHeart = shortestScript.getHe();
+                shortestDp = shortestScript.getD();
 
-                attackedCheck = true;
-                //anim.Play("TestAnimationAttack");
-                yield return new WaitForSeconds(attackDelay);
+                totalAtk = (ap - shortestDp);//데미지 공식 적용
 
-                for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
+                if (totalAtk <= 0)
                 {
+                    totalAtk = 1;
+                }
+                shortestHeart -= totalAtk; //단일공격
+                shortestScript.SetHP(shortestHeart);
+
+            }
+        }
+        else
+        {
+            //광역공격
+
+            attackedCheck = true;
+            //anim.Play("TestAnimationAttack");
+            yield return new WaitForSeconds(attackDelay);
+
+            for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
+            {
                 if (objectDistanceArray[a] < maximumD && objectDistanceArray[a] >= minimumD)//minimum, maxism attackDistance를 이용하여 공격 범위 설정가능
+                {
+                    float dp = fusionManager.unitScript[a].getD();
+                    float heart = fusionManager.unitScript[a].getHe();
+
+                    totalAtk = (ap - dp);
+
+                    if (totalAtk <= 0)
                     {
-                        float dp = fusionManager.unitScript[a].getD();
-                        float heart = fusionManager.unitScript[a].getHe();
+                        totalAtk = 1;
+                    }
 
-                        totalAtk = (ap - dp);
-
-                        if (totalAtk <= 0)
-                        {
-                            totalAtk = 1;
-                        }
-
-                        heart -= totalAtk;
+                    heart -= totalAtk;
 
                     fusionManager.unitScript[a].SetHP(shortestHeart);
-                    }
                 }
             }
+        }
     }
     private void AttackCheck()
     {
         if (shortestDistance < attackDistance)
         {
-            StartCoroutine(Attack(attackOne));
+            StartCoroutine(Attack());
         }
     }
     private void FirstODSet() // FirstEDSet
     {
         objectDistanceArray[0] = Vector2.Distance(gameManager.GetUnitSpawnPosition().position, currentPosition);
-            
+
         //buildingScript를 shortest로 지정
         buildingIsShortest = true;
         shortestDistance = objectDistanceArray[0];
-            
+
     }
     private void ODCheck()
     {
@@ -506,7 +502,7 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
                         buildingIsShortest = false;
                     }
                 }
-                if(fusionManager.enemyScript[a].GetThisUnitNO() < thisUnitNO) // unitScript에도 이거 적용할것
+                if (fusionManager.enemyScript[a].GetThisUnitNO() < thisUnitNO) // unitScript에도 이거 적용할것
                 {
                     if (enemyObjectDistanceArray[a] < LShortestForwardDistance)
                     {
@@ -515,7 +511,7 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
                         shortestForwardIsSet = true;
                     }
                 }
-                 if(!shortestForwardIsSet)
+                if (!shortestForwardIsSet)
                 {
                     shortestForwardDistance = 10f;
                 }
@@ -539,7 +535,7 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
     }
     private IEnumerator Destroye()
     {
-        if(!isDead)
+        if (!isDead)
         {
             isDead = true;
             int enemyUnitNum = fusionManager.GetEnemyUnitNum() - 1;
@@ -548,11 +544,15 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
             int money = gameManager.GetMoney() + plusMoney;
 
             yield return new WaitForSeconds(0.7f);
-        
+
             gameManager.SetMoney(money);
 
             Destroy(gameObject);
         }
+    }
+    public AudioSource GetAudi()
+    {
+        return audi;
     }
     public int GetThisUnitNO()
     {
@@ -565,5 +565,9 @@ public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float min
     public bool GetIsDead()
     {
         return isDead;
+    }
+    public float GetAttackDistance()
+    {
+        return attackDistance;
     }
 }

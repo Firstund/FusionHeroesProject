@@ -286,12 +286,13 @@ MonoBehaviour:
   shortestEnemyScript: {fileID: 0}
   strongest1Script: {fileID: 0}
   audi: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 709ac486a9cb06d4c8fa44d502060f8b, type: 3}
   attackDistance: 0.5
   minimumD: 0
   maximumD: 3
   heart: 200
   heartUp: 50
-  ap: 0
+  ap: 10
   apUp: 1
   dp: 2
   dpUp: 0.25
@@ -318,8 +319,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a46be8093b0ad2f4db669b20f9620df4, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 709ac486a9cb06d4c8fa44d502060f8b, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -417,12 +418,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillUsed: 0
-  canUseSkill1: 1
-  canUseSkill2: 1
-  skill1Wait: 20
-  skill1Distance: 4
-  skill2Wait: 5
-  skill2Distance: 1
+  canUseSkill: 0101
+  skillSound:
+  - {fileID: 0}
+  - {fileID: 8300000, guid: 3e86fdabbddb4554ba8a3532c29e25be, type: 3}
+  skillWait:
+  - 10
+  - 5
+  skillDistance:
+  - 10
+  - 2
+  skillDamage:
+  - 0
+  - 10
 --- !u!1 &7190005137975511569
 GameObject:
   m_ObjectHideFlags: 0

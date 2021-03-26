@@ -138,9 +138,5 @@ public class FusionManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         isUped = false;
     }
-    public void Fusion(GameObject unit1, GameObject unit2, int nextObjectNum)
-    {
-        // nextObjectNum은 FusionObject배열의 호출 때 인덱스로 쓰인다.
-    }
     
 }

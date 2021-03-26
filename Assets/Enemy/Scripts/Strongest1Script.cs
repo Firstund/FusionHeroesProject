@@ -8,9 +8,9 @@ public class Strongest1Script : MonoBehaviour
     private bool skillUsed = false;
 
     [SerializeField]
-    private bool canUseSkill1 = true;
+    private bool[] canUseSkill = new bool[2] { true, true };
     [SerializeField]
-    private bool canUseSkill2 = true;
+    private AudioClip[] skillSound = new AudioClip[2] { null, null };
 
     private EnemyScript thisObjectScript = null;
     private UnitScript shortestScript = null;
@@ -18,13 +18,11 @@ public class Strongest1Script : MonoBehaviour
     private Animator anim = null;
 
     [SerializeField]
-    private float skill1Wait = 0.3f;
+    private float[] skillWait = new float[2] { 0.3f, 0.3f };
     [SerializeField]
-    private float skill1Distance = 5f;
+    private float[] skillDistance = new float[2] { 1f, 1f };
     [SerializeField]
-    private float skill2Wait = 5f;
-    [SerializeField]
-    private float skill2Distance = 1f;
+    private float[] skillDamage = new float[2];
 
     void Start()
     {
@@ -44,13 +42,19 @@ public class Strongest1Script : MonoBehaviour
     }
     private IEnumerator skill1()//Warp
     {
-        bool distanceCheck = (thisObjectScript.GetShortestDistance() < skill1Distance);
-        if ((shortestScript != null) && canUseSkill1 && distanceCheck)
-        {
-            skillUsed = true;
-            canUseSkill1 = false;
+        bool distanceCheck = (thisObjectScript.GetShortestDistance() < skillDistance[0] &&
+         thisObjectScript.GetAttackDistance() < thisObjectScript.GetShortestDistance());
 
-            if(!thisObjectScript.GetIsDead())
+
+        if ((shortestScript != null) && canUseSkill[0] && distanceCheck)
+        {
+            thisObjectScript.GetAudi().clip = skillSound[0];
+            thisObjectScript.GetAudi().Play();
+
+            skillUsed = true;
+            canUseSkill[0] = false;
+
+            if (!thisObjectScript.GetIsDead())
                 anim.Play("strongest1Warp");
 
             float time = 0.3f;
@@ -61,7 +65,7 @@ public class Strongest1Script : MonoBehaviour
 
             skillUsed = false;
             StartCoroutine(skill1Re());
-            
+
             transform.localPosition = shortestScript.transform.localPosition;//스킬 사용
 
             //skill1Used를 EnemyScript에서 참조할 수 있도록 하고 Skill1Used가 true일 때 이동, 공격 기능이 정지되도록 해보자.
@@ -69,20 +73,25 @@ public class Strongest1Script : MonoBehaviour
     }
     private IEnumerator skill1Re()
     {
-        yield return new WaitForSeconds(skill1Wait);
+        yield return new WaitForSeconds(skillWait[0]);
 
-        if(!thisObjectScript.GetIsDead())
-            canUseSkill1 = true;
+        if (!thisObjectScript.GetIsDead())
+            canUseSkill[0] = true;
     }
     private IEnumerator skill2()
     {
-        bool distanceCheck = (thisObjectScript.GetShortestDistance() < skill2Distance);
-        if ((shortestScript != null) && canUseSkill2 && distanceCheck)
-        {
-            skillUsed = true;
-            canUseSkill2 = false;     
+        bool distanceCheck = (thisObjectScript.GetShortestDistance() < skillDistance[1]);
 
-            if(!thisObjectScript.GetIsDead())
+
+        if ((shortestScript != null) && canUseSkill[1] && distanceCheck)
+        {
+            thisObjectScript.GetAudi().clip = skillSound[1];
+            thisObjectScript.GetAudi().Play();
+
+            skillUsed = true;
+            canUseSkill[1] = false;
+
+            if (!thisObjectScript.GetIsDead())
                 anim.Play("Strongest1Attack2");
 
             float time = 1f;
@@ -91,7 +100,7 @@ public class Strongest1Script : MonoBehaviour
 
             //애니 출력
 
-            thisObjectScript.DoAttackSkill(false, 10f, time, 0f, 1f);//(단일공격인가?, 스킬 데미지, 스킬 쿨타임, 광역공격일 때 사용되는 광역공격 범위들(미니멈, 멕시멈))
+            thisObjectScript.DoAttackSkill(false, 10f, time, 0f, skillDistance[1]);//(단일공격인가?, 스킬 데미지, 스킬 쿨타임, 광역공격일 때 사용되는 광역공격 범위들(미니멈, 멕시멈))
 
             yield return new WaitForSeconds(time);
 
@@ -101,13 +110,13 @@ public class Strongest1Script : MonoBehaviour
     }
     private IEnumerator skill2Re()
     {
-        yield return new WaitForSeconds(skill2Wait);
-        
-        if(!thisObjectScript.GetIsDead())
-            canUseSkill2 = true;
+        yield return new WaitForSeconds(skillWait[1]);
+
+        if (!thisObjectScript.GetIsDead())
+            canUseSkill[1] = true;
     }
     public bool GetSkillUsed()
     {
         return skillUsed;
-    }   
+    }
 }

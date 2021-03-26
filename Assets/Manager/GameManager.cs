@@ -6,7 +6,7 @@ using UnityEngine;
 public class SaveData
 {
     public int roundNum = 1;
-    public int money = 10;
+    public int money = 20;
     public int plusMoney = 1;
     public float plusMoenyTime = 1f; // 저장데이터, 후에 적용
 }
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
-    private int money = 10;
+    private int money = 200;
     private int plusMoney = 1;
     private float plusMoenyTime = 1f;
 
