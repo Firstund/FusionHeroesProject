@@ -5,11 +5,8 @@ using UnityEngine.UI;
 
 public class UnitScript : MonoBehaviour
 {
-    // 버그발생
-    // 유닛을 레벨업 혹은 퓨전할 때 유닛을 끌어다 놓는 순간 다시 클릭하면 
-    //동작이 제대로 수행되지 않는다.
-
     //공격대기시간, 소환 대기시간 설정할것.
+    // 적 유닛이 아군유닛 통과하는 버그 픽스해야함
     FusionManager fusionManager = null;
     GameManager gameManager = null;
     [SerializeField]
@@ -126,7 +123,7 @@ public class UnitScript : MonoBehaviour
     {
         currentPosition = transform.localPosition;
         firstSpeed = speed;
-        
+
         gameObject.transform.SetParent(null, true);
         fusionManager = FindObjectOfType<FusionManager>();
         gameManager = GameManager.Instance;
@@ -177,7 +174,6 @@ public class UnitScript : MonoBehaviour
     }
     private IEnumerator Attack()
     {
-        Debug.Log("aaaa");
         //단일공격
         if (!attackedCheck && !onlyOneFollowUnitNum)
         {
@@ -188,39 +184,42 @@ public class UnitScript : MonoBehaviour
 
             yield return new WaitForSeconds(attackDelay);
             //공격 애니메이션 출력
-            audi.Play();
-            if (buildingIsShortest) // 한번씩 사거리가 엄청 뛰는 버그 발생 근데 이상하게 EnemyScript에선 발생하지 않음.
+            if (shortestEnemyDistance < attackDistance)
             {
-                shortestHeart = fusionManager.enemyBuildingScript.getHe(shortestHeart);
-                shortestDp = fusionManager.enemyBuildingScript.getD(shortestDp);
-
-                totalAtk = (ap - shortestDp);
-                if (totalAtk <= 0)
+                audi.Play();
+                if (buildingIsShortest)
                 {
-                    totalAtk = 1;
+                    shortestHeart = fusionManager.enemyBuildingScript.getHe(shortestHeart);
+                    shortestDp = fusionManager.enemyBuildingScript.getD(shortestDp);
+
+                    totalAtk = (ap - shortestDp);
+                    if (totalAtk <= 0)
+                    {
+                        totalAtk = 1;
+                    }
+
+                    shortestHeart -= totalAtk;
+
+                    fusionManager.enemyBuildingScript.SetHP(shortestHeart);
                 }
-
-                shortestHeart -= totalAtk;
-
-                fusionManager.enemyBuildingScript.SetHP(shortestHeart);
-            }
-            else if (shortestEnemyScript != null)
-            {
-                shortestHeart = shortestEnemyScript.getHe(shortestHeart);
-                shortestDp = shortestEnemyScript.getD(shortestDp);
-
-                totalAtk = (ap - shortestDp);//데미지 공식 적용
-
-                if (totalAtk <= 0)
+                else if (shortestEnemyScript != null)
                 {
-                    totalAtk = 1;
+                    shortestHeart = shortestEnemyScript.getHe(shortestHeart);
+                    shortestDp = shortestEnemyScript.getD(shortestDp);
+
+                    totalAtk = (ap - shortestDp);//데미지 공식 적용
+
+                    if (totalAtk <= 0)
+                    {
+                        totalAtk = 1;
+                    }
+
+                    shortestHeart -= totalAtk; //단일공격
+
+                    shortestEnemyScript.SetHP(shortestHeart);
                 }
-
-                shortestHeart -= totalAtk; //단일공격
-
-                shortestEnemyScript.SetHP(shortestHeart);
+                attackedCheck = false;
             }
-            attackedCheck = false;
         }
     }
     private void SetMaxHealth()
@@ -470,7 +469,7 @@ public class UnitScript : MonoBehaviour
         int money = 0;
         for (int i = 0; i < 5; i++)
         {
-            if (id == fusionUnitId[i])
+            if (id == fusionUnitId[i] && unitLev == shortestScript.GetUnitLev())
             {
                 switch (i)
                 {
@@ -600,9 +599,8 @@ public class UnitScript : MonoBehaviour
     }
     public void moveByMouse()
     {
-        if (isFollow && mouseCheck)
+        if (isFollow && mouseCheck && !gameManager.GetMapSliderMoving())
         {
-
             bool canFollow = (mouseDistance < clickableX);
 
             if (canFollow)

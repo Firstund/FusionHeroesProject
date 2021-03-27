@@ -24,6 +24,7 @@ public class FusionManager : MonoBehaviour
     private GameManager gameManager = null;
 
     private GameObject[] fusionObject = null;
+    
 
     private bool monsterSpawned = false;
 

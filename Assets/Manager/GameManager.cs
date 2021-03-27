@@ -40,13 +40,13 @@ public class GameManager : MonoBehaviour
     private float plusMoenyTime = 1f;
 
     private bool canMoneyPlus = true;
+    private bool mapSliderMoving = false;
 
     void Update()
     {
         if(canMoneyPlus)
         StartCoroutine(PlusMoney());
         TimeSet();
-
     }
     private IEnumerator PlusMoney()
     {
@@ -87,5 +87,13 @@ public class GameManager : MonoBehaviour
     public Transform GetEnemyUnitSpawnPosition()
     {
         return enemyUnitSpawnPosition;
+    }
+    public bool GetMapSliderMoving()
+    {
+        return mapSliderMoving;
+    }
+    public void SetMapSliderMoving(bool a)
+    {
+        mapSliderMoving = a;
     }
 }
