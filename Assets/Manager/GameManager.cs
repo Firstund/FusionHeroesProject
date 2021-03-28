@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private Transform unitSpawnPosition = null;
     [SerializeField]
     private Transform enemyUnitSpawnPosition = null;
+    [SerializeField]
     private bool canTimeStop = true;
     private static GameManager instance;
 

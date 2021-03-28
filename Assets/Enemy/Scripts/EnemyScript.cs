@@ -232,7 +232,7 @@ public class EnemyScript : MonoBehaviour
     private IEnumerator Attack()
     {
         ////단일공격
-        if (shortestEnemyDistance < attackDistance)
+        if (shortestDistance < attackDistance)
         {
             if (strongest1Script == null)
             {

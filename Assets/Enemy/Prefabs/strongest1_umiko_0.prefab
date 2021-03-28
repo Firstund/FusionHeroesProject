@@ -307,7 +307,6 @@ MonoBehaviour:
   shortestEnemyDistance: 10
   attackedCheck: 0
   buildingIsShortest: 0
-  attackOne: 1
   isDead: 0
 --- !u!82 &1404034451756541992
 AudioSource:

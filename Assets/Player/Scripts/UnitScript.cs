@@ -218,9 +218,9 @@ public class UnitScript : MonoBehaviour
                     shortestHeart -= totalAtk; //단일공격
 
                     shortestEnemyScript.SetHP(shortestHeart);
-                }
-                attackedCheck = false;
+                }  
             }
+            attackedCheck = false;
         }
     }
     private void SetMaxHealth()
