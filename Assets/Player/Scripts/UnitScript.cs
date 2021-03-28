@@ -124,8 +124,13 @@ public class UnitScript : MonoBehaviour
         currentPosition = transform.localPosition;
         firstSpeed = speed;
 
-        gameObject.transform.SetParent(null, true);
         fusionManager = FindObjectOfType<FusionManager>();
+
+        int unitNO = fusionManager.GetUnitNO() + 1;
+        thisUnitNO = unitNO;
+        fusionManager.SetUnitNO(unitNO);
+
+        gameObject.transform.SetParent(null, true);
         gameManager = GameManager.Instance;
         anim = GetComponent<Animator>();
         audi = GetComponent<AudioSource>();
@@ -138,10 +143,6 @@ public class UnitScript : MonoBehaviour
         int unitNum = fusionManager.GetUnitNum() + 1;
         thisUnitNum = unitNum;
         fusionManager.SetUnitNum(unitNum);
-
-        int unitNO = fusionManager.GetUnitNO() + 1;
-        thisUnitNO = unitNO;
-        fusionManager.SetUnitNO(unitNO);
 
         SetMaxHealth();
     }
@@ -241,18 +242,16 @@ public class UnitScript : MonoBehaviour
             speed = 0f;
         }
     }
-    private IEnumerator IsAroundSet(bool isFusion)
+    private IEnumerator IsAroundSet()
     {
 
         yield return new WaitForSeconds(0.1f);
         fusionManager.SetIsAround(false);
 
-        int unitNum = fusionManager.GetUnitNum() - 2;
+        int unitNum = fusionManager.GetUnitNum() - 1;
 
         fusionManager.SetUnitNum(unitNum);
 
-        if (isFusion)
-            Destroy(shortestScript.gameObject);
         Destroy(gameObject);
     }
     #region GetSet
@@ -311,6 +310,10 @@ public class UnitScript : MonoBehaviour
     public int GetThisUnitNO()
     {
         return thisUnitNO;
+    }
+    public void SetThisUnitNO(int a)
+    {
+        thisUnitNO = a;
     }
     public float getHe()
     {
@@ -485,17 +488,33 @@ public class UnitScript : MonoBehaviour
 
                         shortestScript.setStat();
 
-                        StartCoroutine(IsAroundSet(false));
+                        StartCoroutine(IsAroundSet());
                         break;
                     case 1: // 여기부터 퓨전
+                        UnitScript nextUnitScript;
+
                         fusionManager.SetIsAround(true);
                         money = gameManager.GetMoney() - levelUpCost;
 
-                        Instantiate(nextUnit[i], transform);
+                        int unitNum = fusionManager.GetUnitNum() - 1;
+                        fusionManager.SetUnitNum(unitNum);
+
+                        Destroy(shortestScript.gameObject);
+
+                        nextUnitScript = Instantiate(nextUnit[i], transform).GetComponent<UnitScript>();
+
+                        if (shortestScript.GetThisUnitNO() > thisUnitNO)
+                            nextUnitScript.SetThisUnitNO(thisUnitNO);
+                        else
+                        {
+                            nextUnitScript.SetThisUnitNO(shortestScript.GetThisUnitNO());
+                        }
+
+                        nextUnitScript.SetUnitLev(unitLev);
 
                         gameManager.SetMoney(money);
 
-                        StartCoroutine(IsAroundSet(true));
+                        StartCoroutine(IsAroundSet());
                         break;
                     case 2:
                         break;
