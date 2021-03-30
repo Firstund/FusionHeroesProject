@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class UnitScript : MonoBehaviour
 {
     //공격대기시간, 소환 대기시간 설정할것.
-    // 적 유닛이 아군유닛 통과하는 버그 픽스해야함
     FusionManager fusionManager = null;
     GameManager gameManager = null;
     [SerializeField]
@@ -121,7 +120,7 @@ public class UnitScript : MonoBehaviour
 
     void Awake()
     {
-        currentPosition = transform.localPosition;
+        gameObject.transform.SetParent(GameObject.Find("Units").gameObject.transform, true);
         firstSpeed = speed;
 
         fusionManager = FindObjectOfType<FusionManager>();
@@ -130,7 +129,6 @@ public class UnitScript : MonoBehaviour
         thisUnitNO = unitNO;
         fusionManager.SetUnitNO(unitNO);
 
-        gameObject.transform.SetParent(null, true);
         gameManager = GameManager.Instance;
         anim = GetComponent<Animator>();
         audi = GetComponent<AudioSource>();
@@ -651,7 +649,7 @@ public class UnitScript : MonoBehaviour
     }
     public void onClickMouse()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !isDead)
         {
             fusionManager.SetIsFollow(true);
             fusionManager.SetIsAround(false);

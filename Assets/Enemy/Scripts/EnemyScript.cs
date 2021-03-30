@@ -88,7 +88,7 @@ public class EnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        gameObject.transform.SetParent(null, true);
+        gameObject.transform.SetParent(GameObject.Find("EnemyUnits").gameObject.transform, true);
         fusionManager = FindObjectOfType<FusionManager>();
         gameManager = GameManager.Instance;
         anim = GetComponent<Animator>();
