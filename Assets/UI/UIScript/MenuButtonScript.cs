@@ -16,6 +16,13 @@ public class MenuButtonScript : MonoBehaviour
             comeBackNum = 0;
 
             MenuSet(false);
+
+            for (int i = 0; i < transform.GetChild(0).GetChildCount(); i++)
+            {
+                mBtnScript = transform.GetChild(0).GetChild(i).GetComponent<M_ButtonScript>();
+                mBtnScript.Reset();
+            }
+
         }
     }
     public void OnClick()
