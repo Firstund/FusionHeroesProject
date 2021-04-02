@@ -38,8 +38,9 @@ public class M_ButtonScript : MonoBehaviour
         if (currentPosition.x > comeBackVector && currentPosition.y > comeBackVector)
         {
             transform.localPosition = currentPosition;
-            speed = 0f;
             menuButtonScript.IsComeBack();
+            SetSpeed(0f);
+
             Reset();
             Return();
         }
@@ -58,5 +59,9 @@ public class M_ButtonScript : MonoBehaviour
     public void OnDisable()
     {
         speed = firstSpeed;
+    }
+    public void SetSpeed(float a)
+    {
+        speed = a;
     }
 }
