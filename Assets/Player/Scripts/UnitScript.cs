@@ -188,8 +188,8 @@ public class UnitScript : MonoBehaviour
                 audi.Play();
                 if (buildingIsShortest)
                 {
-                    shortestHeart = fusionManager.enemyBuildingScript.getHe(shortestHeart);
-                    shortestDp = fusionManager.enemyBuildingScript.getD(shortestDp);
+                    shortestHeart = fusionManager.enemyBuildingScript.getHe();
+                    shortestDp = fusionManager.enemyBuildingScript.getD();
 
                     totalAtk = (ap - shortestDp);
                     if (totalAtk <= 0)
@@ -203,8 +203,8 @@ public class UnitScript : MonoBehaviour
                 }
                 else if (shortestEnemyScript != null)
                 {
-                    shortestHeart = shortestEnemyScript.getHe(shortestHeart);
-                    shortestDp = shortestEnemyScript.getD(shortestDp);
+                    shortestHeart = shortestEnemyScript.getHe();
+                    shortestDp = shortestEnemyScript.getD();
 
                     totalAtk = (ap - shortestDp);//데미지 공식 적용
 

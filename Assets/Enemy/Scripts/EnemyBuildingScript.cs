@@ -28,8 +28,9 @@ public class EnemyBuildingScript : MonoBehaviour
     private GameObject oSkeleton = null;
     [SerializeField]
     private GameObject oArcher = null;
+
     [SerializeField]
-    private GameObject oUmiko = null;
+    private GameObject[] strongest = new GameObject[2];
 
     [SerializeField]
     private float heart = 10000f;
@@ -91,7 +92,8 @@ public class EnemyBuildingScript : MonoBehaviour
         if(!umikoSpawned)
         {
             umikoSpawned = true;
-            Instantiate(oUmiko, spawnPosition);
+            Instantiate(strongest[0], spawnPosition);
+            Instantiate(strongest[1], spawnPosition);
         }
     }
     private IEnumerator skeleton()
@@ -114,15 +116,13 @@ public class EnemyBuildingScript : MonoBehaviour
             arcSpawned = false;
         }
     }
-    public float getHe(float he)
+    public float getHe()
     {
-        he = heart;
-        return he;
+        return heart;
     }
-    public float getD(float d)
+    public float getD()
     {
-        d = dp;
-        return d;
+        return dp;
 
     }
     public void SetHP(float he)

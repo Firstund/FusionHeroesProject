@@ -421,12 +421,15 @@ MonoBehaviour:
   skillSound:
   - {fileID: 0}
   - {fileID: 8300000, guid: 3e86fdabbddb4554ba8a3532c29e25be, type: 3}
-  skillWait:
-  - 10
+  skillReTime:
   - 5
+  - 10
+  skiilDelay:
+  - 0.3
+  - 1
   skillDistance:
   - 10
-  - 2
+  - 3
   skillDamage:
   - 0
   - 10

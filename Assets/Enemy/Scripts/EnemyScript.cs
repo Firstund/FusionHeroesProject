@@ -37,6 +37,7 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField]
     private float heart = 100f;
+    private float firstHeart = 0f;
     [SerializeField]
     private float heartUp = 1000f;
     [SerializeField]
@@ -88,6 +89,7 @@ public class EnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        firstHeart = heart;
         gameObject.transform.SetParent(GameObject.Find("EnemyUnits").gameObject.transform, true);
         fusionManager = FindObjectOfType<FusionManager>();
         gameManager = GameManager.Instance;
@@ -156,15 +158,17 @@ public class EnemyScript : MonoBehaviour
     {
         currentPosition = a;
     }
-    public float getHe(float he)
+    public float getHe()
     {
-        he = heart;
-        return he;
+        return heart;
     }
-    public float getD(float d)
+    public float GetFirstHP()
     {
-        d = dp;
-        return d;
+        return firstHeart;
+    }
+    public float getD()
+    {
+        return dp;
 
     }
     public void SetHP(float he)
@@ -189,6 +193,10 @@ public class EnemyScript : MonoBehaviour
     {
         attackedCheck = true;
         StartCoroutine(ReTrue(time));
+    }
+    public bool GetAttackedCheck()
+    {
+        return attackedCheck;
     }
     void Move()
     {
@@ -243,7 +251,10 @@ public class EnemyScript : MonoBehaviour
                     if (!isDead)
                         anim.Play("AttackL");
 
+
                     yield return new WaitForSeconds(attackDelay);
+                    if (audi.clip != attackSound)
+                        audi.clip = attackSound;
                     //공격 애니메이션 출력
                     audi.Play();
 
@@ -289,9 +300,9 @@ public class EnemyScript : MonoBehaviour
 
                     if (!isDead)
                         anim.Play("AttackL");
-
+                    if (audi.clip != attackSound)
+                        audi.clip = attackSound;
                     yield return new WaitForSeconds(attackDelay);
-                    audi.clip = attackSound;
                     //공격 애니메이션 출력
                     audi.Play();
 
@@ -334,9 +345,10 @@ public class EnemyScript : MonoBehaviour
                     {
                         attackedCheck = true;
                         //anim.Play("TestAnimationAttack");
+                        if (audi.clip != attackSound)
+                            audi.clip = attackSound;
                         yield return new WaitForSeconds(attackDelay);
                         //공격 애니메이션 출력
-                        audi.clip = attackSound;
                         audi.Play();
 
                         if (!isDead)

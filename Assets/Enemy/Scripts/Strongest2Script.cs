@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Strongest1Script : MonoBehaviour
+public class Strongest2Script : MonoBehaviour
 {
     [SerializeField]
     private bool skillUsed = false;
@@ -26,6 +26,8 @@ public class Strongest1Script : MonoBehaviour
     [SerializeField]
     private float[] skillDamage = new float[2];
 
+    bool MaxCheck ;
+
     void Start()
     {
         thisObjectScript = GetComponent<EnemyScript>();
@@ -42,13 +44,10 @@ public class Strongest1Script : MonoBehaviour
             StartCoroutine(skill2());
         }
     }
-    private IEnumerator skill1()//Warp
+    private IEnumerator skill1()
     {
-        bool distanceCheck = (thisObjectScript.GetShortestDistance() < skillDistance[0] &&
-         thisObjectScript.GetAttackDistance() < thisObjectScript.GetShortestDistance());
-
-
-        if ((shortestScript != null) && canUseSkill[0] && distanceCheck)
+        bool MaxCheck = thisObjectScript.GetFirstHP() >= thisObjectScript.getHe();
+        if ((shortestScript != null) && canUseSkill[0] && MaxCheck)
         {
             thisObjectScript.GetAudi().clip = skillSound[0];
             thisObjectScript.GetAudi().Play();
@@ -56,19 +55,15 @@ public class Strongest1Script : MonoBehaviour
             skillUsed = true;
             canUseSkill[0] = false;
 
-            if (!thisObjectScript.GetIsDead())
-                anim.Play("strongest1Warp");
-
-            thisObjectScript.AttackedCheck(skiilDelay[0]); // 재사용 대기시간이 빠른 스킬이 있을 땐 빼줘야 하는 코드
-                                                           // 재사용 대기시간이 빠른 스킬이 실행중일 때 다른 공격이 실행되지 않길
-                                                           // 원하면 이 코드를 실행시키되, 위에 조건문에 !thisObjectScript.GetAttackedCheck();를 추가하자
-
             yield return new WaitForSeconds(skiilDelay[0]);
 
             skillUsed = false;
             StartCoroutine(skill1Re());
 
-            transform.localPosition = shortestScript.transform.localPosition;//스킬 사용
+            thisObjectScript.SetHP(thisObjectScript.getHe() + skillDamage[0]);//스킬 사용
+            //
+
+            //skill1Used를 EnemyScript에서 참조할 수 있도록 하고 Skill1Used가 true일 때 이동, 공격 기능이 정지되도록 해보자.
         }
     }
     private IEnumerator skill1Re()
@@ -92,7 +87,7 @@ public class Strongest1Script : MonoBehaviour
             canUseSkill[1] = false;
 
             if (!thisObjectScript.GetIsDead())
-                anim.Play("Strongest1Attack2");
+                anim.Play("Strongest1Attack2");//
 
 
             thisObjectScript.AttackedCheck(skiilDelay[1]);
@@ -100,6 +95,8 @@ public class Strongest1Script : MonoBehaviour
             //애니 출력
 
             thisObjectScript.DoAttackSkill(false, skillDamage[1], skiilDelay[1], 0f, skillDistance[1]);//(단일공격인가?, 스킬 데미지, 스킬 쿨타임, 광역공격일 때 사용되는 광역공격 범위들(미니멈, 멕시멈))
+            //
+
 
             yield return new WaitForSeconds(skiilDelay[1]);
 
