@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6220228851045910652}
   - component: {fileID: 6220228851045910654}
   - component: {fileID: 6220228851045910655}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 6220228851563899117}
   - component: {fileID: 6220228851563899106}
   - component: {fileID: 6220228851563899107}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 6220228851614238186}
   - component: {fileID: 6220228851614238100}
   - component: {fileID: 6220228851614238101}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 6220228852626342962}
   - component: {fileID: 6220228852626342963}
   - component: {fileID: 6220228852626342960}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SkeletonP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 6220228852725416693}
   - component: {fileID: 6220228852725416650}
   - component: {fileID: 6220228852725416651}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LevText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -613,7 +613,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6220228852734831931}
   - component: {fileID: 6220228852734831928}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

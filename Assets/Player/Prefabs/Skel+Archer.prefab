@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7343467246971264639}
   - component: {fileID: 976759889420985869}
   - component: {fileID: 1434651764780998601}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 7692562854549553859}
   - component: {fileID: 4433167733004757612}
   - component: {fileID: 5913733264037417225}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 721571821396265441}
   - component: {fileID: 2231721289149799137}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 1349510328393057965}
   - component: {fileID: 6296387693509635130}
   - component: {fileID: 2220312142641708280}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LevText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 8648289618467747654}
   - component: {fileID: 8961945361195106361}
   - component: {fileID: 687334636889894021}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 2351623535229575815}
   - component: {fileID: 5012518033091391944}
   - component: {fileID: 6681260351797062373}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Skel+Archer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

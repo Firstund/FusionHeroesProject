@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2580628021403195327}
   - component: {fileID: 3953719916330278598}
   - component: {fileID: 5795832754842799987}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5181691412377083515}
   - component: {fileID: 633649114342265494}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 6067385172812865177}
   - component: {fileID: 5766267928341745929}
   - component: {fileID: 8468498780042391994}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 8543280974693508866}
   - component: {fileID: 6309006059906172980}
   - component: {fileID: 3953917102200413897}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 5259757820760417428}
   - component: {fileID: 6746246876821737179}
   - component: {fileID: 9170293796550323700}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SkeletonE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +480,6 @@ MonoBehaviour:
   shortestEnemyDistance: 10
   attackedCheck: 0
   buildingIsShortest: 0
-  attackOne: 1
   isDead: 0
 --- !u!82 &9170293796550323700
 AudioSource:

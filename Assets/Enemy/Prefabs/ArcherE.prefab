@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3312123745175122142}
   - component: {fileID: 2118102027670191594}
   - component: {fileID: 8648545442010323935}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6906260899350835657}
   - component: {fileID: 6827093709953375945}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 6157723829912930996}
   - component: {fileID: 5756107234848261406}
   - component: {fileID: 2171444035808826114}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 7451517358436950815}
   - component: {fileID: 8487468867895169106}
   - component: {fileID: 3318834710050427408}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 7371477088570212302}
   - component: {fileID: 4895063930205227255}
   - component: {fileID: 412918273576655672}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ArcherE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +480,6 @@ MonoBehaviour:
   shortestEnemyDistance: 10
   attackedCheck: 0
   buildingIsShortest: 0
-  attackOne: 1
   isDead: 0
 --- !u!82 &412918273576655672
 AudioSource:

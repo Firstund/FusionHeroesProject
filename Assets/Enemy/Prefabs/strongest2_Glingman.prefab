@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2139825526609751237}
   - component: {fileID: 6430110809060685061}
   - component: {fileID: 8487723545337978368}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: strongest2_Glingman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6211542445063371615}
   - component: {fileID: 6812493526775113393}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 6308922314053276655}
   - component: {fileID: 7060243406537582126}
   - component: {fileID: 835476661553020463}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5183,7 +5183,7 @@ GameObject:
   - component: {fileID: 8985524725647538572}
   - component: {fileID: 8472824237720241101}
   - component: {fileID: 4468175217640129146}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5281,7 +5281,7 @@ GameObject:
   - component: {fileID: 8101756870644312544}
   - component: {fileID: 6837097406915454079}
   - component: {fileID: 8129484527934178888}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5356,7 +5356,7 @@ GameObject:
   - component: {fileID: 8648355343403112275}
   - component: {fileID: 3020088301593504106}
   - component: {fileID: 8617052016789419209}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}

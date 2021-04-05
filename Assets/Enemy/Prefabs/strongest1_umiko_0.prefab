@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8453398747240035463}
   - component: {fileID: 8505957670567347076}
   - component: {fileID: 2667866245242629980}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 771443447750444835}
   - component: {fileID: 4730501924127666388}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 3326938116672063026}
   - component: {fileID: 1404034451756541992}
   - component: {fileID: 6253516363951072896}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: strongest1_umiko_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 6298211308855627576}
   - component: {fileID: 5469411867183962482}
   - component: {fileID: 1958471717018723892}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -520,7 +520,7 @@ GameObject:
   - component: {fileID: 9067144681458799836}
   - component: {fileID: 2508579473411513081}
   - component: {fileID: 2974935543914083228}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
