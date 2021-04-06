@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class M_ButtonScript : MonoBehaviour
 {
@@ -39,9 +37,9 @@ public class M_ButtonScript : MonoBehaviour
         {
             transform.localPosition = currentPosition;
             menuButtonScript.IsComeBack();
-            SetSpeed(0f);
-
+            
             Reset();
+            speed = 0f;
             Return();
         }
 
@@ -53,15 +51,11 @@ public class M_ButtonScript : MonoBehaviour
     }
     public void Reset()
     {
-        currentPosition = new Vector2(-2f, -2f);
+        currentPosition = new Vector2(-3f, -3f);
         transform.localPosition = currentPosition;
     }
     public void OnDisable()
     {
         speed = firstSpeed;
-    }
-    public void SetSpeed(float a)
-    {
-        speed = a;
     }
 }

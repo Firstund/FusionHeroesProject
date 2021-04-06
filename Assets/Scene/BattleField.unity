@@ -1442,7 +1442,7 @@ MonoBehaviour:
   buttonPosition: {fileID: 1051417700}
   speed: 5
   firstSpeed: 0
-  haveToBack: 0
+  haveToBack: 1
   comeBackVector: -2
   currentPosition: {x: 0, y: 0}
   menuButtonScript: {fileID: 1542134785}
@@ -2809,7 +2809,7 @@ MonoBehaviour:
   buttonPosition: {fileID: 482132111}
   speed: 5
   firstSpeed: 0
-  haveToBack: 0
+  haveToBack: 1
   comeBackVector: -2
   currentPosition: {x: 0, y: 0}
   menuButtonScript: {fileID: 1542134785}
@@ -3077,7 +3077,7 @@ MonoBehaviour:
   buttonPosition: {fileID: 203011033}
   speed: 5
   firstSpeed: 0
-  haveToBack: 0
+  haveToBack: 1
   comeBackVector: -2
   currentPosition: {x: 0, y: 0}
   menuButtonScript: {fileID: 1542134785}
@@ -3672,7 +3672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1875222072
 RectTransform:
   m_ObjectHideFlags: 0
