@@ -25,6 +25,8 @@ public class Strongest1Script : MonoBehaviour
     private float[] skillDistance = new float[2] { 1f, 1f };
     [SerializeField]
     private float[] skillDamage = new float[2];
+    [SerializeField]
+    private float deathSpeed = 1f;
 
     void Start()
     {
@@ -40,6 +42,11 @@ public class Strongest1Script : MonoBehaviour
         {
             StartCoroutine(skill1());
             StartCoroutine(skill2());
+        }
+
+        if(thisObjectScript.GetIsDead())
+        {
+            transform.Translate(Vector2.right * deathSpeed * Time.deltaTime);
         }
     }
     private IEnumerator skill1()//Warp

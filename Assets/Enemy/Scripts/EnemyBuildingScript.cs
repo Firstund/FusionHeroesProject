@@ -70,6 +70,7 @@ public class EnemyBuildingScript : MonoBehaviour
     void Update()
     {
         currentPosition = transform.localPosition;
+        audi.volume = gameManager.GetSoundValue();
 
         HealthBar();
         Breaking();

@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class BuildingScript : MonoBehaviour
 {
     FusionManager fusionManager = null;
+    GameManager gameManager = null;
     [SerializeField]
     private Slider slider = null;
     [SerializeField]
@@ -35,6 +34,7 @@ public class BuildingScript : MonoBehaviour
     }
     void Start()
     {
+        gameManager = GameManager.Instance;
         fusionManager = FindObjectOfType<FusionManager>();
 
         audi = GetComponent<AudioSource>();
@@ -50,6 +50,7 @@ public class BuildingScript : MonoBehaviour
     void Update()
     {
         currentPosition = transform.localPosition;
+        audi.volume = gameManager.GetSoundValue();
 
         HealthBar();
         breaking();

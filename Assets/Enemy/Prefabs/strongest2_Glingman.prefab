@@ -129,12 +129,13 @@ MonoBehaviour:
   minimumD: 0
   maximumD: 3
   heart: 20
+  firstHeart: 0
   heartUp: 10
   ap: 1
   apUp: 1
   dp: 2
   dpUp: 0.25
-  attackDelay: 0.5
+  attackDelay: 0.1
   speed: 5
   totalAtk: 0
   plusMoney: 25
@@ -263,7 +264,7 @@ MonoBehaviour:
   - 0.1
   - 0.3
   skiilDelay:
-  - 0.1
+  - 0.2
   - 0
   skillDistance:
   - 0

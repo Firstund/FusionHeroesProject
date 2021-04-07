@@ -26,7 +26,7 @@ public class Strongest2Script : MonoBehaviour
     [SerializeField]
     private float[] skillDamage = new float[2];
 
-    bool MaxCheck ;
+    bool MaxCheck;
 
     void Start()
     {
@@ -38,9 +38,9 @@ public class Strongest2Script : MonoBehaviour
     {
         shortestScript = thisObjectScript.GetShortest();
 
+        StartCoroutine(skill1());
         if (gameManager.GetCST())
         {
-            StartCoroutine(skill1());
             StartCoroutine(skill2());
         }
     }

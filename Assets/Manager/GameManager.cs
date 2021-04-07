@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     private Transform enemyUnitSpawnPosition = null;
     [SerializeField]
     private bool canTimeStop = true;
+    [SerializeField]
+    private bool canTimeDouble = true;
     private static GameManager instance;
 
     public static GameManager Instance
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour
     private int money = 200;
     private int plusMoney = 1;
     private float plusMoenyTime = 1f;
+    private float soundValue = 0f;
 
     private bool canMoneyPlus = true;
     private bool mapSliderMoving = false;
@@ -70,14 +73,32 @@ public class GameManager : MonoBehaviour
     {
         return canTimeStop;
     }
+    public bool GetCDT()
+    {
+        return canTimeDouble;
+    }
     public void SetCSt(bool a)
     {
         canTimeStop = a;
+    }
+    public void SetCDT(bool a)
+    {
+        canTimeDouble = a;
+    }
+    public void SetSoundValue(float a)
+    {
+        soundValue = a;
+    }
+    public float GetSoundValue()
+    {
+        return soundValue;
     }
     private void TimeSet()
     {
         if (!canTimeStop)
             Time.timeScale = 0;
+        else if(!canTimeDouble)
+            Time.timeScale = 2;
         else
             Time.timeScale = 1;
     }

@@ -147,6 +147,7 @@ public class UnitScript : MonoBehaviour
 
     void Update()
     {
+        audi.volume = gameManager.GetSoundValue();
         levelText.text = string.Format("Level: {0}", unitLev); // 레벨 텍스트
         currentPosition = transform.localPosition;
         isFollow = fusionManager.GetIsFollow();
@@ -171,7 +172,7 @@ public class UnitScript : MonoBehaviour
             gameManager.SetCSt(false);
         }
     }
-    private IEnumerator Attack()
+    private void Attack()
     {
         //단일공격
         if (!attackedCheck && !onlyOneFollowUnitNum)
@@ -180,46 +181,51 @@ public class UnitScript : MonoBehaviour
 
             if (!isDead)
                 anim.Play("AttackR");
-
-            yield return new WaitForSeconds(attackDelay);
             //공격 애니메이션 출력
-            if (shortestEnemyDistance < attackDistance)
-            {
-                audi.Play();
-                if (buildingIsShortest)
-                {
-                    shortestHeart = fusionManager.enemyBuildingScript.getHe();
-                    shortestDp = fusionManager.enemyBuildingScript.getD();
 
-                    totalAtk = (ap - shortestDp);
-                    if (totalAtk <= 0)
-                    {
-                        totalAtk = 1;
-                    }
-
-                    shortestHeart -= totalAtk;
-
-                    fusionManager.enemyBuildingScript.SetHP(shortestHeart);
-                }
-                else if (shortestEnemyScript != null)
-                {
-                    shortestHeart = shortestEnemyScript.getHe();
-                    shortestDp = shortestEnemyScript.getD();
-
-                    totalAtk = (ap - shortestDp);//데미지 공식 적용
-
-                    if (totalAtk <= 0)
-                    {
-                        totalAtk = 1;
-                    }
-
-                    shortestHeart -= totalAtk; //단일공격
-
-                    shortestEnemyScript.SetHP(shortestHeart);
-                }  
-            }
-            attackedCheck = false;
         }
+    }
+    public void GetDamage()
+    {
+        if (shortestEnemyDistance < attackDistance)
+        {
+            audi.Play();
+            if (buildingIsShortest)
+            {
+                shortestHeart = fusionManager.enemyBuildingScript.getHe();
+                shortestDp = fusionManager.enemyBuildingScript.getD();
+
+                totalAtk = (ap - shortestDp);
+                if (totalAtk <= 0)
+                {
+                    totalAtk = 1;
+                }
+
+                shortestHeart -= totalAtk;
+
+                fusionManager.enemyBuildingScript.SetHP(shortestHeart);
+            }
+            else if (shortestEnemyScript != null)
+            {
+                shortestHeart = shortestEnemyScript.getHe();
+                shortestDp = shortestEnemyScript.getD();
+
+                totalAtk = (ap - shortestDp);//데미지 공식 적용
+
+                if (totalAtk <= 0)
+                {
+                    totalAtk = 1;
+                }
+
+                shortestHeart -= totalAtk; //단일공격
+
+                shortestEnemyScript.SetHP(shortestHeart);
+            }
+        }
+    }
+    public void ResetAttackedCheck()
+    {
+        attackedCheck = false;
     }
     private void SetMaxHealth()
     {
@@ -351,28 +357,20 @@ public class UnitScript : MonoBehaviour
     }
     private void DestroyCheck()
     {
-        if (heart <= 0f)
+        if (heart <= 0f && !isDead)
         {
             anim.Play("Dead");
             speed = 0f;
             ap = 0f;
-
-            StartCoroutine(Destroye(gameObject));
-        }
-    }
-    private IEnumerator Destroye(GameObject obj)
-    {
-        if (!isDead)
-        {
             isDead = true;
-
             int unitNum = fusionManager.GetUnitNum() - 1;
             fusionManager.SetUnitNum(unitNum);
 
-            yield return new WaitForSeconds(0.7f);
-
-            Destroy(obj);
         }
+    }
+    public void Destroye()
+    {
+        Destroy(gameObject);
     }
     private void AttackCheck()
     {
@@ -380,7 +378,7 @@ public class UnitScript : MonoBehaviour
         {
             if (shortestEnemyDistance < attackDistance)
             {
-                StartCoroutine(Attack());
+                Attack();
             }
         }
     }
