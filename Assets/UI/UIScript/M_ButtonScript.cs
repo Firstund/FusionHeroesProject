@@ -18,6 +18,8 @@ public class M_ButtonScript : MonoBehaviour
     private Vector2 currentPosition = Vector2.zero;
     [SerializeField]
     private MenuButtonScript menuButtonScript;
+    [SerializeField]
+    private GameObject spawnPopUp = null;
     void Awake()
     {
         firstSpeed = speed;
@@ -57,5 +59,9 @@ public class M_ButtonScript : MonoBehaviour
     public void OnDisable()
     {
         speed = firstSpeed;
+    }
+    public void SpawnPopUp()
+    {
+        spawnPopUp.SetActive(true);
     }
 }

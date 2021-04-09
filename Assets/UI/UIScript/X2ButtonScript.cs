@@ -7,9 +7,16 @@ public class X2ButtonScript : MonoBehaviour
     private Sprite[] startPauseSprite = new Sprite[2];
     [SerializeField]
     private GameManager gameManager = null;
-    public void Start()
+    
+    
+    private void Start()
     {
         gameManager = GameManager.Instance;
+       
+    }
+    private void Update()
+    {
+        
     }
 
     public void OnClick()

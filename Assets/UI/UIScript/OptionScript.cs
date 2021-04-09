@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class OptionScript : MonoBehaviour
+public class OptionScript : PopUpScaleScript
 {
     [SerializeField]
     private Slider soundSlider = null;
-    private GameManager gameManager = null;
 
     private void Start()
     {
-        gameManager = GameManager.Instance;
+       PlusStart();
     }
     private void Update()
     {
         gameManager.SetSoundValue(soundSlider.value);
+        SetScale();
     }
+    
 }
