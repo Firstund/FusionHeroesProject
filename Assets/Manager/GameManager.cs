@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     private int money = 200;
     private int plusMoney = 1;
     private float plusMoenyTime = 1f;
-    private float soundValue = 0f;
+    private float soundValue = 1f;
 
     private bool canMoneyPlus = true;
     private bool mapSliderMoving = false;

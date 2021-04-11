@@ -507,4 +507,8 @@ public class EnemyScript : MonoBehaviour
     {
         return attackDistance;
     }
+    public float GetSpeed()
+    {
+        return speed;
+    }
 }

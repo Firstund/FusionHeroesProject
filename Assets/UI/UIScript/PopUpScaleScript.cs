@@ -15,7 +15,7 @@ public class PopUpScaleScript : MonoBehaviour
 
     protected void PlusStart()
     {
-         gameManager = GameManager.Instance;
+        gameManager = GameManager.Instance;
         fristScale = transform.localScale;
         transform.localScale = Vector2.zero;
     }

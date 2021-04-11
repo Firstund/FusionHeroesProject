@@ -391,9 +391,6 @@ public class UnitScript : MonoBehaviour
             stopByEnemyDistance = attackDistance;
         }
 
-        if (!attackedCheck && !isDead)
-            anim.Play("WalkR");
-
         if (buildingIsShortest)
         {
             stopByEnemyDistance = 5;
@@ -417,6 +414,15 @@ public class UnitScript : MonoBehaviour
         {
             speed = 0f;
         }
+
+         if (!attackedCheck && !isDead)
+         {
+             if(speed != 0f)
+                anim.Play("WalkR");
+            else 
+                anim.Play("IdleR");
+         }
+           
 
         CheckHe();
 

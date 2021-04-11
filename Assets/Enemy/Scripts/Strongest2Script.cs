@@ -11,6 +11,8 @@ public class Strongest2Script : MonoBehaviour
     private bool[] canUseSkill = new bool[2] { true, true };
     [SerializeField]
     private AudioClip[] skillSound = new AudioClip[2] { null, null };
+    [SerializeField]
+    private GameObject Particle = null;
 
     private EnemyScript thisObjectScript = null;
     private UnitScript shortestScript = null;
@@ -37,6 +39,15 @@ public class Strongest2Script : MonoBehaviour
     void Update()
     {
         shortestScript = thisObjectScript.GetShortest();
+
+        if (thisObjectScript.GetSpeed() == 0f)
+        {
+            Particle.SetActive(false);
+        }
+        else
+        {
+            Particle.SetActive(true);
+        }
 
         StartCoroutine(skill1());
         if (gameManager.GetCST())

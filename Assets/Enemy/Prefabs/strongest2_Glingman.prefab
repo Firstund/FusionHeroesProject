@@ -260,6 +260,7 @@ MonoBehaviour:
   skillSound:
   - {fileID: 0}
   - {fileID: 0}
+  Particle: {fileID: 6017585635418564681}
   skillReTime:
   - 0.1
   - 0.3
