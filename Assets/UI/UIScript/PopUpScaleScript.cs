@@ -9,41 +9,55 @@ public class PopUpScaleScript : MonoBehaviour
     [SerializeField]
     protected float disableVector = 1f;
     protected GameManager gameManager = null;
-    protected Vector2 fristScale = Vector2.zero;
+    [SerializeField]
+    protected Vector2 currentScale = Vector2.zero;
+    protected Vector2 maxScale = Vector2.zero;
     [SerializeField]
     protected bool onDisable = false;
 
     protected void PlusStart()
     {
         gameManager = GameManager.Instance;
-        fristScale = transform.localScale;
+        maxScale.x = transform.localScale.x;
+        maxScale.y = transform.localScale.y;
         transform.localScale = Vector2.zero;
     }
     protected void SetScale()
     {
-        if (transform.localScale.x < fristScale.x - 0.2f && transform.localScale.y < fristScale.y - 0.2f && !onDisable)
+        currentScale = transform.localScale;
+        if (currentScale.x < maxScale.x - disableVector  && currentScale.y < maxScale.y - disableVector && !onDisable)
         {
-            transform.localScale = new Vector2(Mathf.Lerp(transform.localScale.x, fristScale.x, Time.deltaTime * scaleSpeed), Mathf.Lerp(transform.localScale.y, fristScale.y, Time.deltaTime * scaleSpeed));
+            currentScale = new Vector2(Mathf.Lerp(currentScale.x, maxScale.x, Time.deltaTime * scaleSpeed), Mathf.Lerp(currentScale.y, maxScale.y, Time.deltaTime * scaleSpeed));
+            Debug.Log("a");
         }
-        else if (transform.localScale.x > disableVector && transform.localScale.y > disableVector && onDisable)
+        else if (currentScale.x > disableVector && currentScale.y > disableVector && onDisable)
         {
-            transform.localScale = new Vector2(Mathf.Lerp(transform.localScale.x, 0f, Time.deltaTime * scaleSpeed), Mathf.Lerp(transform.localScale.y, 0f, Time.deltaTime * scaleSpeed));
+            currentScale = new Vector2(Mathf.Lerp(currentScale.x, 0f, Time.deltaTime * scaleSpeed), Mathf.Lerp(currentScale.y, 0f, Time.deltaTime * scaleSpeed));
+            Debug.Log("b");
         }
         else if (!onDisable)
+        {
             gameManager.SetCSt(false);
-        else
+            Debug.Log("c");
+        }
+        else if(onDisable)
         {
             OnDisable();
             gameObject.SetActive(false);
+            Debug.Log("d");
         }
+        transform.localScale = currentScale;
     }
     protected void OnDisable()
     {
+        Debug.Log("aa"); // error OnClickDisable이 호출되고나서 OnDisable이 호출되어야 하는데 그러질 않음. 그 결과 처음 실행 이후로 팝업이 나타나자마자 사라짐
         onDisable = false;
+        currentScale = Vector2.zero;
         transform.localScale = Vector2.zero;
     }
     public void OnClickDisable()
     {
+        Debug.Log("bb");
         gameManager.SetCSt(true);
         onDisable = true;
     }

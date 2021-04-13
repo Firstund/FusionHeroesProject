@@ -9,6 +9,7 @@ public class EnemyBuildingScript : MonoBehaviour
     [SerializeField]
     private Slider slider = null;
     FusionManager fusionManager = null;
+    StageManager stageManager = null;
     GameManager gameManager = null;
     [SerializeField]
     private AudioSource audi = null;
@@ -54,6 +55,7 @@ public class EnemyBuildingScript : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         fusionManager = FindObjectOfType<FusionManager>();
+        stageManager = FindObjectOfType<StageManager>();
         spawnPosition = gameManager.GetEnemyUnitSpawnPosition();
 
         audi = GetComponent<AudioSource>();
@@ -130,6 +132,12 @@ public class EnemyBuildingScript : MonoBehaviour
     {
         heart = he;
     }
+    public void Reset()
+    {
+        heart = firstHeart;
+        destroy1Played = false;
+        destroy2Played = false;
+    }
     private void setStat() // 나중에 건물 업그레이드 기능을 넣었을 때 제대로 작동시킬것
     {
         heart = firstHeart + heartUp;
@@ -150,6 +158,7 @@ public class EnemyBuildingScript : MonoBehaviour
                 destroy2Played = true;
                 audi.clip = destroy1;
                 audi.Play();
+                stageManager.StageClear(true);
             }
         }
         else if (heart <= (firstHeart / 2))

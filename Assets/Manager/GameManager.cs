@@ -1,6 +1,4 @@
-﻿using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 public class SaveData
@@ -26,10 +24,10 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = FindObjectOfType<GameManager>();
-                if(instance == null)
+                if (instance == null)
                 {
                     GameObject temp = new GameObject("GameManager");
                     instance = temp.AddComponent<GameManager>();
@@ -38,9 +36,9 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
-    private int money = 200;
+    private int money = 0;
     private int plusMoney = 1;
-    private float plusMoenyTime = 1f;
+    private float plusMoenyTime = 0.1f;
     private float soundValue = 1f;
 
     private bool canMoneyPlus = true;
@@ -48,8 +46,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(canMoneyPlus)
-        StartCoroutine(PlusMoney());
+        if (canMoneyPlus)
+            StartCoroutine(PlusMoney());
         TimeSet();
     }
     private IEnumerator PlusMoney()
@@ -97,7 +95,7 @@ public class GameManager : MonoBehaviour
     {
         if (!canTimeStop)
             Time.timeScale = 0;
-        else if(!canTimeDouble)
+        else if (!canTimeDouble) // canTimeDouble이 false일 때만 Time.timeScale = 0;이 작동한다. 왜지?
             Time.timeScale = 2;
         else
             Time.timeScale = 1;

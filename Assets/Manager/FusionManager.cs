@@ -48,6 +48,21 @@ public class FusionManager : MonoBehaviour
         unitScript = FindObjectsOfType(typeof(UnitScript)) as UnitScript[];
         enemyScript = FindObjectsOfType(typeof(EnemyScript)) as EnemyScript[];
     }
+    public void StageReset()
+    {
+        buildingScript.Reset();
+        enemyBuildingScript.Reset();
+
+        for(int i = 0; i < unitNum; i++)
+        {
+            unitScript[i].Destroye();
+            
+        }
+        for(int i = 0; i < enemyUnitNum; i++)
+        {
+            enemyScript[i].Destroye();
+        }
+    }
     public bool GetIsFollow()
     {
         return isFollow;

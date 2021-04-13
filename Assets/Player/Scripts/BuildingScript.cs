@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class BuildingScript : MonoBehaviour
 {
     FusionManager fusionManager = null;
+    StageManager stageManager = null;
     GameManager gameManager = null;
     [SerializeField]
     private Slider slider = null;
@@ -22,7 +23,10 @@ public class BuildingScript : MonoBehaviour
     private float dp = 10f;
     private float dpUp = 1f;
 
+    [SerializeField]
     private bool destroy1Played = false;
+    [SerializeField]
+
     private bool destroy2Played = false;
 
     public Vector2 currentPosition = Vector2.zero;
@@ -36,6 +40,7 @@ public class BuildingScript : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         fusionManager = FindObjectOfType<FusionManager>();
+        stageManager = FindObjectOfType<StageManager>();
 
         audi = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
@@ -78,20 +83,28 @@ public class BuildingScript : MonoBehaviour
     {
         heart = he;
     }
+     public void Reset()
+    {
+        heart = firstHeart;
+        destroy1Played = false;
+        destroy2Played = false;
+    }
     private void setStat() // 나중에 건물 업그레이드 기능을 넣었을 때 제대로 작동시킬것
     {
         heart = firstHeart + heartUp;
     }
     void breaking()
     {
+        Debug.Log(heart);
         if (heart <= 0)
         {
             anim.Play("destory2Idle");
             if (!destroy2Played)
             {
+                stageManager.StageClear(false);
                 destroy2Played = true;
                 audi.clip = destroy1;
-                audi.Play();
+                audi.Play();       
             }
         }
         else if (heart <= (firstHeart / 2))
