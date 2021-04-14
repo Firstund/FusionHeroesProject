@@ -55,7 +55,7 @@ public class FusionManager : MonoBehaviour
 
         for(int i = 0; i < unitNum; i++)
         {
-            unitScript[i].Destroye();
+            unitScript[i].Destroye(unitScript[i]);
             
         }
         for(int i = 0; i < enemyUnitNum; i++)

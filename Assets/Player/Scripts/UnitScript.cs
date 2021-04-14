@@ -129,6 +129,10 @@ public class UnitScript : MonoBehaviour
         thisUnitNO = unitNO;
         fusionManager.SetUnitNO(unitNO);
 
+        int unitNum = fusionManager.GetUnitNum() + 1;
+        thisUnitNum = unitNum;
+        fusionManager.SetUnitNum(unitNum);
+
         gameManager = GameManager.Instance;
         anim = GetComponent<Animator>();
         audi = GetComponent<AudioSource>();
@@ -137,10 +141,6 @@ public class UnitScript : MonoBehaviour
     void Start()
     {
         levelText = Lev.GetComponent<TextMesh>();
-
-        int unitNum = fusionManager.GetUnitNum() + 1;
-        thisUnitNum = unitNum;
-        fusionManager.SetUnitNum(unitNum);
 
         SetMaxHealth();
     }
@@ -256,7 +256,7 @@ public class UnitScript : MonoBehaviour
 
         fusionManager.SetUnitNum(unitNum);
 
-        Destroy(gameObject);
+        Destroye(this);
     }
     #region GetSet
     public Vector2 GetCurrentPosition()
@@ -310,6 +310,10 @@ public class UnitScript : MonoBehaviour
     public int GetThisUnitNum()
     {
         return thisUnitNum;
+    }
+    public void SetThisUnitNum(int a)
+    {
+        thisUnitNum = a;
     }
     public int GetThisUnitNO()
     {
@@ -368,9 +372,12 @@ public class UnitScript : MonoBehaviour
 
         }
     }
-    public void Destroye()
+    public void Destroye(UnitScript a)
     {
-        Destroy(gameObject);
+        if (a == null)
+            a = this;
+    
+        Destroy(a.gameObject);
     }
     private void AttackCheck()
     {
@@ -415,14 +422,14 @@ public class UnitScript : MonoBehaviour
             speed = 0f;
         }
 
-         if (!attackedCheck && !isDead)
-         {
-             if(speed != 0f)
+        if (!attackedCheck && !isDead)
+        {
+            if (speed != 0f)
                 anim.Play("WalkR");
-            else 
+            else
                 anim.Play("IdleR");
-         }
-           
+        }
+
 
         CheckHe();
 
@@ -501,15 +508,39 @@ public class UnitScript : MonoBehaviour
                         int unitNum = fusionManager.GetUnitNum() - 1;
                         fusionManager.SetUnitNum(unitNum);
 
-                        Destroy(shortestScript.gameObject);
+                        Destroye(shortestScript);
 
                         nextUnitScript = Instantiate(nextUnit[i], transform).GetComponent<UnitScript>();
 
-                        if (shortestScript.GetThisUnitNO() > thisUnitNO)
-                            nextUnitScript.SetThisUnitNO(thisUnitNO);
+                        // 합칠 유닛 a, b가 있고, a가 b보다 앞에있는 오브젝트라고 할 때,  b를 끌어다 a에 놓아서 fusion하면,
+                        // 두 오브젝트중 더 적은 thisUnitNO값을 가진 오브젝트의 unitNO 값이 상속되어야 하고, 
+                        // 그의 반대경우엔 더 큰 thisUnitNO값을 가진 오브젝트의 unitNO 값이 상속되어야한다.
+
+                        if (shortestScript.GetCurrentPosition().x > currentPosition.x)
+                        {
+                            if (shortestScript.GetThisUnitNO() > thisUnitNO)
+                            {
+                                nextUnitScript.SetThisUnitNO(thisUnitNO);
+                                nextUnitScript.SetThisUnitNum(thisUnitNum);
+                            }
+                            else
+                            {
+                                nextUnitScript.SetThisUnitNO(shortestScript.GetThisUnitNO());
+                                nextUnitScript.SetThisUnitNO(shortestScript.GetThisUnitNum());
+                            }
+                        }
                         else
                         {
-                            nextUnitScript.SetThisUnitNO(shortestScript.GetThisUnitNO());
+                            if (shortestScript.GetThisUnitNO() < thisUnitNO)
+                            {
+                                nextUnitScript.SetThisUnitNO(thisUnitNO);
+                                nextUnitScript.SetThisUnitNum(thisUnitNum);
+                            }
+                            else
+                            {
+                                nextUnitScript.SetThisUnitNO(shortestScript.GetThisUnitNO());
+                                nextUnitScript.SetThisUnitNO(shortestScript.GetThisUnitNum());
+                            }
                         }
 
                         nextUnitScript.SetUnitLev(unitLev);

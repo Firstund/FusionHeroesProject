@@ -95,7 +95,6 @@ public class BuildingScript : MonoBehaviour
     }
     void breaking()
     {
-        Debug.Log(heart);
         if (heart <= 0)
         {
             anim.Play("destory2Idle");

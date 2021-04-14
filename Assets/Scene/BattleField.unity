@@ -2901,7 +2901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnThis: {fileID: 4323624078091657384, guid: 4f3b3859af179f040b019efde896d1df, type: 3}
-  spawnMoney: 5
+  spawnMoney: 30
 --- !u!114 &1364132425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3180,7 +3180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnThis: {fileID: 6220228852626342961, guid: 554295bff4b2e8b4ea5ec86e28c1e0b4, type: 3}
-  spawnMoney: 5
+  spawnMoney: 20
 --- !u!114 &1374105358
 MonoBehaviour:
   m_ObjectHideFlags: 0
