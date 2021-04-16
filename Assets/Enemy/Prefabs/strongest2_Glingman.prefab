@@ -131,11 +131,11 @@ MonoBehaviour:
   heart: 20
   firstHeart: 0
   heartUp: 10
-  ap: 1
-  apUp: 1
+  ap: 0.33333334
+  apUp: 0.33333334
   dp: 2
   dpUp: 0.25
-  attackDelay: 0.1
+  attackDelay: 0.05
   speed: 5
   totalAtk: 0
   plusMoney: 25
@@ -261,6 +261,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Particle: {fileID: 6017585635418564681}
+  particleSystem: {fileID: 7060243406537582126}
   skillReTime:
   - 0.1
   - 0.3

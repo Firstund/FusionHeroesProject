@@ -47,7 +47,7 @@ public class BuildingScript : MonoBehaviour
 
         int unitNum = fusionManager.GetUnitNum() + 1;
         fusionManager.SetUnitNum(unitNum);
- 
+
         SetMaxHealth();
     }
 
@@ -83,7 +83,7 @@ public class BuildingScript : MonoBehaviour
     {
         heart = he;
     }
-     public void Reset()
+    public void Reset()
     {
         heart = firstHeart;
         destroy1Played = false;
@@ -103,7 +103,7 @@ public class BuildingScript : MonoBehaviour
                 stageManager.StageClear(false);
                 destroy2Played = true;
                 audi.clip = destroy1;
-                audi.Play();       
+                audi.Play();
             }
         }
         else if (heart <= (firstHeart / 2))
@@ -115,6 +115,10 @@ public class BuildingScript : MonoBehaviour
                 audi.clip = destroy1;
                 audi.Play();
             }
+        }
+        else
+        {
+            anim.Play("Idle");
         }
     }
 }

@@ -85,9 +85,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     private bool isDead = false;
 
-    private Vector2 currentPosition = new Vector2(100f, 100f);//
-
-    // Start is called before the first frame update
+    private Vector2 currentPosition = new Vector2(100f, 100f);
     void Awake()
     {
         gameObject.transform.SetParent(GameObject.Find("EnemyUnits").gameObject.transform, true);
@@ -115,7 +113,6 @@ public class EnemyScript : MonoBehaviour
         SetMaxHealth();
     }
 
-    // Update is called once per frame
     void Update()
     {
         currentPosition = transform.localPosition;
@@ -283,9 +280,9 @@ public class EnemyScript : MonoBehaviour
 
             totalAtk = (ap - shortestDp);
 
-            if (totalAtk <= 0)
+            if (totalAtk <= 0f)
             {
-                totalAtk = 1;
+                totalAtk = 0.2f;
             }
 
             shortestHeart -= totalAtk;
@@ -299,13 +296,12 @@ public class EnemyScript : MonoBehaviour
 
             totalAtk = (ap - shortestDp);//데미지 공식 적용
 
-            if (totalAtk <= 0)
+            if (totalAtk <= 0f)
             {
-                totalAtk = 1;
+                totalAtk = 0.2f;
             }
             shortestHeart -= totalAtk; //단일공격
             shortestScript.SetHP(shortestHeart);
-
         }
     }
     public void ResetAttackedCheck()
@@ -332,9 +328,9 @@ public class EnemyScript : MonoBehaviour
 
                 totalAtk = (ap - shortestDp);
 
-                if (totalAtk <= 0)
+                if (totalAtk <= 0f)
                 {
-                    totalAtk = 1;
+                    totalAtk = 0.2f;
                 }
                 shortestHeart -= totalAtk;
                 fusionManager.buildingScript.SetHP(shortestHeart);
@@ -346,9 +342,9 @@ public class EnemyScript : MonoBehaviour
 
                 totalAtk = (ap - shortestDp);//데미지 공식 적용
 
-                if (totalAtk <= 0)
+                if (totalAtk <= 0f)
                 {
-                    totalAtk = 1;
+                    totalAtk = 0.2f;
                 }
                 shortestHeart -= totalAtk; //단일공격
                 shortestScript.SetHP(shortestHeart);
@@ -371,9 +367,9 @@ public class EnemyScript : MonoBehaviour
 
                     totalAtk = (ap - dp);
 
-                    if (totalAtk <= 0)
+                    if (totalAtk <= 0f)
                     {
-                        totalAtk = 1;
+                        totalAtk = 0.2f;
                     }
 
                     heart -= totalAtk;

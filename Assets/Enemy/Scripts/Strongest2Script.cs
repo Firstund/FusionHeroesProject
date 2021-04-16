@@ -13,6 +13,8 @@ public class Strongest2Script : MonoBehaviour
     private AudioClip[] skillSound = new AudioClip[2] { null, null };
     [SerializeField]
     private GameObject Particle = null;
+    [SerializeField]
+    private ParticleSystem particleSystem = null;
 
     private EnemyScript thisObjectScript = null;
     private UnitScript shortestScript = null;
@@ -28,6 +30,7 @@ public class Strongest2Script : MonoBehaviour
     [SerializeField]
     private float[] skillDamage = new float[2];
 
+    private bool particleIsPlaying = true;
     bool MaxCheck;
 
     void Start()
@@ -42,11 +45,24 @@ public class Strongest2Script : MonoBehaviour
 
         if (thisObjectScript.GetSpeed() == 0f)
         {
-            Particle.SetActive(false);
+            // Particle.SetActive(false);
+            // particleSystem.Play(false);
+            if (particleIsPlaying)
+            {
+                particleSystem.Stop();
+                particleIsPlaying = false;
+            }
+
         }
         else
         {
-            Particle.SetActive(true);
+            // Particle.SetActive(true);
+            if (!particleIsPlaying)
+            {
+                particleSystem.Play();
+                particleIsPlaying = true;
+            }
+
         }
 
         StartCoroutine(skill1());

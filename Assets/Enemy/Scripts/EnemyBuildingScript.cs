@@ -63,7 +63,7 @@ public class EnemyBuildingScript : MonoBehaviour
 
         int enemyUnitNum = fusionManager.GetEnemyUnitNum() + 1;
         fusionManager.SetEnemyUnitNum(enemyUnitNum);
-        
+
         firstHeart = heart;
         SetMaxHealth();
     }
@@ -79,7 +79,7 @@ public class EnemyBuildingScript : MonoBehaviour
         Spawn();
         umiko();
     }
-     private void SetMaxHealth()
+    private void SetMaxHealth()
     {
         slider.maxValue = heart;
         slider.value = heart;
@@ -92,7 +92,7 @@ public class EnemyBuildingScript : MonoBehaviour
     }
     private void umiko()
     {
-        if(!umikoSpawned)
+        if (!umikoSpawned)
         {
             umikoSpawned = true;
             Instantiate(strongest[0], spawnPosition);
@@ -141,7 +141,7 @@ public class EnemyBuildingScript : MonoBehaviour
     private void setStat() // 나중에 건물 업그레이드 기능을 넣었을 때 제대로 작동시킬것
     {
         heart = firstHeart + heartUp;
-        dp =  dpUp;
+        dp = dpUp;
     }
     void Spawn()
     {
@@ -170,6 +170,10 @@ public class EnemyBuildingScript : MonoBehaviour
                 audi.clip = destroy1;
                 audi.Play();
             }
+        }
+        else
+        {
+            anim.Play("Idle");
         }
     }
 }
