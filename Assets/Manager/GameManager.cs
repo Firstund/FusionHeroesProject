@@ -1,11 +1,14 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
+[Serializable]
 public class SaveData
 {
-    public int roundNum = 1;
-    public int money = 20;
-    public int plusMoney = 1;
+    public int currentStage = 1;
+    public int gold = 100;
     public float plusMoenyTime = 1f; // 저장데이터, 후에 적용
 }
 public class GameManager : MonoBehaviour
@@ -19,6 +22,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private bool canTimeDouble = true;
     private static GameManager instance;
+    [SerializeField]
+    private SaveData saveData;
+    [SerializeField]
+    private Text goldText = null;
 
     public static GameManager Instance
     {
@@ -49,6 +56,8 @@ public class GameManager : MonoBehaviour
         if (canMoneyPlus)
             StartCoroutine(PlusMoney());
         TimeSet();
+
+        goldText.text = saveData.gold + "";
     }
     private IEnumerator PlusMoney()
     {
@@ -66,6 +75,18 @@ public class GameManager : MonoBehaviour
     public void SetMoney(int a)
     {
         money = a;
+    }
+    public int GetGold()
+    {
+        return saveData.gold;
+    }
+    public void SetGold(int a)
+    {
+        saveData.gold = a;
+    }
+    public SaveData GetSaveData()
+    {
+        return saveData;
     }
     public bool GetCST()
     {

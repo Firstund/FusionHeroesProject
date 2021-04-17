@@ -1,37 +1,41 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class StageManager : MonoBehaviour
 {
     [SerializeField]
     private FusionManager fusionManager = null;
     private GameManager gameManager = null;
+    private SaveData saveData;
     [SerializeField]
     private GameObject stageClearPopUp = null;
+    [SerializeField]
+    private StageClearScript stageClearScript = null;
+    
+    [SerializeField]
+    private Text stageText = null;
+    [SerializeField]
+    private int currentStage = 1;
 
     void Start()
     {
         gameManager = GameManager.Instance;
+        saveData = gameManager.GetSaveData();
+        
     }
     void Update()
     {
-
+        currentStage = saveData.currentStage;
+        stageText.text = "CurrentStage: " + currentStage;
     }
     public void StageClear(bool a)
     {
-        Debug.Log("Clear?");
-        if (a)
-        {
-            // 스테이지 클리어
-            stageClearPopUp.SetActive(true);
-        }
-        else
-        {
-            // 스테이지 클리어 실패
-            stageClearPopUp.SetActive(true);
-        }
+        stageClearScript.SetGameClear(a);
+        stageClearPopUp.SetActive(true);
     }
     public void StageReset()
     {
+        stageClearScript.OnNextStage();
         stageClearPopUp.SetActive(false);
         gameManager.SetCSt(true);
 
@@ -51,7 +55,14 @@ public class StageManager : MonoBehaviour
             Destroy(fusionManager.enemyScript[i].gameObject);
         }
         fusionManager.SetEnemyUnitNum(1);
-
-
     }
+    public void SetCurrentStage(int a)
+    {
+        currentStage = a;
+    }
+    public int GetCurrentStage()
+    {
+        return currentStage;
+    }
+
 }
