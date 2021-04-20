@@ -43,7 +43,7 @@ public class EnemyBuildingScript : MonoBehaviour
 
     private bool skeSpawned = false;
     private bool arcSpawned = false;
-    private bool umikoSpawned = false;
+    private bool[] strongestSpawned = new bool[5]{false, false, false, false, false};
 
     private bool destroy1Played = false;
     private bool destroy2Played = false;
@@ -77,7 +77,7 @@ public class EnemyBuildingScript : MonoBehaviour
         HealthBar();
         Breaking();
         Spawn();
-        umiko();
+       
     }
     private void SetMaxHealth()
     {
@@ -90,15 +90,9 @@ public class EnemyBuildingScript : MonoBehaviour
     {
         slider.value = heart;
     }
-    private void umiko()
-    {
-        if (!umikoSpawned)
-        {
-            umikoSpawned = true;
-            Instantiate(strongest[0], spawnPosition);
-            Instantiate(strongest[1], spawnPosition);
-        }
-    }
+    // 이 소환코드들을 따로 스크립트로 빼놓자.
+    // 새로 만들 스크립트는 spawnPosition과 stageManager.GetCurrentStage()가 필요할 듯 하다.
+    
     private IEnumerator skeleton()
     {
         if (!skeSpawned)
@@ -175,6 +169,22 @@ public class EnemyBuildingScript : MonoBehaviour
         {
             anim.Play("Idle");
         }
+    }
+    public bool GetStrongestSpawned(int index)
+    {
+        return strongestSpawned[index];
+    }
+    public GameObject GetStrongest(int index)
+    {
+        return strongest[index];
+    }
+    public Transform GetSpawnPosition()
+    {
+        return spawnPosition;
+    }
+    public void SetstrongestSpawned(int index, bool a)
+    {
+        strongestSpawned[index] = a;
     }
 }
 
