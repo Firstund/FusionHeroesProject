@@ -47,6 +47,8 @@ public class UnitScript : MonoBehaviour
     [SerializeField]
     private GameObject Lev = null;
     private TextMesh levelText = null;
+    [SerializeField]
+    private Text costText = null;
 
     private float shortestHeart = 0f;
     private float shortestDp = 0f;
@@ -376,7 +378,7 @@ public class UnitScript : MonoBehaviour
     {
         if (a == null)
             a = this;
-    
+
         Destroy(a.gameObject);
     }
     private void AttackCheck()
@@ -470,6 +472,15 @@ public class UnitScript : MonoBehaviour
 
             mouseCheck = false;
         }
+        else if(followingMouse && shortestDistance < clickableX && !fusionManager.GetIsAround() && unitLev == shortestScript.GetUnitLev())
+        // 다른 fusion들과 호환이 가능하도록 변경, 각 fusion마다 levelUpCost 값이 다르다.
+        {
+            costText.text = $"{levelUpCost} Cost"; // 왜 Cost는 짤리는가?
+        }
+        else
+        {
+            costText.text = "";
+        }
     }
     private void ComeBack()
     {
@@ -515,6 +526,7 @@ public class UnitScript : MonoBehaviour
                         // 합칠 유닛 a, b가 있고, a가 b보다 앞에있는 오브젝트라고 할 때,  b를 끌어다 a에 놓아서 fusion하면,
                         // 두 오브젝트중 더 적은 thisUnitNO값을 가진 오브젝트의 unitNO 값이 상속되어야 하고, 
                         // 그의 반대경우엔 더 큰 thisUnitNO값을 가진 오브젝트의 unitNO 값이 상속되어야한다.
+                        // ㅈ버그 발견 내일 수정하자
 
                         if (shortestScript.GetCurrentPosition().x > currentPosition.x)
                         {
@@ -555,7 +567,14 @@ public class UnitScript : MonoBehaviour
                         break;
                     case 4:
                         break;
+                    default:
+                        ComeBack();
+                        break;
                 }
+            }
+            else
+            {
+                ComeBack();
             }
 
             gameManager.SetCSt(true);
