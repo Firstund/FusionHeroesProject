@@ -88,6 +88,10 @@ public class GameManager : MonoBehaviour
     {
         return saveData;
     }
+    public void SetSaveData(SaveData a)
+    {
+        saveData = a;
+    }
     public bool GetCST()
     {
         return canTimeStop;

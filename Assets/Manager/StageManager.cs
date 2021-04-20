@@ -6,6 +6,7 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     private FusionManager fusionManager = null;
     private GameManager gameManager = null;
+    private DataManager dataManager = null;
     private SaveData saveData;
     [SerializeField]
     private GameObject stageClearPopUp = null;
@@ -20,6 +21,7 @@ public class StageManager : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.Instance;
+        dataManager = DataManager.Instance;
         saveData = gameManager.GetSaveData();
         
     }
@@ -55,10 +57,13 @@ public class StageManager : MonoBehaviour
             Destroy(fusionManager.enemyScript[i].gameObject);
         }
         fusionManager.SetEnemyUnitNum(1);
+
+        dataManager.SaveGameData();
+
     }
     public void SetCurrentStage(int a)
     {
-        currentStage = a;
+        saveData.currentStage = a;
     }
     public int GetCurrentStage()
     {

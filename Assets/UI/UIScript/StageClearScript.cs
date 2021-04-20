@@ -31,11 +31,9 @@ public class StageClearScript : PopUpScaleScript
         if(gameClear)
         {
             clearText.text = "Stage" + stageManager.GetCurrentStage() + " Clear!";
+            
             plusGoldText.text = "+" + plusGold * (stageManager.GetCurrentStage() / 10 + 1);
 
-            
-            
-            
         }
         else
         {
@@ -44,7 +42,7 @@ public class StageClearScript : PopUpScaleScript
     }
     public void SetGameClear(bool a)
     {
-        gameClear = a;
+        gameClear = a;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
     }
     public void OnNextStage()
     {
