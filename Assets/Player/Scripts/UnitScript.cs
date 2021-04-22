@@ -6,118 +6,121 @@ using UnityEngine.UI;
 public class UnitScript : MonoBehaviour
 {
     //공격대기시간, 소환 대기시간 설정할것.
-    FusionManager fusionManager = null;
-    GameManager gameManager = null;
+    protected FusionManager fusionManager = null;
+    protected GameManager gameManager = null;
     [SerializeField]
-    private Slider slider = null;
+    protected Slider slider = null;
 
     [SerializeField]
-    private int unitId = 01; // 유닛의 종류
-                             // 첫번째 자리: (이 유닛을 소환하기 위해 필요한 퓨전 수 + 1)
-                             // 두번째 자리: 0 (특수 케이스가 떠오를 때를 대비)
-                             // 세번째 자리: unitId의 첫번째 자리가 같은 숫자들 중 이 유닛이 생긴 순서
+    protected int unitId = 01; // 유닛의 종류
+                               // 첫번째 자리: (이 유닛을 소환하기 위해 필요한 퓨전 수 + 1)
+                               // 두번째 자리: 0 (특수 케이스가 떠오를 때를 대비)
+                               // 세번째 자리: unitId의 첫번째 자리가 같은 숫자들 중 이 유닛이 생긴 순서
     [SerializeField]
-    private int[] fusionUnitId = new int[5]; // 이 유닛과 퓨전할 수 있는 유닛들의 유닛 아이디
+    protected int[] fusionUnitId = new int[5]; // 이 유닛과 퓨전할 수 있는 유닛들의 유닛 아이디
     [SerializeField]
-    private GameObject[] nextUnit = new GameObject[5]; // 이 유닛이 퓨전한 후 나올수 있는 유닛들,
-                                                       // 인덱스 값은 해당 유닛의 아이디의 (세번째 숫자 - 1)로 설정한다.
-                                                       // 첫번 째 배열에 들어가는 유닛의 아이디는 무조건 이 스크립트의 unitId값이다.
+    protected GameObject[] nextUnit = new GameObject[5]; // 이 유닛이 퓨전한 후 나올수 있는 유닛들,
+                                                         // 인덱스 값은 해당 유닛의 아이디의 (세번째 숫자 - 1)로 설정한다.
+                                                         // 첫번 째 배열에 들어가는 유닛의 아이디는 무조건 이 스크립트의 unitId값이다.
     [SerializeField]
-    private float attackDistance = 2f;
+    protected float attackDistance = 2f;
     [SerializeField]
-    private float heart = 100f;
+    protected float heart = 100f;
     [SerializeField]
-    private float heartUp = 5f;
+    protected float heartUp = 5f;
     [SerializeField]
-    private float ap = 2f;
+    protected float ap = 2f;
     [SerializeField]
-    private float apUp = 0.5f;
+    protected float apUp = 0.5f;
     [SerializeField]
-    private float dp = 2f;
+    protected float dp = 2f;
+    protected float firsstDp = 0f;
     [SerializeField]
-    private float dpUp = 0.25f;
+    protected float dpUp = 0.25f;
     [SerializeField]
-    private float attackDelay = 2f;
+    protected float attackDelay = 2f;
     [SerializeField]
-    private float speed = 0f;
-    private float firstSpeed = 0f;
+    protected float speed = 0f;
+    protected float firstSpeed = 0f;
     [SerializeField]
-    private float totalAtk = 0f;
+    protected float totalAtk = 0f;
 
     [SerializeField]
-    private GameObject Lev = null;
-    private TextMesh levelText = null;
+    protected GameObject Lev = null;
+    protected TextMesh levelText = null;
     [SerializeField]
-    private Text costText = null;
+    protected Text costText = null;
 
-    private float shortestHeart = 0f;
-    private float shortestDp = 0f;
-
-    [SerializeField]
-    private UnitScript shortestScript = null;
-    [SerializeField]
-    private EnemyScript shortestEnemyScript = null;
+    protected float shortestHeart = 0f;
+    protected float shortestDp = 0f;
 
     [SerializeField]
-    private AudioSource audi = null;
-    private Animator anim = null;
+    protected UnitScript shortestScript = null;
+    [SerializeField]
+    protected EnemyScript shortestEnemyScript = null;
 
     [SerializeField]
-    private bool onlyOneFollowUnitNum = false;
+    protected AudioSource audi = null;
+    protected Animator anim = null;
 
     [SerializeField]
-    private int thisUnitNum = 0; // 현재 소환된 오브젝트들 중 몇번째 오브젝트인가
-    [SerializeField]
-    private int thisUnitNO = 0; // 게임 전체에서 몇 번째 소환된 오브젝트인가
-    [SerializeField]
-    private int unitLev = 01; // 유닛의 레벨
-    [SerializeField]
-    private int levelUpCost = 10;
+    protected bool onlyOneFollowUnitNum = false;
 
     [SerializeField]
-    private float clickableX = 1f;
+    protected int thisUnitNum = 0; // 현재 소환된 오브젝트들 중 몇번째 오브젝트인가
+    [SerializeField]
+    protected int thisUnitNO = 0; // 게임 전체에서 몇 번째 소환된 오브젝트인가
+    [SerializeField]
+    protected int unitLev = 01; // 유닛의 레벨
+    [SerializeField]
+    protected int levelUpCost = 10;
 
     [SerializeField]
-    private float mouseDistance = 0f;
+    protected float clickableX = 1f;
 
     [SerializeField]
-    private float[] objectDistanceArray;
-    [SerializeField]
-    private float[] enemyObjectDistanceArray;
+    protected float mouseDistance = 0f;
 
     [SerializeField]
-    private float shortestDistance = 10f;
+    protected float[] objectDistanceArray;
     [SerializeField]
-    private float shortestForwardDistance = 10f;
-    private UnitScript shortestForwardScipt = null;
+    protected float[] enemyObjectDistanceArray;
 
     [SerializeField]
-    private float shortestEnemyDistance = 10f;
+    protected float shortestDistance = 10f;
+    [SerializeField]
+    protected float shortestForwardDistance = 10f;
+    protected UnitScript shortestForwardScipt = null;
+
+    [SerializeField]
+    protected float shortestEnemyDistance = 10f;
     //
     [SerializeField]
-    private Vector2 currentPosition = new Vector2(100f, 100f);
+    protected Vector2 currentPosition = new Vector2(100f, 100f);
 
-    private Vector2 targetPosition = Vector2.zero;
+    protected Vector2 targetPosition = Vector2.zero;
 
-    private float testDistance = 0f;
+    protected float testDistance = 0f;
 
     [SerializeField]
-    private Vector2 firstPosition = Vector2.zero;
+    protected Vector2 firstPosition = Vector2.zero;
     //
     [SerializeField]
-    private bool firstPositionSet = false;
+    protected bool firstPositionSet = false;
     [SerializeField]
-    private bool followingCheck = false;
+    protected bool followingCheck = false;
     [SerializeField]
-    private bool attackedCheck = false;
+    protected bool attackedCheck = false;
     [SerializeField]
-    private bool buildingIsShortest = false;
+    protected bool buildingIsShortest = false;
     [SerializeField]
-    private bool mouseCheck = false;
+    protected bool mouseCheck = false;
     [SerializeField]
-    private bool followingMouse = false;
+    protected bool followingMouse = false;
     [SerializeField]
-    private bool isDead = false;
+    protected bool isDead = false;
+    [SerializeField]
+    private bool isAttackOne = true;
     public bool isFollow = false;
 
     void Awake()
@@ -142,6 +145,7 @@ public class UnitScript : MonoBehaviour
 
     void Start()
     {
+        firsstDp = dp;
         levelText = Lev.GetComponent<TextMesh>();
 
         SetMaxHealth();
@@ -174,7 +178,7 @@ public class UnitScript : MonoBehaviour
             gameManager.SetCSt(false);
         }
     }
-    private void Attack()
+    protected void Attack()
     {
         //단일공격
         if (!attackedCheck && !onlyOneFollowUnitNum)
@@ -182,46 +186,80 @@ public class UnitScript : MonoBehaviour
             attackedCheck = true;
 
             if (!isDead)
+            {
                 anim.Play("AttackR");
+            }
             //공격 애니메이션 출력
 
         }
     }
-    public void GetDamage()
+    public void GetDamage() 
     {
+        bool attackOne = isAttackOne;
+        float minimumD = 0f;
+        float maximumD = attackDistance;
+
         if (shortestEnemyDistance < attackDistance)
         {
-            audi.Play();
-            if (buildingIsShortest)
+            if (attackOne)
             {
-                shortestHeart = fusionManager.enemyBuildingScript.getHe();
-                shortestDp = fusionManager.enemyBuildingScript.getD();
-
-                totalAtk = (ap - shortestDp);
-                if (totalAtk <= 0)
+                audi.Play();
+                if (buildingIsShortest)
                 {
-                    totalAtk = 1;
+                    shortestHeart = fusionManager.enemyBuildingScript.getHe();
+                    shortestDp = fusionManager.enemyBuildingScript.getD();
+
+                    totalAtk = (ap - shortestDp);
+                    if (totalAtk <= 0)
+                    {
+                        totalAtk = 1;
+                    }
+
+                    shortestHeart -= totalAtk;
+
+                    fusionManager.enemyBuildingScript.SetHP(shortestHeart);
                 }
+                else if (shortestEnemyScript != null)
+                {
+                    shortestHeart = shortestEnemyScript.getHe();
+                    shortestDp = shortestEnemyScript.getD();
 
-                shortestHeart -= totalAtk;
+                    totalAtk = (ap - shortestDp);//데미지 공식 적용
 
-                fusionManager.enemyBuildingScript.SetHP(shortestHeart);
+                    if (totalAtk <= 0)
+                    {
+                        totalAtk = 1;
+                    }
+
+                    shortestHeart -= totalAtk; //단일공격
+
+                    shortestEnemyScript.SetHP(shortestHeart);
+                }
             }
-            else if (shortestEnemyScript != null)
+            else
             {
-                shortestHeart = shortestEnemyScript.getHe();
-                shortestDp = shortestEnemyScript.getD();
+                //anim.Play("TestAnimationAttack");
 
-                totalAtk = (ap - shortestDp);//데미지 공식 적용
-
-                if (totalAtk <= 0)
+                for (int a = 0; a < fusionManager.GetEnemyUnitNum() - 1; a++)
                 {
-                    totalAtk = 1;
+                    if (enemyObjectDistanceArray[a] < maximumD && enemyObjectDistanceArray[a] >= minimumD)//minimum, maxism attackDistance를 이용하여 공격 범위 설정가능
+                    {
+                        float dp = fusionManager.enemyScript[a].getD();
+                        float heart = fusionManager.enemyScript[a].getHe();
+
+                        totalAtk = (ap - dp);
+
+                        if (totalAtk <= 0f)
+                        {
+                            totalAtk = 0.2f;
+                        }
+
+
+                        heart -= totalAtk;
+
+                        fusionManager.enemyScript[a].SetHP(heart);
+                    }
                 }
-
-                shortestHeart -= totalAtk; //단일공격
-
-                shortestEnemyScript.SetHP(shortestHeart);
             }
         }
     }
@@ -229,18 +267,18 @@ public class UnitScript : MonoBehaviour
     {
         attackedCheck = false;
     }
-    private void SetMaxHealth()
+    protected void SetMaxHealth()
     {
         slider.maxValue = heart;
         slider.value = heart;
         slider.minValue = 0;
 
     }
-    private void HealthBar()
+    protected void HealthBar()
     {
         slider.value = heart;
     }
-    private void CheckHe()
+    protected void CheckHe()
     {
         if (heart <= 0)
         {
@@ -248,7 +286,7 @@ public class UnitScript : MonoBehaviour
             speed = 0f;
         }
     }
-    private IEnumerator IsAroundSet()
+    protected IEnumerator IsAroundSet()
     {
 
         yield return new WaitForSeconds(0.1f);
@@ -339,21 +377,14 @@ public class UnitScript : MonoBehaviour
     {
         heart = he;
     }
-    private void setStat()
+    protected void setStat()
     {
-        // 이렇게 되면 유닛의 스탯 증가가 나중에 기하급수적으로 늘게된다. 
-        /*         
-        heart += heartUp * unitLev;
-        dp += dpUp * unitLev;
-        ap += apUp * unitLev;
-        */
-        // 기획에 따라 이렇게 할 수도 있지만, 지금은 스탯의 증가를 등차수열로 하자.
 
         heart += heartUp * unitLev;
         dp += dpUp * unitLev;
         ap += apUp * unitLev;
     }
-    private void FirstODSet()
+    protected void FirstODSet()
     {
         enemyObjectDistanceArray[0] = Vector2.Distance(gameManager.GetEnemyUnitSpawnPosition().position, currentPosition);
 
@@ -361,7 +392,7 @@ public class UnitScript : MonoBehaviour
         buildingIsShortest = true;
         shortestEnemyDistance = enemyObjectDistanceArray[0];
     }
-    private void DestroyCheck()
+    protected void DestroyCheck()
     {
         if (heart <= 0f && !isDead)
         {
@@ -381,7 +412,7 @@ public class UnitScript : MonoBehaviour
 
         Destroy(a.gameObject);
     }
-    private void AttackCheck()
+    protected void AttackCheck()
     {
         if (!followingMouse)
         {
@@ -428,8 +459,6 @@ public class UnitScript : MonoBehaviour
         {
             if (speed != 0f)
                 anim.Play("WalkR");
-            else
-                anim.Play("IdleR");
         }
 
 
@@ -472,7 +501,7 @@ public class UnitScript : MonoBehaviour
 
             mouseCheck = false;
         }
-        else if(followingMouse && shortestDistance < clickableX && !fusionManager.GetIsAround() && unitLev == shortestScript.GetUnitLev())
+        else if (followingMouse && shortestDistance < clickableX && !fusionManager.GetIsAround() && unitLev == shortestScript.GetUnitLev())
         // 다른 fusion들과 호환이 가능하도록 변경, 각 fusion마다 levelUpCost 값이 다르다.
         {
             costText.text = $"{levelUpCost} Cost"; // 왜 Cost는 짤리는가?
@@ -482,7 +511,7 @@ public class UnitScript : MonoBehaviour
             costText.text = "";
         }
     }
-    private void ComeBack()
+    protected void ComeBack()
     {
         followingMouse = false;
         transform.localPosition = firstPosition;

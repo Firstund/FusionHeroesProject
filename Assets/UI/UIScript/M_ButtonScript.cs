@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class M_ButtonScript : MonoBehaviour
 {
@@ -28,10 +29,11 @@ public class M_ButtonScript : MonoBehaviour
     {
         currentPosition = transform.localPosition;
 
-        if (!haveToBack)
+        if (!haveToBack && (currentPosition - (Vector2)buttonPosition.localPosition).magnitude <= 0.01f)
             currentPosition = Vector2.Lerp(currentPosition, buttonPosition.localPosition, Time.deltaTime * speed); // 이동
         else
         {
+            if((currentPosition - menuButtonPositon).magnitude <= 0.01f) // 수정필요
             currentPosition = Vector2.Lerp(currentPosition, menuButtonPositon, Time.deltaTime * speed); // 되돌아오기
         }
 

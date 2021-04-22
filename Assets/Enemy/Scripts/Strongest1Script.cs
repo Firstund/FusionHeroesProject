@@ -89,9 +89,9 @@ public class Strongest1Script : MonoBehaviour
     {
         bool distanceCheck = (thisObjectScript.GetShortestDistance() < skillDistance[1]);
 
-
         if ((shortestScript != null) && canUseSkill[1] && distanceCheck)
         {
+
             thisObjectScript.GetAudi().clip = skillSound[1];
             thisObjectScript.GetAudi().Play();
 
@@ -103,6 +103,7 @@ public class Strongest1Script : MonoBehaviour
 
 
             thisObjectScript.AttackedCheck(skiilDelay[1]);
+            Debug.Log("aaa");
 
             //애니 출력
 

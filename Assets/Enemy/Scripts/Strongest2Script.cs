@@ -14,7 +14,7 @@ public class Strongest2Script : MonoBehaviour
     [SerializeField]
     private GameObject Particle = null;
     [SerializeField]
-    private ParticleSystem particleSystem = null;
+    private new ParticleSystem particleSystem = null;
 
     private EnemyScript thisObjectScript = null;
     private UnitScript shortestScript = null;

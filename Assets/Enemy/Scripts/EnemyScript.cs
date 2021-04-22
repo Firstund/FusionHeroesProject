@@ -83,6 +83,8 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     private bool buildingIsShortest = false;//building이 shortest일 때 true. unit이 shortest일 때 false
     [SerializeField]
+    private bool isAttackOne = true;
+    [SerializeField]
     private bool isDead = false;
 
     private Vector2 currentPosition = new Vector2(100f, 100f);
@@ -268,40 +270,72 @@ public class EnemyScript : MonoBehaviour
     }
     public void GetDamage()
     {
+        bool attackOne = isAttackOne;
+        float minimumD = 0f;
+        float maximumD = attackDistance;
         if (audi.clip != attackSound)
             audi.clip = attackSound;
         //공격 애니메이션 출력
         audi.Play();
 
-        if (buildingIsShortest)
+        if (attackOne)
         {
-            shortestHeart = fusionManager.buildingScript.getHe();
-            shortestDp = fusionManager.buildingScript.getD();
-
-            totalAtk = (ap - shortestDp);
-
-            if (totalAtk <= 0f)
+            if (buildingIsShortest)
             {
-                totalAtk = 0.2f;
+                shortestHeart = fusionManager.buildingScript.getHe();
+                shortestDp = fusionManager.buildingScript.getD();
+
+                totalAtk = (ap - shortestDp);
+
+                if (totalAtk <= 0f)
+                {
+                    totalAtk = 0.2f;
+                }
+
+                shortestHeart -= totalAtk;
+
+                fusionManager.buildingScript.SetHP(shortestHeart);
             }
+            else if (shortestScript != null)
+            {
+                shortestHeart = shortestScript.getHe();
+                shortestDp = shortestScript.getD();
 
-            shortestHeart -= totalAtk;
+                totalAtk = (ap - shortestDp);//데미지 공식 적용
 
-            fusionManager.buildingScript.SetHP(shortestHeart);
+                if (totalAtk <= 0f)
+                {
+                    totalAtk = 0.2f;
+                }
+                shortestHeart -= totalAtk; //단일공격
+                shortestScript.SetHP(shortestHeart);
+            }
         }
-        else if (shortestScript != null)
+        else
         {
-            shortestHeart = shortestScript.getHe();
-            shortestDp = shortestScript.getD();
+            attackedCheck = true;
+            //anim.Play("TestAnimationAttack");
 
-            totalAtk = (ap - shortestDp);//데미지 공식 적용
-
-            if (totalAtk <= 0f)
+            for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
             {
-                totalAtk = 0.2f;
+                if (objectDistanceArray[a] < maximumD && objectDistanceArray[a] >= minimumD)//minimum, maxism attackDistance를 이용하여 공격 범위 설정가능
+                {
+                    float dp = fusionManager.unitScript[a].getD();
+                    float heart = fusionManager.unitScript[a].getHe();
+
+                    totalAtk = (ap - dp);
+
+                    if (totalAtk <= 0f)
+                    {
+                        totalAtk = 0.2f;
+                    }
+
+
+                    heart -= totalAtk;
+
+                    fusionManager.unitScript[a].SetHP(heart);
+                }
             }
-            shortestHeart -= totalAtk; //단일공격
-            shortestScript.SetHP(shortestHeart);
         }
     }
     public void ResetAttackedCheck()
@@ -346,7 +380,9 @@ public class EnemyScript : MonoBehaviour
                 {
                     totalAtk = 0.2f;
                 }
+
                 shortestHeart -= totalAtk; //단일공격
+
                 shortestScript.SetHP(shortestHeart);
             }
         }
@@ -372,9 +408,10 @@ public class EnemyScript : MonoBehaviour
                         totalAtk = 0.2f;
                     }
 
+
                     heart -= totalAtk;
 
-                    fusionManager.unitScript[a].SetHP(shortestHeart);
+                    fusionManager.unitScript[a].SetHP(heart);
                 }
             }
         }
@@ -468,7 +505,7 @@ public class EnemyScript : MonoBehaviour
     {
         if (heart <= 0f && !isDead)
         {
-            anim.Play("Dead");  
+            anim.Play("Dead");
             ap = 0f;
             isDead = true;
             int enemyUnitNum = fusionManager.GetEnemyUnitNum() - 1;
