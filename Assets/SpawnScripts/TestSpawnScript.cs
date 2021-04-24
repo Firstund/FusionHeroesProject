@@ -15,7 +15,7 @@ public class TestSpawnScript : MonoBehaviour
     [SerializeField]
     private int spawnMoney = 5;
     [SerializeField]
-    private float spawnDelay = 3f;
+    private float spawnSpeed = 3f;
     private float nextTimeToSpawn = 0f;
     private float respawnCurTime = 0f;
     private float respawnMaxTime = 0f;
@@ -34,7 +34,7 @@ public class TestSpawnScript : MonoBehaviour
     {
         if (gameManager.GetMoney() >= spawnMoney && canSpawnAgain)
         {
-            nextTimeToSpawn = Time.time + (1/spawnDelay);
+            nextTimeToSpawn = Time.time + (1/spawnSpeed);
             int money = gameManager.GetMoney() - spawnMoney;
             gameManager.SetMoney(money);
 

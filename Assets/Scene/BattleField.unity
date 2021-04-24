@@ -2131,7 +2131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnThis: {fileID: 3318772828785144205, guid: f4788e6259156574ca2e105a8d27295e, type: 3}
   respawnImage: {fileID: 1696390463}
-  spawnMoney: 400
+  spawnMoney: 0
   spawnDelay: 0.02
   canSpawnAgain: 1
 --- !u!114 &856964526
