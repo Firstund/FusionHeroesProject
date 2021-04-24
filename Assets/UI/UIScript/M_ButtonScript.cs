@@ -29,12 +29,16 @@ public class M_ButtonScript : MonoBehaviour
     {
         currentPosition = transform.localPosition;
 
-        if (!haveToBack && (currentPosition - (Vector2)buttonPosition.localPosition).magnitude <= 0.01f)
+        if (!haveToBack && (currentPosition - (Vector2)buttonPosition.localPosition).sqrMagnitude >= 0.01f)
+        {         
             currentPosition = Vector2.Lerp(currentPosition, buttonPosition.localPosition, Time.deltaTime * speed); // 이동
+        }
         else
         {
-            if((currentPosition - menuButtonPositon).magnitude <= 0.01f) // 수정필요
-            currentPosition = Vector2.Lerp(currentPosition, menuButtonPositon, Time.deltaTime * speed); // 되돌아오기
+            if(haveToBack && (currentPosition - menuButtonPositon).sqrMagnitude >= 0.01f)
+            {
+                currentPosition = Vector2.Lerp(currentPosition, menuButtonPositon, Time.deltaTime * speed); // 되돌아오기
+            }
         }
 
         if (currentPosition.x > comeBackVector && currentPosition.y > comeBackVector)
