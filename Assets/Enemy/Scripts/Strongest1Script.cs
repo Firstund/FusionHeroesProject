@@ -11,6 +11,8 @@ public class Strongest1Script : MonoBehaviour
     private bool[] canUseSkill = new bool[2] { true, true };
     [SerializeField]
     private AudioClip[] skillSound = new AudioClip[2] { null, null };
+    [SerializeField]
+    private GameObject particle = null;
 
     private EnemyScript thisObjectScript = null;
     private UnitScript shortestScript = null;
@@ -44,7 +46,7 @@ public class Strongest1Script : MonoBehaviour
             StartCoroutine(skill2());
         }
 
-        if(thisObjectScript.GetIsDead())
+        if (thisObjectScript.GetIsDead())
         {
             transform.Translate(Vector2.right * deathSpeed * Time.deltaTime);
         }
@@ -70,12 +72,31 @@ public class Strongest1Script : MonoBehaviour
                                                            // 재사용 대기시간이 빠른 스킬이 실행중일 때 다른 공격이 실행되지 않길
                                                            // 원하면 이 코드를 실행시키되, 위에 조건문에 !thisObjectScript.GetAttackedCheck();를 추가하자
 
+            GameObject a = Instantiate(particle, (transform.position + shortestScript.transform.position) / 2, Quaternion.Euler(0f, 180f, 0f));
+            a.transform.SetParent(null);
+
             yield return new WaitForSeconds(skiilDelay[0]);
 
             skillUsed = false;
             StartCoroutine(skill1Re());
+            try
+            {
+                Vector2 targetPosition = shortestScript.transform.localPosition;
+                targetPosition.x += thisObjectScript.GetAttackDistance();
+                transform.localPosition = targetPosition;//스킬 사용
+            }
+            catch (MissingReferenceException)
+            {
+                float buildingDistance = Vector2.Distance(transform.position, gameManager.GetUnitSpawnPosition().position);
+                if (thisObjectScript.GetBuildingIsShortest() && buildingDistance < skillDistance[0])
+                {
+                    Vector2 targetPosition = gameManager.GetUnitSpawnPosition().position;
+                    targetPosition.x += thisObjectScript.GetAttackDistance();
+                    transform.localPosition = targetPosition;//스킬 사용 // 이동은 되는데 그 후 공격 진행을 안함
+                }
+            }
 
-            transform.localPosition = shortestScript.transform.localPosition;//스킬 사용
+            Destroy(a);
         }
     }
     private IEnumerator skill1Re()

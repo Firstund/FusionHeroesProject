@@ -544,6 +544,10 @@ public class EnemyScript : MonoBehaviour
     {
         return isDead;
     }
+    public bool GetBuildingIsShortest()
+    {
+        return buildingIsShortest;
+    }
     public float GetAttackDistance()
     {
         return attackDistance;

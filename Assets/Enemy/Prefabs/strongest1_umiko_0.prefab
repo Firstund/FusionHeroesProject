@@ -308,6 +308,7 @@ MonoBehaviour:
   shortestEnemyDistance: 10
   attackedCheck: 0
   buildingIsShortest: 0
+  isAttackOne: 1
   isDead: 0
 --- !u!82 &1404034451756541992
 AudioSource:
@@ -420,8 +421,9 @@ MonoBehaviour:
   skillUsed: 0
   canUseSkill: 0101
   skillSound:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: cf9a27e5a6878b342859c8bc3f0d9e79, type: 3}
   - {fileID: 8300000, guid: 3e86fdabbddb4554ba8a3532c29e25be, type: 3}
+  particle: {fileID: 7261168126157818183, guid: d325148f5cd551748ba2df2610f024b9, type: 3}
   skillReTime:
   - 5
   - 10
