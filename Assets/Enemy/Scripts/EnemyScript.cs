@@ -92,7 +92,11 @@ public class EnemyScript : MonoBehaviour
     {
         gameObject.transform.SetParent(GameObject.Find("EnemyUnits").gameObject.transform, true);
         fusionManager = FindObjectOfType<FusionManager>();
+
+        fusionManager.SetCanSetScripts();
+
         gameManager = GameManager.Instance;
+
         anim = GetComponent<Animator>();
         audi = GetComponent<AudioSource>();
         strongest1Script = GetComponent<Strongest1Script>();
@@ -270,70 +274,73 @@ public class EnemyScript : MonoBehaviour
     }
     public void GetDamage()
     {
-        bool attackOne = isAttackOne;
-        float minimumD = 0f;
-        float maximumD = attackDistance;
-        if (audi.clip != attackSound)
-            audi.clip = attackSound;
-        //공격 애니메이션 출력
-        audi.Play();
-
-        if (attackOne)
+        if (shortestDistance < attackDistance)
         {
-            if (buildingIsShortest)
+            bool attackOne = isAttackOne;
+            float minimumD = 0f;
+            float maximumD = attackDistance;
+            if (audi.clip != attackSound)
+                audi.clip = attackSound;
+            //공격 애니메이션 출력
+            audi.Play();
+
+            if (attackOne)
             {
-                shortestHeart = fusionManager.buildingScript.getHe();
-                shortestDp = fusionManager.buildingScript.getD();
-
-                totalAtk = (ap - shortestDp);
-
-                if (totalAtk <= 0f)
+                if (buildingIsShortest)
                 {
-                    totalAtk = 0.2f;
-                }
+                    shortestHeart = fusionManager.buildingScript.getHe();
+                    shortestDp = fusionManager.buildingScript.getD();
 
-                shortestHeart -= totalAtk;
-
-                fusionManager.buildingScript.SetHP(shortestHeart);
-            }
-            else if (shortestScript != null)
-            {
-                shortestHeart = shortestScript.getHe();
-                shortestDp = shortestScript.getD();
-
-                totalAtk = (ap - shortestDp);//데미지 공식 적용
-
-                if (totalAtk <= 0f)
-                {
-                    totalAtk = 0.2f;
-                }
-                shortestHeart -= totalAtk; //단일공격
-                shortestScript.SetHP(shortestHeart);
-            }
-        }
-        else
-        {
-            attackedCheck = true;
-            //anim.Play("TestAnimationAttack");
-
-            for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
-            {
-                if (objectDistanceArray[a] < maximumD && objectDistanceArray[a] >= minimumD)//minimum, maxism attackDistance를 이용하여 공격 범위 설정가능
-                {
-                    float dp = fusionManager.unitScript[a].getD();
-                    float heart = fusionManager.unitScript[a].getHe();
-
-                    totalAtk = (ap - dp);
+                    totalAtk = (ap - shortestDp);
 
                     if (totalAtk <= 0f)
                     {
                         totalAtk = 0.2f;
                     }
 
+                    shortestHeart -= totalAtk;
 
-                    heart -= totalAtk;
+                    fusionManager.buildingScript.SetHP(shortestHeart);
+                }
+                else if (shortestScript != null)
+                {
+                    shortestHeart = shortestScript.getHe();
+                    shortestDp = shortestScript.getD();
 
-                    fusionManager.unitScript[a].SetHP(heart);
+                    totalAtk = (ap - shortestDp);//데미지 공식 적용
+
+                    if (totalAtk <= 0f)
+                    {
+                        totalAtk = 0.2f;
+                    }
+                    shortestHeart -= totalAtk; //단일공격
+                    shortestScript.SetHP(shortestHeart);
+                }
+            }
+            else
+            {
+                attackedCheck = true;
+                //anim.Play("TestAnimationAttack");
+
+                for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
+                {
+                    if (objectDistanceArray[a] < maximumD && objectDistanceArray[a] >= minimumD)//minimum, maxism attackDistance를 이용하여 공격 범위 설정가능
+                    {
+                        float dp = fusionManager.unitScript[a].getD();
+                        float heart = fusionManager.unitScript[a].getHe();
+
+                        totalAtk = (ap - dp);
+
+                        if (totalAtk <= 0f)
+                        {
+                            totalAtk = 0.2f;
+                        }
+
+
+                        heart -= totalAtk;
+
+                        fusionManager.unitScript[a].SetHP(heart);
+                    }
                 }
             }
         }
@@ -518,6 +525,7 @@ public class EnemyScript : MonoBehaviour
 
         gameManager.SetMoney(money);
 
+        fusionManager.SetCanSetScripts();
         Destroy(gameObject);
     }
     public AudioSource GetAudi()

@@ -138,6 +138,8 @@ public class UnitScript : MonoBehaviour
         thisUnitNum = unitNum;
         fusionManager.SetUnitNum(unitNum);
 
+        fusionManager.SetCanSetScripts();
+
         gameManager = GameManager.Instance;
         anim = GetComponent<Animator>();
         audi = GetComponent<AudioSource>();
@@ -193,71 +195,74 @@ public class UnitScript : MonoBehaviour
 
         }
     }
-    public void GetDamage() 
+    public void GetDamage()
     {
-        bool attackOne = isAttackOne;
-        float minimumD = 0f;
-        float maximumD = attackDistance;
-
-        if (shortestEnemyDistance < attackDistance)
+        if (shortestDistance < attackDistance)
         {
-            if (attackOne)
+            bool attackOne = isAttackOne;
+            float minimumD = 0f;
+            float maximumD = attackDistance;
+
+            if (shortestEnemyDistance < attackDistance)
             {
-                audi.Play();
-                if (buildingIsShortest)
+                if (attackOne)
                 {
-                    shortestHeart = fusionManager.enemyBuildingScript.getHe();
-                    shortestDp = fusionManager.enemyBuildingScript.getD();
-
-                    totalAtk = (ap - shortestDp);
-                    if (totalAtk <= 0)
+                    audi.Play();
+                    if (buildingIsShortest)
                     {
-                        totalAtk = 1;
-                    }
+                        shortestHeart = fusionManager.enemyBuildingScript.getHe();
+                        shortestDp = fusionManager.enemyBuildingScript.getD();
 
-                    shortestHeart -= totalAtk;
-
-                    fusionManager.enemyBuildingScript.SetHP(shortestHeart);
-                }
-                else if (shortestEnemyScript != null)
-                {
-                    shortestHeart = shortestEnemyScript.getHe();
-                    shortestDp = shortestEnemyScript.getD();
-
-                    totalAtk = (ap - shortestDp);//데미지 공식 적용
-
-                    if (totalAtk <= 0)
-                    {
-                        totalAtk = 1;
-                    }
-
-                    shortestHeart -= totalAtk; //단일공격
-
-                    shortestEnemyScript.SetHP(shortestHeart);
-                }
-            }
-            else
-            {
-                //anim.Play("TestAnimationAttack");
-
-                for (int a = 0; a < fusionManager.GetEnemyUnitNum() - 1; a++)
-                {
-                    if (enemyObjectDistanceArray[a] < maximumD && enemyObjectDistanceArray[a] >= minimumD)//minimum, maxism attackDistance를 이용하여 공격 범위 설정가능
-                    {
-                        float dp = fusionManager.enemyScript[a].getD();
-                        float heart = fusionManager.enemyScript[a].getHe();
-
-                        totalAtk = (ap - dp);
-
-                        if (totalAtk <= 0f)
+                        totalAtk = (ap - shortestDp);
+                        if (totalAtk <= 0)
                         {
-                            totalAtk = 0.2f;
+                            totalAtk = 1;
                         }
 
+                        shortestHeart -= totalAtk;
 
-                        heart -= totalAtk;
+                        fusionManager.enemyBuildingScript.SetHP(shortestHeart);
+                    }
+                    else if (shortestEnemyScript != null)
+                    {
+                        shortestHeart = shortestEnemyScript.getHe();
+                        shortestDp = shortestEnemyScript.getD();
 
-                        fusionManager.enemyScript[a].SetHP(heart);
+                        totalAtk = (ap - shortestDp);//데미지 공식 적용
+
+                        if (totalAtk <= 0)
+                        {
+                            totalAtk = 1;
+                        }
+
+                        shortestHeart -= totalAtk; //단일공격
+
+                        shortestEnemyScript.SetHP(shortestHeart);
+                    }
+                }
+                else
+                {
+                    //anim.Play("TestAnimationAttack");
+
+                    for (int a = 0; a < fusionManager.GetEnemyUnitNum() - 1; a++)
+                    {
+                        if (enemyObjectDistanceArray[a] < maximumD && enemyObjectDistanceArray[a] >= minimumD)//minimum, maxism attackDistance를 이용하여 공격 범위 설정가능
+                        {
+                            float dp = fusionManager.enemyScript[a].getD();
+                            float heart = fusionManager.enemyScript[a].getHe();
+
+                            totalAtk = (ap - dp);
+
+                            if (totalAtk <= 0f)
+                            {
+                                totalAtk = 0.2f;
+                            }
+
+
+                            heart -= totalAtk;
+
+                            fusionManager.enemyScript[a].SetHP(heart);
+                        }
                     }
                 }
             }
@@ -410,6 +415,7 @@ public class UnitScript : MonoBehaviour
         if (a == null)
             a = this;
 
+        fusionManager.SetCanSetScripts();
         Destroy(a.gameObject);
     }
     protected void AttackCheck()

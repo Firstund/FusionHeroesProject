@@ -15,7 +15,7 @@ public class FusionManager : MonoBehaviour
     private bool isAround = false;
 
     public UnitScript[] unitScript = null;
-    private int unitNO = 0; 
+    private int unitNO = 0;
     public EnemyScript[] enemyScript = null;
     private int enemyUnitNO = 0;
     public BuildingScript buildingScript = null;
@@ -24,7 +24,7 @@ public class FusionManager : MonoBehaviour
     private GameManager gameManager = null;
 
     private GameObject[] fusionObject = null;
-    
+
 
     private bool monsterSpawned = false;
 
@@ -32,6 +32,7 @@ public class FusionManager : MonoBehaviour
     private bool isUped = false;
 
     private bool isFollow = false;
+    private bool canSetScripts = false;
 
     // Start is called before the first frame update
 
@@ -39,26 +40,40 @@ public class FusionManager : MonoBehaviour
     {
         buildingScript = FindObjectOfType<BuildingScript>();
         enemyBuildingScript = FindObjectOfType<EnemyBuildingScript>();
+        unitScript = FindObjectsOfType(typeof(UnitScript)) as UnitScript[];
+        enemyScript = FindObjectsOfType(typeof(EnemyScript)) as EnemyScript[];
         gameManager = GameManager.Instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        unitScript = FindObjectsOfType(typeof(UnitScript)) as UnitScript[];
-        enemyScript = FindObjectsOfType(typeof(EnemyScript)) as EnemyScript[];
+        SetScripts();
+    }
+    private void SetScripts()
+    {
+        if (canSetScripts)
+        {
+            unitScript = FindObjectsOfType(typeof(UnitScript)) as UnitScript[];
+            enemyScript = FindObjectsOfType(typeof(EnemyScript)) as EnemyScript[];
+            canSetScripts = false;
+        }
+    }
+    public void SetCanSetScripts()
+    {
+        canSetScripts = true;
     }
     public void StageReset()
     {
         buildingScript.Reset();
         enemyBuildingScript.Reset();
 
-        for(int i = 0; i < unitNum; i++)
+        for (int i = 0; i < unitNum; i++)
         {
             unitScript[i].Destroye(unitScript[i]);
-            
+
         }
-        for(int i = 0; i < enemyUnitNum; i++)
+        for (int i = 0; i < enemyUnitNum; i++)
         {
             enemyScript[i].Destroye();
         }
@@ -154,5 +169,5 @@ public class FusionManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         isUped = false;
     }
-    
+
 }
