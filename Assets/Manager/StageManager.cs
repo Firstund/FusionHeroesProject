@@ -7,6 +7,7 @@ public class StageManager : MonoBehaviour
     private FusionManager fusionManager = null;
     private GameManager gameManager = null;
     private DataManager dataManager = null;
+    private AudioSource audi = null;
     private SaveData saveData;
     [SerializeField]
     private GameObject stageClearPopUp = null;
@@ -22,6 +23,7 @@ public class StageManager : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         dataManager = DataManager.Instance;
+        audi = GetComponent<AudioSource>();
         saveData = gameManager.GetSaveData();
         
     }
@@ -29,6 +31,7 @@ public class StageManager : MonoBehaviour
     {
         currentStage = saveData.currentStage;
         stageText.text = "CurrentStage: " + currentStage;
+        audi.volume = gameManager.GetSoundValue();
     }
     public void StageClear(bool a)
     {

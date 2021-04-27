@@ -87,15 +87,7 @@ public class Strongest1Script : MonoBehaviour
             }
             catch (MissingReferenceException)
             {
-                float buildingDistance = Vector2.Distance(transform.position, gameManager.GetUnitSpawnPosition().position);
-                if (thisObjectScript.GetBuildingIsShortest() && buildingDistance < skillDistance[0])
-                {
-                    Vector2 targetPosition = gameManager.GetUnitSpawnPosition().position * 0.8f;// 0.8f를 곱해줘서 워프 후 보스가 기본 공격을 안할 수 있는 현상을 방지
-                                                                                 // (워프를 해서 공격 사거리와 유닛간의 거리가 같은 상태에서 둘 다 가만히 있으면
-                                                                                 // 공격을 하지 않으므로 0.8f를 곱해서 차이를 둔다.)
-                    targetPosition.x += thisObjectScript.GetAttackDistance();
-                    transform.localPosition = targetPosition;//스킬 사용 // 이동은 되는데 그 후 공격 진행을 안함
-                }
+                Destroy(a);
             }
 
             Destroy(a);

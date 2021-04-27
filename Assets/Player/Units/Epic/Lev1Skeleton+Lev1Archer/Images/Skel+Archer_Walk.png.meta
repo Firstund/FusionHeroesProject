@@ -4,58 +4,58 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -7685338227154373470
-    second: L0
+    second: Skel+Archer_Walk_0
   - first:
       213: 6531730751811430032
-    second: L1
+    second: Skel+Archer_Walk_1
   - first:
       213: 5122811277838512891
-    second: L2
+    second: Skel+Archer_Walk_2
   - first:
       213: -7636738314640384040
-    second: L3
+    second: Skel+Archer_Walk_3
   - first:
       213: -1924598086415963083
-    second: L4
+    second: Skel+Archer_Walk_4
   - first:
       213: 4857500481479024229
-    second: L5
+    second: Skel+Archer_Walk_5
   - first:
       213: -260105246629840112
-    second: L6
+    second: Skel+Archer_Walk_6
   - first:
       213: -5107543730182484073
-    second: L7
+    second: Skel+Archer_Walk_7
   - first:
       213: -7977792291774647575
-    second: L8
+    second: Skel+Archer_Walk_8
   - first:
       213: -7033072796213078288
-    second: R0
+    second: Skel+Archer_Walk_9
   - first:
       213: -1317473655137967789
-    second: R1
+    second: Skel+Archer_Walk_10
   - first:
       213: 7229363182235244572
-    second: R2
+    second: Skel+Archer_Walk_11
   - first:
       213: -6998863551304789308
-    second: R3
+    second: Skel+Archer_Walk_12
   - first:
       213: -9014981774371835504
-    second: R4
+    second: Skel+Archer_Walk_13
   - first:
       213: -113910056540259724
-    second: R5
+    second: Skel+Archer_Walk_14
   - first:
       213: 2623689220376498632
-    second: R6
+    second: Skel+Archer_Walk_15
   - first:
       213: 1515301425146542133
-    second: R7
+    second: Skel+Archer_Walk_16
   - first:
       213: 2457769374105443693
-    second: R8
+    second: Skel+Archer_Walk_17
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -155,13 +155,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: L0
+      name: Skel+Archer_Walk_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 66
-        width: 23
-        height: 47
+        x: 0
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,13 +176,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L1
+      name: Skel+Archer_Walk_1
       rect:
         serializedVersion: 2
-        x: 83
-        y: 66
-        width: 25
-        height: 46
+        x: 64
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,13 +197,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L2
+      name: Skel+Archer_Walk_2
       rect:
         serializedVersion: 2
-        x: 149
-        y: 67
-        width: 23
-        height: 46
+        x: 128
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,13 +218,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L3
+      name: Skel+Archer_Walk_3
       rect:
         serializedVersion: 2
-        x: 213
-        y: 67
-        width: 24
-        height: 46
+        x: 192
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,13 +239,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L4
+      name: Skel+Archer_Walk_4
       rect:
         serializedVersion: 2
-        x: 277
-        y: 66
-        width: 25
-        height: 47
+        x: 256
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,13 +260,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L5
+      name: Skel+Archer_Walk_5
       rect:
         serializedVersion: 2
-        x: 340
-        y: 66
-        width: 28
-        height: 46
+        x: 320
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,13 +281,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L6
+      name: Skel+Archer_Walk_6
       rect:
         serializedVersion: 2
-        x: 405
-        y: 66
-        width: 25
-        height: 47
+        x: 384
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -302,13 +302,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L7
+      name: Skel+Archer_Walk_7
       rect:
         serializedVersion: 2
-        x: 469
-        y: 66
-        width: 24
-        height: 47
+        x: 448
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -323,13 +323,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L8
+      name: Skel+Archer_Walk_8
       rect:
         serializedVersion: 2
-        x: 533
-        y: 66
-        width: 23
-        height: 47
+        x: 512
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -344,13 +344,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: R0
+      name: Skel+Archer_Walk_9
       rect:
         serializedVersion: 2
-        x: 20
-        y: 2
-        width: 23
-        height: 47
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -365,13 +365,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: R1
+      name: Skel+Archer_Walk_10
       rect:
         serializedVersion: 2
-        x: 84
-        y: 2
-        width: 25
-        height: 46
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -386,13 +386,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: R2
+      name: Skel+Archer_Walk_11
       rect:
         serializedVersion: 2
-        x: 148
-        y: 3
-        width: 23
-        height: 46
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -407,13 +407,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: R3
+      name: Skel+Archer_Walk_12
       rect:
         serializedVersion: 2
-        x: 211
-        y: 3
-        width: 24
-        height: 46
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -428,13 +428,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: R4
+      name: Skel+Archer_Walk_13
       rect:
         serializedVersion: 2
-        x: 274
-        y: 2
-        width: 25
-        height: 47
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -449,13 +449,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: R5
+      name: Skel+Archer_Walk_14
       rect:
         serializedVersion: 2
-        x: 336
-        y: 2
-        width: 28
-        height: 46
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -470,13 +470,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: R6
+      name: Skel+Archer_Walk_15
       rect:
         serializedVersion: 2
-        x: 402
-        y: 2
-        width: 25
-        height: 47
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -491,13 +491,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: R7
+      name: Skel+Archer_Walk_16
       rect:
         serializedVersion: 2
-        x: 467
-        y: 2
-        width: 24
-        height: 47
+        x: 448
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -512,13 +512,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: R8
+      name: Skel+Archer_Walk_17
       rect:
         serializedVersion: 2
-        x: 532
-        y: 2
-        width: 23
-        height: 47
+        x: 512
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

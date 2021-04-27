@@ -11,7 +11,6 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField]
     private Slider slider = null;
-    //private TestUnitScript testUnitScript = null;
     [SerializeField]
     private UnitScript shortestScript = null;
     [SerializeField]
@@ -320,7 +319,6 @@ public class EnemyScript : MonoBehaviour
             else
             {
                 attackedCheck = true;
-                //anim.Play("TestAnimationAttack");
 
                 for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
                 {
