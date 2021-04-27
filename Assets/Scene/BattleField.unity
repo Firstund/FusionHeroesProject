@@ -1001,7 +1001,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2228,7 +2228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnThis: {fileID: 3318772828785144205, guid: f4788e6259156574ca2e105a8d27295e, type: 3}
   respawnImage: {fileID: 1696390463}
-  spawnMoney: 450
+  spawnMoney: 0
   spawnSpeed: 0.01
   canSpawnAgain: 1
 --- !u!114 &856964526
@@ -4033,7 +4033,7 @@ MonoBehaviour:
   spawnThis: {fileID: 4323624078091657384, guid: 4f3b3859af179f040b019efde896d1df, type: 3}
   respawnImage: {fileID: 111048385}
   spawnMoney: 30
-  spawnSpeed: 3
+  spawnSpeed: 1
   canSpawnAgain: 1
 --- !u!114 &1364132425
 MonoBehaviour:
@@ -4315,7 +4315,7 @@ MonoBehaviour:
   spawnThis: {fileID: 6220228852626342961, guid: 554295bff4b2e8b4ea5ec86e28c1e0b4, type: 3}
   respawnImage: {fileID: 640874261}
   spawnMoney: 20
-  spawnSpeed: 3
+  spawnSpeed: 2
   canSpawnAgain: 1
 --- !u!114 &1374105358
 MonoBehaviour:

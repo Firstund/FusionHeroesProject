@@ -474,7 +474,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   attackDistance: 5
-  heart: 5
+  heart: 7
   heartUp: 2
   ap: 2
   apUp: 0.2
@@ -509,6 +509,7 @@ MonoBehaviour:
   mouseCheck: 0
   followingMouse: 0
   isDead: 0
+  isAttackOne: 1
   isFollow: 0
 --- !u!1 &6220228852725416648
 GameObject:

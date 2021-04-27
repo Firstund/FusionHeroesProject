@@ -5457,11 +5457,11 @@ MonoBehaviour:
   - {fileID: 0}
   attackDistance: 5
   heart: 50
-  heartUp: 5
-  ap: 0.1
-  apUp: 0.5
+  heartUp: 10
+  ap: 0.2
+  apUp: 0
   dp: 2
-  dpUp: 0.25
+  dpUp: 0.5
   attackDelay: 2
   speed: 1
   totalAtk: 0
@@ -5474,7 +5474,7 @@ MonoBehaviour:
   thisUnitNum: 0
   thisUnitNO: 0
   unitLev: 1
-  levelUpCost: 10
+  levelUpCost: 30
   clickableX: 1
   mouseDistance: 0
   objectDistanceArray: []

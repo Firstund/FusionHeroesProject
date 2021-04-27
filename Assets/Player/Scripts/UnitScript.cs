@@ -197,75 +197,78 @@ public class UnitScript : MonoBehaviour
     }
     public void GetDamage()
     {
-        if (shortestDistance < attackDistance)
+
+        if (shortestEnemyDistance < attackDistance)
         {
+            Debug.Log($"{this} is attacking");
+            Debug.Log(Time.time);
+
             bool attackOne = isAttackOne;
             float minimumD = 0f;
             float maximumD = attackDistance;
 
-            if (shortestEnemyDistance < attackDistance)
+
+            if (attackOne)
             {
-                if (attackOne)
+                audi.Play();
+                if (buildingIsShortest)
                 {
-                    audi.Play();
-                    if (buildingIsShortest)
+                    shortestHeart = fusionManager.enemyBuildingScript.getHe();
+                    shortestDp = fusionManager.enemyBuildingScript.getD();
+
+                    totalAtk = (ap - shortestDp);
+                    if (totalAtk <= 0)
                     {
-                        shortestHeart = fusionManager.enemyBuildingScript.getHe();
-                        shortestDp = fusionManager.enemyBuildingScript.getD();
-
-                        totalAtk = (ap - shortestDp);
-                        if (totalAtk <= 0)
-                        {
-                            totalAtk = 1;
-                        }
-
-                        shortestHeart -= totalAtk;
-
-                        fusionManager.enemyBuildingScript.SetHP(shortestHeart);
+                        totalAtk = 1;
                     }
-                    else if (shortestEnemyScript != null)
-                    {
-                        shortestHeart = shortestEnemyScript.getHe();
-                        shortestDp = shortestEnemyScript.getD();
 
-                        totalAtk = (ap - shortestDp);//데미지 공식 적용
+                    shortestHeart -= totalAtk;
 
-                        if (totalAtk <= 0)
-                        {
-                            totalAtk = 1;
-                        }
-
-                        shortestHeart -= totalAtk; //단일공격
-
-                        shortestEnemyScript.SetHP(shortestHeart);
-                    }
+                    fusionManager.enemyBuildingScript.SetHP(shortestHeart);
                 }
-                else
+                else if (shortestEnemyScript != null)
                 {
-                    //anim.Play("TestAnimationAttack");
+                    shortestHeart = shortestEnemyScript.getHe();
+                    shortestDp = shortestEnemyScript.getD();
 
-                    for (int a = 0; a < fusionManager.GetEnemyUnitNum() - 1; a++)
+                    totalAtk = (ap - shortestDp);//데미지 공식 적용
+
+                    if (totalAtk <= 0)
                     {
-                        if (enemyObjectDistanceArray[a] < maximumD && enemyObjectDistanceArray[a] >= minimumD)//minimum, maxism attackDistance를 이용하여 공격 범위 설정가능
+                        totalAtk = 1;
+                    }
+
+                    shortestHeart -= totalAtk; //단일공격
+
+                    shortestEnemyScript.SetHP(shortestHeart);
+                }
+            }
+            else
+            {
+                //anim.Play("TestAnimationAttack");
+
+                for (int a = 0; a < fusionManager.GetEnemyUnitNum() - 1; a++)
+                {
+                    if (enemyObjectDistanceArray[a] < maximumD && enemyObjectDistanceArray[a] >= minimumD)//minimum, maxism attackDistance를 이용하여 공격 범위 설정가능
+                    {
+                        float dp = fusionManager.enemyScript[a].getD();
+                        float heart = fusionManager.enemyScript[a].getHe();
+
+                        totalAtk = (ap - dp);
+
+                        if (totalAtk <= 0f)
                         {
-                            float dp = fusionManager.enemyScript[a].getD();
-                            float heart = fusionManager.enemyScript[a].getHe();
-
-                            totalAtk = (ap - dp);
-
-                            if (totalAtk <= 0f)
-                            {
-                                totalAtk = 0.2f;
-                            }
-
-
-                            heart -= totalAtk;
-
-                            fusionManager.enemyScript[a].SetHP(heart);
+                            totalAtk = 0.2f;
                         }
+
+
+                        heart -= totalAtk;
+
+                        fusionManager.enemyScript[a].SetHP(heart);
                     }
                 }
             }
+
         }
     }
     public void ResetAttackedCheck()

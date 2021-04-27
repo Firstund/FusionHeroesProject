@@ -21,21 +21,21 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 5665356675349868688, guid: 94754fd96d6ab6542b143e0b352d04c0, type: 3}
-    - time: 0.05
-      value: {fileID: -7188151657230378614, guid: 94754fd96d6ab6542b143e0b352d04c0, type: 3}
     - time: 0.1
-      value: {fileID: -3434650198902645650, guid: 94754fd96d6ab6542b143e0b352d04c0, type: 3}
+      value: {fileID: -7188151657230378614, guid: 94754fd96d6ab6542b143e0b352d04c0, type: 3}
     - time: 0.15
-      value: {fileID: 667287782001488472, guid: 94754fd96d6ab6542b143e0b352d04c0, type: 3}
+      value: {fileID: -3434650198902645650, guid: 94754fd96d6ab6542b143e0b352d04c0, type: 3}
     - time: 0.2
-      value: {fileID: -8920220225628333665, guid: 94754fd96d6ab6542b143e0b352d04c0, type: 3}
+      value: {fileID: 667287782001488472, guid: 94754fd96d6ab6542b143e0b352d04c0, type: 3}
     - time: 0.25
-      value: {fileID: 2587790867382355096, guid: 94754fd96d6ab6542b143e0b352d04c0, type: 3}
+      value: {fileID: -8920220225628333665, guid: 94754fd96d6ab6542b143e0b352d04c0, type: 3}
     - time: 0.3
-      value: {fileID: -2352948641931552189, guid: 94754fd96d6ab6542b143e0b352d04c0, type: 3}
+      value: {fileID: 2587790867382355096, guid: 94754fd96d6ab6542b143e0b352d04c0, type: 3}
     - time: 0.35
-      value: {fileID: -7474381563486747189, guid: 94754fd96d6ab6542b143e0b352d04c0, type: 3}
+      value: {fileID: -2352948641931552189, guid: 94754fd96d6ab6542b143e0b352d04c0, type: 3}
     - time: 0.4
+      value: {fileID: -7474381563486747189, guid: 94754fd96d6ab6542b143e0b352d04c0, type: 3}
+    - time: 0.45
       value: {fileID: 5807656231447455203, guid: 94754fd96d6ab6542b143e0b352d04c0, type: 3}
     attribute: m_Sprite
     path: 
@@ -70,7 +70,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.45000002
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -90,42 +90,42 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.2
-    functionName: GetDamage
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 0.25
-    functionName: ResetAttackedCheck
+    functionName: GetDamage
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.3
-    functionName: GetDamage
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.35
     functionName: ResetAttackedCheck
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.4
+  - time: 0.35
     functionName: GetDamage
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.4
+    functionName: ResetAttackedCheck
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.45
+    functionName: GetDamage
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5
     functionName: ResetAttackedCheck
     data: 
     objectReferenceParameter: {fileID: 0}
