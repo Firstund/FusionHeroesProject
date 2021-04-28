@@ -70,6 +70,7 @@ public class UnitScript : MonoBehaviour
     protected int thisUnitNum = 0; // 현재 소환된 오브젝트들 중 몇번째 오브젝트인가
     [SerializeField]
     protected int thisUnitNO = 0; // 게임 전체에서 몇 번째 소환된 오브젝트인가
+                                  // 이게 왜 곂치지???
     [SerializeField]
     protected int unitLev = 01; // 유닛의 레벨
     [SerializeField]
@@ -130,13 +131,9 @@ public class UnitScript : MonoBehaviour
 
         fusionManager = FindObjectOfType<FusionManager>();
 
-        int unitNO = fusionManager.GetUnitNO() + 1;
-        thisUnitNO = unitNO;
-        fusionManager.SetUnitNO(unitNO);
+        fusionManager.SetUnitNO(thisUnitNO = fusionManager.GetUnitNO() + 1);
 
-        int unitNum = fusionManager.GetUnitNum() + 1;
-        thisUnitNum = unitNum;
-        fusionManager.SetUnitNum(unitNum);
+        fusionManager.SetUnitNum(thisUnitNum = fusionManager.GetUnitNum() + 1);
 
         fusionManager.SetCanSetScripts();
 
@@ -200,8 +197,6 @@ public class UnitScript : MonoBehaviour
 
         if (shortestEnemyDistance < attackDistance)
         {
-            Debug.Log($"{this} is attacking");
-            Debug.Log(Time.time);
 
             bool attackOne = isAttackOne;
             float minimumD = 0f;
@@ -542,13 +537,14 @@ public class UnitScript : MonoBehaviour
                         gameManager.SetMoney(money);
 
                         int a = shortestScript.GetUnitLev() + 1;
+
                         shortestScript.SetUnitLev(a);
 
                         shortestScript.setStat();
 
                         StartCoroutine(IsAroundSet());
                         break;
-                    case 1: // 여기부터 퓨전
+                    case 1: // 여기부터 퓨전 // 함수로 빼두자
                         UnitScript nextUnitScript;
 
                         fusionManager.SetIsAround(true);
@@ -560,38 +556,6 @@ public class UnitScript : MonoBehaviour
                         Destroye(shortestScript);
 
                         nextUnitScript = Instantiate(nextUnit[i], transform).GetComponent<UnitScript>();
-
-                        // 합칠 유닛 a, b가 있고, a가 b보다 앞에있는 오브젝트라고 할 때,  b를 끌어다 a에 놓아서 fusion하면,
-                        // 두 오브젝트중 더 적은 thisUnitNO값을 가진 오브젝트의 unitNO 값이 상속되어야 하고, 
-                        // 그의 반대경우엔 더 큰 thisUnitNO값을 가진 오브젝트의 unitNO 값이 상속되어야한다.
-                        // ㅈ버그 발견 내일 수정하자
-
-                        if (shortestScript.GetCurrentPosition().x > currentPosition.x)
-                        {
-                            if (shortestScript.GetThisUnitNO() > thisUnitNO)
-                            {
-                                nextUnitScript.SetThisUnitNO(thisUnitNO);
-                                nextUnitScript.SetThisUnitNum(thisUnitNum);
-                            }
-                            else
-                            {
-                                nextUnitScript.SetThisUnitNO(shortestScript.GetThisUnitNO());
-                                nextUnitScript.SetThisUnitNO(shortestScript.GetThisUnitNum());
-                            }
-                        }
-                        else
-                        {
-                            if (shortestScript.GetThisUnitNO() < thisUnitNO)
-                            {
-                                nextUnitScript.SetThisUnitNO(thisUnitNO);
-                                nextUnitScript.SetThisUnitNum(thisUnitNum);
-                            }
-                            else
-                            {
-                                nextUnitScript.SetThisUnitNO(shortestScript.GetThisUnitNO());
-                                nextUnitScript.SetThisUnitNO(shortestScript.GetThisUnitNum());
-                            }
-                        }
 
                         nextUnitScript.SetUnitLev(unitLev);
 
