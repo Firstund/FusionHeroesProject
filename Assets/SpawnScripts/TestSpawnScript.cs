@@ -9,6 +9,8 @@ public class TestSpawnScript : MonoBehaviour
 
     [SerializeField]
     private GameObject spawnThis = null;
+    [SerializeField]
+    private Text spawnCostText = null;
     private Transform spawnPosition = null;
     [SerializeField]
     private Image respawnImage = null;
@@ -25,10 +27,12 @@ public class TestSpawnScript : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         spawnPosition = gameManager.GetUnitSpawnPosition();
+        spawnCostText = transform.GetChild(1).GetComponent<Text>();
     }
     void Update()
     {
         checkTime();
+        spawnCostText.text = $"{spawnMoney}";
     }
    public void SpawnUnit()
     {
