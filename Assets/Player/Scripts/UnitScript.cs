@@ -23,6 +23,8 @@ public class UnitScript : MonoBehaviour
                                                          // 인덱스 값은 해당 유닛의 아이디의 (세번째 숫자 - 1)로 설정한다.
                                                          // 첫번 째 배열에 들어가는 유닛의 아이디는 무조건 이 스크립트의 unitId값이다.
     [SerializeField]
+    protected int maxLv = 5; // 해당 유닛의 최대 레벨
+    [SerializeField]
     protected float attackDistance = 2f;
     [SerializeField]
     protected float heart = 100f;
@@ -508,7 +510,12 @@ public class UnitScript : MonoBehaviour
         else if (followingMouse && shortestDistance < clickableX && !fusionManager.GetIsAround() && unitLev == shortestScript.GetUnitLev())
         // 다른 fusion들과 호환이 가능하도록 변경, 각 fusion마다 levelUpCost 값이 다르다.
         {
-            costText.text = $"{levelUpCost} Cost"; // 왜 Cost는 짤리는가?
+            if(unitLev >= maxLv)
+            {
+                costText.text = "이미 최대레벨입니다.";
+                return;
+            }
+            costText.text = $"{levelUpCost} 원"; 
         }
         else
         {
@@ -531,18 +538,21 @@ public class UnitScript : MonoBehaviour
                 {
                     case 0: // 그냥 유닛의 레벨만 오름
                             // levelUpCost 지정
-                        fusionManager.SetIsAround(true);
-                        money = gameManager.GetMoney() - levelUpCost;
+                        if (unitLev < maxLv)
+                        {
+                            fusionManager.SetIsAround(true);
+                            money = gameManager.GetMoney() - levelUpCost;
 
-                        gameManager.SetMoney(money);
+                            gameManager.SetMoney(money);
 
-                        int a = shortestScript.GetUnitLev() + 1;
+                            int a = shortestScript.GetUnitLev() + 1;
 
-                        shortestScript.SetUnitLev(a);
+                            shortestScript.SetUnitLev(a);
 
-                        shortestScript.setStat();
+                            shortestScript.setStat();
 
-                        StartCoroutine(IsAroundSet());
+                            StartCoroutine(IsAroundSet());
+                        }
                         break;
                     case 1: // 여기부터 퓨전 // 함수로 빼두자
                         UnitScript nextUnitScript;

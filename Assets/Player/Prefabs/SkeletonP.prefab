@@ -473,6 +473,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  maxLv: 2
   attackDistance: 5
   heart: 7
   heartUp: 2
@@ -729,7 +730,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1.28, y: 2.22}
-  m_SizeDelta: {x: 30, y: 30}
+  m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6513319610323426483
 CanvasRenderer:
