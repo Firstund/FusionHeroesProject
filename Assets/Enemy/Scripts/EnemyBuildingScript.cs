@@ -117,6 +117,10 @@ public class EnemyBuildingScript : MonoBehaviour
     {
         return heart;
     }
+    public float getFirstHe()
+    {
+        return firstHeart;
+    }
     public float getD()
     {
         return dp;

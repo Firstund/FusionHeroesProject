@@ -16,9 +16,10 @@ public class SpawnStrongestScript : MonoBehaviour
         umiko();
         glingman();
     }
+    #region strongests
     private void umiko()
     {
-        if (!enemyBuildingScript.GetStrongestSpawned(0) && stageManager.GetCurrentStage() == 2)
+        if (!enemyBuildingScript.GetStrongestSpawned(0) && stageManager.GetCurrentStage() == 2  && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() / 2)
         {
             Debug.Log("aaa");
             enemyBuildingScript.SetstrongestSpawned(0, true);
@@ -27,11 +28,12 @@ public class SpawnStrongestScript : MonoBehaviour
     }
     private void glingman()
     {
-        if (!enemyBuildingScript.GetStrongestSpawned(1) && stageManager.GetCurrentStage() == 1)
+        if (!enemyBuildingScript.GetStrongestSpawned(1) && stageManager.GetCurrentStage() == 1 && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() / 5)
         {
             Debug.Log("bbb");
             enemyBuildingScript.SetstrongestSpawned(1, true);
             Instantiate(enemyBuildingScript.GetStrongest(1), enemyBuildingScript.GetSpawnPosition());
         }
     }
+    #endregion
 }
