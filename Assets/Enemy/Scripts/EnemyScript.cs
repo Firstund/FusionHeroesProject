@@ -6,87 +6,87 @@ using UnityEngine.UI;
 public class EnemyScript : MonoBehaviour
 {
     //자동소환, 소환대기시간 설정할것
-    FusionManager fusionManager = null;
-    GameManager gameManager = null;
+    protected FusionManager fusionManager = null;
+    protected GameManager gameManager = null;
 
     [SerializeField]
-    private Slider slider = null;
+    protected Slider slider = null;
     [SerializeField]
-    private UnitScript shortestScript = null;
+    protected UnitScript shortestScript = null;
     [SerializeField]
-    private EnemyScript shortestEnemyScript = null;
+    protected EnemyScript shortestEnemyScript = null;
     [SerializeField]
-    private Strongest1Script strongest1Script = null;
+    protected Strongest1Script strongest1Script = null;
 
     [SerializeField]
-    private AudioSource audi = null;
+    protected AudioSource audi = null;
     [SerializeField]
-    private AudioClip attackSound = null;
-    private Animator anim = null;
+    protected AudioClip attackSound = null;
+    protected Animator anim = null;
 
     //단일공격때 필요
 
     [SerializeField]
-    private float attackDistance = 2f;
-    // private int stopByObjectDistance = 0;
+    protected float attackDistance = 2f;
+    // protected int stopByObjectDistance = 0;
     [SerializeField]
-    private float minimumD = 0f;
+    protected float minimumD = 0f;
     [SerializeField]
-    private float maximumD = 3f;
+    protected float maximumD = 3f;
 
     [SerializeField]
-    private float heart = 100f;
+    protected float heart = 100f;
     [SerializeField]
-    private float firstHeart = 0f;
+    protected float firstHeart = 0f;
     [SerializeField]
-    private float heartUp = 1000f;
+    protected float heartUp = 1000f;
     [SerializeField]
-    private float ap = 2f;
+    protected float ap = 2f;
     [SerializeField]
-    private float apUp = 1f;
+    protected float apUp = 1f;
 
     [SerializeField]
-    private float dp = 2f;
+    protected float dp = 2f;
     [SerializeField]
-    private float dpUp = 0.25f;
+    protected float dpUp = 0.25f;
     [SerializeField]
-    private float attackDelay = 2f;
+    protected float attackDelay = 2f;
     [SerializeField]
-    private float speed = 0f;
-    private float firstSpeed = 0f;
+    protected float speed = 0f;
+    protected float firstSpeed = 0f;
     [SerializeField]
-    private float totalAtk = 0f;
+    protected float totalAtk = 0f;
 
-    private float shortestDp = 0f;
-    private float shortestHeart = 0f;
-
-    [SerializeField]
-    private int plusMoney = 25;
-    private int thisUnitNum = 0; // 현재 오브젝트들중 몇번째 오브젝트인가 -> 공격체크에 쓰임
-    private int thisUnitNO = 0; // 게임 전체에서 몇번째 소환됬는가 -> 유닛의 이동에 쓰임
+    protected float shortestDp = 0f;
+    protected float shortestHeart = 0f;
 
     [SerializeField]
-    private float[] objectDistanceArray;
-    [SerializeField]
-    private float[] enemyObjectDistanceArray;
+    protected int plusMoney = 25;
+    protected int thisUnitNum = 0; // 현재 오브젝트들중 몇번째 오브젝트인가 -> 공격체크에 쓰임
+    protected double thisUnitNO = 0; // 게임 전체에서 몇번째 소환됬는가 -> 유닛의 이동에 쓰임
 
     [SerializeField]
-    private float shortestDistance = 100f;
+    protected float[] objectDistanceArray;
     [SerializeField]
-    private float shortestForwardDistance = 10f;
-    [SerializeField]
-    private float shortestEnemyDistance = 10f;
+    protected float[] enemyObjectDistanceArray;
 
     [SerializeField]
-    private bool attackedCheck = false;
+    protected float shortestDistance = 100f;
     [SerializeField]
-    private bool buildingIsShortest = false;//building이 shortest일 때 true. unit이 shortest일 때 false
+    protected float shortestForwardDistance = 10f;
     [SerializeField]
-    private bool isAttackOne = true;
-    [SerializeField]
-    private bool isDead = false;
+    protected float shortestEnemyDistance = 10f;
 
-    private Vector2 currentPosition = new Vector2(100f, 100f);
+    [SerializeField]
+    protected bool attackedCheck = false;
+    [SerializeField]
+    protected bool buildingIsShortest = false;//building이 shortest일 때 true. unit이 shortest일 때 false
+    [SerializeField]
+    protected bool isAttackOne = true;
+    [SerializeField]
+    protected bool isDead = false;
+
+    protected Vector2 currentPosition = new Vector2(100f, 100f);
     void Awake()
     {
         gameObject.transform.SetParent(GameObject.Find("EnemyUnits").gameObject.transform, true);
@@ -104,13 +104,10 @@ public class EnemyScript : MonoBehaviour
     }
     void Start()
     {
-        int enemyUnitNum = fusionManager.GetEnemyUnitNum() + 1;
-        thisUnitNum = enemyUnitNum;
-        fusionManager.SetEnemyUnitNum(enemyUnitNum);
+        
+        fusionManager.SetEnemyUnitNum(thisUnitNum = fusionManager.GetEnemyUnitNum() + 1);
 
-        int enemyUnitNO = fusionManager.GetEnemyUnitNO() + 1;
-        thisUnitNO = enemyUnitNO;
-        fusionManager.SetEnemyUnitNO(enemyUnitNO);
+        fusionManager.SetEnemyUnitNO(thisUnitNO = fusionManager.GetEnemyUnitNO() + 1d);
 
         setStat();
         firstHeart = heart;
@@ -136,17 +133,17 @@ public class EnemyScript : MonoBehaviour
         HealthBar();
         DestroyCheck();
     }
-    private void SetMaxHealth()
+    protected void SetMaxHealth()
     {
         slider.maxValue = heart;
         slider.value = heart;
         slider.minValue = 0;
     }
-    private void HealthBar()
+    protected void HealthBar()
     {
         slider.value = heart;
     }
-    private void CheckHe()
+    protected void CheckHe()
     {
         if (heart <= 0)
         {
@@ -179,7 +176,7 @@ public class EnemyScript : MonoBehaviour
     {
         heart = he;
     }
-    private void setStat()
+    protected void setStat()
     {
         heart += heartUp; // heartUp * 라운드 수
         ap += apUp;
@@ -202,7 +199,7 @@ public class EnemyScript : MonoBehaviour
     {
         return attackedCheck;
     }
-    void Move()
+    protected void Move()
     {
 
         if (!isDead)
@@ -240,12 +237,12 @@ public class EnemyScript : MonoBehaviour
             transform.Translate(Vector2.left * speed * Time.deltaTime);
         }
     }
-    private IEnumerator ReTrue(float time)
+    protected IEnumerator ReTrue(float time)
     {
         yield return new WaitForSeconds(time);
         attackedCheck = false;
     }
-    private void Attack()
+    protected void Attack()
     {
         ////단일공격
         if (shortestDistance < attackDistance)
@@ -351,7 +348,7 @@ public class EnemyScript : MonoBehaviour
     {
         StartCoroutine(AttackSkill(attackOne, ap, attackDelay, minimumD, maximumD));
     }
-    private IEnumerator AttackSkill(bool attackOne, float ap, float attackDelay, float minimumD, float maximumD)
+    protected IEnumerator AttackSkill(bool attackOne, float ap, float attackDelay, float minimumD, float maximumD)
     {
         //단일공격
 
@@ -421,14 +418,14 @@ public class EnemyScript : MonoBehaviour
             }
         }
     }
-    private void AttackCheck()
+    protected void AttackCheck()
     {
         if (shortestDistance < attackDistance)
         {
             Attack();
         }
     }
-    private void FirstODSet() // FirstEDSet
+    protected void FirstODSet() // FirstEDSet
     {
         objectDistanceArray[0] = Vector2.Distance(gameManager.GetUnitSpawnPosition().position, currentPosition);
 
@@ -437,7 +434,7 @@ public class EnemyScript : MonoBehaviour
         shortestDistance = objectDistanceArray[0];
 
     }
-    private void ODCheck()
+    protected void ODCheck()
     {
         FirstODSet();
         if (fusionManager.GetUnitNum() > 0)
@@ -506,7 +503,7 @@ public class EnemyScript : MonoBehaviour
             shortestEnemyScript = null;
         }
     }
-    private void DestroyCheck()
+    protected void DestroyCheck()
     {
         if (heart <= 0f && !isDead)
         {
@@ -530,7 +527,7 @@ public class EnemyScript : MonoBehaviour
     {
         return audi;
     }
-    public int GetThisUnitNO()
+    public double GetThisUnitNO()
     {
         return thisUnitNO;
     }

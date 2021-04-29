@@ -15,9 +15,9 @@ public class FusionManager : MonoBehaviour
     private bool isAround = false;
 
     public UnitScript[] unitScript = null;
-    private int unitNO = 0;
+    private double unitNO = 0f;
     public EnemyScript[] enemyScript = null;
-    private int enemyUnitNO = 0;
+    private double enemyUnitNO = 0f;
     public BuildingScript buildingScript = null;
     public EnemyBuildingScript enemyBuildingScript = null;
 
@@ -134,19 +134,19 @@ public class FusionManager : MonoBehaviour
     {
         enemyUnitNum = a;
     }
-    public void SetUnitNO(int a)
+    public void SetUnitNO(double a)
     {
         unitNO = a;
     }
-    public int GetUnitNO()
+    public double GetUnitNO()
     {
         return unitNO;
     }
-    public void SetEnemyUnitNO(int a)
+    public void SetEnemyUnitNO(double a)
     {
         enemyUnitNO = a;
     }
-    public int GetEnemyUnitNO()
+    public double GetEnemyUnitNO()
     {
         return enemyUnitNO;
     }
