@@ -104,7 +104,7 @@ public class EnemyScript : MonoBehaviour
     }
     void Start()
     {
-        
+
         fusionManager.SetEnemyUnitNum(thisUnitNum = fusionManager.GetEnemyUnitNum() + 1);
 
         fusionManager.SetEnemyUnitNO(thisUnitNO = fusionManager.GetEnemyUnitNO() + 1d);
@@ -254,7 +254,13 @@ public class EnemyScript : MonoBehaviour
                     attackedCheck = true;
 
                     if (!isDead)
-                        anim.Play("AttackL");
+                    {
+                        if (speed <= 0f)
+                            anim.Play("AttackL");
+                        else
+                            anim.Play("WalkAttackL");
+                    }
+
                 }
             }
             else if (!strongest1Script.GetSkillUsed())
@@ -434,18 +440,24 @@ public class EnemyScript : MonoBehaviour
         shortestDistance = objectDistanceArray[0];
 
     }
+    protected void FirstEDSet()
+    {
+        enemyObjectDistanceArray[0] = Vector2.Distance(gameManager.GetEnemyUnitSpawnPosition().position, currentPosition);
+
+        shortestEnemyDistance = enemyObjectDistanceArray[0];
+    }
     protected void ODCheck()
     {
         FirstODSet();
         if (fusionManager.GetUnitNum() > 0)
         {
-            for (int a = 0; a < (fusionManager.GetUnitNum() - 1); a++)
+            for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
             {
-                objectDistanceArray[a] = Vector2.Distance(fusionManager.unitScript[a].GetCurrentPosition(), currentPosition);
+                objectDistanceArray[a + 1] = Vector2.Distance(fusionManager.unitScript[a].GetCurrentPosition(), currentPosition);
 
-                if (objectDistanceArray[a] < shortestDistance && fusionManager.unitScript[a].GetCurrentPosition().x <= currentPosition.x + 0.5f)
+                if (objectDistanceArray[a + 1] < shortestDistance && fusionManager.unitScript[a].GetCurrentPosition().x <= currentPosition.x + 0.5f)
                 {
-                    shortestDistance = objectDistanceArray[a];
+                    shortestDistance = objectDistanceArray[a + 1];
                     shortestScript = fusionManager.unitScript[a];
                     buildingIsShortest = false;
                 }
@@ -463,29 +475,29 @@ public class EnemyScript : MonoBehaviour
         bool shortestForwardIsSet = false;
         float LShortestForwardDistance = 100f;
 
-        FirstODSet();
+        FirstEDSet();
         if (fusionManager.GetEnemyUnitNum() > 0)
         {
             for (int a = 0; a < fusionManager.GetEnemyUnitNum() - 1; a++)
             {
-                enemyObjectDistanceArray[a] = Vector2.Distance(fusionManager.enemyScript[a].GetCurrentPosition(), currentPosition);
+                enemyObjectDistanceArray[a + 1] = Vector2.Distance(fusionManager.enemyScript[a].GetCurrentPosition(), currentPosition);
 
-                if (enemyObjectDistanceArray[a] < shortestEnemyDistance)  // shortest 갱신을 위한 조건문                                                                                     
+                if (enemyObjectDistanceArray[a + 1] < shortestEnemyDistance)  // shortest 갱신을 위한 조건문                                                                                     
                 {
-                    bool arrayDistanceCheck = (enemyObjectDistanceArray[a] == 0);
+                    bool arrayDistanceCheck = (enemyObjectDistanceArray[a + 1] == 0);
 
                     if (!arrayDistanceCheck)
                     {
                         shortestEnemyScript = fusionManager.enemyScript[a];
-                        shortestEnemyDistance = enemyObjectDistanceArray[a];
+                        shortestEnemyDistance = enemyObjectDistanceArray[a + 1];
                         buildingIsShortest = false;
                     }
                 }
                 if (fusionManager.enemyScript[a].GetThisUnitNO() < thisUnitNO) // unitScript에도 이거 적용할것
                 {
-                    if (enemyObjectDistanceArray[a] < LShortestForwardDistance)
+                    if (enemyObjectDistanceArray[a + 1] < LShortestForwardDistance)
                     {
-                        LShortestForwardDistance = enemyObjectDistanceArray[a];
+                        LShortestForwardDistance = enemyObjectDistanceArray[a + 1];
                         shortestForwardDistance = LShortestForwardDistance;
                         shortestForwardIsSet = true;
                     }
