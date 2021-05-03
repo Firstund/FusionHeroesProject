@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class UnitScript : MonoBehaviour
 {
@@ -136,10 +137,6 @@ public class UnitScript : MonoBehaviour
 
         fusionManager = FindObjectOfType<FusionManager>();
 
-        fusionManager.SetUnitNO(thisUnitNO = fusionManager.GetUnitNO() + 1d);
-
-        fusionManager.SetUnitNum(thisUnitNum = fusionManager.GetUnitNum() + 1);
-
         fusionManager.SetCanSetScripts();
 
         gameManager = GameManager.Instance;
@@ -149,8 +146,14 @@ public class UnitScript : MonoBehaviour
 
     void Start()
     {
+        fusionManager.SetUnitNum(thisUnitNum = fusionManager.GetUnitNum() + 1);
+
+        fusionManager.SetUnitNO(thisUnitNO = fusionManager.GetUnitNO() + 1d);
+
         firsstDp = dp;
         levelText = Lev.GetComponent<TextMesh>();
+
+        SetDistanceArrayIndex();
 
         SetMaxHealth();
     }
@@ -162,8 +165,7 @@ public class UnitScript : MonoBehaviour
         currentPosition = transform.localPosition;
         isFollow = fusionManager.GetIsFollow();
 
-        objectDistanceArray = new float[fusionManager.GetUnitNum()];
-        enemyObjectDistanceArray = new float[fusionManager.GetEnemyUnitNum()];
+        SetDistanceArrayIndex();
 
         onClickMouse();
 
@@ -181,6 +183,14 @@ public class UnitScript : MonoBehaviour
         {
             gameManager.SetCSt(false);
         }
+    }
+    public void SetDistanceArrayIndex()
+    {
+        if(objectDistanceArray.Length != fusionManager.GetUnitNum())
+            objectDistanceArray = new float[fusionManager.GetUnitNum()];
+            
+        if(enemyObjectDistanceArray.Length != fusionManager.GetEnemyUnitNum())
+            enemyObjectDistanceArray = new float[fusionManager.GetEnemyUnitNum()];
     }
     protected void Attack()
     {
@@ -278,7 +288,7 @@ public class UnitScript : MonoBehaviour
     {
         attackedCheck = false;
     }
-    protected void SetMaxHealth()
+    public void SetMaxHealth()
     {
         slider.maxValue = heart;
         slider.value = heart;
@@ -287,7 +297,7 @@ public class UnitScript : MonoBehaviour
     }
     protected void HealthBar()
     {
-        slider.value = heart;
+        slider.DOValue(heart, gameManager.dovalueTime);
     }
     protected void CheckHe()
     {
@@ -296,18 +306,6 @@ public class UnitScript : MonoBehaviour
             ap = 0f;
             speed = 0f;
         }
-    }
-    protected IEnumerator IsAroundSet()
-    {
-
-        yield return new WaitForSeconds(0.1f);
-        fusionManager.SetIsAround(false);
-
-        int unitNum = fusionManager.GetUnitNum() - 1;
-
-        fusionManager.SetUnitNum(unitNum);
-
-        Destroye(this);
     }
     #region GetSet
     public Vector2 GetCurrentPosition()
@@ -509,7 +507,7 @@ public class UnitScript : MonoBehaviour
                 followingCheck = false;
             }
 
-            if (shortestDistance < clickableX && !fusionManager.GetIsAround() && gameManager.GetMoney() >= levelUpCost)
+            if (shortestDistance < clickableX && gameManager.GetMoney() >= levelUpCost)
             {
                 LevelUp(shortestScript.unitId, unitLev, shortestScript.unitLev);
             }
@@ -520,7 +518,7 @@ public class UnitScript : MonoBehaviour
 
             mouseCheck = false;
         }
-        else if (followingMouse && shortestDistance < clickableX && !fusionManager.GetIsAround() && unitLev == shortestScript.GetUnitLev())
+        else if (followingMouse && shortestDistance < clickableX && unitLev == shortestScript.GetUnitLev())
         // 다른 fusion들과 호환이 가능하도록 변경, 각 fusion마다 levelUpCost 값이 다르다.
         {
             if (unitLev >= maxLv)
@@ -553,7 +551,6 @@ public class UnitScript : MonoBehaviour
                             // levelUpCost 지정
                         if (unitLev < maxLv)
                         {
-                            fusionManager.SetIsAround(true);
                             money = gameManager.GetMoney() - levelUpCost;
 
                             gameManager.SetMoney(money);
@@ -563,28 +560,28 @@ public class UnitScript : MonoBehaviour
                             shortestScript.SetUnitLev(a);
 
                             shortestScript.setStat();
+                            shortestScript.SetMaxHealth();
 
-                            StartCoroutine(IsAroundSet());
+                            fusionManager.SetUnitNum(thisUnitNum = fusionManager.GetUnitNum() - 1);
+                            Destroye(this);
                         }
                         break;
-                    case 1: // 여기부터 퓨전 // 함수로 빼두자 
-                        UnitScript nextUnitScript;
+                    case 1: // 여기부터 퓨전 // 함수로 빼두자 // 일단 비활성화, 추후에 추가
+                        // UnitScript nextUnitScript;
 
-                        fusionManager.SetIsAround(true);
-                        money = gameManager.GetMoney() - levelUpCost;
+                        // money = gameManager.GetMoney() - levelUpCost;
 
-                        int unitNum = fusionManager.GetUnitNum() - 1;
-                        fusionManager.SetUnitNum(unitNum);
+                        // int unitNum = fusionManager.GetUnitNum() - 1;
+                        // fusionManager.SetUnitNum(unitNum);
 
-                        Destroye(shortestScript);
+                        // Destroye(shortestScript);
 
-                        nextUnitScript = Instantiate(nextUnit[i], transform).GetComponent<UnitScript>();
+                        // nextUnitScript = Instantiate(nextUnit[i], transform).GetComponent<UnitScript>();
 
-                        nextUnitScript.SetUnitLev(unitLev);
+                        // nextUnitScript.SetUnitLev(unitLev);
 
-                        gameManager.SetMoney(money);
+                        // gameManager.SetMoney(money);
 
-                        StartCoroutine(IsAroundSet());
                         break;
                     case 2:
                         break;
@@ -748,7 +745,6 @@ public class UnitScript : MonoBehaviour
         if (Input.GetMouseButton(0) && !isDead)
         {
             fusionManager.SetIsFollow(true);
-            fusionManager.SetIsAround(false);
 
             if (!(firstPositionSet))
             {

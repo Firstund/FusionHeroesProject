@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -110,6 +111,7 @@ public class EnemyScript : MonoBehaviour
         fusionManager.SetEnemyUnitNO(thisUnitNO = fusionManager.GetEnemyUnitNO() + 1d);
 
         setStat();
+        SetDistanceArrayIndex();
         firstHeart = heart;
 
         SetMaxHealth();
@@ -120,8 +122,7 @@ public class EnemyScript : MonoBehaviour
         currentPosition = transform.localPosition;
         audi.volume = gameManager.GetSoundValue();
 
-        objectDistanceArray = new float[fusionManager.GetUnitNum()];
-        enemyObjectDistanceArray = new float[fusionManager.GetEnemyUnitNum()];
+        SetDistanceArrayIndex();
 
         EDCheck();
         ODCheck();
@@ -133,7 +134,15 @@ public class EnemyScript : MonoBehaviour
         HealthBar();
         DestroyCheck();
     }
-    protected void SetMaxHealth()
+    public void SetDistanceArrayIndex()
+    {
+        if(objectDistanceArray.Length != fusionManager.GetUnitNum())
+            objectDistanceArray = new float[fusionManager.GetUnitNum()];
+            
+        if(enemyObjectDistanceArray.Length != fusionManager.GetEnemyUnitNum())
+            enemyObjectDistanceArray = new float[fusionManager.GetEnemyUnitNum()];
+    }
+    public void SetMaxHealth()
     {
         slider.maxValue = heart;
         slider.value = heart;
@@ -141,7 +150,7 @@ public class EnemyScript : MonoBehaviour
     }
     protected void HealthBar()
     {
-        slider.value = heart;
+        slider.DOValue(heart, gameManager.dovalueTime);
     }
     protected void CheckHe()
     {

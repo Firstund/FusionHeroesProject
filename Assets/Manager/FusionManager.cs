@@ -12,8 +12,6 @@ public class FusionManager : MonoBehaviour
 
     //private int a = 0;
 
-    private bool isAround = false;
-
     public UnitScript[] unitScript = null;
     private double unitNO = 0f;
     public EnemyScript[] enemyScript = null;
@@ -102,14 +100,6 @@ public class FusionManager : MonoBehaviour
     {
         isDowned = a;
     }
-    public bool GetIsAround()
-    {
-        return isAround;
-    }
-    public void SetIsAround(bool a)
-    {
-        isAround = a;
-    }
     public int GetFollowingUnitNum()
     {
         return followingUnitNum;
@@ -152,7 +142,6 @@ public class FusionManager : MonoBehaviour
     }
     public void clickMouseCheck()
     {
-        isAround = false;
         monsterSpawned = false;
         isDowned = true;
         isUped = false;

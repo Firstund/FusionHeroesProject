@@ -21,7 +21,6 @@ public class SpawnStrongestScript : MonoBehaviour
     {
         if (!enemyBuildingScript.GetStrongestSpawned(0) && stageManager.GetCurrentStage() == 2  && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() / 2)
         {
-            Debug.Log("aaa");
             enemyBuildingScript.SetstrongestSpawned(0, true);
             Instantiate(enemyBuildingScript.GetStrongest(0), enemyBuildingScript.GetSpawnPosition());
         }
@@ -30,7 +29,6 @@ public class SpawnStrongestScript : MonoBehaviour
     {
         if (!enemyBuildingScript.GetStrongestSpawned(1) && stageManager.GetCurrentStage() == 1 && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() / 5)
         {
-            Debug.Log("bbb");
             enemyBuildingScript.SetstrongestSpawned(1, true);
             Instantiate(enemyBuildingScript.GetStrongest(1), enemyBuildingScript.GetSpawnPosition());
         }

@@ -10,6 +10,7 @@ public class SaveData
     public int currentStage = 1;
     public int gold = 100;
     public float plusMoenyTime = 1f; // 저장데이터, 후에 적용
+    public int[] buildingStatLev = new int[2]; // 0->HP, 1->DP
 }
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +27,12 @@ public class GameManager : MonoBehaviour
     private SaveData saveData;
     [SerializeField]
     private Text goldText = null;
+    [SerializeField]
+    private float _dovalueTime = 0.4f;
+    public float dovalueTime{
+        get{return _dovalueTime;}
+    }
+
 
     public static GameManager Instance
     {

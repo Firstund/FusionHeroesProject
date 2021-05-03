@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class BuildingScript : MonoBehaviour
 {
@@ -60,7 +61,7 @@ public class BuildingScript : MonoBehaviour
         HealthBar();
         breaking();
     }
-    private void SetMaxHealth()
+    public void SetMaxHealth()
     {
         slider.maxValue = heart;
         slider.value = heart;
@@ -69,7 +70,7 @@ public class BuildingScript : MonoBehaviour
     }
     private void HealthBar()
     {
-        slider.value = heart;
+        slider.DOValue(heart, gameManager.dovalueTime);
     }
     public float getHe()
     {
