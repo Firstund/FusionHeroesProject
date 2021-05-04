@@ -18,6 +18,8 @@ public class UnitScript : MonoBehaviour
                                // 두번째 자리: 0 (특수 케이스가 떠오를 때를 대비)
                                // 세번째 자리: unitId의 첫번째 자리가 같은 숫자들 중 이 유닛이 생긴 순서
     [SerializeField]
+    protected int unitStatIndex = 0;
+    [SerializeField]
     protected int[] fusionUnitId = new int[5]; // 이 유닛과 퓨전할 수 있는 유닛들의 유닛 아이디
     [SerializeField]
     protected GameObject[] nextUnit = new GameObject[5]; // 이 유닛이 퓨전한 후 나올수 있는 유닛들,
@@ -37,7 +39,7 @@ public class UnitScript : MonoBehaviour
     protected float apUp = 0.5f;
     [SerializeField]
     protected float dp = 2f;
-    protected float firsstDp = 0f;
+    protected float firstDp = 0f;
     [SerializeField]
     protected float dpUp = 0.25f;
     [SerializeField]
@@ -150,10 +152,13 @@ public class UnitScript : MonoBehaviour
 
         fusionManager.SetUnitNO(thisUnitNO = fusionManager.GetUnitNO() + 1d);
 
-        firsstDp = dp;
+        firstDp = dp;
         levelText = Lev.GetComponent<TextMesh>();
 
         SetDistanceArrayIndex();
+        setStat();
+
+        unitStatIndex = (unitId / 50 + unitId % 100); // stat에 쓰일 Index설정
 
         SetMaxHealth();
     }
@@ -379,7 +384,6 @@ public class UnitScript : MonoBehaviour
     public float getD()
     {
         return dp;
-
     }
     #endregion
     public void SetHP(float he)
@@ -388,10 +392,14 @@ public class UnitScript : MonoBehaviour
     }
     protected void setStat()
     {
-
         heart += heartUp * unitLev;
+        gameManager.heart[unitStatIndex] = heart;
+
         dp += dpUp * unitLev;
+        gameManager.dp[unitStatIndex] = dp;
+
         ap += apUp * unitLev;
+        gameManager.ap[unitStatIndex] = ap;
     }
     protected void FirstEDSet()
     {

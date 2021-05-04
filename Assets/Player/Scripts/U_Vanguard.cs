@@ -18,12 +18,12 @@ public class U_Vanguard : UnitScript
     private void PlusDp()
     {
         SetParticle(true);
-        dp = firsstDp + firsstDp / 2;
+        dp = firstDp + firstDp / 2;
     }
     private void MinusDp()
     {
         SetParticle(false);
-        dp = firsstDp;
+        dp = firstDp;
     }
     private void SetParticle(bool isActive)
     {

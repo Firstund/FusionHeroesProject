@@ -104,10 +104,10 @@ public class BuildingScript : MonoBehaviour
     public void setStat()
     {
         heart = firstHeart + heartUp * saveData.buildingStatLev[0];
-        firstHeart = heart;
+        gameManager.heart[0] = firstHeart = heart;
 
         dp = firstDp + dpUp * saveData.buildingStatLev[1];
-        firstDp = dp;
+        gameManager.dp[0] = firstDp = dp;
     }
     void breaking()
     {

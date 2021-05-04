@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StatUpScript : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class StatUpScript : MonoBehaviour
 
     [SerializeField]
     private FusionManager fusionManager = null;
+    [SerializeField]
+    private Text[] texts;
+    // 0: CurrentStatLev
+    // 1: StatUp
+    // 2: LevUpCost
+    // 3: CurrentStat
 
     [SerializeField]
     private string scriptName = ""; // 실행시킬 this내의 함수의 이름
@@ -18,7 +25,12 @@ public class StatUpScript : MonoBehaviour
     private int upgradeCost = 100; // 해당 스탯의 레벨을 올릴 때 사용해야하는 gold의 양
     private int firstUpgradeCost = 0;
     [SerializeField]
-    private float upgradeStat = 100f; // 해당 스탯의 레벨을 올렸을 때, 올라갈 스탯의 양
+    private float _upgradeStat = 100f; // 해당 스탯의 레벨을 올렸을 때, 올라갈 스탯의 양
+    public float upgradeStat
+    {
+        get { return _upgradeStat; }
+        set { _upgradeStat = value; }
+    }
 
     private void Start()
     {
@@ -33,6 +45,29 @@ public class StatUpScript : MonoBehaviour
         {
             saveData = gameManager.GetSaveData();
         }
+
+        switch (scriptName)
+        {
+            case "BuildingUpgrade":
+                switch (statName)
+                {
+                    case "he":
+                        upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.buildingStatLev[0];
+                        texts[0].text = "현재 레벨: " + saveData.buildingStatLev[0];
+                        texts[1].text = "필요한 골드: " + upgradeCost;
+                        texts[2].text = "현재 능력치: " + gameManager.heart[0];
+                        break;
+                    case "dp":
+                        upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.buildingStatLev[1];
+                        texts[0].text = "현재 레벨: " + saveData.buildingStatLev[1];
+                        texts[1].text = "필요한 골드: " + upgradeCost;
+                        texts[2].text = "현재 능력치: " + gameManager.dp[0];
+                        break;
+                }
+                break;
+        }
+
+
     }
     public void OnClick()
     {
@@ -40,7 +75,7 @@ public class StatUpScript : MonoBehaviour
     }
     private void BuildingUpgrade() // 이 함수 내에서 BuildingUpgrade를 수행
     {
-        if(fusionManager == null)
+        if (fusionManager == null)
         {
             fusionManager = FindObjectOfType<FusionManager>();
         }
@@ -48,25 +83,19 @@ public class StatUpScript : MonoBehaviour
         switch (statName)
         {
             case "he":
-                upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.buildingStatLev[0];
                 if (saveData.gold >= upgradeCost)
                 {
                     saveData.gold -= upgradeCost;
                     saveData.buildingStatLev[0]++;
                     buildingScript.setStat();
-
-                    upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.buildingStatLev[0];
                 }
                 break;
             case "dp":
-                upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.buildingStatLev[1];
                 if (saveData.gold >= upgradeCost)
                 {
                     saveData.gold -= upgradeCost;
                     saveData.buildingStatLev[1]++;
                     buildingScript.setStat();
-
-                    upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.buildingStatLev[1];
                 }
                 break;
             default:
