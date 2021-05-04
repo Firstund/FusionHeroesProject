@@ -8,8 +8,6 @@ public class StatUpScript : MonoBehaviour
     private GameManager gameManager = null;
 
     [SerializeField]
-    private FusionManager fusionManager = null;
-    [SerializeField]
     private Text[] texts;
     // 0: CurrentStatLev
     // 1: StatUp
@@ -21,20 +19,11 @@ public class StatUpScript : MonoBehaviour
     private int unitStatIndex;
 
     [SerializeField]
-    private string scriptName = ""; // 실행시킬 this내의 함수의 이름
-    [SerializeField]
     private string statName = ""; // 업그레이드시킬 스탯의 이름
     private SaveData saveData; // 스탯 레벨을 저장하는 용도의 saveData
     [SerializeField]
     private int upgradeCost = 100; // 해당 스탯의 레벨을 올릴 때 사용해야하는 gold의 양
     private int firstUpgradeCost = 0;
-    [SerializeField]
-    private float _upgradeStat = 100f; // 해당 스탯의 레벨을 올렸을 때, 올라갈 스탯의 양
-    public float upgradeStat
-    {
-        get { return _upgradeStat; }
-        set { _upgradeStat = value; }
-    }
 
     private void Start()
     {
@@ -52,56 +41,56 @@ public class StatUpScript : MonoBehaviour
             saveData = gameManager.GetSaveData();
         }
 
-        switch (scriptName)
+        switch (statName)
         {
-            case "BuildingUpgrade":
-                switch (statName)
-                {
-                    case "he":
-                        upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.buildingStatLev[0];
-                        texts[0].text = "현재 레벨: " + saveData.buildingStatLev[0];
-                        texts[1].text = "필요한 골드: " + upgradeCost;
-                        texts[2].text = "현재 능력치: " + saveData.heart[unitStatIndex];
-                        break;
-                    case "dp":
-                        upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.buildingStatLev[1];
-                        texts[0].text = "현재 레벨: " + saveData.buildingStatLev[1];
-                        texts[1].text = "필요한 골드: " + upgradeCost;
-                        texts[2].text = "현재 능력치: " + saveData.dp[unitStatIndex]; 
-                        break;
-                }
+            case "he":
+                upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.unitHeartLev[unitStatIndex];
+                texts[0].text = "현재 레벨: " + saveData.unitHeartLev[unitStatIndex];
+                texts[1].text = "필요한 골드: " + upgradeCost;
+                texts[2].text = "현재 능력치: " + saveData.heart[unitStatIndex];
+                break;
+            case "ap":
+                upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.unitApLev[unitStatIndex];
+                texts[0].text = "현재 레벨: " + saveData.unitApLev[unitStatIndex];
+                texts[1].text = "필요한 골드: " + upgradeCost;
+                texts[2].text = "현재 능력치: " + saveData.ap[unitStatIndex];
+                break;
+            case "dp":
+                upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.unitDpLev[unitStatIndex];
+                texts[0].text = "현재 레벨: " + saveData.unitDpLev[unitStatIndex];
+                texts[1].text = "필요한 골드: " + upgradeCost;
+                texts[2].text = "현재 능력치: " + saveData.dp[unitStatIndex];
                 break;
         }
-
 
     }
     public void OnClick()
     {
-        this.SendMessage(scriptName, SendMessageOptions.DontRequireReceiver);
+        Upgrade();
     }
-    private void BuildingUpgrade() // 이 함수 내에서 BuildingUpgrade를 수행
+    private void Upgrade() // 이 함수 내에서 BuildingUpgrade를 수행
     {
-        if (fusionManager == null)
-        {
-            fusionManager = FindObjectOfType<FusionManager>();
-        }
-        BuildingScript buildingScript = fusionManager.buildingScript;
         switch (statName)
         {
             case "he":
                 if (saveData.gold >= upgradeCost)
                 {
                     saveData.gold -= upgradeCost;
-                    saveData.buildingStatLev[0]++;
-                    buildingScript.setStat();
+                    saveData.unitHeartLev[unitStatIndex]++;
+                }
+                break;
+            case "ap":
+                if (saveData.gold >= upgradeCost)
+                {
+                    saveData.gold -= upgradeCost;
+                    saveData.unitApLev[unitStatIndex]++;
                 }
                 break;
             case "dp":
                 if (saveData.gold >= upgradeCost)
                 {
                     saveData.gold -= upgradeCost;
-                    saveData.buildingStatLev[1]++;
-                    buildingScript.setStat();
+                    saveData.unitDpLev[unitStatIndex]++;
                 }
                 break;
             default:

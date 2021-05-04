@@ -31,17 +31,25 @@ public class UnitScript : MonoBehaviour
     protected float attackDistance = 2f;
     [SerializeField]
     protected float heart = 100f;
+    protected float firstHeart = 0f;
     [SerializeField]
     protected float heartUp = 5f;
     [SerializeField]
+    protected float heartUpPerLev = 0.1f;
+    [SerializeField]
     protected float ap = 2f;
+    protected float firstAp = 0f;
     [SerializeField]
     protected float apUp = 0.5f;
+    [SerializeField]
+    protected float apUpPerLev = 0.02f;
     [SerializeField]
     protected float dp = 2f;
     protected float firstDp = 0f;
     [SerializeField]
     protected float dpUp = 0.25f;
+    [SerializeField]
+    protected float dpUpPerLev = 0.01f;
     [SerializeField]
     protected float attackDelay = 2f;
     [SerializeField]
@@ -151,8 +159,11 @@ public class UnitScript : MonoBehaviour
         fusionManager.SetUnitNum(thisUnitNum = fusionManager.GetUnitNum() + 1);
 
         fusionManager.SetUnitNO(thisUnitNO = fusionManager.GetUnitNO() + 1d);
-
+        
+        firstHeart = heart;
+        firstAp = ap;
         firstDp = dp;
+
         levelText = Lev.GetComponent<TextMesh>();
 
         SetDistanceArrayIndex();
@@ -183,6 +194,10 @@ public class UnitScript : MonoBehaviour
         Move();
         HealthBar();
         DestroyCheck();
+
+        gameManager.GetSaveData().heart[unitStatIndex] = firstHeart + heartUp * unitLev + heartUpPerLev * gameManager.GetSaveData().unitHeartLev[unitStatIndex];
+        gameManager.GetSaveData().dp[unitStatIndex] = firstDp + dpUp * unitLev + dpUpPerLev * gameManager.GetSaveData().unitDpLev[unitStatIndex];
+        gameManager.GetSaveData().ap[unitStatIndex] = firstAp + apUp * unitLev + apUpPerLev * gameManager.GetSaveData().unitApLev[unitStatIndex];
 
         if (gameManager.GetCST())
             AttackCheck();
@@ -396,13 +411,17 @@ public class UnitScript : MonoBehaviour
     protected void setStat()
     {
         heart += heartUp * unitLev;
-        gameManager.GetSaveData().heart[unitStatIndex] = heart;
+        heart += heartUpPerLev * gameManager.GetSaveData().unitHeartLev[unitStatIndex];
+        
 
         dp += dpUp * unitLev;
-        gameManager.GetSaveData().dp[unitStatIndex] = dp;
+        dp += dpUpPerLev * gameManager.GetSaveData().unitDpLev[unitStatIndex];
 
         ap += apUp * unitLev;
-        gameManager.GetSaveData().ap[unitStatIndex] = ap;
+        ap += apUpPerLev * gameManager.GetSaveData().unitApLev[unitStatIndex];
+        
+
+
     }
     protected void FirstEDSet()
     {

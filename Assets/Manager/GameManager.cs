@@ -11,7 +11,9 @@ public class SaveData
     public int gold = 100;
     public float plusMoenyTime = 1f; // 저장데이터, 후에 적용
     // 업그레이드를 하지 않은 상태에선, 스탯 레벨은 0이다.
-    public int[] buildingStatLev = new int[2]; // 0->HP, 1->DP
+    public int[] unitHeartLev = new int[100];
+    public int[] unitApLev = new int[100];
+    public int[] unitDpLev = new int[100];
     public float[] heart = new float[100];
     public float[] ap = new float[100];
     public float[] dp = new float[100]; // index는 유닛 ID로, 건물의 경우 아군의 건물은 0, 적의 건물은 1로한다.
