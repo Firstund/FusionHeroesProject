@@ -156,9 +156,12 @@ public class UnitScript : MonoBehaviour
         levelText = Lev.GetComponent<TextMesh>();
 
         SetDistanceArrayIndex();
-        setStat();
 
         unitStatIndex = (unitId / 50 + unitId % 100); // stat에 쓰일 Index설정
+
+        setStat();
+
+       
 
         SetMaxHealth();
     }
@@ -393,13 +396,13 @@ public class UnitScript : MonoBehaviour
     protected void setStat()
     {
         heart += heartUp * unitLev;
-        gameManager.heart[unitStatIndex] = heart;
+        gameManager.GetSaveData().heart[unitStatIndex] = heart;
 
         dp += dpUp * unitLev;
-        gameManager.dp[unitStatIndex] = dp;
+        gameManager.GetSaveData().dp[unitStatIndex] = dp;
 
         ap += apUp * unitLev;
-        gameManager.ap[unitStatIndex] = ap;
+        gameManager.GetSaveData().ap[unitStatIndex] = ap;
     }
     protected void FirstEDSet()
     {

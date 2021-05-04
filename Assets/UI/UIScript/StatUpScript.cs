@@ -15,6 +15,10 @@ public class StatUpScript : MonoBehaviour
     // 1: StatUp
     // 2: LevUpCost
     // 3: CurrentStat
+    [SerializeField]
+    private int unitId = 0; // 스탯을 볼 유닛의 ID를 지정
+                            // 플레이어 건물은 0, 적 건물은 1로 지정
+    private int unitStatIndex;
 
     [SerializeField]
     private string scriptName = ""; // 실행시킬 this내의 함수의 이름
@@ -37,6 +41,8 @@ public class StatUpScript : MonoBehaviour
         gameManager = GameManager.Instance;
         saveData = gameManager.GetSaveData();
 
+        unitStatIndex = (unitId / 50 + unitId % 100);
+
         firstUpgradeCost = upgradeCost;
     }
     private void Update()
@@ -55,13 +61,13 @@ public class StatUpScript : MonoBehaviour
                         upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.buildingStatLev[0];
                         texts[0].text = "현재 레벨: " + saveData.buildingStatLev[0];
                         texts[1].text = "필요한 골드: " + upgradeCost;
-                        texts[2].text = "현재 능력치: " + gameManager.heart[0];
+                        texts[2].text = "현재 능력치: " + saveData.heart[unitStatIndex];
                         break;
                     case "dp":
                         upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.buildingStatLev[1];
                         texts[0].text = "현재 레벨: " + saveData.buildingStatLev[1];
                         texts[1].text = "필요한 골드: " + upgradeCost;
-                        texts[2].text = "현재 능력치: " + gameManager.dp[0];
+                        texts[2].text = "현재 능력치: " + saveData.dp[unitStatIndex]; 
                         break;
                 }
                 break;

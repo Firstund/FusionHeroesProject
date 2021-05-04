@@ -12,6 +12,9 @@ public class SaveData
     public float plusMoenyTime = 1f; // 저장데이터, 후에 적용
     // 업그레이드를 하지 않은 상태에선, 스탯 레벨은 0이다.
     public int[] buildingStatLev = new int[2]; // 0->HP, 1->DP
+    public float[] heart = new float[100];
+    public float[] ap = new float[100];
+    public float[] dp = new float[100]; // index는 유닛 ID로, 건물의 경우 아군의 건물은 0, 적의 건물은 1로한다.
 }
 public class GameManager : MonoBehaviour
 {
@@ -30,29 +33,6 @@ public class GameManager : MonoBehaviour
     private Text goldText = null;
     [SerializeField]
     private float _dovalueTime = 0.4f;
-    
-    #region 유닛들 스탯 저장
-    private float[] _heart = new float[100]; // index는 유닛 ID로, 건물의 경우 아군의 건물은 0, 적의 건물은 1로한다.
-    public float[] heart
-    {
-        get { return _heart; }
-        set { _heart = value; }
-    }
-
-    private float[] _ap = new float[100];
-    public float[] ap
-    {
-        get { return _ap; }
-        set { _ap = value; }
-    }
-
-    private float[] _dp = new float[100];
-    public float[] dp
-    {
-        get { return _dp; }
-        set { _dp = value; }
-    }
-    #endregion
 
     public float dovalueTime
     {
