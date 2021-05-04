@@ -40,6 +40,10 @@ public class StatUpScript : MonoBehaviour
     }
     private void BuildingUpgrade() // 이 함수 내에서 BuildingUpgrade를 수행
     {
+        if(fusionManager == null)
+        {
+            fusionManager = FindObjectOfType<FusionManager>();
+        }
         BuildingScript buildingScript = fusionManager.buildingScript;
         switch (statName)
         {
