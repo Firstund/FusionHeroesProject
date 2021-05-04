@@ -10,6 +10,7 @@ public class SaveData
     public int currentStage = 1;
     public int gold = 100;
     public float plusMoenyTime = 1f; // 저장데이터, 후에 적용
+    // 업그레이드를 하지 않은 상태에선, 스탯 레벨은 0이다.
     public int[] buildingStatLev = new int[2]; // 0->HP, 1->DP
 }
 public class GameManager : MonoBehaviour

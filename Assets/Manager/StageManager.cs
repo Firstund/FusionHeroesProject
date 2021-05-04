@@ -29,6 +29,11 @@ public class StageManager : MonoBehaviour
     }
     void Update()
     {
+        if(saveData != gameManager.GetSaveData())
+        {
+            saveData = gameManager.GetSaveData();
+        }
+
         currentStage = saveData.currentStage;
         stageText.text = "CurrentStage: " + currentStage;
         audi.volume = gameManager.GetSoundValue();

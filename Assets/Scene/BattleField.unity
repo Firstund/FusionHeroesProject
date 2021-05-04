@@ -589,7 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptName: BuildingUpgrade
-  methodName: 
+  statName: he
   upgradeCost: 100
   upgradeStat: 100
 --- !u!1 &140465821
@@ -3101,6 +3101,7 @@ GameObject:
   - component: {fileID: 718790655}
   - component: {fileID: 718790654}
   - component: {fileID: 718790653}
+  - component: {fileID: 718790656}
   m_Layer: 5
   m_Name: DPButton
   m_TagString: Untagged
@@ -3171,7 +3172,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 718790656}
         m_TargetAssemblyTypeName: StatUpScript, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -3221,6 +3222,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718790651}
   m_CullTransparentMesh: 0
+--- !u!114 &718790656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718790651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0aba15da22085446b553ce2703cbd50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptName: BuildingUpgrade
+  statName: dp
+  upgradeCost: 50
+  upgradeStat: 0.01
 --- !u!1 &724269584
 GameObject:
   m_ObjectHideFlags: 0
@@ -3443,10 +3460,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitNum: 0
   enemyUnitNum: 0
-  unitScript: []
-  enemyScript: []
-  buildingScript: {fileID: 0}
-  enemyBuildingScript: {fileID: 0}
+  _buildingScript: {fileID: 1940142427}
+  _enemyBuildingScript: {fileID: 1164809942}
 --- !u!1 &825612032
 GameObject:
   m_ObjectHideFlags: 0
@@ -7461,7 +7476,7 @@ MonoBehaviour:
   canTimeDouble: 1
   saveData:
     currentStage: 1
-    gold: 100
+    gold: 10000
     plusMoenyTime: 1
     buildingStatLev: 0000000000000000
   goldText: {fileID: 626100252}
@@ -9080,7 +9095,7 @@ MonoBehaviour:
   audi: {fileID: 0}
   destroy1: {fileID: 8300000, guid: 2a0f7f0bf2563464aa4bcccc85bc8ae5, type: 3}
   heart: 100
-  heartUp: 1000
+  heartUp: 2
   destroy1Played: 0
   destroy2Played: 0
   currentPosition: {x: 0, y: 0}

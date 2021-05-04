@@ -14,7 +14,7 @@ public class StageClearScript : PopUpScaleScript
     private SaveData saveData;
     private bool gameClear = false;
     private int plusGold = 1000;
- 
+
 
     void Start()
     {
@@ -25,13 +25,18 @@ public class StageClearScript : PopUpScaleScript
     void Update()
     {
         SetScale();
+
+        if (saveData != gameManager.GetSaveData())
+        {
+            saveData = gameManager.GetSaveData();
+        }
     }
     private void SetText()
     {
-        if(gameClear)
+        if (gameClear)
         {
             clearText.text = "Stage" + stageManager.GetCurrentStage() + " Clear!";
-            
+
             plusGoldText.text = "+" + plusGold * (stageManager.GetCurrentStage() / 10 + 1);
 
         }
@@ -42,14 +47,17 @@ public class StageClearScript : PopUpScaleScript
     }
     public void SetGameClear(bool a)
     {
-        gameClear = a;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+        gameClear = a;
     }
     public void OnNextStage()
     {
-        saveData.gold += plusGold * (stageManager.GetCurrentStage() / 10 + 1); 
+        if (gameClear)
+        {
+            saveData.gold += plusGold * (stageManager.GetCurrentStage() / 10 + 1);
 
-        int a = stageManager.GetCurrentStage();
-        stageManager.SetCurrentStage(a + 1);
+            int a = stageManager.GetCurrentStage();
+            stageManager.SetCurrentStage(a + 1);
+        }
     }
-    
+
 }

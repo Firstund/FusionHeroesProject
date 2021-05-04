@@ -476,11 +476,11 @@ MonoBehaviour:
   maxLv: 4
   attackDistance: 2.5
   heart: 4
-  heartUp: 2
+  heartUp: 1.5
   ap: 3.5
-  apUp: 0.2
+  apUp: 0.15
   dp: 2
-  dpUp: 0.35
+  dpUp: 0.3
   attackDelay: 0.9
   speed: 1.7
   totalAtk: 0

@@ -7,6 +7,8 @@ public class BuildingScript : MonoBehaviour
     FusionManager fusionManager = null;
     StageManager stageManager = null;
     GameManager gameManager = null;
+
+    private SaveData saveData = null;
     [SerializeField]
     private Slider slider = null;
     [SerializeField]
@@ -22,6 +24,7 @@ public class BuildingScript : MonoBehaviour
     [SerializeField]
     private float heartUp = 1000f;
     private float dp = 10f;
+    private float firstDp = 0f;
     private float dpUp = 1f;
 
     [SerializeField]
@@ -32,10 +35,10 @@ public class BuildingScript : MonoBehaviour
 
     public Vector2 currentPosition = Vector2.zero;
 
-    // Start is called before the first frame update
     void Awake()
     {
         firstHeart = heart;
+        firstDp = dp;
     }
     void Start()
     {
@@ -43,12 +46,15 @@ public class BuildingScript : MonoBehaviour
         fusionManager = FindObjectOfType<FusionManager>();
         stageManager = FindObjectOfType<StageManager>();
 
+        saveData = gameManager.GetSaveData();
+
         audi = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
 
         int unitNum = fusionManager.GetUnitNum() + 1;
         fusionManager.SetUnitNum(unitNum);
 
+        setStat();
         SetMaxHealth();
     }
 
@@ -57,6 +63,11 @@ public class BuildingScript : MonoBehaviour
     {
         currentPosition = transform.localPosition;
         audi.volume = gameManager.GetSoundValue();
+
+        if(saveData != gameManager.GetSaveData())
+        {
+            saveData = gameManager.GetSaveData();
+        }
 
         HealthBar();
         breaking();
@@ -90,9 +101,13 @@ public class BuildingScript : MonoBehaviour
         destroy1Played = false;
         destroy2Played = false;
     }
-    private void setStat() // 나중에 건물 업그레이드 기능을 넣었을 때 제대로 작동시킬것
+    public void setStat()
     {
-        heart = firstHeart + heartUp;
+        heart = firstHeart + heartUp * saveData.buildingStatLev[0];
+        firstHeart = heart;
+
+        dp = firstDp + dpUp * saveData.buildingStatLev[1];
+        firstDp = dp;
     }
     void breaking()
     {

@@ -12,12 +12,32 @@ public class FusionManager : MonoBehaviour
 
     //private int a = 0;
 
-    public UnitScript[] unitScript = null;
+    private UnitScript[] _unitScript = null;
+    public UnitScript[] unitScript{
+        get{return _unitScript;}
+        set{_unitScript = value;}
+    }
     private double unitNO = 0f;
-    public EnemyScript[] enemyScript = null;
+    private EnemyScript[] _enemyScript = null;
+    public EnemyScript[] enemyScript {
+        get{return _enemyScript;}
+        set{_enemyScript = value;}
+    }
     private double enemyUnitNO = 0f;
-    public BuildingScript buildingScript = null;
-    public EnemyBuildingScript enemyBuildingScript = null;
+    [SerializeField]
+    private BuildingScript _buildingScript = null;
+    public BuildingScript buildingScript
+    {
+        get{return _buildingScript;}
+        set{_buildingScript = value;}
+    }
+    [SerializeField]
+    private EnemyBuildingScript _enemyBuildingScript = null;
+    public EnemyBuildingScript enemyBuildingScript
+    {
+        get{return _enemyBuildingScript;}
+        set{_enemyBuildingScript = value;}
+    }
 
     private GameManager gameManager = null;
 
@@ -38,7 +58,7 @@ public class FusionManager : MonoBehaviour
     {
         buildingScript = FindObjectOfType<BuildingScript>();
         enemyBuildingScript = FindObjectOfType<EnemyBuildingScript>();
-        unitScript = FindObjectsOfType(typeof(UnitScript)) as UnitScript[];
+        _unitScript = FindObjectsOfType(typeof(UnitScript)) as UnitScript[];
         enemyScript = FindObjectsOfType(typeof(EnemyScript)) as EnemyScript[];
         gameManager = GameManager.Instance;
     }
@@ -52,7 +72,7 @@ public class FusionManager : MonoBehaviour
     {
         if (canSetScripts)
         {
-            unitScript = FindObjectsOfType(typeof(UnitScript)) as UnitScript[];
+            _unitScript = FindObjectsOfType(typeof(UnitScript)) as UnitScript[];
             enemyScript = FindObjectsOfType(typeof(EnemyScript)) as EnemyScript[];
             canSetScripts = false;
         }
@@ -68,7 +88,7 @@ public class FusionManager : MonoBehaviour
 
         for (int i = 0; i < unitNum; i++)
         {
-            unitScript[i].Destroye(unitScript[i]);
+            _unitScript[i].Destroye(_unitScript[i]);
 
         }
         for (int i = 0; i < enemyUnitNum; i++)
