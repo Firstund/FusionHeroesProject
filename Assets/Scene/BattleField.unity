@@ -17404,6 +17404,10 @@ MonoBehaviour:
   enemyUnitSpawnPosition: {fileID: 1810053650}
   canTimeStop: 1
   canTimeDouble: 1
+  _playerUnitPrefabs:
+  - {fileID: 1431830793274202509, guid: 4f3b3859af179f040b019efde896d1df, type: 3}
+  - {fileID: 6220228852626342960, guid: 554295bff4b2e8b4ea5ec86e28c1e0b4, type: 3}
+  - {fileID: 3318772828785144193, guid: f4788e6259156574ca2e105a8d27295e, type: 3}
   saveData:
     currentStage: 1
     gold: 10000

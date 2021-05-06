@@ -15,6 +15,7 @@ public class StatUpScript : MonoBehaviour
     private int unitId = 0; // 스탯을 볼 유닛의 ID를 지정
                             // 플레이어 건물은 0, 적 건물은 1로 지정
     private int unitStatIndex;
+    private UnitScript currentUnit;
 
     [SerializeField]
     private string statName = ""; // 업그레이드시킬 스탯의 이름
@@ -26,9 +27,23 @@ public class StatUpScript : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
+
+        foreach (UnitScript item in gameManager.playerUnitPrefabs)
+        {
+            if (item.GetUnitID() == unitId)
+                currentUnit = item;
+        }
+
         saveData = gameManager.GetSaveData();
 
-        unitStatIndex = (unitId / 50 + unitId % 100);
+        if (currentUnit != null)
+        {
+            unitStatIndex = currentUnit.unitStatIndex;
+        }
+        else
+        {
+            unitStatIndex = 0;
+        }
 
         firstUpgradeCost = upgradeCost;
     }

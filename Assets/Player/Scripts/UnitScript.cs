@@ -17,8 +17,10 @@ public class UnitScript : MonoBehaviour
                                // 첫번째 자리: (이 유닛을 소환하기 위해 필요한 퓨전 수 + 1)
                                // 두번째 자리: 0 (특수 케이스가 떠오를 때를 대비)
                                // 세번째 자리: unitId의 첫번째 자리가 같은 숫자들 중 이 유닛이 생긴 순서
-    [SerializeField]
-    protected int unitStatIndex = 0;
+    public int unitStatIndex
+    {
+        get{return (unitId / 50 + unitId % 100);}
+    }
     [SerializeField]
     protected int[] fusionUnitId = new int[5]; // 이 유닛과 퓨전할 수 있는 유닛들의 유닛 아이디
     [SerializeField]
@@ -168,7 +170,7 @@ public class UnitScript : MonoBehaviour
 
         SetDistanceArrayIndex();
 
-        unitStatIndex = (unitId / 50 + unitId % 100); // stat에 쓰일 Index설정
+        // unitStatIndex = (unitId / 50 + unitId % 100); // stat에 쓰일 Index설정
 
         setStat();
 

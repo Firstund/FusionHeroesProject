@@ -30,6 +30,13 @@ public class GameManager : MonoBehaviour
     private bool canTimeDouble = true;
     private static GameManager instance;
     [SerializeField]
+    private UnitScript[] _playerUnitPrefabs;
+    public UnitScript[] playerUnitPrefabs
+    {
+        get{return _playerUnitPrefabs;}
+        set{_playerUnitPrefabs = value;}
+    }
+    [SerializeField]
     private SaveData saveData;
     [SerializeField]
     private Text goldText = null;
@@ -40,8 +47,6 @@ public class GameManager : MonoBehaviour
     {
         get { return _dovalueTime; }
     }
-
-
     public static GameManager Instance
     {
         get
