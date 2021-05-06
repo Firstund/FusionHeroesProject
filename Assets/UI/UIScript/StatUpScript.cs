@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class StatUpScript : MonoBehaviour
@@ -47,19 +45,29 @@ public class StatUpScript : MonoBehaviour
                 upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.unitHeartLev[unitStatIndex];
                 texts[0].text = "현재 레벨: " + saveData.unitHeartLev[unitStatIndex];
                 texts[1].text = "필요한 골드: " + upgradeCost;
-                texts[2].text = "현재 능력치: " + saveData.heart[unitStatIndex];
+                texts[2].text = "현재 체력: " + saveData.heart[unitStatIndex];
                 break;
             case "ap":
                 upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.unitApLev[unitStatIndex];
                 texts[0].text = "현재 레벨: " + saveData.unitApLev[unitStatIndex];
                 texts[1].text = "필요한 골드: " + upgradeCost;
-                texts[2].text = "현재 능력치: " + saveData.ap[unitStatIndex];
+                texts[2].text = "현재 공격력: " + saveData.ap[unitStatIndex];
                 break;
             case "dp":
                 upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.unitDpLev[unitStatIndex];
                 texts[0].text = "현재 레벨: " + saveData.unitDpLev[unitStatIndex];
                 texts[1].text = "필요한 골드: " + upgradeCost;
-                texts[2].text = "현재 능력치: " + saveData.dp[unitStatIndex];
+                texts[2].text = "현재 방어력: " + saveData.dp[unitStatIndex];
+                break;
+            case "plusMoney":
+                upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.plusMoneySpeedLev;
+                texts[0].text = "현재 레벨: " + saveData.plusMoneySpeedLev;
+                texts[1].text = "필요한 골드: " + upgradeCost;
+                texts[2].text = "현재 속도: " + (gameManager.plusMoneyTime - gameManager.minusPluseMoneyTimePerLev * saveData.plusMoneySpeedLev);
+                break;
+            default:
+                Debug.LogError($"{statName} is Disappeared");
+                enabled = false;
                 break;
         }
 
@@ -91,6 +99,13 @@ public class StatUpScript : MonoBehaviour
                 {
                     saveData.gold -= upgradeCost;
                     saveData.unitDpLev[unitStatIndex]++;
+                }
+                break;
+            case "plusMoney":
+                if (saveData.gold >= upgradeCost)
+                {
+                    saveData.gold -= upgradeCost;
+                    saveData.plusMoneySpeedLev++;
                 }
                 break;
             default:

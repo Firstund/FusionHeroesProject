@@ -9,7 +9,6 @@ public class SaveData
 {
     public int currentStage = 1;
     public int gold = 100;
-    public float plusMoenyTime = 1f; // 저장데이터, 후에 적용
     // 업그레이드를 하지 않은 상태에선, 스탯 레벨은 0이다.
     public int[] unitHeartLev = new int[100];
     public int[] unitApLev = new int[100];
@@ -17,6 +16,7 @@ public class SaveData
     public float[] heart = new float[100];
     public float[] ap = new float[100];
     public float[] dp = new float[100]; // index는 유닛 ID로, 건물의 경우 아군의 건물은 0, 적의 건물은 1로한다.
+    public int plusMoneySpeedLev = 0;
 }
 public class GameManager : MonoBehaviour
 {
@@ -60,7 +60,25 @@ public class GameManager : MonoBehaviour
     }
     private int money = 0;
     private int plusMoney = 1;
-    private float plusMoenyTime = 0.1f;
+    [SerializeField]
+    private float _plusMoneyTime = 0.1f;
+    public float plusMoneyTime
+    {
+        get{return _plusMoneyTime;}
+        set{
+            if(value >= 0f)
+                _plusMoneyTime = value;
+            }
+    }
+    [SerializeField]
+    private float _minusPluseMoneyTimePerLev = 0.005f;
+    public float minusPluseMoneyTimePerLev{
+        get{return _minusPluseMoneyTimePerLev;}
+        set{
+            _minusPluseMoneyTimePerLev = value;
+        }
+
+    }
     private float soundValue = 1f;
 
     private bool canMoneyPlus = true;
@@ -78,7 +96,7 @@ public class GameManager : MonoBehaviour
     {
         canMoneyPlus = false;
 
-        yield return new WaitForSeconds(plusMoenyTime);
+        yield return new WaitForSeconds(plusMoneyTime - (saveData.plusMoneySpeedLev * minusPluseMoneyTimePerLev));
         money += plusMoney;
 
         canMoneyPlus = true;

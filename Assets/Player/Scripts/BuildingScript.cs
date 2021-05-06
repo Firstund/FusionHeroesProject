@@ -97,17 +97,22 @@ public class BuildingScript : MonoBehaviour
     }
     public void Reset()
     {
-        heart = firstHeart;
+        setStat();
         destroy1Played = false;
         destroy2Played = false;
     }
-    public void setStat()
+    private void setStat()
     {
         heart = firstHeart + heartUp * saveData.unitHeartLev[0];
         saveData.heart[0] = firstHeart = heart;
 
         dp = firstDp + dpUp * saveData.unitDpLev[0];
         saveData.dp[0] = firstDp = dp;
+    }
+    public void SetStatOnUpgrade()
+    {
+        saveData.heart[0] = firstHeart + heartUp * saveData.unitHeartLev[0];
+        saveData.dp[0] = firstDp + dpUp * saveData.unitDpLev[0];
     }
     void breaking()
     {

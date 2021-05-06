@@ -133,7 +133,7 @@ public class EnemyBuildingScript : MonoBehaviour
     }
     public void Reset()
     {
-        heart = firstHeart;
+        setStat();
         destroy1Played = false;
         destroy2Played = false;
     }
