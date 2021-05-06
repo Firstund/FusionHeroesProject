@@ -7,11 +7,16 @@ using DG.Tweening;
 public class EnemyBuildingScript : MonoBehaviour
 {
     //enemy 자동소환기능 넣기
-    [SerializeField]
-    private Slider slider = null;
+  
     FusionManager fusionManager = null;
     StageManager stageManager = null;
     GameManager gameManager = null;
+    MapSliderScript mapSliderScript = null;
+
+    [SerializeField]
+    private Slider slider = null;
+    [SerializeField]
+    private GameObject g_slider = null;
     [SerializeField]
     private AudioSource audi = null;
     [SerializeField]
@@ -57,6 +62,7 @@ public class EnemyBuildingScript : MonoBehaviour
         gameManager = GameManager.Instance;
         fusionManager = FindObjectOfType<FusionManager>();
         stageManager = FindObjectOfType<StageManager>();
+        mapSliderScript = FindObjectOfType<MapSliderScript>();
         spawnPosition = gameManager.GetEnemyUnitSpawnPosition();
 
         audi = GetComponent<AudioSource>();
@@ -89,6 +95,14 @@ public class EnemyBuildingScript : MonoBehaviour
     }
     private void HealthBar()
     {
+        if(mapSliderScript.mapSlider.value != 1)
+        {
+            g_slider.SetActive(false);
+        }
+        else
+        {
+            g_slider.SetActive(true);
+        }
         slider.DOValue(heart, gameManager.dovalueTime);
     }
     // 이 소환코드들을 따로 스크립트로 빼놓자.

@@ -8,7 +8,11 @@ public class MapSliderScript : MonoBehaviour
     [SerializeField]
     private GameObject mainCamera = null;
     [SerializeField]
-    private Slider mapSlider = null;
+    private Slider _mapSlider = null;
+    public Slider mapSlider{
+        get{return _mapSlider;}
+        set{_mapSlider = value;}
+    }
     private Vector3 cameraPosition = Vector3.zero;
 
     // Update is called once per frame
@@ -17,6 +21,5 @@ public class MapSliderScript : MonoBehaviour
         cameraPosition = mainCamera.transform.position;
         cameraPosition.x = mapSlider.value * 40f;
         mainCamera.transform.position = cameraPosition;
-
     }
 }

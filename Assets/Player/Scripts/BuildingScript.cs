@@ -4,6 +4,7 @@ using DG.Tweening;
 
 public class BuildingScript : MonoBehaviour
 {
+    MapSliderScript mapSliderScript = null;
     FusionManager fusionManager = null;
     StageManager stageManager = null;
     GameManager gameManager = null;
@@ -11,6 +12,8 @@ public class BuildingScript : MonoBehaviour
     private SaveData saveData = null;
     [SerializeField]
     private Slider slider = null;
+    [SerializeField]
+    private GameObject g_slider = null;
     [SerializeField]
     private AudioSource audi = null;
     [SerializeField]
@@ -45,6 +48,7 @@ public class BuildingScript : MonoBehaviour
         gameManager = GameManager.Instance;
         fusionManager = FindObjectOfType<FusionManager>();
         stageManager = FindObjectOfType<StageManager>();
+        mapSliderScript = FindObjectOfType<MapSliderScript>();
 
         saveData = gameManager.GetSaveData();
 
@@ -81,6 +85,14 @@ public class BuildingScript : MonoBehaviour
     }
     private void HealthBar()
     {
+        if(mapSliderScript.mapSlider.value != 0)
+        {
+            g_slider.SetActive(false);
+        }
+        else
+        {
+            g_slider.SetActive(true);
+        }
         slider.DOValue(heart, gameManager.dovalueTime);
     }
     public float getHe()

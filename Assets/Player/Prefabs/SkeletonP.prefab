@@ -466,6 +466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 6220228852734831928}
   unitId: 102
+  unitStatIndex: 0
   fusionUnitId: 6600000065000000670000006800000069000000
   nextUnit:
   - {fileID: 0}
@@ -474,13 +475,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   maxLv: 4
-  attackDistance: 2.5
-  heart: 4
+  attackDistance: 4
+  heart: 3.8
   heartUp: 1.5
-  ap: 3.5
+  heartUpPerLev: 0.1
+  ap: 2
   apUp: 0.15
+  apUpPerLev: 0.02
   dp: 2
   dpUp: 0.3
+  dpUpPerLev: 0.01
   attackDelay: 0.9
   speed: 1.7
   totalAtk: 0
