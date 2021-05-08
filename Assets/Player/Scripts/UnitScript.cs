@@ -32,26 +32,56 @@ public class UnitScript : MonoBehaviour
     [SerializeField]
     protected float attackDistance = 2f;
     [SerializeField]
-    protected float heart = 100f;
+    protected float _heart = 100f;
+    public float heart{
+        get{return _heart;}
+        set{_heart = value;}
+    }
     protected float firstHeart = 0f;
     [SerializeField]
     protected float heartUp = 5f;
     [SerializeField]
-    protected float heartUpPerLev = 0.1f;
+    protected float _heartUpPerLev = 0.1f;
+    public float heartUpPerLev
+    {
+        get{return _heartUpPerLev;}
+        set{_heartUpPerLev = value;}
+    }
     [SerializeField]
-    protected float ap = 2f;
+    protected float _ap = 2f;
+    public float ap
+    {
+        get{return _ap;}
+        set{_ap = value;}
+    }
     protected float firstAp = 0f;
     [SerializeField]
     protected float apUp = 0.5f;
     [SerializeField]
-    protected float apUpPerLev = 0.02f;
+    protected float _apUpPerLev = 0.02f;
+    public float apUpPerLev
+    {
+        get{return _apUpPerLev;}
+        set{_apUpPerLev = value;}
+    }
     [SerializeField]
-    protected float dp = 2f;
+    protected float _dp = 2f;
+    public float dp
+    {
+        get{return _dp;}
+        set{_dp = value;}
+    }
     protected float firstDp = 0f;
     [SerializeField]
     protected float dpUp = 0.25f;
     [SerializeField]
-    protected float dpUpPerLev = 0.01f;
+    protected float _dpUpPerLev = 0.01f;
+    public float dpUpPerLev
+    {
+        get{return _dpUpPerLev;}
+        set{_dpUpPerLev = value;}
+    }
+
     [SerializeField]
     protected float attackDelay = 2f;
     [SerializeField]
@@ -161,10 +191,6 @@ public class UnitScript : MonoBehaviour
         fusionManager.SetUnitNum(thisUnitNum = fusionManager.GetUnitNum() + 1);
 
         fusionManager.SetUnitNO(thisUnitNO = fusionManager.GetUnitNO() + 1d);
-        
-        firstHeart = heart;
-        firstAp = ap;
-        firstDp = dp;
 
         levelText = Lev.GetComponent<TextMesh>();
 
@@ -196,10 +222,6 @@ public class UnitScript : MonoBehaviour
         Move();
         HealthBar();
         DestroyCheck();
-
-        gameManager.GetSaveData().heart[unitStatIndex] = firstHeart + heartUp * unitLev + heartUpPerLev * gameManager.GetSaveData().unitHeartLev[unitStatIndex];
-        gameManager.GetSaveData().dp[unitStatIndex] = firstDp + dpUp * unitLev + dpUpPerLev * gameManager.GetSaveData().unitDpLev[unitStatIndex];
-        gameManager.GetSaveData().ap[unitStatIndex] = firstAp + apUp * unitLev + apUpPerLev * gameManager.GetSaveData().unitApLev[unitStatIndex];
 
         if (gameManager.GetCST())
             AttackCheck();
@@ -412,6 +434,7 @@ public class UnitScript : MonoBehaviour
     }
     protected void setStat()
     {
+
         heart += heartUp * unitLev;
         heart += heartUpPerLev * gameManager.GetSaveData().unitHeartLev[unitStatIndex];
         

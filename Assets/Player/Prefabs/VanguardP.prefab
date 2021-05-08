@@ -5455,13 +5455,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  maxLv: 5
   attackDistance: 5
-  heart: 50
+  _heart: 40
   heartUp: 10
-  ap: 0.2
-  apUp: 0
-  dp: 2
+  _heartUpPerLev: 0.1
+  _ap: 0.2
+  apUp: 0.1
+  _apUpPerLev: 0.02
+  _dp: 3
   dpUp: 0.5
+  _dpUpPerLev: 0.01
   attackDelay: 2
   speed: 1
   totalAtk: 0
@@ -5481,6 +5485,7 @@ MonoBehaviour:
   enemyObjectDistanceArray: []
   shortestDistance: 10
   shortestForwardDistance: 10
+  shortestBackwardDistance: 10
   shortestEnemyDistance: 10
   currentPosition: {x: 100, y: 100}
   firstPosition: {x: 0, y: 0}

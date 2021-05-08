@@ -45,6 +45,13 @@ public class StatUpScript : MonoBehaviour
             unitStatIndex = 0;
         }
 
+        if (currentUnit != null)
+        {
+            saveData.heart[unitStatIndex] = currentUnit.heart + saveData.unitHeartLev[unitStatIndex] * currentUnit.heartUpPerLev;
+            saveData.ap[unitStatIndex] = currentUnit.ap + saveData.unitApLev[unitStatIndex] * currentUnit.apUpPerLev;
+            saveData.dp[unitStatIndex] = currentUnit.dp + saveData.unitDpLev[unitStatIndex] * currentUnit.dpUpPerLev;
+        }
+
         firstUpgradeCost = upgradeCost;
     }
     private void Update()
@@ -100,6 +107,8 @@ public class StatUpScript : MonoBehaviour
                 {
                     saveData.gold -= upgradeCost;
                     saveData.unitHeartLev[unitStatIndex]++;
+                    if (currentUnit != null)
+                        saveData.heart[unitStatIndex] = currentUnit.heart + saveData.unitHeartLev[unitStatIndex] * currentUnit.heartUpPerLev;
                 }
                 break;
             case "ap":
@@ -107,6 +116,8 @@ public class StatUpScript : MonoBehaviour
                 {
                     saveData.gold -= upgradeCost;
                     saveData.unitApLev[unitStatIndex]++;
+                    if (currentUnit != null)
+                        saveData.ap[unitStatIndex] = currentUnit.ap + saveData.unitApLev[unitStatIndex] * currentUnit.apUpPerLev;
                 }
                 break;
             case "dp":
@@ -114,6 +125,8 @@ public class StatUpScript : MonoBehaviour
                 {
                     saveData.gold -= upgradeCost;
                     saveData.unitDpLev[unitStatIndex]++;
+                    if (currentUnit != null)
+                        saveData.dp[unitStatIndex] = currentUnit.dp + saveData.unitDpLev[unitStatIndex] * currentUnit.dpUpPerLev;
                 }
                 break;
             case "plusMoney":
@@ -127,6 +140,7 @@ public class StatUpScript : MonoBehaviour
                 Debug.LogError($"{statName} is Disappeared");
                 break;
         }
+
         gameManager.SetSaveData(saveData);
     }
 }

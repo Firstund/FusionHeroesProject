@@ -404,13 +404,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  maxLv: 5
   attackDistance: 10
-  heart: 10
+  _heart: 7
   heartUp: 2
-  ap: 3
-  apUp: 0.5
-  dp: 0
-  dpUp: 0.25
+  _heartUpPerLev: 0.1
+  _ap: 3
+  apUp: 0.7
+  _apUpPerLev: 0.02
+  _dp: 0
+  dpUp: 0.3
+  _dpUpPerLev: 0.01
   attackDelay: 0.9
   speed: 1
   totalAtk: 0
@@ -430,6 +434,7 @@ MonoBehaviour:
   enemyObjectDistanceArray: []
   shortestDistance: 10
   shortestForwardDistance: 10
+  shortestBackwardDistance: 10
   shortestEnemyDistance: 10
   currentPosition: {x: 0, y: 0}
   firstPosition: {x: 0, y: 0}
@@ -440,6 +445,7 @@ MonoBehaviour:
   mouseCheck: 0
   followingMouse: 0
   isDead: 0
+  isAttackOne: 1
   isFollow: 0
 --- !u!82 &8793330566932159277
 AudioSource:
