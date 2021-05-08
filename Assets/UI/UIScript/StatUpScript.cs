@@ -45,15 +45,42 @@ public class StatUpScript : MonoBehaviour
             unitStatIndex = 0;
         }
 
+        MaxCheck();
+        SetStat();
+
+        firstUpgradeCost = upgradeCost;
+    }
+
+    private void SetStat()
+    {
         if (currentUnit != null)
         {
             saveData.heart[unitStatIndex] = currentUnit.heart + saveData.unitHeartLev[unitStatIndex] * currentUnit.heartUpPerLev;
             saveData.ap[unitStatIndex] = currentUnit.ap + saveData.unitApLev[unitStatIndex] * currentUnit.apUpPerLev;
             saveData.dp[unitStatIndex] = currentUnit.dp + saveData.unitDpLev[unitStatIndex] * currentUnit.dpUpPerLev;
         }
-
-        firstUpgradeCost = upgradeCost;
     }
+
+    private void MaxCheck()
+    {
+        if (saveData.unitHeartLev[unitStatIndex] > saveData.maxStatLev)
+        {
+            saveData.unitHeartLev[unitStatIndex] = saveData.maxStatLev;
+        }
+        if (saveData.unitApLev[unitStatIndex] > saveData.maxStatLev)
+        {
+            saveData.unitApLev[unitStatIndex] = saveData.maxStatLev;
+        }
+        if (saveData.unitDpLev[unitStatIndex] > saveData.maxStatLev)
+        {
+            saveData.unitDpLev[unitStatIndex] = saveData.maxStatLev;
+        }
+        if (saveData.plusMoneySpeedLev > saveData.maxPlusMoneySpeedLev)
+        {
+            saveData.plusMoneySpeedLev = saveData.maxPlusMoneySpeedLev;
+        }
+    }
+
     private void Update()
     {
         if (saveData != gameManager.GetSaveData())
@@ -103,37 +130,53 @@ public class StatUpScript : MonoBehaviour
         switch (statName)
         {
             case "he":
-                if (saveData.gold >= upgradeCost)
+                if (saveData.gold >= upgradeCost && saveData.unitHeartLev[unitStatIndex] < saveData.maxStatLev)
                 {
                     saveData.gold -= upgradeCost;
                     saveData.unitHeartLev[unitStatIndex]++;
                     if (currentUnit != null)
                         saveData.heart[unitStatIndex] = currentUnit.heart + saveData.unitHeartLev[unitStatIndex] * currentUnit.heartUpPerLev;
                 }
+                else if (saveData.unitHeartLev[unitStatIndex] > saveData.maxStatLev)
+                {
+                    saveData.unitHeartLev[unitStatIndex] = saveData.maxStatLev;
+                }
                 break;
             case "ap":
-                if (saveData.gold >= upgradeCost)
+                if (saveData.gold >= upgradeCost && saveData.unitApLev[unitStatIndex] < saveData.maxStatLev)
                 {
                     saveData.gold -= upgradeCost;
                     saveData.unitApLev[unitStatIndex]++;
                     if (currentUnit != null)
                         saveData.ap[unitStatIndex] = currentUnit.ap + saveData.unitApLev[unitStatIndex] * currentUnit.apUpPerLev;
                 }
+                else if (saveData.unitApLev[unitStatIndex] > saveData.maxStatLev)
+                {
+                    saveData.unitApLev[unitStatIndex] = saveData.maxStatLev;
+                }
                 break;
             case "dp":
-                if (saveData.gold >= upgradeCost)
+                if (saveData.gold >= upgradeCost && saveData.unitDpLev[unitStatIndex] < saveData.maxStatLev)
                 {
                     saveData.gold -= upgradeCost;
                     saveData.unitDpLev[unitStatIndex]++;
                     if (currentUnit != null)
                         saveData.dp[unitStatIndex] = currentUnit.dp + saveData.unitDpLev[unitStatIndex] * currentUnit.dpUpPerLev;
                 }
+                else if (saveData.unitDpLev[unitStatIndex] > saveData.maxStatLev)
+                {
+                    saveData.unitDpLev[unitStatIndex] = saveData.maxStatLev;
+                }
                 break;
             case "plusMoney":
-                if (saveData.gold >= upgradeCost)
+                if (saveData.gold >= upgradeCost && saveData.plusMoneySpeedLev < saveData.maxPlusMoneySpeedLev)
                 {
                     saveData.gold -= upgradeCost;
                     saveData.plusMoneySpeedLev++;
+                }
+                else if (saveData.plusMoneySpeedLev > saveData.maxPlusMoneySpeedLev)
+                {
+                    saveData.plusMoneySpeedLev = saveData.maxPlusMoneySpeedLev;
                 }
                 break;
             default:
