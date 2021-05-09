@@ -108,12 +108,18 @@ public class StatUpScript : MonoBehaviour
                 texts[1].text = "필요한 골드: " + upgradeCost;
                 texts[2].text = "현재 방어력: " + saveData.dp[unitStatIndex];
                 break;
+            case "fusionLev":
+                upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.maxFusionLev;
+                texts[0].text = "현재 최대레벨: " + saveData.maxFusionLev;
+                texts[1].text = "필요한 골드: " + upgradeCost;
+                break;
             case "plusMoney":
                 upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.plusMoneySpeedLev;
                 texts[0].text = "현재 레벨: " + saveData.plusMoneySpeedLev;
                 texts[1].text = "필요한 골드: " + upgradeCost;
                 texts[2].text = "현재 속도: " + (gameManager.plusMoneyTime - gameManager.minusPluseMoneyTimePerLev * saveData.plusMoneySpeedLev);
                 break;
+
             default:
                 Debug.LogError($"{statName} is Disappeared");
                 enabled = false;
@@ -166,6 +172,17 @@ public class StatUpScript : MonoBehaviour
                 else if (saveData.unitDpLev[unitStatIndex] > saveData.maxStatLev)
                 {
                     saveData.unitDpLev[unitStatIndex] = saveData.maxStatLev;
+                }
+                break;
+            case "fusionLev":
+                if (saveData.gold >= upgradeCost && saveData.maxFusionLev < saveData.maxStatLev)
+                {
+                    saveData.gold -= upgradeCost;
+                    saveData.maxFusionLev++;
+                }
+                else if (saveData.maxFusionLev > saveData.maxStatLev)
+                {
+                    saveData.maxFusionLev = saveData.maxStatLev;
                 }
                 break;
             case "plusMoney":

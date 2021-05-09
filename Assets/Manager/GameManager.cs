@@ -18,7 +18,8 @@ public class SaveData
     public float[] dp = new float[100]; // index는 유닛 ID로, 건물의 경우 아군의 건물은 0, 적의 건물은 1로한다.
     public int plusMoneySpeedLev = 0;
     public int maxPlusMoneySpeedLev = 10;
-    public int maxStatLev = 10;
+    public int maxStatLev = 10; // 유닛의 업그레이드 최대레벨
+    public int maxFusionLev = 5; // 유닛의 fusion 최대레벨
 }
 public class GameManager : MonoBehaviour
 {

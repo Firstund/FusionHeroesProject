@@ -28,8 +28,6 @@ public class UnitScript : MonoBehaviour
                                                          // 인덱스 값은 해당 유닛의 아이디의 (세번째 숫자 - 1)로 설정한다.
                                                          // 첫번 째 배열에 들어가는 유닛의 아이디는 무조건 이 스크립트의 unitId값이다.
     [SerializeField]
-    protected int maxLv = 5; // 해당 유닛의 최대 레벨
-    [SerializeField]
     protected float attackDistance = 2f;
     [SerializeField]
     protected float _heart = 100f;
@@ -576,7 +574,7 @@ public class UnitScript : MonoBehaviour
         else if (followingMouse && shortestDistance < clickableX && unitLev == shortestScript.GetUnitLev())
         // 다른 fusion들과 호환이 가능하도록 변경, 각 fusion마다 levelUpCost 값이 다르다.
         {
-            if (unitLev >= maxLv)
+            if (unitLev >= gameManager.GetSaveData().maxFusionLev)
             {
                 costText.text = "이미 최대레벨입니다.";
                 return;
@@ -604,7 +602,7 @@ public class UnitScript : MonoBehaviour
                 {
                     case 0: // 그냥 유닛의 레벨만 오름
                             // levelUpCost 지정
-                        if (unitLev < maxLv)
+                        if (unitLev < gameManager.GetSaveData().maxFusionLev)
                         {
                             money = gameManager.GetMoney() - levelUpCost;
 

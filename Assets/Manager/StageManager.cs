@@ -54,6 +54,8 @@ public class StageManager : MonoBehaviour
         fusionManager.enemyBuildingScript.Reset();
         fusionManager.buildingScript.Reset();
 
+        saveData.maxStatLev = 10 + 10 * (currentStage / 10);
+
         for (int i = 0; i < fusionManager.unitScript.Length; i++)
         {
             Debug.Log(fusionManager.unitScript.Length);
