@@ -7,81 +7,91 @@ using System;
 [Serializable]
 public class SaveData
 {
+    [SerializeField]
     private int _curretnStage = 1;
     public int currentStage
     {
         get{return _curretnStage;}
         set{_curretnStage = value;}
     }
+    [SerializeField]
     private int _maxReachedStage = 1;
     public int maxReachedStage
     {
         get{return _maxReachedStage;}
         set{_maxReachedStage = value;}
     }
+    [SerializeField]
     private int _gold = 100;
     public int gold{
         get{return _gold;}
         set{_gold = value;}
     }
     // 업그레이드를 하지 않은 상태에선, 스탯 레벨은 0이다.
+    [SerializeField]
     private int[] _unitHeartLev = new int[100];
     public int[] unitHeartLev
     {
         get{return _unitHeartLev;}
         set{_unitHeartLev = value;}
     }
+    [SerializeField]
     private int[] _unitApLev = new int[100];
     public int[] unitApLev
     {
         get{return _unitApLev;}
         set{_unitApLev = value;}
     }
+    [SerializeField]
     private int[] _unitDpLev = new int[100];
     public int[] unitDpLev
     {
         get{return _unitDpLev;}
         set{_unitDpLev = value;}
     }
-
+    [SerializeField]
     private float[] _heart = new float[100];
     public float[] heart
     {
         get{return _heart;}
         set{_heart = value;}
     }
-
+    [SerializeField]
     private float[] _ap = new float[100];
     public float[] ap
     {
         get{return _ap;}
         set{_ap = value;}
     }
+    [SerializeField]
     private float[] _dp = new float[100]; // index는 유닛 ID로, 건물의 경우 아군의 건물은 0, 적의 건물은 1로한다.
     public float[] dp
     {
         get{return _dp;}
         set{_dp = value;}
     }
+    [SerializeField]
     private int _plusMoneySpeedLev = 0;
     public int plusMoneySpeedLev
     {
         get{return _plusMoneySpeedLev;}
         set{_plusMoneySpeedLev = value;}
     }
+    [SerializeField]
     private int _maxPlusMoneySpeedLev = 10;
     public int maxPlusMoneySpeedLev
     {
         get{return _maxPlusMoneySpeedLev;}
         set{_maxPlusMoneySpeedLev = value;}
     }
-
+    [SerializeField]
     private int _maxStatLev = 10; // 유닛의 업그레이드 최대레벨
     public int maxStatLev 
     {
         get{return _maxStatLev;}
         set{_maxStatLev = value;}
     }
+    [SerializeField]
     private int _maxFusionLev = 5; // 유닛의 fusion 최대레벨
     public int maxFusionLev 
     {
