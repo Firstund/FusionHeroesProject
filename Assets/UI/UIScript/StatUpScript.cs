@@ -120,7 +120,7 @@ public class StatUpScript : MonoBehaviour
         texts[0].text = "현재 레벨: " + unitStatLev;
         texts[1].text = "필요한 골드: " + upgradeCost;
 
-        if(hasThirdText)
+        if (hasThirdText)
             texts[2].text = thirdText + " " + unitStat;
     }
 
@@ -133,13 +133,22 @@ public class StatUpScript : MonoBehaviour
         switch (statName)
         {
             case "he":
-                saveData.unitHeartLev[unitStatIndex] = UpgradeStat(saveData.unitHeartLev[unitStatIndex], ref saveData.heart[unitStatIndex], currentUnit.heart, currentUnit.heartUpPerLev);
+                if (currentUnit != null)
+                    saveData.unitHeartLev[unitStatIndex] = UpgradeStat(saveData.unitHeartLev[unitStatIndex], ref saveData.heart[unitStatIndex], currentUnit.heart, currentUnit.heartUpPerLev);
+                else
+                    saveData.unitHeartLev[unitStatIndex] = UpgradeStat(saveData.unitHeartLev[unitStatIndex], ref saveData.heart[unitStatIndex]);
                 break;
             case "ap":
-                saveData.unitApLev[unitStatIndex] = UpgradeStat(saveData.unitApLev[unitStatIndex], ref saveData.ap[unitStatIndex], currentUnit.ap, currentUnit.apUpPerLev);
+                if (currentUnit != null)
+                    saveData.unitApLev[unitStatIndex] = UpgradeStat(saveData.unitApLev[unitStatIndex], ref saveData.ap[unitStatIndex], currentUnit.ap, currentUnit.apUpPerLev);
+                else
+                    saveData.unitApLev[unitStatIndex] = UpgradeStat(saveData.unitApLev[unitStatIndex], ref saveData.ap[unitStatIndex]);
                 break;
             case "dp":
-                saveData.unitDpLev[unitStatIndex] = UpgradeStat(saveData.unitDpLev[unitStatIndex], ref saveData.dp[unitStatIndex], currentUnit.dp, currentUnit.dpUpPerLev);
+                if (currentUnit != null)
+                    saveData.unitDpLev[unitStatIndex] = UpgradeStat(saveData.unitDpLev[unitStatIndex], ref saveData.dp[unitStatIndex], currentUnit.dp, currentUnit.dpUpPerLev);
+                else
+                    saveData.unitDpLev[unitStatIndex] = UpgradeStat(saveData.unitDpLev[unitStatIndex], ref saveData.dp[unitStatIndex]);
                 break;
             case "fusionLev":
                 saveData.maxFusionLev = UpgradeStat(saveData.maxFusionLev);
@@ -163,6 +172,20 @@ public class StatUpScript : MonoBehaviour
             unitStatLev++;
             if (currentUnit != null)
                 unitStat = currentUnitStat + unitStatLev * currentUnitStatUpPerLev;
+        }
+        else if (unitStatLev > saveData.maxStatLev)
+        {
+            unitStatLev = saveData.maxStatLev;
+        }
+
+        return unitStatLev;
+    }
+    private int UpgradeStat(int unitStatLev, ref float unitStat)
+    {
+        if (saveData.gold >= upgradeCost && unitStatLev < saveData.maxStatLev)
+        {
+            saveData.gold -= upgradeCost;
+            unitStatLev++;
         }
         else if (unitStatLev > saveData.maxStatLev)
         {

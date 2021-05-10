@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using System.Security.Cryptography;
+using System;
 
 public class DataManager : MonoBehaviour
 {
+    private readonly string privateKey = "1237ruewyq7y1u23y7dywufq7y23wueyha78y23uy";
     private GameManager gameManager = null;
     static GameObject _container;
     static GameObject Container
@@ -69,7 +72,8 @@ public class DataManager : MonoBehaviour
         if (File.Exists(filePath))
         {
             Debug.Log("불러오기 성공");
-            string FromJsonData = File.ReadAllText(filePath);
+            string encryptData = File.ReadAllText(filePath);
+            string FromJsonData = Decrypt(encryptData);
             _saveData = JsonUtility.FromJson<SaveData>(FromJsonData);
         }
         else{
@@ -83,15 +87,47 @@ public class DataManager : MonoBehaviour
     public void SaveGameData()
     {
         string ToJsonData = JsonUtility.ToJson(saveData);
+        string encryptData = Encrypt(ToJsonData);
         string filePath = Application.persistentDataPath + GameDataFileName;
         // 이미 저장된 파일이 있다면 덮어쓰기
 
-        File.WriteAllText(filePath, ToJsonData);
+        File.WriteAllText(filePath, encryptData);
 
         //올바르게 저장됐는지 확인
 
         Debug.Log("경로: " + filePath);
         Debug.Log("저장된 내용: " + ToJsonData);
+    }
+    private string Encrypt(string data)
+    {
+        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(data);
+        RijndaelManaged rm = CreateRijndaelManaged();
+        ICryptoTransform ct = rm.CreateEncryptor();
+        byte[] results = ct.TransformFinalBlock(bytes, 0, bytes.Length);
+        return System.Convert.ToBase64String(results, 0, results.Length);
+    }
+    private string Decrypt(string data)
+    {
+        byte[] bytes = System.Convert.FromBase64String(data);
+        RijndaelManaged rm = CreateRijndaelManaged();
+        ICryptoTransform ct = rm.CreateDecryptor();
+        byte[] resultsArray = ct.TransformFinalBlock(bytes, 0, bytes.Length);
+        return System.Text.Encoding.UTF8.GetString(resultsArray);
+    }
+
+    private RijndaelManaged CreateRijndaelManaged()
+    {
+        byte[] keyArray = System.Text.Encoding.UTF8.GetBytes(privateKey);
+        RijndaelManaged result = new RijndaelManaged();
+
+        byte[] newKeysArray = new byte[16];
+        System.Array.Copy(keyArray, 0, newKeysArray, 0, 16);
+
+        result.Key = newKeysArray;
+        result.Mode = CipherMode.ECB;
+        result.Padding = PaddingMode.PKCS7;
+
+        return result;
     }
 
     // 게임을 종료하면 자동 저장
