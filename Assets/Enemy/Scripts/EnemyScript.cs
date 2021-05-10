@@ -8,6 +8,7 @@ public class EnemyScript : MonoBehaviour
 {
     //자동소환, 소환대기시간 설정할것
     protected FusionManager fusionManager = null;
+    protected StageManager stageManager = null;
     protected GameManager gameManager = null;
 
     [SerializeField]
@@ -71,20 +72,13 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     protected float[] enemyObjectDistanceArray;
 
-    [SerializeField]
     protected float shortestDistance = 100f;
-    [SerializeField]
     protected float shortestForwardDistance = 10f;
-    [SerializeField]
     protected float shortestEnemyDistance = 10f;
 
-    [SerializeField]
     protected bool attackedCheck = false;
-    [SerializeField]
     protected bool buildingIsShortest = false;//building이 shortest일 때 true. unit이 shortest일 때 false
-    [SerializeField]
     protected bool isAttackOne = true;
-    [SerializeField]
     protected bool isDead = false;
 
     protected Vector2 currentPosition = new Vector2(100f, 100f);
@@ -105,7 +99,7 @@ public class EnemyScript : MonoBehaviour
     }
     void Start()
     {
-
+        stageManager = FindObjectOfType<StageManager>();
         fusionManager.SetEnemyUnitNum(thisUnitNum = fusionManager.GetEnemyUnitNum() + 1);
 
         fusionManager.SetEnemyUnitNO(thisUnitNO = fusionManager.GetEnemyUnitNO() + 1d);
@@ -267,7 +261,9 @@ public class EnemyScript : MonoBehaviour
                         if (speed <= 0f)
                             anim.Play("AttackL");
                         else
+                        {
                             anim.Play("WalkAttackL");
+                        }
                     }
 
                 }
@@ -538,9 +534,13 @@ public class EnemyScript : MonoBehaviour
     public void Destroye()
     {
         int money = gameManager.GetMoney() + plusMoney;
+        int hadMoney = gameManager.hadMoney + plusMoney;
 
         gameManager.SetMoney(money);
+        gameManager.hadMoney = hadMoney;
 
+        stageManager.killedEnemyUnitNum++;
+        
         fusionManager.SetCanSetScripts();
         Destroy(gameObject);
     }

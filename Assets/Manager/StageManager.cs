@@ -18,7 +18,34 @@ public class StageManager : MonoBehaviour
     private Text stageText = null;
     [SerializeField]
     private int currentStage = 1;
-
+    [SerializeField]
+    private int _useMoneyNum = 0;
+    public int useMoneyNum{
+        get{return _useMoneyNum;}
+        set{_useMoneyNum = value;}
+    }
+    [SerializeField]
+    private int _deathPlayerUnitNum = 0;
+    public int deathPlayerUnitNum
+    {
+        get{return _deathPlayerUnitNum;}
+        set{_deathPlayerUnitNum = value;}
+    }
+    [SerializeField]
+    private int _killedEnemyUnitNum = 0;
+    public int killedEnemyUnitNum
+    {
+        get{return _killedEnemyUnitNum;}
+        set{_killedEnemyUnitNum = value;}
+    }
+    [SerializeField]
+    private double _t = 0; // 여기에 Time.deltaTime을 곱하면 지난 시간이 나온다.
+    public double t 
+    {
+        get{return  _t;}
+        set{_t = value;}
+    }
+    
     void Start()
     {
         gameManager = GameManager.Instance;
@@ -27,7 +54,7 @@ public class StageManager : MonoBehaviour
         saveData = gameManager.GetSaveData();
     }
     void Update()
-    {
+    {   
         if(saveData != gameManager.GetSaveData())
         {
             saveData = gameManager.GetSaveData();
@@ -36,6 +63,9 @@ public class StageManager : MonoBehaviour
         currentStage = saveData.currentStage;
         stageText.text = "CurrentStage: " + currentStage;
         audi.volume = gameManager.GetSoundValue();
+
+        if(gameManager.GetCST())
+            t += Time.deltaTime;
     }
     public void StageClear(bool a)
     {
@@ -52,6 +82,10 @@ public class StageManager : MonoBehaviour
 
         fusionManager.enemyBuildingScript.Reset();
         fusionManager.buildingScript.Reset();
+
+        useMoneyNum = 0;
+        deathPlayerUnitNum = 0;
+        killedEnemyUnitNum = 0;
 
         saveData.maxStatLev = 10 + 10 * (currentStage / 10);
 

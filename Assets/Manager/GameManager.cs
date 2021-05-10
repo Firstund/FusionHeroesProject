@@ -11,92 +11,93 @@ public class SaveData
     private int _curretnStage = 1;
     public int currentStage
     {
-        get{return _curretnStage;}
-        set{_curretnStage = value;}
+        get { return _curretnStage; }
+        set { _curretnStage = value; }
     }
     [SerializeField]
     private int _maxReachedStage = 1;
     public int maxReachedStage
     {
-        get{return _maxReachedStage;}
-        set{_maxReachedStage = value;}
+        get { return _maxReachedStage; }
+        set { _maxReachedStage = value; }
     }
     [SerializeField]
     private int _gold = 100;
-    public int gold{
-        get{return _gold;}
-        set{_gold = value;}
+    public int gold
+    {
+        get { return _gold; }
+        set { _gold = value; }
     }
     // 업그레이드를 하지 않은 상태에선, 스탯 레벨은 0이다.
     [SerializeField]
     private int[] _unitHeartLev = new int[100];
     public int[] unitHeartLev
     {
-        get{return _unitHeartLev;}
-        set{_unitHeartLev = value;}
+        get { return _unitHeartLev; }
+        set { _unitHeartLev = value; }
     }
     [SerializeField]
     private int[] _unitApLev = new int[100];
     public int[] unitApLev
     {
-        get{return _unitApLev;}
-        set{_unitApLev = value;}
+        get { return _unitApLev; }
+        set { _unitApLev = value; }
     }
     [SerializeField]
     private int[] _unitDpLev = new int[100];
     public int[] unitDpLev
     {
-        get{return _unitDpLev;}
-        set{_unitDpLev = value;}
+        get { return _unitDpLev; }
+        set { _unitDpLev = value; }
     }
     [SerializeField]
     private float[] _heart = new float[100];
     public float[] heart
     {
-        get{return _heart;}
-        set{_heart = value;}
+        get { return _heart; }
+        set { _heart = value; }
     }
     [SerializeField]
     private float[] _ap = new float[100];
     public float[] ap
     {
-        get{return _ap;}
-        set{_ap = value;}
+        get { return _ap; }
+        set { _ap = value; }
     }
     [SerializeField]
     private float[] _dp = new float[100]; // index는 유닛 ID로, 건물의 경우 아군의 건물은 0, 적의 건물은 1로한다.
     public float[] dp
     {
-        get{return _dp;}
-        set{_dp = value;}
+        get { return _dp; }
+        set { _dp = value; }
     }
     [SerializeField]
     private int _plusMoneySpeedLev = 0;
     public int plusMoneySpeedLev
     {
-        get{return _plusMoneySpeedLev;}
-        set{_plusMoneySpeedLev = value;}
+        get { return _plusMoneySpeedLev; }
+        set { _plusMoneySpeedLev = value; }
     }
     [SerializeField]
     private int _maxPlusMoneySpeedLev = 10;
     public int maxPlusMoneySpeedLev
     {
-        get{return _maxPlusMoneySpeedLev;}
-        set{_maxPlusMoneySpeedLev = value;}
+        get { return _maxPlusMoneySpeedLev; }
+        set { _maxPlusMoneySpeedLev = value; }
     }
     [SerializeField]
     private int _maxStatLev = 10; // 유닛의 업그레이드 최대레벨
-    public int maxStatLev 
+    public int maxStatLev
     {
-        get{return _maxStatLev;}
-        set{_maxStatLev = value;}
+        get { return _maxStatLev; }
+        set { _maxStatLev = value; }
     }
     [SerializeField]
     private int _maxFusionLev = 5; // 유닛의 fusion 최대레벨
-    public int maxFusionLev 
+    public int maxFusionLev
     {
-        get{return _maxFusionLev;}
-        set{_maxFusionLev = value;}
+        get { return _maxFusionLev; }
+        set { _maxFusionLev = value; }
     }
 }
 public class GameManager : MonoBehaviour
@@ -114,8 +115,8 @@ public class GameManager : MonoBehaviour
     private UnitScript[] _playerUnitPrefabs;
     public UnitScript[] playerUnitPrefabs
     {
-        get{return _playerUnitPrefabs;}
-        set{_playerUnitPrefabs = value;}
+        get { return _playerUnitPrefabs; }
+        set { _playerUnitPrefabs = value; }
     }
     [SerializeField]
     private SaveData saveData;
@@ -145,22 +146,31 @@ public class GameManager : MonoBehaviour
         }
     }
     private int money = 0;
+    private int _hadMoney = 0; // 처음부터 끝까지 money를 하나도 안썼을 경우의 money의 양
+    public int hadMoney
+    {
+        get { return _hadMoney; }
+        set{_hadMoney = value;}
+    }
     private int plusMoney = 1;
     [SerializeField]
     private float _plusMoneyTime = 0.1f;
     public float plusMoneyTime
     {
-        get{return _plusMoneyTime;}
-        set{
-            if(value >= 0f)
+        get { return _plusMoneyTime; }
+        set
+        {
+            if (value >= 0f)
                 _plusMoneyTime = value;
-            }
+        }
     }
     [SerializeField]
     private float _minusPluseMoneyTimePerLev = 0.005f;
-    public float minusPluseMoneyTimePerLev{
-        get{return _minusPluseMoneyTimePerLev;}
-        set{
+    public float minusPluseMoneyTimePerLev
+    {
+        get { return _minusPluseMoneyTimePerLev; }
+        set
+        {
             _minusPluseMoneyTimePerLev = value;
         }
 
@@ -183,8 +193,9 @@ public class GameManager : MonoBehaviour
         canMoneyPlus = false;
 
         yield return new WaitForSeconds(plusMoneyTime - (saveData.plusMoneySpeedLev * minusPluseMoneyTimePerLev));
-        
+
         money += plusMoney;
+        hadMoney += plusMoney;
 
         canMoneyPlus = true;
     }

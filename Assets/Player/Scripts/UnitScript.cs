@@ -9,6 +9,7 @@ public class UnitScript : MonoBehaviour
     //공격대기시간, 소환 대기시간 설정할것.
     protected FusionManager fusionManager = null;
     protected GameManager gameManager = null;
+    protected StageManager stageManager = null;
     [SerializeField]
     protected Slider slider = null;
 
@@ -122,9 +123,8 @@ public class UnitScript : MonoBehaviour
     [SerializeField]
     protected float clickableX = 1f;
 
-    [SerializeField]
     protected float mouseDistance = 0f;
-
+    
     [SerializeField]
     protected float[] objectDistanceArray;
     [SerializeField]
@@ -139,34 +139,23 @@ public class UnitScript : MonoBehaviour
     protected UnitScript shortestForwardScript = null;
     protected UnitScript shortestBackwardScript = null;
 
-    [SerializeField]
     protected float shortestEnemyDistance = 10f;
     //
-    [SerializeField]
     protected Vector2 currentPosition = new Vector2(100f, 100f);
 
     protected Vector2 targetPosition = Vector2.zero;
 
     protected float testDistance = 0f;
 
-    [SerializeField]
     protected Vector2 firstPosition = Vector2.zero;
     //
-    [SerializeField]
     protected bool firstPositionSet = false;
-    [SerializeField]
     protected bool followingCheck = false;
-    [SerializeField]
     protected bool attackedCheck = false;
-    [SerializeField]
     protected bool buildingIsShortest = false;
-    [SerializeField]
     protected bool mouseCheck = false;
-    [SerializeField]
     protected bool followingMouse = false;
-    [SerializeField]
     protected bool isDead = false;
-    [SerializeField]
     private bool isAttackOne = true;
     public bool isFollow = false;
 
@@ -186,6 +175,7 @@ public class UnitScript : MonoBehaviour
 
     void Start()
     {
+        stageManager = FindObjectOfType<StageManager>();
         fusionManager.SetUnitNum(thisUnitNum = fusionManager.GetUnitNum() + 1);
 
         fusionManager.SetUnitNO(thisUnitNO = fusionManager.GetUnitNO() + 1d);
@@ -483,7 +473,8 @@ public class UnitScript : MonoBehaviour
     {
         if (a == null)
             a = this;
-
+        
+        stageManager.deathPlayerUnitNum++;
         fusionManager.SetCanSetScripts();
         Destroy(a.gameObject);
     }

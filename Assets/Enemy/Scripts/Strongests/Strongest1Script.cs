@@ -118,7 +118,6 @@ public class Strongest1Script : MonoBehaviour
 
 
             thisObjectScript.AttackedCheck(skiilDelay[1]);
-            Debug.Log("aaa");
 
             //애니 출력
 

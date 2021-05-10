@@ -5,6 +5,10 @@ using UnityEngine;
 public class SpawnStrongestScript : MonoBehaviour
 {
     [SerializeField]
+    private int spawnGlingmanStage = 1;
+    [SerializeField]
+    private int spawnUmikoStage = 10;
+    [SerializeField]
     private StageManager stageManager = null;
     private EnemyBuildingScript enemyBuildingScript = null;
     void Start()
@@ -17,21 +21,22 @@ public class SpawnStrongestScript : MonoBehaviour
         glingman();
     }
     #region strongests
-    private void umiko()
+    private void glingman()
     {
-        if (!enemyBuildingScript.GetStrongestSpawned(0) && stageManager.GetCurrentStage() == 2  && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() / 2)
+        if (!enemyBuildingScript.GetStrongestSpawned(0) && stageManager.GetCurrentStage() == spawnGlingmanStage  && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() / 5)
         {
             enemyBuildingScript.SetstrongestSpawned(0, true);
             Instantiate(enemyBuildingScript.GetStrongest(0), enemyBuildingScript.GetSpawnPosition());
         }
     }
-    private void glingman()
+    private void umiko()
     {
-        if (!enemyBuildingScript.GetStrongestSpawned(1) && stageManager.GetCurrentStage() == 1 && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() / 5)
+        if (!enemyBuildingScript.GetStrongestSpawned(1) && stageManager.GetCurrentStage() == spawnUmikoStage  && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() / 2)
         {
             enemyBuildingScript.SetstrongestSpawned(1, true);
             Instantiate(enemyBuildingScript.GetStrongest(1), enemyBuildingScript.GetSpawnPosition());
         }
     }
+    
     #endregion
 }

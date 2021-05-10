@@ -29,7 +29,11 @@ public class EnemyBuildingScript : MonoBehaviour
     [SerializeField]
     private float skeletonDelay = 1f;
     [SerializeField]
+    private float minusSkeletonDelayPerCurrentStage = 0.02f;
+    [SerializeField]
     private float archerDelay = 1f;
+    [SerializeField]
+    private float minusArcherDelayPerCurrentStage = 0.02f;
 
     [SerializeField]
     private GameObject oSkeleton = null;
@@ -113,7 +117,7 @@ public class EnemyBuildingScript : MonoBehaviour
         if (!skeSpawned)
         {
             skeSpawned = true;
-            yield return new WaitForSeconds(skeletonDelay);
+            yield return new WaitForSeconds(skeletonDelay - minusSkeletonDelayPerCurrentStage * gameManager.GetSaveData().currentStage);
             Instantiate(oSkeleton, spawnPosition);
             skeSpawned = false;
         }
@@ -123,7 +127,7 @@ public class EnemyBuildingScript : MonoBehaviour
         if (!arcSpawned)
         {
             arcSpawned = true;
-            yield return new WaitForSeconds(archerDelay);
+            yield return new WaitForSeconds(archerDelay - minusArcherDelayPerCurrentStage * gameManager.GetSaveData().currentStage);
             Instantiate(oArcher, spawnPosition);
             arcSpawned = false;
         }
