@@ -7,20 +7,87 @@ using System;
 [Serializable]
 public class SaveData
 {
-    public int currentStage = 1;
-    public int maxReachedStage = 1;
-    public int gold = 100;
+    private int _curretnStage = 1;
+    public int currentStage
+    {
+        get{return _curretnStage;}
+        set{_curretnStage = value;}
+    }
+    private int _maxReachedStage = 1;
+    public int maxReachedStage
+    {
+        get{return _maxReachedStage;}
+        set{_maxReachedStage = value;}
+    }
+    private int _gold = 100;
+    public int gold{
+        get{return _gold;}
+        set{_gold = value;}
+    }
     // 업그레이드를 하지 않은 상태에선, 스탯 레벨은 0이다.
-    public int[] unitHeartLev = new int[100];
-    public int[] unitApLev = new int[100];
-    public int[] unitDpLev = new int[100];
-    public float[] heart = new float[100];
-    public float[] ap = new float[100];
-    public float[] dp = new float[100]; // index는 유닛 ID로, 건물의 경우 아군의 건물은 0, 적의 건물은 1로한다.
-    public int plusMoneySpeedLev = 0;
-    public int maxPlusMoneySpeedLev = 10;
-    public int maxStatLev = 10; // 유닛의 업그레이드 최대레벨
-    public int maxFusionLev = 5; // 유닛의 fusion 최대레벨
+    private int[] _unitHeartLev = new int[100];
+    public int[] unitHeartLev
+    {
+        get{return _unitHeartLev;}
+        set{_unitHeartLev = value;}
+    }
+    private int[] _unitApLev = new int[100];
+    public int[] unitApLev
+    {
+        get{return _unitApLev;}
+        set{_unitApLev = value;}
+    }
+    private int[] _unitDpLev = new int[100];
+    public int[] unitDpLev
+    {
+        get{return _unitDpLev;}
+        set{_unitDpLev = value;}
+    }
+
+    private float[] _heart = new float[100];
+    public float[] heart
+    {
+        get{return _heart;}
+        set{_heart = value;}
+    }
+
+    private float[] _ap = new float[100];
+    public float[] ap
+    {
+        get{return _ap;}
+        set{_ap = value;}
+    }
+    private float[] _dp = new float[100]; // index는 유닛 ID로, 건물의 경우 아군의 건물은 0, 적의 건물은 1로한다.
+    public float[] dp
+    {
+        get{return _dp;}
+        set{_dp = value;}
+    }
+    private int _plusMoneySpeedLev = 0;
+    public int plusMoneySpeedLev
+    {
+        get{return _plusMoneySpeedLev;}
+        set{_plusMoneySpeedLev = value;}
+    }
+    private int _maxPlusMoneySpeedLev = 10;
+    public int maxPlusMoneySpeedLev
+    {
+        get{return _maxPlusMoneySpeedLev;}
+        set{_maxPlusMoneySpeedLev = value;}
+    }
+
+    private int _maxStatLev = 10; // 유닛의 업그레이드 최대레벨
+    public int maxStatLev 
+    {
+        get{return _maxStatLev;}
+        set{_maxStatLev = value;}
+    }
+    private int _maxFusionLev = 5; // 유닛의 fusion 최대레벨
+    public int maxFusionLev 
+    {
+        get{return _maxFusionLev;}
+        set{_maxFusionLev = value;}
+    }
 }
 public class GameManager : MonoBehaviour
 {
