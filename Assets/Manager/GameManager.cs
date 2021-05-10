@@ -183,6 +183,7 @@ public class GameManager : MonoBehaviour
         canMoneyPlus = false;
 
         yield return new WaitForSeconds(plusMoneyTime - (saveData.plusMoneySpeedLev * minusPluseMoneyTimePerLev));
+        
         money += plusMoney;
 
         canMoneyPlus = true;

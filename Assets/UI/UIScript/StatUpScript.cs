@@ -91,33 +91,19 @@ public class StatUpScript : MonoBehaviour
         switch (statName)
         {
             case "he":
-                upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.unitHeartLev[unitStatIndex];
-                texts[0].text = "현재 레벨: " + saveData.unitHeartLev[unitStatIndex];
-                texts[1].text = "필요한 골드: " + upgradeCost;
-                texts[2].text = "현재 체력: " + saveData.heart[unitStatIndex];
+                SetTexts(saveData.unitHeartLev[unitStatIndex], saveData.heart[unitStatIndex], true, "현재 체력:");
                 break;
             case "ap":
-                upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.unitApLev[unitStatIndex];
-                texts[0].text = "현재 레벨: " + saveData.unitApLev[unitStatIndex];
-                texts[1].text = "필요한 골드: " + upgradeCost;
-                texts[2].text = "현재 공격력: " + saveData.ap[unitStatIndex];
+                SetTexts(saveData.unitApLev[unitStatIndex], saveData.ap[unitStatIndex], true, "현재 공격력:");
                 break;
             case "dp":
-                upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.unitDpLev[unitStatIndex];
-                texts[0].text = "현재 레벨: " + saveData.unitDpLev[unitStatIndex];
-                texts[1].text = "필요한 골드: " + upgradeCost;
-                texts[2].text = "현재 방어력: " + saveData.dp[unitStatIndex];
+                SetTexts(saveData.unitDpLev[unitStatIndex], saveData.dp[unitStatIndex], true, "현재 방어력:");
                 break;
             case "fusionLev":
-                upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.maxFusionLev;
-                texts[0].text = "현재 최대레벨: " + saveData.maxFusionLev;
-                texts[1].text = "필요한 골드: " + upgradeCost;
+                SetTexts(saveData.maxFusionLev, 0, false, "");
                 break;
             case "plusMoney":
-                upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * saveData.plusMoneySpeedLev;
-                texts[0].text = "현재 레벨: " + saveData.plusMoneySpeedLev;
-                texts[1].text = "필요한 골드: " + upgradeCost;
-                texts[2].text = "현재 속도: " + (gameManager.plusMoneyTime - gameManager.minusPluseMoneyTimePerLev * saveData.plusMoneySpeedLev);
+                SetTexts(saveData.plusMoneySpeedLev, gameManager.minusPluseMoneyTimePerLev, true, "현재 속도:");
                 break;
 
             default:
@@ -127,6 +113,17 @@ public class StatUpScript : MonoBehaviour
         }
 
     }
+
+    private void SetTexts(int unitStatLev, float unitStat, bool hasThirdText, string thirdText)
+    {
+        upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * unitStatLev;
+        texts[0].text = "현재 레벨: " + unitStatLev;
+        texts[1].text = "필요한 골드: " + upgradeCost;
+
+        if(hasThirdText)
+            texts[2].text = thirdText + " " + unitStat;
+    }
+
     public void OnClick()
     {
         Upgrade();
@@ -136,65 +133,19 @@ public class StatUpScript : MonoBehaviour
         switch (statName)
         {
             case "he":
-                if (saveData.gold >= upgradeCost && saveData.unitHeartLev[unitStatIndex] < saveData.maxStatLev)
-                {
-                    saveData.gold -= upgradeCost;
-                    saveData.unitHeartLev[unitStatIndex]++;
-                    if (currentUnit != null)
-                        saveData.heart[unitStatIndex] = currentUnit.heart + saveData.unitHeartLev[unitStatIndex] * currentUnit.heartUpPerLev;
-                }
-                else if (saveData.unitHeartLev[unitStatIndex] > saveData.maxStatLev)
-                {
-                    saveData.unitHeartLev[unitStatIndex] = saveData.maxStatLev;
-                }
+                saveData.unitHeartLev[unitStatIndex] = UpgradeStat(saveData.unitHeartLev[unitStatIndex], ref saveData.heart[unitStatIndex], currentUnit.heart, currentUnit.heartUpPerLev);
                 break;
             case "ap":
-                if (saveData.gold >= upgradeCost && saveData.unitApLev[unitStatIndex] < saveData.maxStatLev)
-                {
-                    saveData.gold -= upgradeCost;
-                    saveData.unitApLev[unitStatIndex]++;
-                    if (currentUnit != null)
-                        saveData.ap[unitStatIndex] = currentUnit.ap + saveData.unitApLev[unitStatIndex] * currentUnit.apUpPerLev;
-                }
-                else if (saveData.unitApLev[unitStatIndex] > saveData.maxStatLev)
-                {
-                    saveData.unitApLev[unitStatIndex] = saveData.maxStatLev;
-                }
+                saveData.unitApLev[unitStatIndex] = UpgradeStat(saveData.unitApLev[unitStatIndex], ref saveData.ap[unitStatIndex], currentUnit.ap, currentUnit.apUpPerLev);
                 break;
             case "dp":
-                if (saveData.gold >= upgradeCost && saveData.unitDpLev[unitStatIndex] < saveData.maxStatLev)
-                {
-                    saveData.gold -= upgradeCost;
-                    saveData.unitDpLev[unitStatIndex]++;
-                    if (currentUnit != null)
-                        saveData.dp[unitStatIndex] = currentUnit.dp + saveData.unitDpLev[unitStatIndex] * currentUnit.dpUpPerLev;
-                }
-                else if (saveData.unitDpLev[unitStatIndex] > saveData.maxStatLev)
-                {
-                    saveData.unitDpLev[unitStatIndex] = saveData.maxStatLev;
-                }
+                saveData.unitDpLev[unitStatIndex] = UpgradeStat(saveData.unitDpLev[unitStatIndex], ref saveData.dp[unitStatIndex], currentUnit.dp, currentUnit.dpUpPerLev);
                 break;
             case "fusionLev":
-                if (saveData.gold >= upgradeCost && saveData.maxFusionLev < saveData.maxStatLev)
-                {
-                    saveData.gold -= upgradeCost;
-                    saveData.maxFusionLev++;
-                }
-                else if (saveData.maxFusionLev > saveData.maxStatLev)
-                {
-                    saveData.maxFusionLev = saveData.maxStatLev;
-                }
+                saveData.maxFusionLev = UpgradeStat(saveData.maxFusionLev);
                 break;
             case "plusMoney":
-                if (saveData.gold >= upgradeCost && saveData.plusMoneySpeedLev < saveData.maxPlusMoneySpeedLev)
-                {
-                    saveData.gold -= upgradeCost;
-                    saveData.plusMoneySpeedLev++;
-                }
-                else if (saveData.plusMoneySpeedLev > saveData.maxPlusMoneySpeedLev)
-                {
-                    saveData.plusMoneySpeedLev = saveData.maxPlusMoneySpeedLev;
-                }
+                saveData.plusMoneySpeedLev = UpgradeStat(saveData.plusMoneySpeedLev);
                 break;
             default:
                 Debug.LogError($"{statName} is Disappeared");
@@ -202,5 +153,36 @@ public class StatUpScript : MonoBehaviour
         }
 
         gameManager.SetSaveData(saveData);
+    }
+
+    private int UpgradeStat(int unitStatLev, ref float unitStat, float currentUnitStat, float currentUnitStatUpPerLev)
+    {
+        if (saveData.gold >= upgradeCost && unitStatLev < saveData.maxStatLev)
+        {
+            saveData.gold -= upgradeCost;
+            unitStatLev++;
+            if (currentUnit != null)
+                unitStat = currentUnitStat + unitStatLev * currentUnitStatUpPerLev;
+        }
+        else if (unitStatLev > saveData.maxStatLev)
+        {
+            unitStatLev = saveData.maxStatLev;
+        }
+
+        return unitStatLev;
+    }
+    private int UpgradeStat(int unitStatLev)
+    {
+        if (saveData.gold >= upgradeCost && unitStatLev < saveData.maxStatLev)
+        {
+            saveData.gold -= upgradeCost;
+            unitStatLev++;
+        }
+        else if (unitStatLev > saveData.maxStatLev)
+        {
+            unitStatLev = saveData.maxStatLev;
+        }
+
+        return unitStatLev;
     }
 }
