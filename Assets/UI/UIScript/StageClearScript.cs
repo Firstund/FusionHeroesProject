@@ -57,6 +57,11 @@ public class StageClearScript : PopUpScaleScript
 
             int a = stageManager.GetCurrentStage();
             stageManager.SetCurrentStage(a + 1);
+
+            if(stageManager.GetCurrentStage() > saveData.maxReachedStage)
+            {
+                saveData.maxReachedStage = stageManager.GetCurrentStage();
+            }
         }
     }
 

@@ -8,6 +8,7 @@ using System;
 public class SaveData
 {
     public int currentStage = 1;
+    public int maxReachedStage = 1;
     public int gold = 100;
     // 업그레이드를 하지 않은 상태에선, 스탯 레벨은 0이다.
     public int[] unitHeartLev = new int[100];

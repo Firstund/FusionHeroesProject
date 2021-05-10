@@ -25,7 +25,6 @@ public class StageManager : MonoBehaviour
         dataManager = DataManager.Instance;
         audi = GetComponent<AudioSource>();
         saveData = gameManager.GetSaveData();
-        
     }
     void Update()
     {

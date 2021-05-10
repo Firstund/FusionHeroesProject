@@ -5,6 +5,8 @@ public class InputCurrentStageScript : MonoBehaviour
 {
     [SerializeField]
     private GameObject stageSetFailedText = null;
+    [SerializeField]
+    private Transform spawnPosition = null;
     private StageManager stageManager = null;
     private InputField inputField = null;
 
@@ -15,9 +17,9 @@ public class InputCurrentStageScript : MonoBehaviour
     }
     public void OnEndEdit()
     {
-        if(int.Parse(inputField.text) > stageManager.GetCurrentStage())
+        if(int.Parse(inputField.text) > GameManager.Instance.GetSaveData().maxReachedStage)
         {
-            Instantiate(stageSetFailedText, transform);
+            Instantiate(stageSetFailedText, spawnPosition);
             return;
         }
 

@@ -78,8 +78,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD604\uC7AC \uC2A4\uD14C\uC774\uC9C0 \uC774\uC804\uC758 \uC2A4\uD14C\uC774\uC9C0\uB85C\uB9CC
-    \uC774\uB3D9\uD560\uC218 \uC788\uC2B5\uB2C8\uB2E4!"
+  m_Text: "\uB3C4\uB2EC\uD588\uB358 \uC2A4\uD14C\uC774\uC9C0\uB85C\uB9CC \uC774\uB3D9\uD560
+    \uC218 \uC788\uC2B5\uB2C8\uB2E4!"
 --- !u!1 &3771758476958319216
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3771758476958319216}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3771758475670564792}
