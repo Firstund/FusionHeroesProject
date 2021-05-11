@@ -4,13 +4,17 @@ using UnityEngine.UI;
 public class StatUpScript : MonoBehaviour
 {
     private GameManager gameManager = null;
+    [SerializeField]
+    private GameObject upgradeFailedText = null;
+    [SerializeField]
+    private Transform textSpawnPosition = null;
 
     [SerializeField]
     private Text[] texts;
     // 0: CurrentStatLev
     // 1: StatUp
     // 2: LevUpCost
-    // 3: CurrentStat
+    // 3: CurrentStat // 필요 없는 경우도 존재함
     [SerializeField]
     private int unitId = 0; // 스탯을 볼 유닛의 ID를 지정
                             // 플레이어 건물은 0, 적 건물은 1로 지정
@@ -177,6 +181,10 @@ public class StatUpScript : MonoBehaviour
         {
             unitStatLev = saveData.maxStatLev;
         }
+        else
+        {
+            Instantiate(upgradeFailedText, textSpawnPosition);
+        }
 
         return unitStatLev;
     }
@@ -191,6 +199,10 @@ public class StatUpScript : MonoBehaviour
         {
             unitStatLev = saveData.maxStatLev;
         }
+        else
+        {
+            Instantiate(upgradeFailedText, textSpawnPosition);
+        }
 
         return unitStatLev;
     }
@@ -204,6 +216,10 @@ public class StatUpScript : MonoBehaviour
         else if (unitStatLev > saveData.maxStatLev)
         {
             unitStatLev = saveData.maxStatLev;
+        }
+        else
+        {
+            Instantiate(upgradeFailedText, textSpawnPosition);
         }
 
         return unitStatLev;

@@ -10,6 +10,12 @@ public class TestSpawnScript : MonoBehaviour
     [SerializeField]
     private GameObject spawnThis = null;
     [SerializeField]
+    private GameObject spawnFailedText = null;
+    [SerializeField]
+    private GameObject haveToWaitMoreTimeText = null;
+    [SerializeField]
+    private Transform textSpawnPosition = null;
+    [SerializeField]
     private Text spawnCostText = null;
     private Transform spawnPosition = null;
     [SerializeField]
@@ -46,6 +52,14 @@ public class TestSpawnScript : MonoBehaviour
             respawnMaxTime = nextTimeToSpawn - Time.time;
             respawnCurTime = 0f;
             canSpawnAgain = false;
+        }
+        else if(!canSpawnAgain)
+        {
+            Instantiate(haveToWaitMoreTimeText, textSpawnPosition);
+        }
+        else
+        {
+            Instantiate(spawnFailedText, textSpawnPosition);
         }
     }
     private void checkTime()

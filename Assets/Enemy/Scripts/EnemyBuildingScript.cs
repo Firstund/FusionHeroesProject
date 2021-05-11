@@ -28,10 +28,12 @@ public class EnemyBuildingScript : MonoBehaviour
 
     [SerializeField]
     private float skeletonDelay = 1f;
+    private float firstSkeletonDelay = 1f;
     [SerializeField]
     private float minusSkeletonDelayPerCurrentStage = 0.02f;
     [SerializeField]
     private float archerDelay = 1f;
+    private float firstArcherDelay = 1f;
     [SerializeField]
     private float minusArcherDelayPerCurrentStage = 0.02f;
 
@@ -61,6 +63,11 @@ public class EnemyBuildingScript : MonoBehaviour
     public Vector2 currentPosition = Vector2.zero;
 
     // Start is called before the first frame update
+    void Awake()
+    {
+        firstSkeletonDelay = skeletonDelay;
+        firstArcherDelay = archerDelay;
+    }
     void Start()
     {
         gameManager = GameManager.Instance;
@@ -85,11 +92,19 @@ public class EnemyBuildingScript : MonoBehaviour
         currentPosition = transform.localPosition;
         audi.volume = gameManager.GetSoundValue();
 
+        InitSpawnDelay();
         HealthBar();
         Breaking();
         Spawn();
-       
+
     }
+
+    private void InitSpawnDelay()
+    {
+        skeletonDelay = firstSkeletonDelay - minusSkeletonDelayPerCurrentStage * gameManager.GetSaveData().currentStage;
+        archerDelay = firstArcherDelay - minusArcherDelayPerCurrentStage * gameManager.GetSaveData().currentStage;
+    }
+
     public void SetMaxHealth()
     {
         slider.maxValue = heart;
@@ -117,7 +132,7 @@ public class EnemyBuildingScript : MonoBehaviour
         if (!skeSpawned)
         {
             skeSpawned = true;
-            yield return new WaitForSeconds(skeletonDelay - minusSkeletonDelayPerCurrentStage * gameManager.GetSaveData().currentStage);
+            yield return new WaitForSeconds(skeletonDelay);
             Instantiate(oSkeleton, spawnPosition);
             skeSpawned = false;
         }
@@ -127,7 +142,7 @@ public class EnemyBuildingScript : MonoBehaviour
         if (!arcSpawned)
         {
             arcSpawned = true;
-            yield return new WaitForSeconds(archerDelay - minusArcherDelayPerCurrentStage * gameManager.GetSaveData().currentStage);
+            yield return new WaitForSeconds(archerDelay);
             Instantiate(oArcher, spawnPosition);
             arcSpawned = false;
         }

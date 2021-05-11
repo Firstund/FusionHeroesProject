@@ -473,16 +473,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  maxLv: 4
   attackDistance: 4
   _heart: 4
-  heartUp: 2
+  heartUp: 1
   _heartUpPerLev: 0.1
   _ap: 2
   apUp: 0.3
   _apUpPerLev: 0.02
   _dp: 2
-  dpUp: 0.6
+  dpUp: 0.2
   _dpUpPerLev: 0.01
   attackDelay: 0.9
   speed: 1.7
@@ -498,23 +497,11 @@ MonoBehaviour:
   unitLev: 1
   levelUpCost: 10
   clickableX: 1
-  mouseDistance: 0
   objectDistanceArray: []
   enemyObjectDistanceArray: []
   shortestDistance: 10
   shortestForwardDistance: 10
   shortestBackwardDistance: 10
-  shortestEnemyDistance: 10
-  currentPosition: {x: 0, y: 0}
-  firstPosition: {x: 0, y: 0}
-  firstPositionSet: 0
-  followingCheck: 0
-  attackedCheck: 0
-  buildingIsShortest: 0
-  mouseCheck: 0
-  followingMouse: 0
-  isDead: 0
-  isAttackOne: 1
   isFollow: 0
 --- !u!1 &6220228852725416648
 GameObject:

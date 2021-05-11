@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class NotificationTextScript : MonoBehaviour
+public class notificationTextScript : MonoBehaviour
 {
     [SerializeField]
     private Text text = null;

@@ -293,8 +293,6 @@ public class UnitScript : MonoBehaviour
             }
             else
             {
-                //anim.Play("TestAnimationAttack");
-
                 for (int a = 0; a < fusionManager.GetEnemyUnitNum() - 1; a++)
                 {
                     if (enemyObjectDistanceArray[a] < maximumD && enemyObjectDistanceArray[a] >= minimumD)//minimum, maxism attackDistance를 이용하여 공격 범위 설정가능

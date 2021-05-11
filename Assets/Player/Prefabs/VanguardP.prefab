@@ -5456,8 +5456,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   attackDistance: 5
-  _heart: 40
-  heartUp: 10
+  _heart: 30
+  heartUp: 5
   _heartUpPerLev: 0.1
   _ap: 0.2
   apUp: 0.1
@@ -5479,23 +5479,11 @@ MonoBehaviour:
   unitLev: 1
   levelUpCost: 30
   clickableX: 1
-  mouseDistance: 0
   objectDistanceArray: []
   enemyObjectDistanceArray: []
   shortestDistance: 10
   shortestForwardDistance: 10
   shortestBackwardDistance: 10
-  shortestEnemyDistance: 10
-  currentPosition: {x: 100, y: 100}
-  firstPosition: {x: 0, y: 0}
-  firstPositionSet: 0
-  followingCheck: 0
-  attackedCheck: 0
-  buildingIsShortest: 0
-  mouseCheck: 0
-  followingMouse: 0
-  isDead: 0
-  isAttackOne: 0
   isFollow: 0
   dependParticle: {fileID: 3318772828709197147}
 --- !u!82 &3318772828785144192
