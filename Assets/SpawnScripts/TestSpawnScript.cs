@@ -17,7 +17,13 @@ public class TestSpawnScript : MonoBehaviour
     private Transform textSpawnPosition = null;
     [SerializeField]
     private Text spawnCostText = null;
-    private Transform spawnPosition = null;
+    [SerializeField]
+    private Transform _spawnPosition = null;
+    public Transform spawnPosition
+    {
+        get{return _spawnPosition;}
+        set{_spawnPosition = value;}
+    }
     [SerializeField]
     private Image respawnImage = null;
     [SerializeField]

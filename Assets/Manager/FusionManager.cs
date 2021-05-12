@@ -10,6 +10,13 @@ public class FusionManager : MonoBehaviour
     [SerializeField]
     private int enemyUnitNum = 0;
 
+    [SerializeField]
+    private Transform _playerUnitSpawnPosition = null;
+    public Transform playerUnitSpawnPosition
+    {
+        get{return _playerUnitSpawnPosition;}
+    }
+
     //private int a = 0;
 
     private UnitScript[] _unitScript = null;

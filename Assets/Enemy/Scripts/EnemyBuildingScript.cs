@@ -47,6 +47,7 @@ public class EnemyBuildingScript : MonoBehaviour
 
     [SerializeField]
     private float heart = 10000f;
+    [SerializeField]
     private float heartUp = 1000f;
     private float dp = 10f;
     private float dpUp = 1f;
@@ -62,7 +63,6 @@ public class EnemyBuildingScript : MonoBehaviour
 
     public Vector2 currentPosition = Vector2.zero;
 
-    // Start is called before the first frame update
     void Awake()
     {
         firstSkeletonDelay = skeletonDelay;
@@ -83,10 +83,10 @@ public class EnemyBuildingScript : MonoBehaviour
         fusionManager.SetEnemyUnitNum(enemyUnitNum);
 
         firstHeart = heart;
+        setStat();
         SetMaxHealth();
     }
 
-    // Update is called once per frame
     void Update()
     {
         currentPosition = transform.localPosition;

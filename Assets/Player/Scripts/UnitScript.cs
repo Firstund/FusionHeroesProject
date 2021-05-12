@@ -211,6 +211,13 @@ public class UnitScript : MonoBehaviour
         HealthBar();
         DestroyCheck();
 
+        // if(transform.position.y != fusionManager.playerUnitSpawnPosition.position.y)
+        // {
+        //     Vector2 targetPosition = Vector2.zero;
+        //     targetPosition.y = fusionManager.playerUnitSpawnPosition.position.y;
+        //     transform.position = targetPosition;
+        // }
+
         if (gameManager.GetCST())
             AttackCheck();
 
