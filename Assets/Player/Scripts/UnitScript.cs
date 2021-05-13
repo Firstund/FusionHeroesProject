@@ -123,6 +123,7 @@ public class UnitScript : MonoBehaviour
 
     [SerializeField]
     protected float clickableX = 1f;
+    private float firstClickableX = 0f;
 
     protected float mouseDistance = 0f;
 
@@ -164,6 +165,7 @@ public class UnitScript : MonoBehaviour
     {
         gameObject.transform.SetParent(GameObject.Find("Units").gameObject.transform, true);
         firstSpeed = speed;
+        firstClickableX = clickableX;
 
         fusionManager = FindObjectOfType<FusionManager>();
 
@@ -745,6 +747,7 @@ public class UnitScript : MonoBehaviour
                 }
                 if (followingCheck)
                 {
+                    clickableX = 20f;
                     currentPosition = targetPosition;
 
                     transform.localPosition = currentPosition;
@@ -753,6 +756,7 @@ public class UnitScript : MonoBehaviour
                 }
                 else
                 {
+                    clickableX = firstClickableX;
                     mouseCheck = false;
                 }
             }
