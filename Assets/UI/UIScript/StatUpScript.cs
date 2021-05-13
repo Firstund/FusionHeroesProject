@@ -119,7 +119,7 @@ public class StatUpScript : MonoBehaviour
     {
         upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * unitStatLev;
         texts[0].text = "현재 레벨: " + unitStatLev;
-        texts[1].text = "필요한 골드: " + upgradeCost;
+        texts[1].text = "필요한     : " + upgradeCost;
 
         if (hasThirdText)
             texts[2].text = thirdText + " " + unitStat;
