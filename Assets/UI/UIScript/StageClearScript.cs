@@ -21,6 +21,7 @@ public class StageClearScript : PopUpScaleScript
     private Text killedEnemyUnitText = null;
     private SaveData saveData;
     private bool gameClear = false;
+    [SerializeField]
     private int plusGold = 1000;
 
 
@@ -54,7 +55,7 @@ public class StageClearScript : PopUpScaleScript
         {
             clearText.text = "Stage" + stageManager.GetCurrentStage() + " Clear!";
 
-            plusGoldText.text = "+" + plusGold * (stageManager.GetCurrentStage() / 10 + 1);
+            plusGoldText.text = "+" + (plusGold + (stageManager.GetCurrentStage() * (plusGold / 2)));
 
         }
         else
@@ -70,7 +71,7 @@ public class StageClearScript : PopUpScaleScript
     {
         if (gameClear)
         {
-            saveData.gold += plusGold * (stageManager.GetCurrentStage() / 10 + 1);
+            saveData.gold += (plusGold + (stageManager.GetCurrentStage() * (plusGold / 2)));
 
             int a = stageManager.GetCurrentStage();
             stageManager.SetCurrentStage(a + 1);

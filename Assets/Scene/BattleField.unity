@@ -8843,6 +8843,7 @@ MonoBehaviour:
   useMoneyText: {fileID: 144685297}
   deathPlayerUnitText: {fileID: 972447995}
   killedEnemyUnitText: {fileID: 1866676939}
+  plusGold: 200
 --- !u!1 &793254176
 GameObject:
   m_ObjectHideFlags: 0
