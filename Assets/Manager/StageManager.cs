@@ -12,6 +12,18 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     private GameObject stageClearPopUp = null;
     [SerializeField]
+    private Transform _textSpawnPosition = null;
+    public Transform textSpawnPosition
+    {
+        get{return _textSpawnPosition;}
+    }
+    [SerializeField]
+    private GameObject _notEnoughMoneyText = null;
+    public GameObject notEnoughMoneyText
+    {
+        get{return _notEnoughMoneyText;}
+    }
+    [SerializeField]
     private StageClearScript stageClearScript = null;
     
     [SerializeField]

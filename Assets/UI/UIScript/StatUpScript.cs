@@ -4,10 +4,7 @@ using UnityEngine.UI;
 public class StatUpScript : MonoBehaviour
 {
     private GameManager gameManager = null;
-    [SerializeField]
-    private GameObject upgradeFailedText = null;
-    [SerializeField]
-    private Transform textSpawnPosition = null;
+    private StageManager stageManager = null;
 
     [SerializeField]
     private Text[] texts;
@@ -183,7 +180,7 @@ public class StatUpScript : MonoBehaviour
         }
         else
         {
-            Instantiate(upgradeFailedText, textSpawnPosition);
+            Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
         }
 
         return unitStatLev;
@@ -201,7 +198,7 @@ public class StatUpScript : MonoBehaviour
         }
         else
         {
-            Instantiate(upgradeFailedText, textSpawnPosition);
+            Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
         }
 
         return unitStatLev;
@@ -219,7 +216,7 @@ public class StatUpScript : MonoBehaviour
         }
         else
         {
-            Instantiate(upgradeFailedText, textSpawnPosition);
+            Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
         }
 
         return unitStatLev;

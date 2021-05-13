@@ -407,13 +407,13 @@ MonoBehaviour:
   attackDistance: 10
   _heart: 7
   heartUp: 2
-  _heartUpPerLev: 0.1
+  _heartUpPerLev: 0.5
   _ap: 3
-  apUp: 0.7
-  _apUpPerLev: 0.02
+  apUp: 1
+  _apUpPerLev: 0.2
   _dp: 0
   dpUp: 0.3
-  _dpUpPerLev: 0.01
+  _dpUpPerLev: 0.1
   attackDelay: 0.9
   speed: 1
   totalAtk: 0
@@ -428,23 +428,11 @@ MonoBehaviour:
   unitLev: 1
   levelUpCost: 10
   clickableX: 1
-  mouseDistance: 0
   objectDistanceArray: []
   enemyObjectDistanceArray: []
   shortestDistance: 10
   shortestForwardDistance: 10
   shortestBackwardDistance: 10
-  shortestEnemyDistance: 10
-  currentPosition: {x: 0, y: 0}
-  firstPosition: {x: 0, y: 0}
-  firstPositionSet: 0
-  followingCheck: 0
-  attackedCheck: 0
-  buildingIsShortest: 0
-  mouseCheck: 0
-  followingMouse: 0
-  isDead: 0
-  isAttackOne: 1
   isFollow: 0
 --- !u!82 &8793330566932159277
 AudioSource:

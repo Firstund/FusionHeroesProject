@@ -558,6 +558,7 @@ public class UnitScript : MonoBehaviour
             }
             else
             {
+                Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
                 ComeBack();
             }
 

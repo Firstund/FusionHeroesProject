@@ -85,7 +85,7 @@ public class BuildingScript : MonoBehaviour
     }
     private void HealthBar()
     {
-        if(mapSliderScript.mapSlider.value != 0)
+        if(mapSliderScript.mapSlider.value >= 0.07f)
         {
             g_slider.SetActive(false);
         }

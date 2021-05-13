@@ -956,8 +956,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0aba15da22085446b553ce2703cbd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeFailedText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
-  textSpawnPosition: {fileID: 971756633}
   texts:
   - {fileID: 106392413}
   - {fileID: 1241338922}
@@ -1398,8 +1396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0aba15da22085446b553ce2703cbd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeFailedText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
-  textSpawnPosition: {fileID: 971756633}
   texts:
   - {fileID: 327607837}
   - {fileID: 349231303}
@@ -1657,8 +1653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0aba15da22085446b553ce2703cbd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeFailedText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
-  textSpawnPosition: {fileID: 971756633}
   texts:
   - {fileID: 1546751899}
   - {fileID: 750032698}
@@ -2562,8 +2556,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0aba15da22085446b553ce2703cbd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeFailedText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
-  textSpawnPosition: {fileID: 971756633}
   texts:
   - {fileID: 828168294}
   - {fileID: 2101300435}
@@ -3527,8 +3519,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0aba15da22085446b553ce2703cbd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeFailedText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
-  textSpawnPosition: {fileID: 971756633}
   texts:
   - {fileID: 1014950272}
   - {fileID: 1979022470}
@@ -4821,6 +4811,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fusionManager: {fileID: 793254178}
   stageClearPopUp: {fileID: 783232953}
+  _textSpawnPosition: {fileID: 971756633}
+  _notEnoughMoneyText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
   stageClearScript: {fileID: 783232957}
   stageText: {fileID: 724269586}
   currentStage: 1
@@ -7466,8 +7458,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0aba15da22085446b553ce2703cbd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeFailedText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
-  textSpawnPosition: {fileID: 971756633}
   texts:
   - {fileID: 1225084156}
   - {fileID: 2039101434}
@@ -7958,8 +7948,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0aba15da22085446b553ce2703cbd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeFailedText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
-  textSpawnPosition: {fileID: 971756633}
   texts:
   - {fileID: 2090669673}
   - {fileID: 469330628}
@@ -8427,7 +8415,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 793254176}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 805.9736, y: 335.92596, z: -32.94922}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8538,8 +8526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0aba15da22085446b553ce2703cbd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeFailedText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
-  textSpawnPosition: {fileID: 971756633}
   texts:
   - {fileID: 1101703972}
   - {fileID: 1387064611}
@@ -9218,9 +9204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnThis: {fileID: 3318772828785144205, guid: f4788e6259156574ca2e105a8d27295e, type: 3}
-  spawnFailedText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
   haveToWaitMoreTimeText: {fileID: 3771758476958319216, guid: 7222020ad4c347444b6c0cfc86ea494e, type: 3}
-  textSpawnPosition: {fileID: 971756633}
   spawnCostText: {fileID: 0}
   _spawnPosition: {fileID: 0}
   respawnImage: {fileID: 1696390463}
@@ -10929,8 +10913,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0aba15da22085446b553ce2703cbd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeFailedText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
-  textSpawnPosition: {fileID: 971756633}
   texts:
   - {fileID: 1218319271}
   - {fileID: 1858774175}
@@ -12950,8 +12932,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0aba15da22085446b553ce2703cbd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeFailedText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
-  textSpawnPosition: {fileID: 971756633}
   texts:
   - {fileID: 782629095}
   - {fileID: 1033467063}
@@ -14122,7 +14102,7 @@ MonoBehaviour:
   strongest:
   - {fileID: 2523426427407952207, guid: 3386c9046dcca0a4bb325970a172a72f, type: 3}
   - {fileID: 3326938116672063030, guid: b2a9ec5f9a7213a43bdb145822e09c5d, type: 3}
-  heart: 100
+  heart: 500
   heartUp: 10
   currentPosition: {x: 0, y: 0}
 --- !u!114 &1164809943
@@ -16380,9 +16360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnThis: {fileID: 4323624078091657384, guid: 4f3b3859af179f040b019efde896d1df, type: 3}
-  spawnFailedText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
   haveToWaitMoreTimeText: {fileID: 3771758476958319216, guid: 7222020ad4c347444b6c0cfc86ea494e, type: 3}
-  textSpawnPosition: {fileID: 971756633}
   spawnCostText: {fileID: 0}
   _spawnPosition: {fileID: 0}
   respawnImage: {fileID: 111048385}
@@ -16667,9 +16645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnThis: {fileID: 6220228852626342961, guid: 554295bff4b2e8b4ea5ec86e28c1e0b4, type: 3}
-  spawnFailedText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
   haveToWaitMoreTimeText: {fileID: 3771758476958319216, guid: 7222020ad4c347444b6c0cfc86ea494e, type: 3}
-  textSpawnPosition: {fileID: 971756633}
   spawnCostText: {fileID: 0}
   _spawnPosition: {fileID: 0}
   respawnImage: {fileID: 640874261}
@@ -18582,8 +18558,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0aba15da22085446b553ce2703cbd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeFailedText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
-  textSpawnPosition: {fileID: 971756633}
   texts:
   - {fileID: 1819119825}
   - {fileID: 1010878681}
@@ -20004,8 +19978,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0aba15da22085446b553ce2703cbd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeFailedText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
-  textSpawnPosition: {fileID: 971756633}
   texts:
   - {fileID: 397958022}
   - {fileID: 855972731}
@@ -23277,7 +23249,7 @@ MonoBehaviour:
   audi: {fileID: 0}
   destroy1: {fileID: 8300000, guid: 2a0f7f0bf2563464aa4bcccc85bc8ae5, type: 3}
   heart: 100
-  heartUp: 2
+  heartUp: 25
   destroy1Played: 0
   destroy2Played: 0
   currentPosition: {x: 0, y: 0}
@@ -24394,8 +24366,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0aba15da22085446b553ce2703cbd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeFailedText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
-  textSpawnPosition: {fileID: 971756633}
   texts:
   - {fileID: 1799677729}
   - {fileID: 880893648}

@@ -5,16 +5,13 @@ using UnityEngine.UI;
 
 public class TestSpawnScript : MonoBehaviour
 {
+    StageManager stageManager = null;
     GameManager gameManager = null;
 
     [SerializeField]
     private GameObject spawnThis = null;
     [SerializeField]
-    private GameObject spawnFailedText = null;
-    [SerializeField]
     private GameObject haveToWaitMoreTimeText = null;
-    [SerializeField]
-    private Transform textSpawnPosition = null;
     [SerializeField]
     private Text spawnCostText = null;
     [SerializeField]
@@ -38,6 +35,7 @@ public class TestSpawnScript : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.Instance;
+        stageManager = FindObjectOfType<StageManager>();
         spawnPosition = gameManager.GetUnitSpawnPosition();
         spawnCostText = transform.GetChild(1).GetComponent<Text>();
     }
@@ -61,11 +59,11 @@ public class TestSpawnScript : MonoBehaviour
         }
         else if(!canSpawnAgain)
         {
-            Instantiate(haveToWaitMoreTimeText, textSpawnPosition);
+            Instantiate(haveToWaitMoreTimeText, stageManager.textSpawnPosition);
         }
         else
         {
-            Instantiate(spawnFailedText, textSpawnPosition);
+            Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
         }
     }
     private void checkTime()

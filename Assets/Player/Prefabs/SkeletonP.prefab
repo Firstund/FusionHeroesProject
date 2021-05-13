@@ -481,8 +481,8 @@ MonoBehaviour:
   apUp: 0.3
   _apUpPerLev: 0.02
   _dp: 2
-  dpUp: 0.2
-  _dpUpPerLev: 0.01
+  dpUp: 0.5
+  _dpUpPerLev: 0.05
   attackDelay: 0.9
   speed: 1.7
   totalAtk: 0
