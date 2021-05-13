@@ -171,6 +171,10 @@ public class UnitScript : MonoBehaviour
         gameManager = GameManager.Instance;
         anim = GetComponent<Animator>();
         audi = GetComponent<AudioSource>();
+
+        firstAp = ap;
+        firstDp = dp;
+        firstHeart = heart;
     }
 
     void Start()
@@ -427,19 +431,11 @@ public class UnitScript : MonoBehaviour
     }
     protected void setStat()
     {
-
-        heart += heartUp * unitLev;
-        heart += heartUpPerLev * gameManager.GetSaveData().unitHeartLev[unitStatIndex];
+        heart = firstHeart + heartUpPerLev * gameManager.GetSaveData().unitHeartLev[unitStatIndex] + heartUp * unitLev;
         
+        dp =  firstDp + dpUpPerLev * gameManager.GetSaveData().unitDpLev[unitStatIndex] + dpUp * unitLev;
 
-        dp += dpUp * unitLev;
-        dp += dpUpPerLev * gameManager.GetSaveData().unitDpLev[unitStatIndex];
-
-        ap += apUp * unitLev;
-        ap += apUpPerLev * gameManager.GetSaveData().unitApLev[unitStatIndex];
-        
-
-
+        ap = firstAp + apUpPerLev * gameManager.GetSaveData().unitApLev[unitStatIndex] + apUp * unitLev;
     }
     protected void FirstEDSet()
     {

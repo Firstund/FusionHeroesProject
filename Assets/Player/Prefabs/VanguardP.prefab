@@ -5458,13 +5458,13 @@ MonoBehaviour:
   attackDistance: 5
   _heart: 30
   heartUp: 5
-  _heartUpPerLev: 0.1
+  _heartUpPerLev: 0.5
   _ap: 0.2
   apUp: 0.1
   _apUpPerLev: 0.02
-  _dp: 3
+  _dp: 6
   dpUp: 0.5
-  _dpUpPerLev: 0.01
+  _dpUpPerLev: 0.1
   attackDelay: 2
   speed: 1
   totalAtk: 0
