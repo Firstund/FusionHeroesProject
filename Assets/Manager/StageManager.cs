@@ -103,14 +103,16 @@ public class StageManager : MonoBehaviour
 
         for (int i = 0; i < fusionManager.unitScript.Length; i++)
         {
-            Debug.Log(fusionManager.unitScript.Length);
             Destroy(fusionManager.unitScript[i].gameObject);
         }
+
+        fusionManager.unitScript = new UnitScript[0];
         fusionManager.SetUnitNum(1);
         for (int i = 0; i < fusionManager.enemyScript.Length; i++)
         {
             Destroy(fusionManager.enemyScript[i].gameObject);
         }
+        fusionManager.enemyScript = new EnemyScript[0];
         fusionManager.SetEnemyUnitNum(1);
 
         dataManager.SaveGameData();

@@ -17,14 +17,19 @@ public class InputCurrentStageScript : MonoBehaviour
     }
     public void OnEndEdit()
     {
-        if(int.Parse(inputField.text) > GameManager.Instance.GetSaveData().maxReachedStage)
+        int inItStageNum = int.Parse(inputField.text);
+
+        if(inItStageNum <= 0)
+            inItStageNum = 1;
+
+        if(inItStageNum > GameManager.Instance.GetSaveData().maxReachedStage)
         {
             Instantiate(stageSetFailedText, spawnPosition);
             return;
         }
 
         stageManager.StageReset();
-        stageManager.SetCurrentStage(int.Parse(inputField.text));
+        stageManager.SetCurrentStage(inItStageNum);
         inputField.text = "";
     }
 }
