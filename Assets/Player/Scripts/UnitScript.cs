@@ -20,10 +20,10 @@ public class UnitScript : MonoBehaviour
                                // 세번째 자리: unitId의 첫번째 자리가 같은 숫자들 중 이 유닛이 생긴 순서
     public int unitStatIndex
     {
-        get{return (unitId / 50 + unitId % 100);}
+        get { return (unitId / 50 + unitId % 100); }
     }
-    [SerializeField]
-    protected int[] fusionUnitId = new int[5]; // 이 유닛과 퓨전할 수 있는 유닛들의 유닛 아이디
+    // [SerializeField]
+    // protected int[] fusionUnitId = new int[5]; // 이 유닛과 퓨전할 수 있는 유닛들의 유닛 아이디 // 퓨전은 잠시 보류 (사유: 게임은 퓨전이 없어도 충분히 복잡하다.)
     [SerializeField]
     protected GameObject[] nextUnit = new GameObject[5]; // 이 유닛이 퓨전한 후 나올수 있는 유닛들,
                                                          // 인덱스 값은 해당 유닛의 아이디의 (세번째 숫자 - 1)로 설정한다.
@@ -32,9 +32,10 @@ public class UnitScript : MonoBehaviour
     protected float attackDistance = 2f;
     [SerializeField]
     protected float _heart = 100f;
-    public float heart{
-        get{return _heart;}
-        set{_heart = value;}
+    public float heart
+    {
+        get { return _heart; }
+        set { _heart = value; }
     }
     protected float firstHeart = 0f;
     [SerializeField]
@@ -43,15 +44,15 @@ public class UnitScript : MonoBehaviour
     protected float _heartUpPerLev = 0.1f;
     public float heartUpPerLev
     {
-        get{return _heartUpPerLev;}
-        set{_heartUpPerLev = value;}
+        get { return _heartUpPerLev; }
+        set { _heartUpPerLev = value; }
     }
     [SerializeField]
     protected float _ap = 2f;
     public float ap
     {
-        get{return _ap;}
-        set{_ap = value;}
+        get { return _ap; }
+        set { _ap = value; }
     }
     protected float firstAp = 0f;
     [SerializeField]
@@ -60,15 +61,15 @@ public class UnitScript : MonoBehaviour
     protected float _apUpPerLev = 0.02f;
     public float apUpPerLev
     {
-        get{return _apUpPerLev;}
-        set{_apUpPerLev = value;}
+        get { return _apUpPerLev; }
+        set { _apUpPerLev = value; }
     }
     [SerializeField]
     protected float _dp = 2f;
     public float dp
     {
-        get{return _dp;}
-        set{_dp = value;}
+        get { return _dp; }
+        set { _dp = value; }
     }
     protected float firstDp = 0f;
     [SerializeField]
@@ -77,8 +78,8 @@ public class UnitScript : MonoBehaviour
     protected float _dpUpPerLev = 0.01f;
     public float dpUpPerLev
     {
-        get{return _dpUpPerLev;}
-        set{_dpUpPerLev = value;}
+        get { return _dpUpPerLev; }
+        set { _dpUpPerLev = value; }
     }
 
     [SerializeField]
@@ -124,7 +125,7 @@ public class UnitScript : MonoBehaviour
     protected float clickableX = 1f;
 
     protected float mouseDistance = 0f;
-    
+
     [SerializeField]
     protected float[] objectDistanceArray;
     [SerializeField]
@@ -192,7 +193,7 @@ public class UnitScript : MonoBehaviour
 
         setStat();
 
-       
+
 
         SetMaxHealth();
     }
@@ -232,10 +233,10 @@ public class UnitScript : MonoBehaviour
     }
     public void SetDistanceArrayIndex()
     {
-        if(objectDistanceArray.Length != fusionManager.GetUnitNum())
+        if (objectDistanceArray.Length != fusionManager.GetUnitNum())
             objectDistanceArray = new float[fusionManager.GetUnitNum()];
-            
-        if(enemyObjectDistanceArray.Length != fusionManager.GetEnemyUnitNum())
+
+        if (enemyObjectDistanceArray.Length != fusionManager.GetEnemyUnitNum())
             enemyObjectDistanceArray = new float[fusionManager.GetEnemyUnitNum()];
     }
     protected void Attack()
@@ -432,8 +433,8 @@ public class UnitScript : MonoBehaviour
     protected void setStat()
     {
         heart = firstHeart + heartUpPerLev * gameManager.GetSaveData().unitHeartLev[unitStatIndex] + heartUp * unitLev;
-        
-        dp =  firstDp + dpUpPerLev * gameManager.GetSaveData().unitDpLev[unitStatIndex] + dpUp * unitLev;
+
+        dp = firstDp + dpUpPerLev * gameManager.GetSaveData().unitDpLev[unitStatIndex] + dpUp * unitLev;
 
         ap = firstAp + apUpPerLev * gameManager.GetSaveData().unitApLev[unitStatIndex] + apUp * unitLev;
     }
@@ -474,7 +475,7 @@ public class UnitScript : MonoBehaviour
     {
         if (a == null)
             a = this;
-        
+
         stageManager.deathPlayerUnitNum++;
         fusionManager.SetCanSetScripts();
         Destroy(a.gameObject);
@@ -552,19 +553,23 @@ public class UnitScript : MonoBehaviour
                 followingCheck = false;
             }
 
-            if (shortestDistance < clickableX && gameManager.GetMoney() >= levelUpCost)
+            if (shortestScript.unitId == unitId && shortestDistance < clickableX && gameManager.GetMoney() >= levelUpCost)
             {
                 LevelUp(shortestScript.unitId, unitLev, shortestScript.unitLev);
             }
-            else
+            else if(shortestScript.unitId == unitId)
             {
                 Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
                 ComeBack();
             }
+            else{
+                ComeBack();
+            }
+            
 
             mouseCheck = false;
         }
-        else if (followingMouse && shortestDistance < clickableX && unitLev == shortestScript.GetUnitLev())
+        else if (followingMouse && shortestDistance < clickableX && unitId == shortestScript.GetUnitID() &&  unitLev == shortestScript.GetUnitLev())
         // 다른 fusion들과 호환이 가능하도록 변경, 각 fusion마다 levelUpCost 값이 다르다.
         {
             if (unitLev >= gameManager.GetSaveData().maxFusionLev)
@@ -587,58 +592,25 @@ public class UnitScript : MonoBehaviour
     public void LevelUp(int id, int aLev, int bLev)
     {
         int money = 0;
-        for (int i = 0; i < 5; i++)
+
+        if (id == unitId && unitLev == shortestScript.GetUnitLev())
         {
-            if (id == fusionUnitId[i] && unitLev == shortestScript.GetUnitLev())
+
+            if (unitLev < gameManager.GetSaveData().maxFusionLev)
             {
-                switch (i)
-                {
-                    case 0: // 그냥 유닛의 레벨만 오름
-                            // levelUpCost 지정
-                        if (unitLev < gameManager.GetSaveData().maxFusionLev)
-                        {
-                            money = gameManager.GetMoney() - levelUpCost;
+                money = gameManager.GetMoney() - levelUpCost;
 
-                            gameManager.SetMoney(money);
+                gameManager.SetMoney(money);
 
-                            int a = shortestScript.GetUnitLev() + 1;
+                int a = shortestScript.GetUnitLev() + 1;
 
-                            shortestScript.SetUnitLev(a);
+                shortestScript.SetUnitLev(a);
 
-                            shortestScript.setStat();
-                            shortestScript.SetMaxHealth();
+                shortestScript.setStat();
+                shortestScript.SetMaxHealth();
 
-                            fusionManager.SetUnitNum(thisUnitNum = fusionManager.GetUnitNum() - 1);
-                            Destroye(this);
-                        }
-                        break;
-                    case 1: // 여기부터 퓨전 // 함수로 빼두자 // 일단 비활성화, 추후에 추가
-                        // UnitScript nextUnitScript;
-
-                        // money = gameManager.GetMoney() - levelUpCost;
-
-                        // int unitNum = fusionManager.GetUnitNum() - 1;
-                        // fusionManager.SetUnitNum(unitNum);
-
-                        // Destroye(shortestScript);
-
-                        // nextUnitScript = Instantiate(nextUnit[i], transform).GetComponent<UnitScript>();
-
-                        // nextUnitScript.SetUnitLev(unitLev);
-
-                        // gameManager.SetMoney(money);
-
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                    default:
-                        ComeBack();
-                        break;
-                }
+                fusionManager.SetUnitNum(thisUnitNum = fusionManager.GetUnitNum() - 1);
+                Destroye(this);
             }
             else
             {

@@ -141,13 +141,6 @@ MonoBehaviour:
   plusMoney: 25
   objectDistanceArray: []
   enemyObjectDistanceArray: []
-  shortestDistance: 100
-  shortestForwardDistance: 10
-  shortestEnemyDistance: 10
-  attackedCheck: 0
-  buildingIsShortest: 0
-  isAttackOne: 1
-  isDead: 0
 --- !u!82 &6430110809060685061
 AudioSource:
   m_ObjectHideFlags: 0
@@ -273,7 +266,7 @@ MonoBehaviour:
   - 0
   - 0
   skillDamage:
-  - 1
+  - 1.5
   - 0
 --- !u!1 &4057436545499769125
 GameObject:
