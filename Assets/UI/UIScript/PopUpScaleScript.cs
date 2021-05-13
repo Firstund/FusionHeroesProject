@@ -53,6 +53,7 @@ public class PopUpScaleScript : MonoBehaviour
     public void OnClickDisable()
     {
         gameManager.SetCSt(true);
+        gameManager.popUpIsSpawned = false;
         onDisable = true;
     }
 }

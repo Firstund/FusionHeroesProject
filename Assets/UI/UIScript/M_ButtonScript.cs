@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class M_ButtonScript : MonoBehaviour
 {
+    private GameManager gameManager = null;
     [SerializeField]
     private Transform buttonPosition = null;
     private Vector2 menuButtonPositon = Vector2.zero;
@@ -24,6 +25,10 @@ public class M_ButtonScript : MonoBehaviour
     void Awake()
     {
         firstSpeed = speed;
+    }
+    void Start()
+    {
+        gameManager = GameManager.Instance;
     }
     void Update()
     {
@@ -68,6 +73,7 @@ public class M_ButtonScript : MonoBehaviour
     }
     public void SpawnPopUp()
     {
+        gameManager.popUpIsSpawned = true;
         spawnPopUp.SetActive(true);
     }
 }

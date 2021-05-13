@@ -179,6 +179,12 @@ public class GameManager : MonoBehaviour
 
     private bool canMoneyPlus = true;
     private bool mapSliderMoving = false;
+    private bool _popUpIsSpawned = false;
+    public bool popUpIsSpawned
+    {
+        get{return _popUpIsSpawned;}
+        set{_popUpIsSpawned = value;}
+    }
 
     void Update()
     {

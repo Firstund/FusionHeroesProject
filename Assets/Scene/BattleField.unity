@@ -14466,9 +14466,9 @@ MonoBehaviour:
   audi: {fileID: 0}
   destroy1: {fileID: 8300000, guid: 2a0f7f0bf2563464aa4bcccc85bc8ae5, type: 3}
   skeletonDelay: 10
-  minusSkeletonDelayPerCurrentStage: 0.05
+  minusSkeletonDelayPerCurrentStage: 0.1
   archerDelay: 10
-  minusArcherDelayPerCurrentStage: 0.05
+  minusArcherDelayPerCurrentStage: 0.1
   oSkeleton: {fileID: 5259757820760417429, guid: 4a18ad45f61b63442a0e495e849204db, type: 3}
   oArcher: {fileID: 7371477088570212303, guid: cf3c16e177ec04342818f92e8b86cf5d, type: 3}
   strongest:

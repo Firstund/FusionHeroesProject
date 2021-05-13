@@ -755,7 +755,7 @@ public class UnitScript : MonoBehaviour
     }
     public void moveByMouse()
     {
-        if (isFollow && mouseCheck && !gameManager.GetMapSliderMoving())
+        if (isFollow && mouseCheck && !gameManager.GetMapSliderMoving() && !gameManager.popUpIsSpawned)
         {
             bool canFollow = (mouseDistance < clickableX);
 

@@ -28,6 +28,7 @@ public class StatUpScript : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
+        stageManager = FindObjectOfType<StageManager>();
 
         foreach (UnitScript item in gameManager.playerUnitPrefabs)
         {

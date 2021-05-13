@@ -479,7 +479,7 @@ MonoBehaviour:
   _heartUpPerLev: 0.1
   _ap: 2
   apUp: 0.3
-  _apUpPerLev: 0.02
+  _apUpPerLev: 0.01
   _dp: 2
   dpUp: 0.5
   _dpUpPerLev: 0.05

@@ -5456,13 +5456,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   attackDistance: 5
-  _heart: 30
-  heartUp: 5
-  _heartUpPerLev: 0.5
+  _heart: 2
+  heartUp: 0.5
+  _heartUpPerLev: 0.1
   _ap: 0.2
   apUp: 0.1
   _apUpPerLev: 0.02
-  _dp: 6
+  _dp: 10
   dpUp: 0.5
   _dpUpPerLev: 0.1
   attackDelay: 2
