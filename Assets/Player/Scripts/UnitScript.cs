@@ -555,7 +555,7 @@ public class UnitScript : MonoBehaviour
                 followingCheck = false;
             }
 
-            if (shortestScript.unitId == unitId && shortestDistance < clickableX && gameManager.GetMoney() >= levelUpCost)
+            if (shortestScript.unitId == unitId && shortestDistance < firstClickableX && gameManager.GetMoney() >= levelUpCost)
             {
                 LevelUp(shortestScript.unitId, unitLev, shortestScript.unitLev);
             }
@@ -571,7 +571,7 @@ public class UnitScript : MonoBehaviour
 
             mouseCheck = false;
         }
-        else if (followingMouse && shortestDistance < clickableX && unitId == shortestScript.GetUnitID() &&  unitLev == shortestScript.GetUnitLev())
+        else if (followingMouse && shortestDistance < firstClickableX && unitId == shortestScript.GetUnitID() &&  unitLev == shortestScript.GetUnitLev())
         // 다른 fusion들과 호환이 가능하도록 변경, 각 fusion마다 levelUpCost 값이 다르다.
         {
             if (unitLev >= gameManager.GetSaveData().maxFusionLev)
@@ -747,7 +747,7 @@ public class UnitScript : MonoBehaviour
                 }
                 if (followingCheck)
                 {
-                    clickableX = 20f;
+                    clickableX = 10f;
                     currentPosition = targetPosition;
 
                     transform.localPosition = currentPosition;

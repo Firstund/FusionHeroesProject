@@ -64,6 +64,7 @@ public class M_ButtonScript : MonoBehaviour
     }
     public void Reset()
     {
+        haveToBack = false;
         currentPosition = new Vector2(-3f, -3f);
         transform.localPosition = currentPosition;
     }
