@@ -595,6 +595,7 @@ public class UnitScript : MonoBehaviour
     }
     protected void ComeBack()
     {
+        clickableX = firstClickableX;
         followingMouse = false;
         transform.localPosition = firstPosition;
     }
