@@ -554,24 +554,31 @@ public class UnitScript : MonoBehaviour
                 fusionManager.SetFollowingUnitNum(0);
                 followingCheck = false;
             }
+            if (shortestScript != null)
+            {
+                if (shortestScript.unitId == unitId && shortestDistance < firstClickableX && gameManager.GetMoney() >= levelUpCost)
+                {
+                    LevelUp(shortestScript.unitId, unitLev, shortestScript.unitLev);
+                }
+                else if (shortestScript.unitId == unitId)
+                {
+                    Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
+                    ComeBack();
+                }
+                else
+                {
+                    ComeBack();
+                }
+            }
+            else
+            {
+                ComeBack();
+            }
 
-            if (shortestScript.unitId == unitId && shortestDistance < firstClickableX && gameManager.GetMoney() >= levelUpCost)
-            {
-                LevelUp(shortestScript.unitId, unitLev, shortestScript.unitLev);
-            }
-            else if(shortestScript.unitId == unitId)
-            {
-                Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
-                ComeBack();
-            }
-            else{
-                ComeBack();
-            }
-            
 
             mouseCheck = false;
         }
-        else if (followingMouse && shortestDistance < firstClickableX && unitId == shortestScript.GetUnitID() &&  unitLev == shortestScript.GetUnitLev())
+        else if (followingMouse && shortestDistance < firstClickableX && unitId == shortestScript.GetUnitID() && unitLev == shortestScript.GetUnitLev())
         // 다른 fusion들과 호환이 가능하도록 변경, 각 fusion마다 levelUpCost 값이 다르다.
         {
             if (unitLev >= gameManager.GetSaveData().maxFusionLev)
