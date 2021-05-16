@@ -30,6 +30,5 @@ public class InputCurrentStageScript : MonoBehaviour
 
         stageManager.StageReset();
         stageManager.SetCurrentStage(inItStageNum);
-        inputField.text = "";
     }
 }

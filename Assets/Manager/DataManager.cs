@@ -7,8 +7,10 @@ using System;
 
 public class DataManager : MonoBehaviour
 {
+  
     private readonly string privateKey = "1237ruewyq7y1u23y7dywufq7y23wueyha78y23uy";
     private GameManager gameManager = null;
+    private StageManager stageManager = null;
     static GameObject _container;
     static GameObject Container
     {
@@ -50,6 +52,12 @@ public class DataManager : MonoBehaviour
             return _saveData;
         }
     }
+
+    // [SerializeField]
+    // private GameObject saveDoneText = null;
+    // [SerializeField]
+    // private Transform textSpawnPosition = null;
+
     void Awake()
     {
         gameManager = GameManager.Instance;
@@ -57,8 +65,7 @@ public class DataManager : MonoBehaviour
     }
     void Start()
     {
-        
-        SaveGameData();
+        stageManager = FindObjectOfType<StageManager>();
     }
     private void Update()
     {
@@ -97,6 +104,12 @@ public class DataManager : MonoBehaviour
 
         Debug.Log("경로: " + filePath);
         Debug.Log("저장된 내용: " + ToJsonData);
+
+        // Debug.Log(saveDoneText);
+        // Debug.Log(textSpawnPosition);
+
+        Instantiate(stageManager.saveDoneText, stageManager.textSpawnPosition);
+        
     }
     private string Encrypt(string data)
     {

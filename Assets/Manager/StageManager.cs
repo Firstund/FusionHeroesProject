@@ -24,6 +24,12 @@ public class StageManager : MonoBehaviour
         get{return _notEnoughMoneyText;}
     }
     [SerializeField]
+    private GameObject _saveDoneText = null;
+    public GameObject saveDoneText
+    {
+        get{return _saveDoneText;}
+    }
+    [SerializeField]
     private StageClearScript stageClearScript = null;
     
     [SerializeField]
