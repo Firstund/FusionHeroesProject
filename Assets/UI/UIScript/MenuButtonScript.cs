@@ -13,26 +13,43 @@ public class MenuButtonScript : MonoBehaviour
         {
             comeBackNum = 0;
 
-            for (int i = 0; i < transform.GetChild(0).GetChildCount(); i++)
+            for (int i = 0; i < transform.GetChild(0).childCount; i++)
             {
                 mBtnScript = transform.GetChild(0).GetChild(i).GetComponent<M_ButtonScript>();
                 mBtnScript.Reset();
             }
 
             MenuSet(false);
-
-
         }
+        if(Input.GetKeyUp(KeyCode.Escape))
+        {
+            ShowMenu();
+        }
+    }
+    public void ShowMenu()
+    {
+        OnClick();
     }
     public void OnClick()
     {
+        for (int i = 0; i < transform.GetChild(0).childCount; i++)
+        {
+            mBtnScript = transform.GetChild(0).GetChild(i).GetComponent<M_ButtonScript>();
+            if(mBtnScript.isMoving)
+            {
+                 Debug.Log(mBtnScript.isMoving);
+                return;
+            }
+            
+        }
+
         if (!menuOpen)
         {
             MenuSet(true);
         }
         else
         {
-            for (int i = 0; i < transform.GetChild(0).GetChildCount(); i++)
+            for (int i = 0; i < transform.GetChild(0).childCount; i++)
             {
                 mBtnScript = transform.GetChild(0).GetChild(i).GetComponent<M_ButtonScript>();
                 mBtnScript.Return();

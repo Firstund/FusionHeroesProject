@@ -12,6 +12,7 @@ public class UnitScript : MonoBehaviour
     protected StageManager stageManager = null;
     [SerializeField]
     protected Slider slider = null;
+    private MapSliderScript mapSliderScript = null;
 
     [SerializeField]
     protected int unitId = 01; // 유닛의 종류
@@ -188,6 +189,8 @@ public class UnitScript : MonoBehaviour
         fusionManager.SetUnitNO(thisUnitNO = fusionManager.GetUnitNO() + 1d);
 
         levelText = Lev.GetComponent<TextMesh>();
+
+        mapSliderScript = FindObjectOfType<MapSliderScript>();
 
         SetDistanceArrayIndex();
 
@@ -575,7 +578,7 @@ public class UnitScript : MonoBehaviour
                 ComeBack();
             }
 
-
+            mapSliderScript.gameObject.SetActive(true);
             mouseCheck = false;
         }
         else if (followingMouse && shortestDistance < firstClickableX && unitId == shortestScript.GetUnitID() && unitLev == shortestScript.GetUnitLev())
@@ -755,6 +758,8 @@ public class UnitScript : MonoBehaviour
                 }
                 if (followingCheck)
                 {
+                    mapSliderScript.gameObject.SetActive(false);
+
                     clickableX = 10f;
                     currentPosition = targetPosition;
 
@@ -764,6 +769,7 @@ public class UnitScript : MonoBehaviour
                 }
                 else
                 {
+                    mapSliderScript.gameObject.SetActive(true);
                     clickableX = firstClickableX;
                     mouseCheck = false;
                 }

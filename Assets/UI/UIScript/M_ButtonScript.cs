@@ -15,6 +15,13 @@ public class M_ButtonScript : MonoBehaviour
     [SerializeField]
     private bool haveToBack = false;
     [SerializeField]
+    private bool _isMoving = false;
+    public bool isMoving
+    {
+        get{return _isMoving;}
+        set{_isMoving = value;}
+    }
+    [SerializeField]
     private float comeBackVector = -2f;
     [SerializeField]
     private Vector2 currentPosition = Vector2.zero;
@@ -35,14 +42,20 @@ public class M_ButtonScript : MonoBehaviour
         currentPosition = transform.localPosition;
 
         if (!haveToBack && (currentPosition - (Vector2)buttonPosition.localPosition).sqrMagnitude >= 0.01f)
-        {         
+        {   
+            isMoving = true;      
             currentPosition = Vector2.Lerp(currentPosition, buttonPosition.localPosition, Time.deltaTime * speed); // 이동
         }
         else
         {
             if(haveToBack && (currentPosition - menuButtonPositon).sqrMagnitude >= 0.01f)
             {
+                isMoving = true;
                 currentPosition = Vector2.Lerp(currentPosition, menuButtonPositon, Time.deltaTime * speed); // 되돌아오기
+            }
+            else
+            {
+                isMoving = false;
             }
         }
 
@@ -65,6 +78,7 @@ public class M_ButtonScript : MonoBehaviour
     public void Reset()
     {
         haveToBack = false;
+        isMoving = false;
         currentPosition = new Vector2(-3f, -3f);
         transform.localPosition = currentPosition;
     }
