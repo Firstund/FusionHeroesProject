@@ -124,5 +124,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 3771758475670564799}
-  destroySpeed: 0.005
-  moveSpeed: 0.25
+  destroySpeed: 0.01
+  moveSpeed: 0.005
