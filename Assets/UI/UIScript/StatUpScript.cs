@@ -105,7 +105,7 @@ public class StatUpScript : MonoBehaviour
                 SetTexts(saveData.maxFusionLev, 0, false, "");
                 break;
             case "plusMoney":
-                SetTexts(saveData.plusMoneySpeedLev, gameManager.minusPluseMoneyTimePerLev, true, "현재 속도:");
+                SetTexts(saveData.plusMoneySpeedLev, gameManager.plusMoneyTime - (saveData.plusMoneySpeedLev * gameManager.minusPluseMoneyTimePerLev), true, "현재 속도:");
                 break;
 
             default:
