@@ -84,8 +84,6 @@ public class UnitScript : MonoBehaviour
     }
 
     [SerializeField]
-    protected float attackDelay = 2f;
-    [SerializeField]
     protected float speed = 0f;
     protected float firstSpeed = 0f;
     [SerializeField]

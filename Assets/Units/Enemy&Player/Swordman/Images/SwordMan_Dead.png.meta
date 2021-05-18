@@ -1,43 +1,25 @@
 fileFormatVersion: 2
-guid: 40447c5263fff0f4e87efde3ea1fb1d5
+guid: 02b31a69ed51488488033096796e227c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1683381767091621482
-    second: L0
+      213: 8672366729993369685
+    second: SwordMan_Dead_0
   - first:
-      213: 4455721457205787586
-    second: L1
+      213: -6769263398398690520
+    second: SwordMan_Dead_1
   - first:
-      213: 2977714310714849222
-    second: L2
+      213: 7109803719596940657
+    second: SwordMan_Dead_2
   - first:
-      213: 1502282039330750875
-    second: L3
+      213: 9110840192449044045
+    second: SwordMan_Dead_3
   - first:
-      213: 6828873082137929950
-    second: L4
+      213: -3768466546222526924
+    second: SwordMan_Dead_4
   - first:
-      213: -4806897541518396990
-    second: L5
-  - first:
-      213: 7568058341140985936
-    second: R0
-  - first:
-      213: 3195085399885393531
-    second: R1
-  - first:
-      213: 5016568385141346232
-    second: R2
-  - first:
-      213: -5439455606377656739
-    second: R3
-  - first:
-      213: 5797752177013280546
-    second: R4
-  - first:
-      213: 6612849086468660547
-    second: R5
+      213: 2684885931929897439
+    second: SwordMan_Dead_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -139,133 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: L0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6917227a33d63a8e0800000000000000
-      internalID: -1683381767091621482
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: L1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2cb36d2de07e5dd30800000000000000
-      internalID: 4455721457205787586
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: L2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c771c49367f25920800000000000000
-      internalID: 2977714310714849222
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: L3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b9142ca2e8d29d410800000000000000
-      internalID: 1502282039330750875
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: L4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ed8ee0523e705ce50800000000000000
-      internalID: 6828873082137929950
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: L5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2c1f81e67287a4db0800000000000000
-      internalID: -4806897541518396990
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: R0
+      name: SwordMan_Dead_0
       rect:
         serializedVersion: 2
         x: 0
@@ -279,14 +135,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 058f327c6f4270960800000000000000
-      internalID: 7568058341140985936
+      spriteID: 558bb2fb79f6a5870800000000000000
+      internalID: 8672366729993369685
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: R1
+      name: SwordMan_Dead_1
       rect:
         serializedVersion: 2
         x: 64
@@ -300,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7ea43f2e39375c20800000000000000
-      internalID: 3195085399885393531
+      spriteID: 82b7463edcebe02a0800000000000000
+      internalID: -6769263398398690520
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: R2
+      name: SwordMan_Dead_2
       rect:
         serializedVersion: 2
         x: 128
@@ -321,14 +177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bf0ecb0e5e6e9540800000000000000
-      internalID: 5016568385141346232
+      spriteID: 17d935940d81ba260800000000000000
+      internalID: 7109803719596940657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: R3
+      name: SwordMan_Dead_3
       rect:
         serializedVersion: 2
         x: 192
@@ -342,14 +198,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5e4a5a02fb2384b0800000000000000
-      internalID: -5439455606377656739
+      spriteID: d4ed64c32e4307e70800000000000000
+      internalID: 9110840192449044045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: R4
+      name: SwordMan_Dead_4
       rect:
         serializedVersion: 2
         x: 256
@@ -363,14 +219,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22fcf9e13e0c57050800000000000000
-      internalID: 5797752177013280546
+      spriteID: 43e867474a7b3bbc0800000000000000
+      internalID: -3768466546222526924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: R5
+      name: SwordMan_Dead_5
       rect:
         serializedVersion: 2
         x: 320
@@ -384,8 +240,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34d1b30353f85cb50800000000000000
-      internalID: 6612849086468660547
+      spriteID: fd9002ba781a24520800000000000000
+      internalID: 2684885931929897439
       vertices: []
       indices: 
       edges: []
@@ -393,7 +249,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 4db52a85c0255ce4c8fd5b87e07f7d4a
+    spriteID: 93275a83db309d64b897ef8ba759e66f
     internalID: 0
     vertices: []
     indices: 
