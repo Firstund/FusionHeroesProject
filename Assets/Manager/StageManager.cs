@@ -70,6 +70,9 @@ public class StageManager : MonoBehaviour
         dataManager = DataManager.Instance;
         audi = GetComponent<AudioSource>();
         saveData = gameManager.GetSaveData();
+
+        saveData.maxStatLev = 5 + 5 * (saveData.maxReachedStage / 10);
+
     }
     void Update()
     {   
@@ -105,7 +108,7 @@ public class StageManager : MonoBehaviour
         deathPlayerUnitNum = 0;
         killedEnemyUnitNum = 0;
 
-        saveData.maxStatLev = 10 + 10 * (currentStage / 10);
+        saveData.maxStatLev = 5 + 5 * (saveData.maxReachedStage / 10);
 
         for (int i = 0; i < fusionManager.unitScript.Length; i++)
         {
