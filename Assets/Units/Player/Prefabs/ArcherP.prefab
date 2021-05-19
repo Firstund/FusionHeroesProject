@@ -415,6 +415,7 @@ MonoBehaviour:
   dpUp: 0.3
   _dpUpPerLev: 0.02
   speed: 1
+  attackDelay: 1
   totalAtk: 0
   Lev: {fileID: 234471825981898669}
   costText: {fileID: 2379171402371545669}

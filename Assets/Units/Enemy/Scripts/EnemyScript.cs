@@ -41,7 +41,7 @@ public class EnemyScript : MonoBehaviour
     protected float firstHeart = 0f;
     [SerializeField]
     protected float heartUp = 1000f;
-  
+
     [SerializeField]
     protected float ap = 2f;
     protected float firstAp = 0f;
@@ -80,6 +80,7 @@ public class EnemyScript : MonoBehaviour
     protected float shortestEnemyDistance = 10f;
 
     protected bool attackedCheck = false;
+    protected bool attackAnimIsPlaying = false;
     protected bool buildingIsShortest = false;//building이 shortest일 때 true. unit이 shortest일 때 false
     protected bool isAttackOne = true;
     protected bool isDead = false;
@@ -135,10 +136,10 @@ public class EnemyScript : MonoBehaviour
     }
     public void SetDistanceArrayIndex()
     {
-        if(objectDistanceArray.Length != fusionManager.GetUnitNum())
+        if (objectDistanceArray.Length != fusionManager.GetUnitNum())
             objectDistanceArray = new float[fusionManager.GetUnitNum()];
-            
-        if(enemyObjectDistanceArray.Length != fusionManager.GetEnemyUnitNum())
+
+        if (enemyObjectDistanceArray.Length != fusionManager.GetEnemyUnitNum())
             enemyObjectDistanceArray = new float[fusionManager.GetEnemyUnitNum()];
     }
     public void SetMaxHealth()
@@ -187,7 +188,7 @@ public class EnemyScript : MonoBehaviour
     protected void setStat()
     {
         heart = firstHeart + heartUp * stageManager.GetCurrentStage(); // heartUp * 라운드 수
-        ap  = firstAp + apUp * stageManager.GetCurrentStage();
+        ap = firstAp + apUp * stageManager.GetCurrentStage();
         dp = firstDp + dpUp * stageManager.GetCurrentStage();
     }
     public float GetShortestDistance()
@@ -220,7 +221,7 @@ public class EnemyScript : MonoBehaviour
             }
 
 
-            if (!attackedCheck && !isDead)
+            if (!attackAnimIsPlaying && !isDead)
                 anim.Play("WalkL");
 
             if (shortestScript != null)
@@ -260,6 +261,7 @@ public class EnemyScript : MonoBehaviour
                 if (!attackedCheck)
                 {
                     attackedCheck = true;
+                    attackAnimIsPlaying = true;
 
                     if (!isDead)
                     {
@@ -269,6 +271,7 @@ public class EnemyScript : MonoBehaviour
                         {
                             anim.Play("WalkAttackL");
                         }
+                        Invoke("ResetAttackedCheck", attackDelay);
                     }
 
                 }
@@ -277,11 +280,14 @@ public class EnemyScript : MonoBehaviour
                 if (!attackedCheck)
                 {
                     attackedCheck = true;
+                    attackAnimIsPlaying = true;
 
                     if (!isDead)
                         anim.Play("AttackL");
+                    Invoke("ResetAttackedCheck", attackDelay);
                     //공격 애니메이션 출력
                 }
+            
         }
     }
     public void GetDamage()
@@ -359,6 +365,10 @@ public class EnemyScript : MonoBehaviour
     public void ResetAttackedCheck()
     {
         attackedCheck = false;
+    }
+    public void ResetAttackAnimIsPlaying()
+    {
+        attackAnimIsPlaying = false;
     }
     public void DoAttackSkill(bool attackOne, float ap, float attackDelay, float minimumD, float maximumD)
     {
@@ -545,7 +555,7 @@ public class EnemyScript : MonoBehaviour
         gameManager.hadMoney = hadMoney;
 
         stageManager.killedEnemyUnitNum++;
-        
+
         fusionManager.SetCanSetScripts();
         Destroy(gameObject);
     }

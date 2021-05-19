@@ -6,7 +6,7 @@ public class U_Vanguard : UnitScript
     private ParticleSystem dependParticle = null;
     public void SetDP()
     {
-        if (attackedCheck)
+        if (canAttack)
         {
             PlusDp();
         }

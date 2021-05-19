@@ -109,8 +109,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.9230769
-    functionName: ResetAttackedCheck
+  - time: 1
+    functionName: ResetAttackAnimIsPlaying
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

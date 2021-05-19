@@ -85,6 +85,8 @@ public class UnitScript : MonoBehaviour
 
     [SerializeField]
     protected float speed = 0f;
+    [SerializeField]
+    protected float attackDelay = 1f;
     protected float firstSpeed = 0f;
     [SerializeField]
     protected float totalAtk = 0f;
@@ -152,7 +154,8 @@ public class UnitScript : MonoBehaviour
     //
     protected bool firstPositionSet = false;
     protected bool followingCheck = false;
-    protected bool attackedCheck = false;
+    protected bool canAttack = false;
+    protected bool attackAnimIsPlaying = false;
     protected bool buildingIsShortest = false;
     protected bool mouseCheck = false;
     protected bool followingMouse = false;
@@ -245,9 +248,10 @@ public class UnitScript : MonoBehaviour
     protected void Attack()
     {
         //단일공격
-        if (!attackedCheck && !onlyOneFollowUnitNum)
+        if (!canAttack && !onlyOneFollowUnitNum)
         {
-            attackedCheck = true;
+            canAttack = true;
+            attackAnimIsPlaying = true;
 
             if (!isDead)
             {
@@ -255,9 +259,10 @@ public class UnitScript : MonoBehaviour
                     anim.Play("AttackR");
                 else
                     anim.Play("WalkAttackR");
+                Invoke("ResetAttackedCheck", attackDelay);
+
             }
             //공격 애니메이션 출력
-
         }
     }
     public void GetDamage()
@@ -334,7 +339,11 @@ public class UnitScript : MonoBehaviour
     }
     public void ResetAttackedCheck()
     {
-        attackedCheck = false;
+        canAttack = false;
+    }
+    public void ResetAttackAnimIsPlaying()
+    {
+        attackAnimIsPlaying = false;
     }
     public void SetMaxHealth()
     {
@@ -521,7 +530,7 @@ public class UnitScript : MonoBehaviour
             speed = 0f;
         }
 
-        if (!attackedCheck && !isDead)
+        if (!attackAnimIsPlaying && !isDead)
         {
             if (speed != 0f)
                 anim.Play("WalkR");
@@ -660,7 +669,7 @@ public class UnitScript : MonoBehaviour
         }
         else
         {
-            attackedCheck = false;
+            canAttack = false;
             shortestEnemyDistance = 100f;
             shortestEnemyScript = null;
         }
