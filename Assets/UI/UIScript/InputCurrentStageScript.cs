@@ -8,11 +8,13 @@ public class InputCurrentStageScript : MonoBehaviour
     [SerializeField]
     private Transform spawnPosition = null;
     private StageManager stageManager = null;
+    private DataManager dataManager = null;
     private InputField inputField = null;
 
     public void Start()
     {
         stageManager = FindObjectOfType<StageManager>();
+        dataManager = FindObjectOfType<DataManager>();
         inputField = GetComponent<InputField>();
     }
     public void OnEndEdit()
@@ -28,6 +30,7 @@ public class InputCurrentStageScript : MonoBehaviour
             return;
         }
 
+        dataManager.SaveGameData();
         stageManager.StageReset();
         stageManager.SetCurrentStage(inItStageNum);
     }

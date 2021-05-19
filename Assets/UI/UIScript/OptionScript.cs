@@ -14,7 +14,7 @@ public class OptionScript : PopUpScaleScript // PopUpScaleScript는 해당 창�
     private void Update()
     {
         gameManager.SetSoundValue(soundSlider.value);
-        SetScale();
+        PlusUpdate();
     }
     
 }

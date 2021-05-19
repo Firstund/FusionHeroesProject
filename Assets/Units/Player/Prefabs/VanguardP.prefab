@@ -5461,16 +5461,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   attackDistance: 5
-  _heart: 2
-  heartUp: 0.5
+  _heart: 1
+  heartUp: 0.3
   _heartUpPerLev: 0.1
   _ap: 0.2
   apUp: 0.1
-  _apUpPerLev: 0.02
+  _apUpPerLev: 0.01
   _dp: 10
   dpUp: 5
   _dpUpPerLev: 0.5
   speed: 1
+  attackDelay: 1
   totalAtk: 0
   Lev: {fileID: 3318772828615442364}
   costText: {fileID: 3318772827898183319}

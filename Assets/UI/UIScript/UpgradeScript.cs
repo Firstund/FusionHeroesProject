@@ -11,6 +11,6 @@ public class UpgradeScript : PopUpScaleScript
 
     void Update()
     {
-        SetScale();
+        PlusUpdate();
     }
 }

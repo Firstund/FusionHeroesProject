@@ -22,10 +22,14 @@ public class PopUpScaleScript : MonoBehaviour
         maxScale.y = transform.localScale.y;
         transform.localScale = Vector2.zero;
     }
+    protected void PlusUpdate()
+    {
+        SetScale();
+    }
     protected void SetScale()
     {
         currentScale = transform.localScale;
-        if (currentScale.x < maxScale.x - disableVector  && currentScale.y < maxScale.y - disableVector && !onDisable)
+        if (currentScale.x < maxScale.x - disableVector && currentScale.y < maxScale.y - disableVector && !onDisable)
         {
             currentScale = new Vector2(Mathf.Lerp(currentScale.x, maxScale.x, Time.deltaTime * scaleSpeed), Mathf.Lerp(currentScale.y, maxScale.y, Time.deltaTime * scaleSpeed));
         }
@@ -37,7 +41,7 @@ public class PopUpScaleScript : MonoBehaviour
         {
             gameManager.SetCSt(false);
         }
-        else if(onDisable)
+        else if (onDisable)
         {
             OnDisable();
             gameObject.SetActive(false);

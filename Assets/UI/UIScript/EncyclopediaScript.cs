@@ -11,6 +11,6 @@ public class EncyclopediaScript : PopUpScaleScript
 
     void Update()
     {
-        SetScale();
+        PlusUpdate();
     }
 }

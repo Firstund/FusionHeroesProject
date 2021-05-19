@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class SpawnDespawnScript : MonoBehaviour
 {
-    
+
     [SerializeField]
     protected GameObject spawnIt = null;
     [SerializeField]
     protected GameObject deSpawnIt = null;
+    [SerializeField]
+    protected bool isPasteButton;
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape) && isPasteButton)
+        {
+            OnClick();
+        }
+    }
     public void OnClick()
     {
         deSpawnIt.SetActive(false);

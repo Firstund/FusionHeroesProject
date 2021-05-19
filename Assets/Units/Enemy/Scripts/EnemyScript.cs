@@ -108,11 +108,13 @@ public class EnemyScript : MonoBehaviour
 
         fusionManager.SetEnemyUnitNO(thisUnitNO = fusionManager.GetEnemyUnitNO() + 1d);
 
-        setStat();
-        SetDistanceArrayIndex();
         firstHeart = heart;
         firstAp = ap;
         firstDp = dp;
+        
+        setStat();
+        SetDistanceArrayIndex();
+        
 
         SetMaxHealth();
     }

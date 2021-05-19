@@ -467,7 +467,7 @@ MonoBehaviour:
   maximumD: 3
   heart: 4
   heartUp: 1
-  ap: 3.5
+  ap: 2.5
   apUp: 0.5
   dp: 0
   dpUp: 0.25

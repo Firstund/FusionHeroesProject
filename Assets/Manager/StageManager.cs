@@ -124,8 +124,6 @@ public class StageManager : MonoBehaviour
         fusionManager.enemyScript = new EnemyScript[0];
         fusionManager.SetEnemyUnitNum(1);
 
-        dataManager.SaveGameData();
-
     }
     public void SetCurrentStage(int a)
     {

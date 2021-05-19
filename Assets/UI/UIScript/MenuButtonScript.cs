@@ -21,10 +21,9 @@ public class MenuButtonScript : MonoBehaviour
 
             MenuSet(false);
         }
-        if(Input.GetKeyUp(KeyCode.Escape))
-        {
-            ShowMenu();
-        }
+        // if(Input.GetKeyUp(KeyCode.Escape))
+        // {
+        // }
     }
     public void ShowMenu()
     {
@@ -37,7 +36,6 @@ public class MenuButtonScript : MonoBehaviour
             mBtnScript = transform.GetChild(0).GetChild(i).GetComponent<M_ButtonScript>();
             if(mBtnScript.isMoving)
             {
-                 Debug.Log(mBtnScript.isMoving);
                 return;
             }
             

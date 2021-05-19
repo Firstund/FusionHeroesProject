@@ -843,6 +843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 435134327}
   deSpawnIt: {fileID: 531994103}
+  isPasteButton: 1
 --- !u!114 &65628232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2627,6 +2628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 531994103}
   deSpawnIt: {fileID: 435134327}
+  isPasteButton: 0
 --- !u!114 &154924476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2810,6 +2812,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 435134327}
   deSpawnIt: {fileID: 40717813}
+  isPasteButton: 1
 --- !u!114 &160913905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5059,6 +5062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 1336570112}
   deSpawnIt: {fileID: 435134327}
+  isPasteButton: 0
 --- !u!1 &338790855
 GameObject:
   m_ObjectHideFlags: 0
@@ -6056,6 +6060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 1913497022}
   deSpawnIt: {fileID: 435134327}
+  isPasteButton: 0
 --- !u!114 &403922739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6969,6 +6974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 40717813}
   deSpawnIt: {fileID: 435134327}
+  isPasteButton: 0
 --- !u!114 &456826631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7553,6 +7559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 1105315993}
   deSpawnIt: {fileID: 825612032}
+  isPasteButton: 1
 --- !u!1 &499559510
 GameObject:
   m_ObjectHideFlags: 0
@@ -8653,6 +8660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 835399610}
   deSpawnIt: {fileID: 416672889}
+  isPasteButton: 0
 --- !u!114 &568269990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8982,7 +8990,7 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 2
   m_Spacing: 0
-  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
@@ -9143,6 +9151,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588037667}
   m_CullTransparentMesh: 0
+--- !u!1 &591873337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 591873338}
+  - component: {fileID: 591873340}
+  - component: {fileID: 591873339}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &591873338
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591873337}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 800577026}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &591873339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591873337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 11
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\uC2A4\uD14C\uC774\uC9C0 \uB9AC\uC14B"
+--- !u!222 &591873340
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591873337}
+  m_CullTransparentMesh: 1
 --- !u!1 &596979250
 GameObject:
   m_ObjectHideFlags: 0
@@ -10114,6 +10201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 1105315993}
   deSpawnIt: {fileID: 309409522}
+  isPasteButton: 1
 --- !u!114 &704365479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11820,7 +11908,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 227, y: -45}
+  m_AnchoredPosition: {x: 176, y: -45}
   m_SizeDelta: {x: 80, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &793844091
@@ -11929,6 +12017,139 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f039210f22b18241b0b6e2ddf81183d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &800577025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 800577026}
+  - component: {fileID: 800577029}
+  - component: {fileID: 800577028}
+  - component: {fileID: 800577027}
+  m_Layer: 5
+  m_Name: ResetButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &800577026
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800577025}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 591873338}
+  m_Father: {fileID: 1161225130}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 278, y: -45}
+  m_SizeDelta: {x: 80, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &800577027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800577025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 800577028}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 455854534}
+        m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
+        m_MethodName: StageReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &800577028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800577025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &800577029
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800577025}
+  m_CullTransparentMesh: 1
 --- !u!1 &825612032
 GameObject:
   m_ObjectHideFlags: 0
@@ -12326,6 +12547,7 @@ GameObject:
   - component: {fileID: 838130962}
   - component: {fileID: 838130961}
   - component: {fileID: 838130960}
+  - component: {fileID: 838130963}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -12397,9 +12619,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 154817233}
-        m_TargetAssemblyTypeName: PopUpScaleScript, Assembly-CSharp
-        m_MethodName: OnClickDisable
+      - m_Target: {fileID: 838130963}
+        m_TargetAssemblyTypeName: ExitButtonScript, Assembly-CSharp
+        m_MethodName: OnClcik
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12447,6 +12669,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838130958}
   m_CullTransparentMesh: 0
+--- !u!114 &838130963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838130958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef132faea53857c4f87bfe4ac551f126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popUpScaleScript: {fileID: 154817233}
 --- !u!1 &844424554
 GameObject:
   m_ObjectHideFlags: 0
@@ -15221,6 +15456,7 @@ GameObject:
   - component: {fileID: 1033999584}
   - component: {fileID: 1033999583}
   - component: {fileID: 1033999582}
+  - component: {fileID: 1033999585}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -15291,9 +15527,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 844424558}
-        m_TargetAssemblyTypeName: PopUpScaleScript, Assembly-CSharp
-        m_MethodName: OnClickDisable
+      - m_Target: {fileID: 1033999585}
+        m_TargetAssemblyTypeName: ExitButtonScript, Assembly-CSharp
+        m_MethodName: OnClcik
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15341,6 +15577,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1033999580}
   m_CullTransparentMesh: 0
+--- !u!114 &1033999585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033999580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef132faea53857c4f87bfe4ac551f126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popUpScaleScript: {fileID: 844424558}
 --- !u!1 &1034251873
 GameObject:
   m_ObjectHideFlags: 0
@@ -15395,6 +15644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 1085909158}
   deSpawnIt: {fileID: 416672889}
+  isPasteButton: 0
 --- !u!114 &1034251876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16690,6 +16940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 622007596}
   deSpawnIt: {fileID: 1105315993}
+  isPasteButton: 0
 --- !u!1 &1076641385
 GameObject:
   m_ObjectHideFlags: 0
@@ -18273,6 +18524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 309409522}
   deSpawnIt: {fileID: 1105315993}
+  isPasteButton: 0
 --- !u!1 &1142641509
 GameObject:
   m_ObjectHideFlags: 0
@@ -18465,6 +18717,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 793844090}
+  - {fileID: 800577026}
   m_Father: {fileID: 580689403}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18765,7 +19018,7 @@ MonoBehaviour:
   - {fileID: 2523426427407952207, guid: 3386c9046dcca0a4bb325970a172a72f, type: 3}
   - {fileID: 3326938116672063030, guid: b2a9ec5f9a7213a43bdb145822e09c5d, type: 3}
   heart: 500
-  heartUp: 10
+  heartUp: 50
   currentPosition: {x: 0, y: 0}
 --- !u!114 &1164809943
 MonoBehaviour:
@@ -21998,6 +22251,7 @@ GameObject:
   - component: {fileID: 1366925651}
   - component: {fileID: 1366925650}
   - component: {fileID: 1366925649}
+  - component: {fileID: 1366925652}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -22068,9 +22322,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 180455573}
-        m_TargetAssemblyTypeName: OptionScript, Assembly-CSharp
-        m_MethodName: OnClickDisable
+      - m_Target: {fileID: 1366925652}
+        m_TargetAssemblyTypeName: ExitButtonScript, Assembly-CSharp
+        m_MethodName: OnClcik
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22118,6 +22372,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366925647}
   m_CullTransparentMesh: 0
+--- !u!114 &1366925652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366925647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef132faea53857c4f87bfe4ac551f126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popUpScaleScript: {fileID: 180455573}
 --- !u!1 &1372566637
 GameObject:
   m_ObjectHideFlags: 0
@@ -22969,6 +23236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 435134327}
   deSpawnIt: {fileID: 1336570112}
+  isPasteButton: 1
 --- !u!114 &1417785509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24913,6 +25181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 825612032}
   deSpawnIt: {fileID: 1105315993}
+  isPasteButton: 0
 --- !u!1 &1591967183
 GameObject:
   m_ObjectHideFlags: 0
@@ -27318,6 +27587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 1105315993}
   deSpawnIt: {fileID: 622007596}
+  isPasteButton: 1
 --- !u!114 &1668434107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27915,6 +28185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 435134327}
   deSpawnIt: {fileID: 1913497022}
+  isPasteButton: 1
 --- !u!114 &1686084133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30537,6 +30808,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 416672889}
   deSpawnIt: {fileID: 1085909158}
+  isPasteButton: 1
 --- !u!114 &1886868897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32158,6 +32430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnIt: {fileID: 416672889}
   deSpawnIt: {fileID: 835399610}
+  isPasteButton: 1
 --- !u!114 &2006303189
 MonoBehaviour:
   m_ObjectHideFlags: 0
