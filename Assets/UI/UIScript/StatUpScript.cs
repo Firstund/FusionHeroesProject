@@ -105,7 +105,7 @@ public class StatUpScript : MonoBehaviour
                 SetTexts(saveData.maxFusionLev, 0, false, "");
                 break;
             case "plusMoney":
-                SetTexts(saveData.plusMoneySpeedLev, gameManager.plusMoneyTime - (saveData.plusMoneySpeedLev * gameManager.minusPluseMoneyTimePerLev), true, "현재 속도:");
+                SetTexts(saveData.plusMoneySpeedLev, gameManager.plusMoneyTime - (saveData.plusMoneySpeedLev * gameManager.minusPluseMoneyTimePerLev), true, "현재 시간:");
                 break;
 
             default:
@@ -120,7 +120,7 @@ public class StatUpScript : MonoBehaviour
     {
         upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * unitStatLev;
         texts[0].text = "현재 레벨: " + unitStatLev;
-        texts[1].text = "필요한     : " + upgradeCost;
+        texts[1].text = "필요한      : " + upgradeCost;
 
         if (hasThirdText)
             texts[2].text = thirdText + " " + unitStat;

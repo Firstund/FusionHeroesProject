@@ -33319,7 +33319,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB3C8\uBAA8\uC73C\uAE30\n\uC18D\uB3C4 \uC99D\uAC00"
+  m_Text: "\uB3C8\uBAA8\uC73C\uAE30\n\uC2DC\uAC04 \uAC10\uC18C"
 --- !u!222 &2029677476
 CanvasRenderer:
   m_ObjectHideFlags: 0
