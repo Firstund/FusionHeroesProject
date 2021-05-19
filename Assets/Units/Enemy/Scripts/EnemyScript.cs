@@ -38,19 +38,22 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField]
     protected float heart = 100f;
-    [SerializeField]
     protected float firstHeart = 0f;
     [SerializeField]
     protected float heartUp = 1000f;
+  
     [SerializeField]
     protected float ap = 2f;
+    protected float firstAp = 0f;
     [SerializeField]
     protected float apUp = 1f;
 
     [SerializeField]
     protected float dp = 2f;
+    protected float firstDp = 0f;
     [SerializeField]
     protected float dpUp = 0.25f;
+
     [SerializeField]
     protected float attackDelay = 2f;
     [SerializeField]
@@ -107,6 +110,8 @@ public class EnemyScript : MonoBehaviour
         setStat();
         SetDistanceArrayIndex();
         firstHeart = heart;
+        firstAp = ap;
+        firstDp = dp;
 
         SetMaxHealth();
     }
@@ -181,9 +186,9 @@ public class EnemyScript : MonoBehaviour
     }
     protected void setStat()
     {
-        heart += heartUp; // heartUp * 라운드 수
-        ap += apUp;
-        dp += dpUp;
+        heart = firstHeart + heartUp * stageManager.GetCurrentStage(); // heartUp * 라운드 수
+        ap  = firstAp + apUp * stageManager.GetCurrentStage();
+        dp = firstDp + dpUp * stageManager.GetCurrentStage();
     }
     public float GetShortestDistance()
     {

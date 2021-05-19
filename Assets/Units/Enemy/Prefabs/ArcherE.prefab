@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 0
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -245,6 +246,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &2171444035808826114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,21 +468,15 @@ MonoBehaviour:
   heart: 10
   heartUp: 1
   ap: 3
-  apUp: 0.5
+  apUp: 0.6
   dp: 0
-  dpUp: 0.25
+  dpUp: 0.1
   attackDelay: 0.9
   speed: 1
   totalAtk: 0
   plusMoney: 15
   objectDistanceArray: []
   enemyObjectDistanceArray: []
-  shortestDistance: 10
-  shortestForwardDistance: 10
-  shortestEnemyDistance: 10
-  attackedCheck: 0
-  buildingIsShortest: 0
-  isDead: 0
 --- !u!82 &412918273576655672
 AudioSource:
   m_ObjectHideFlags: 0
