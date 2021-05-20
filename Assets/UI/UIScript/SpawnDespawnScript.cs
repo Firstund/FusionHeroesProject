@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpawnDespawnScript : MonoBehaviour
 {
-
     [SerializeField]
     protected GameObject spawnIt = null;
     [SerializeField]
@@ -13,9 +12,13 @@ public class SpawnDespawnScript : MonoBehaviour
     protected bool isPasteButton;
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape) && isPasteButton)
+        if (isPasteButton)
         {
-            OnClick();
+
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                OnClick();
+            }
         }
     }
     public void OnClick()

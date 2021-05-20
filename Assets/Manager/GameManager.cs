@@ -110,7 +110,17 @@ public class GameManager : MonoBehaviour
     private bool canTimeStop = true;
     [SerializeField]
     private bool canTimeDouble = true;
+    [SerializeField]
+    private bool _canGetOutPopUpSpawn = true;
+    public bool canGetOutPopUpSpawn
+    {
+        get{return _canGetOutPopUpSpawn;}
+        set{_canGetOutPopUpSpawn = value;}
+    }
     private static GameManager instance;
+        [SerializeField]
+    private GameObject gameOut = null;
+    private bool gameOutSpawned = false;
     [SerializeField]
     private UnitScript[] _playerUnitPrefabs;
     public UnitScript[] playerUnitPrefabs
@@ -191,9 +201,27 @@ public class GameManager : MonoBehaviour
         if (canMoneyPlus)
             StartCoroutine(PlusMoney());
         TimeSet();
+        CheckSpawnGetOut();
 
         goldText.text = saveData.gold + "";
     }
+
+    private void CheckSpawnGetOut()
+    {
+        if (canGetOutPopUpSpawn)
+        {
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                if (!gameOutSpawned)
+                    gameOut.SetActive(true);
+                else
+                    gameOut.SetActive(false);
+
+                gameOutSpawned = !gameOutSpawned;
+            }
+        }
+    }
+
     private IEnumerator PlusMoney()
     {
         canMoneyPlus = false;

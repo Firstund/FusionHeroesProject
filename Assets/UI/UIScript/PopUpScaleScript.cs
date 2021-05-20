@@ -31,14 +31,17 @@ public class PopUpScaleScript : MonoBehaviour
         currentScale = transform.localScale;
         if (currentScale.x < maxScale.x - disableVector && currentScale.y < maxScale.y - disableVector && !onDisable)
         {
+            gameManager.canGetOutPopUpSpawn = false;
             currentScale = new Vector2(Mathf.Lerp(currentScale.x, maxScale.x, Time.deltaTime * scaleSpeed), Mathf.Lerp(currentScale.y, maxScale.y, Time.deltaTime * scaleSpeed));
         }
         else if (currentScale.x > disableVector && currentScale.y > disableVector && onDisable)
         {
+            gameManager.canGetOutPopUpSpawn = true;
             currentScale = new Vector2(Mathf.Lerp(currentScale.x, 0f, Time.deltaTime * scaleSpeed), Mathf.Lerp(currentScale.y, 0f, Time.deltaTime * scaleSpeed));
         }
         else if (!onDisable)
         {
+            gameManager.canGetOutPopUpSpawn = false;
             gameManager.SetCSt(false);
         }
         else if (onDisable)
@@ -50,6 +53,7 @@ public class PopUpScaleScript : MonoBehaviour
     }
     protected void OnDisable()
     {
+        gameManager.canGetOutPopUpSpawn = true;
         onDisable = false;
         currentScale = Vector2.zero;
         transform.localScale = Vector2.zero;
