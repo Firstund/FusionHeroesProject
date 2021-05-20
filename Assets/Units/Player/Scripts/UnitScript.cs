@@ -121,10 +121,10 @@ public class UnitScript : MonoBehaviour
     protected int unitLev = 01; // 유닛의 레벨
     [SerializeField]
     protected int levelUpCost = 10;
-
     [SerializeField]
-    protected float clickableX = 1f;
-    private float firstClickableX = 0f;
+    protected float unitClickableRange = 0f;
+
+    private float firstUnitClickableRange = 0f;
 
     protected float mouseDistance = 0f;
 
@@ -167,13 +167,14 @@ public class UnitScript : MonoBehaviour
     {
         gameObject.transform.SetParent(GameObject.Find("Units").gameObject.transform, true);
         firstSpeed = speed;
-        firstClickableX = clickableX;
+        gameManager = GameManager.Instance;
+
+        firstUnitClickableRange = unitClickableRange;
 
         fusionManager = FindObjectOfType<FusionManager>();
 
         fusionManager.SetCanSetScripts();
 
-        gameManager = GameManager.Instance;
         anim = GetComponent<Animator>();
         audi = GetComponent<AudioSource>();
 
@@ -215,8 +216,11 @@ public class UnitScript : MonoBehaviour
 
         onClickMouse();
 
-        ODCheck();
-        EDCheck();
+        if (gameManager.GetCST())
+        {
+            ODCheck();
+            EDCheck();
+        }
         FusionCheck();
         Move();
         HealthBar();
@@ -553,7 +557,7 @@ public class UnitScript : MonoBehaviour
 
         }
 
-        if (fusionManager.GetIsUped() && mouseCheck)
+        if (Input.GetMouseButtonUp(0) && mouseCheck)
         {
             bool unitNumCheck = (fusionManager.GetFollowingUnitNum() == 0);
 
@@ -566,29 +570,23 @@ public class UnitScript : MonoBehaviour
             }
             if (shortestScript != null)
             {
-                if (shortestScript.unitId == unitId && shortestDistance < firstClickableX && gameManager.GetMoney() >= levelUpCost)
+                if (shortestScript.unitId == unitId && shortestDistance < firstUnitClickableRange && gameManager.GetMoney() >= levelUpCost)
                 {
                     LevelUp(shortestScript.unitId, unitLev, shortestScript.unitLev);
                 }
                 else if (shortestScript.unitId == unitId)
                 {
                     Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
-                    ComeBack();
-                }
-                else
-                {
-                    ComeBack();
                 }
             }
-            else
-            {
-                ComeBack();
-            }
+
+            ComeBack();
+
 
             mapSliderScript.gameObject.SetActive(true);
             mouseCheck = false;
         }
-        else if (followingMouse && shortestDistance < firstClickableX && unitId == shortestScript.GetUnitID() && unitLev == shortestScript.GetUnitLev())
+        else if (followingMouse && shortestDistance < firstUnitClickableRange && unitId == shortestScript.GetUnitID() && unitLev == shortestScript.GetUnitLev())
         // 다른 fusion들과 호환이 가능하도록 변경, 각 fusion마다 levelUpCost 값이 다르다.
         {
             if (unitLev >= gameManager.GetSaveData().maxFusionLev)
@@ -605,7 +603,7 @@ public class UnitScript : MonoBehaviour
     }
     protected void ComeBack()
     {
-        clickableX = firstClickableX;
+        unitClickableRange = firstUnitClickableRange;
         followingMouse = false;
         transform.localPosition = firstPosition;
     }
@@ -747,9 +745,11 @@ public class UnitScript : MonoBehaviour
     }
     public void moveByMouse()
     {
+        Debug.Log(isFollow);
+        Debug.Log(mouseCheck);
         if (isFollow && mouseCheck && !gameManager.GetMapSliderMoving() && !gameManager.popUpIsSpawned)
         {
-            bool canFollow = (mouseDistance < clickableX);
+            bool canFollow = (mouseDistance < unitClickableRange);
 
             if (canFollow)
             {
@@ -767,7 +767,7 @@ public class UnitScript : MonoBehaviour
                 {
                     mapSliderScript.gameObject.SetActive(false);
 
-                    clickableX = 10f;
+                    unitClickableRange = 10f;
                     currentPosition = targetPosition;
 
                     transform.localPosition = currentPosition;
@@ -776,8 +776,7 @@ public class UnitScript : MonoBehaviour
                 }
                 else
                 {
-                    mapSliderScript.gameObject.SetActive(true);
-                    clickableX = firstClickableX;
+                    unitClickableRange = firstUnitClickableRange;
                     mouseCheck = false;
                 }
             }
@@ -798,7 +797,7 @@ public class UnitScript : MonoBehaviour
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseDistance = Vector2.Distance(currentPosition, targetPosition);
 
-            if (mouseDistance < clickableX)
+            if (mouseDistance < unitClickableRange)
             {
                 mouseCheck = true;
             }

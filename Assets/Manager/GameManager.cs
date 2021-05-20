@@ -107,6 +107,19 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Transform enemyUnitSpawnPosition = null;
     [SerializeField]
+    private Vector2 _mousePosition = Vector2.zero;
+    public Vector2 mousePosition
+    {
+        get{return _mousePosition;}
+        set{_mousePosition = value;}
+    }
+    private float _halfScreenSizeX = 0f;
+    public float halfScreenSizeX
+    {
+        get{return _halfScreenSizeX;}
+        set{_halfScreenSizeX = value;}
+    }
+    [SerializeField]
     private bool canTimeStop = true;
     [SerializeField]
     private bool canTimeDouble = true;
@@ -118,7 +131,7 @@ public class GameManager : MonoBehaviour
         set{_canGetOutPopUpSpawn = value;}
     }
     private static GameManager instance;
-        [SerializeField]
+    [SerializeField]
     private GameObject gameOut = null;
     private bool gameOutSpawned = false;
     [SerializeField]
@@ -188,12 +201,18 @@ public class GameManager : MonoBehaviour
     private float soundValue = 1f;
 
     private bool canMoneyPlus = true;
+    [SerializeField]
     private bool mapSliderMoving = false;
+    private bool uiClicked = false;
     private bool _popUpIsSpawned = false;
     public bool popUpIsSpawned
     {
         get{return _popUpIsSpawned;}
         set{_popUpIsSpawned = value;}
+    }
+    void Awake()
+    {
+        halfScreenSizeX = (Screen.width / 2);
     }
 
     void Update()
@@ -302,8 +321,16 @@ public class GameManager : MonoBehaviour
     {
         return mapSliderMoving;
     }
+    public bool GetUiClicked()
+    {
+        return uiClicked;
+    }
     public void SetMapSliderMoving(bool a)
     {
         mapSliderMoving = a;
+    }
+    public void SetUiClicked(bool a)
+    {
+        uiClicked = a;
     }
 }

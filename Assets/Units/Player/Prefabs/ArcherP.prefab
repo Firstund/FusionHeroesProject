@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 4323624078091657385}
   - component: {fileID: 1431830793274202509}
   - component: {fileID: 8793330566932159277}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: ArcherP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +427,7 @@ MonoBehaviour:
   thisUnitNO: 0
   unitLev: 1
   levelUpCost: 10
-  clickableX: 1
+  unitClickableRange: 1
   objectDistanceArray: []
   enemyObjectDistanceArray: []
   shortestDistance: 10

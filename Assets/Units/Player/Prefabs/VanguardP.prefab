@@ -5346,7 +5346,7 @@ GameObject:
   - component: {fileID: 3318772828785144194}
   - component: {fileID: 3318772828785144193}
   - component: {fileID: 3318772828785144192}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VanguardP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5483,7 +5483,7 @@ MonoBehaviour:
   thisUnitNO: 0
   unitLev: 1
   levelUpCost: 30
-  clickableX: 1
+  unitClickableRange: 1
   objectDistanceArray: []
   enemyObjectDistanceArray: []
   shortestDistance: 10

@@ -115,18 +115,6 @@ public class FusionManager : MonoBehaviour
     {
         return isUped;
     }
-    public void SetIsUped(bool a)
-    {
-        isUped = a;
-    }
-    public bool GetIsDowned()
-    {
-        return isDowned;
-    }
-    public void SetIsDowned(bool a)
-    {
-        isDowned = a;
-    }
     public int GetFollowingUnitNum()
     {
         return followingUnitNum;

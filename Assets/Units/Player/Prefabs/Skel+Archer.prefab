@@ -83,6 +83,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1434651764780998601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,6 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 0
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -528,7 +530,7 @@ GameObject:
   - component: {fileID: 2351623535229575815}
   - component: {fileID: 5012518033091391944}
   - component: {fileID: 6681260351797062373}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Skel+Archer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -616,7 +618,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 2231721289149799137}
   unitId: 201
-  fusionUnitId: c9000000000000000000000000000000
   nextUnit:
   - {fileID: 0}
   - {fileID: 0}
@@ -624,14 +625,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   attackDistance: 7
-  heart: 15
+  _heart: 100
   heartUp: 5
-  ap: 2
+  _heartUpPerLev: 0.1
+  _ap: 2
   apUp: 1
-  dp: 2
+  _apUpPerLev: 0.02
+  _dp: 2
   dpUp: 0.25
-  attackDelay: 0.9
+  _dpUpPerLev: 0.01
   speed: 1.2
+  attackDelay: 0.9
   totalAtk: 0
   Lev: {fileID: 5174074985228201069}
   costText: {fileID: 1897550613218479058}
@@ -643,22 +647,12 @@ MonoBehaviour:
   thisUnitNO: 0
   unitLev: 1
   levelUpCost: 10
-  clickableX: 1
-  mouseDistance: 0
+  unitClickableRange: 1
   objectDistanceArray: []
   enemyObjectDistanceArray: []
   shortestDistance: 10
   shortestForwardDistance: 10
-  shortestEnemyDistance: 10
-  currentPosition: {x: 0, y: 0}
-  firstPosition: {x: 0, y: 0}
-  firstPositionSet: 0
-  followingCheck: 0
-  attackedCheck: 0
-  buildingIsShortest: 0
-  mouseCheck: 0
-  followingMouse: 0
-  isDead: 0
+  shortestBackwardDistance: 10
   isFollow: 0
 --- !u!95 &5012518033091391944
 Animator:

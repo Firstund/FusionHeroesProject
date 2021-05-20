@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 6675871503759901570}
   - component: {fileID: 3865285618791641192}
   - component: {fileID: 3073379449823954690}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SwordmanP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ MonoBehaviour:
   thisUnitNO: 0
   unitLev: 1
   levelUpCost: 10
-  clickableX: 1
+  unitClickableRange: 1
   objectDistanceArray: []
   enemyObjectDistanceArray: []
   shortestDistance: 10
