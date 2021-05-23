@@ -123,6 +123,7 @@ public class UnitScript : MonoBehaviour
     protected int levelUpCost = 10;
     [SerializeField]
     protected float unitClickableRange = 0f;
+    [SerializeField]
 
     private float firstUnitClickableRange = 0f;
 
@@ -216,9 +217,11 @@ public class UnitScript : MonoBehaviour
 
         onClickMouse();
 
+        ODCheck();
         if (gameManager.GetCST())
         {
-            ODCheck();
+            ForwardODCheck();
+            BackwardODCheck();
             EDCheck();
         }
         FusionCheck();
@@ -586,15 +589,21 @@ public class UnitScript : MonoBehaviour
             mapSliderScript.gameObject.SetActive(true);
             mouseCheck = false;
         }
-        else if (followingMouse && shortestDistance < firstUnitClickableRange && unitId == shortestScript.GetUnitID() && unitLev == shortestScript.GetUnitLev())
-        // 다른 fusion들과 호환이 가능하도록 변경, 각 fusion마다 levelUpCost 값이 다르다.
+        else if (shortestScript != null)
         {
-            if (unitLev >= gameManager.GetSaveData().maxFusionLev)
+            if (followingMouse && shortestDistance < firstUnitClickableRange && unitId == shortestScript.GetUnitID() && unitLev == shortestScript.GetUnitLev())
             {
-                costText.text = "이미 최대레벨입니다.";
-                return;
+                if (unitLev >= gameManager.GetSaveData().maxFusionLev)
+                {
+                    costText.text = "이미 최대레벨입니다.";
+                    return;
+                }
+                costText.text = $"{levelUpCost} 원";
             }
-            costText.text = $"{levelUpCost} 원";
+            else
+            {
+                costText.text = "";
+            }
         }
         else
         {
@@ -672,13 +681,57 @@ public class UnitScript : MonoBehaviour
             shortestEnemyScript = null;
         }
     }
+    private void ForwardODCheck()
+    {
+        float _ShortestForwardDistance = 100f;
+        bool shortestForwardIsSet = false;
+
+        for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
+        {
+            if (fusionManager.unitScript[a].GetThisUnitNO() < thisUnitNO) // 해당 unit오브젝트가 먼저 소환된 오브젝트인지 체크
+            {
+                if (objectDistanceArray[a + 1] < _ShortestForwardDistance)
+                {
+                    _ShortestForwardDistance = objectDistanceArray[a + 1];
+                    shortestForwardDistance = _ShortestForwardDistance;
+                    shortestForwardScript = fusionManager.unitScript[a];
+                    shortestForwardIsSet = true;
+                }
+            }
+        }
+
+        if (!shortestForwardIsSet)
+        {
+            shortestForwardDistance = 10f;
+        }
+    }
+    private void BackwardODCheck()
+    {
+        float _ShortestBackwardDistance = 100f;
+        bool shortestBackwardIsSet = false;
+
+        for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
+        {
+            if (fusionManager.unitScript[a].GetThisUnitNO() > thisUnitNO) // 해당 unit오브젝트가 나중에 소환된 오브젝트인지 체크
+            {
+                if (objectDistanceArray[a + 1] < _ShortestBackwardDistance)
+                {
+                    _ShortestBackwardDistance = objectDistanceArray[a + 1];
+                    shortestBackwardDistance = _ShortestBackwardDistance;
+                    shortestBackwardScript = fusionManager.unitScript[a];
+                    shortestBackwardIsSet = true;
+                }
+            }
+
+            if (!shortestBackwardIsSet)
+            {
+                shortestBackwardDistance = 10f;
+            }
+        }
+    }
     public void ODCheck()//이 함수 복사, 수정 후 Enemy의 위치를 구하는 함수로 변환
     {
-        bool shortestForwardIsSet = false;
-        bool shortestBackwardIsSet = false;
         float _ShortestDistance = 100f;
-        float _ShortestForwardDistance = 100f;
-        float _ShortestBackwardDistance = 100f;
 
         FirstODSet();
         for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
@@ -701,36 +754,6 @@ public class UnitScript : MonoBehaviour
                         }
                     }
                 }
-                if (fusionManager.unitScript[a].GetThisUnitNO() < thisUnitNO) // 해당 unit오브젝트가 먼저 소환된 오브젝트인지 체크
-                {
-                    if (objectDistanceArray[a + 1] < _ShortestForwardDistance)
-                    {
-                        _ShortestForwardDistance = objectDistanceArray[a + 1];
-                        shortestForwardDistance = _ShortestForwardDistance;
-                        shortestForwardScript = fusionManager.unitScript[a];
-                        shortestForwardIsSet = true;
-                    }
-                }
-
-                if (fusionManager.unitScript[a].GetThisUnitNO() > thisUnitNO) // 해당 unit오브젝트가 나중에 소환된 오브젝트인지 체크
-                {
-                    if (objectDistanceArray[a + 1] < _ShortestBackwardDistance)
-                    {
-                        _ShortestBackwardDistance = objectDistanceArray[a + 1];
-                        shortestBackwardDistance = _ShortestBackwardDistance;
-                        shortestBackwardScript = fusionManager.unitScript[a];
-                        shortestBackwardIsSet = true;
-                    }
-                }
-
-                if (!shortestForwardIsSet)
-                {
-                    shortestForwardDistance = 10f;
-                }
-                if (!shortestBackwardIsSet)
-                {
-                    shortestBackwardDistance = 10f;
-                }
             }
         }
     }
@@ -745,8 +768,6 @@ public class UnitScript : MonoBehaviour
     }
     public void moveByMouse()
     {
-        Debug.Log(isFollow);
-        Debug.Log(mouseCheck);
         if (isFollow && mouseCheck && !gameManager.GetMapSliderMoving() && !gameManager.popUpIsSpawned)
         {
             bool canFollow = (mouseDistance < unitClickableRange);

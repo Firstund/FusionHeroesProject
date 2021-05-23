@@ -3829,9 +3829,6 @@ MonoBehaviour:
   _mapSlider: {fileID: 221801127}
   mousePositionPerValue: 40
   moveSliderXSpeed: 0.5
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &221801129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13877,7 +13874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -14031,7 +14028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.0771906, g: 0.764151, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
   m_OnCullStateChanged:
@@ -22071,7 +22068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -34212,7 +34209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.0771906, g: 0.764151, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
   m_OnCullStateChanged:
@@ -34530,7 +34527,7 @@ MonoBehaviour:
   spawnCostText: {fileID: 0}
   _spawnPosition: {fileID: 0}
   respawnImage: {fileID: 1632451452}
-  spawnMoney: 30
+  spawnMoney: 40
   spawnSpeed: 1
   canSpawnAgain: 1
 --- !u!114 &2040632069
