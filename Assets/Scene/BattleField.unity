@@ -8362,7 +8362,7 @@ MonoBehaviour:
     \uC0DD\uBA85\uCCB4\uB294 \uADF8\uAC00 \uAC00\uC9C4 \uACE0\uB3C4\uC758 \uC5D0\uB108\uC9C0\uB97C
     \uC774\uC6A9\uD55C \uACE0\uC18D \uC774\uB3D9\uACFC \uCCB4\uB825\uC7AC\uC0DD\uC744
     \uC0AC\uC6A9\uD569\uB2C8\uB2E4. \uADF8\uB97C \uC8FD\uC774\uAE30 \uC704\uD574\uC11C\uB294
-    \uD55C\uBC88\uC5D0 \uAC15\uB825\uD55C \uB370\uBBF8\uC9C0\uB97C \uB584\uB824\uBC15\uC544\uC57C\uD569\uB2C8\uB2E4."
+    \uD55C\uBC88\uC5D0 \uAC15\uB825\uD55C \uB370\uBBF8\uC9C0\uB97C \uB54C\uB824\uBC15\uC544\uC57C\uD569\uB2C8\uB2E4."
 --- !u!222 &548871892
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19663,7 +19663,7 @@ MonoBehaviour:
   archerSpawnStartStage: 2
   madBlindDelay: 15
   minusMadBlindDelayPerCurrentStage: 0.1
-  madBlindSpawnStartStage: 6
+  madBlindSpawnStartStage: 2
   oSkeleton: {fileID: 5259757820760417429, guid: 4a18ad45f61b63442a0e495e849204db, type: 3}
   oArcher: {fileID: 7371477088570212303, guid: cf3c16e177ec04342818f92e8b86cf5d, type: 3}
   oMadBlind: {fileID: 7558579589176618438, guid: f7fecd00fe042e24e8f4c914ccd8d588, type: 3}
