@@ -197,8 +197,6 @@ public class UnitScript : MonoBehaviour
 
         mapSliderScript = FindObjectOfType<MapSliderScript>();
 
-        audi.Play();
-
         SetDistanceArrayIndex();
 
         // unitStatIndex = (unitId / 50 + unitId % 100); // stat에 쓰일 Index설정
