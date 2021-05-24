@@ -5478,12 +5478,14 @@ MonoBehaviour:
   shortestScript: {fileID: 0}
   shortestEnemyScript: {fileID: 0}
   audi: {fileID: 0}
+  attackSound: {fileID: 0}
   onlyOneFollowUnitNum: 0
   thisUnitNum: 0
   thisUnitNO: 0
   unitLev: 1
   levelUpCost: 30
   unitClickableRange: 1
+  firstUnitClickableRange: 0
   objectDistanceArray: []
   enemyObjectDistanceArray: []
   shortestDistance: 10
@@ -5502,7 +5504,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

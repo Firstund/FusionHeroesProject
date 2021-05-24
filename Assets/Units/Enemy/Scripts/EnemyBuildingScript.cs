@@ -131,9 +131,11 @@ public class EnemyBuildingScript : MonoBehaviour
     {
         if (!skeSpawned)
         {
+            Vector2 a = spawnPosition.position;
+            a.x += 0.1f;
             skeSpawned = true;
             yield return new WaitForSeconds(skeletonDelay);
-            Instantiate(oSkeleton, spawnPosition);
+            Instantiate(oSkeleton, a, Quaternion.identity);
             skeSpawned = false;
         }
     }
@@ -141,9 +143,11 @@ public class EnemyBuildingScript : MonoBehaviour
     {
         if (!arcSpawned)
         {
+            Vector2 a = spawnPosition.position;
+            a.x += 0.1f;
             arcSpawned = true;
             yield return new WaitForSeconds(archerDelay);
-            Instantiate(oArcher, spawnPosition);
+            Instantiate(oArcher, a, Quaternion.identity);
             arcSpawned = false;
         }
     }

@@ -107,6 +107,8 @@ public class UnitScript : MonoBehaviour
 
     [SerializeField]
     protected AudioSource audi = null;
+    [SerializeField]
+    protected AudioClip attackSound = null;
     protected Animator anim = null;
 
     [SerializeField]
@@ -195,13 +197,13 @@ public class UnitScript : MonoBehaviour
 
         mapSliderScript = FindObjectOfType<MapSliderScript>();
 
+        audi.Play();
+
         SetDistanceArrayIndex();
 
         // unitStatIndex = (unitId / 50 + unitId % 100); // stat에 쓰일 Index설정
 
         setStat();
-
-
 
         SetMaxHealth();
     }
@@ -228,13 +230,6 @@ public class UnitScript : MonoBehaviour
         Move();
         HealthBar();
         DestroyCheck();
-
-        // if(transform.position.y != fusionManager.playerUnitSpawnPosition.position.y)
-        // {
-        //     Vector2 targetPosition = Vector2.zero;
-        //     targetPosition.y = fusionManager.playerUnitSpawnPosition.position.y;
-        //     transform.position = targetPosition;
-        // }
 
         if (gameManager.GetCST())
             AttackCheck();
@@ -285,6 +280,7 @@ public class UnitScript : MonoBehaviour
 
             if (attackOne)
             {
+                audi.clip = attackSound;
                 audi.Play();
                 if (buildingIsShortest)
                 {
@@ -518,6 +514,16 @@ public class UnitScript : MonoBehaviour
             stopByEnemyDistance = attackDistance;
         }
 
+        if(objectDistanceArray[0] < stopByEnemyDistance) // 이 유닛이 소환되어 spawnPosition에서 1f이상 이동한 상태가 아니라면
+        {
+            stopByEnemyDistance = 1.5f; // 이 유닛은 적 유닛이 이 유닛을 감지하여 이동을 멈추게 되는 거리보다 먼 거리에서 멈춘다.
+                                        // 그렇게 되면 적은 이 유닛보다, 건물을 우선 공격하게 된다.
+        }
+        else
+        {
+            stopByEnemyDistance = 1f;
+        }
+
         if (shortestScript != null)
         {
             if (shortestScript.getHe() <= 0f)
@@ -671,7 +677,6 @@ public class UnitScript : MonoBehaviour
                         buildingIsShortest = false;
                     }
                 }
-
             }
         }
         else

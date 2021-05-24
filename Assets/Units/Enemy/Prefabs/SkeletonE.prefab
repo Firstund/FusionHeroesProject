@@ -469,7 +469,7 @@ MonoBehaviour:
   heartUp: 1
   ap: 2.5
   apUp: 0.5
-  dp: 0
+  dp: 1
   dpUp: 0.25
   attackDelay: 0.9
   speed: 1.7

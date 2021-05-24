@@ -422,12 +422,15 @@ MonoBehaviour:
   shortestScript: {fileID: 0}
   shortestEnemyScript: {fileID: 0}
   audi: {fileID: 0}
+  spawnSound: {fileID: 8300000, guid: ad3ba51d4c93ad346ae1f3c76c0b023b, type: 3}
+  attackSound: {fileID: 8300000, guid: a46be8093b0ad2f4db669b20f9620df4, type: 3}
   onlyOneFollowUnitNum: 0
   thisUnitNum: 0
   thisUnitNO: 0
   unitLev: 1
   levelUpCost: 10
   unitClickableRange: 1
+  firstUnitClickableRange: 0
   objectDistanceArray: []
   enemyObjectDistanceArray: []
   shortestDistance: 10

@@ -51,8 +51,9 @@ public class TestSpawnScript : MonoBehaviour
             nextTimeToSpawn = Time.time + (1/spawnSpeed);
             int money = gameManager.GetMoney() - spawnMoney;
             gameManager.SetMoney(money);
-
-            Instantiate(spawnThis, spawnPosition);
+            Vector2 a = spawnPosition.position;
+            a.x -= 0.1f;
+            Instantiate(spawnThis, a, Quaternion.identity);
             respawnMaxTime = nextTimeToSpawn - Time.time;
             respawnCurTime = 0f;
             canSpawnAgain = false;

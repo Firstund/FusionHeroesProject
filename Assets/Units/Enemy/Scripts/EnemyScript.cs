@@ -111,10 +111,10 @@ public class EnemyScript : MonoBehaviour
         firstHeart = heart;
         firstAp = ap;
         firstDp = dp;
-        
+
         setStat();
         SetDistanceArrayIndex();
-        
+
 
         SetMaxHealth();
     }
@@ -216,12 +216,21 @@ public class EnemyScript : MonoBehaviour
         if (!isDead)
         {
             float stopByObjectDistance = 1f;
+           
 
             if (attackDistance < stopByObjectDistance)
             {
                 stopByObjectDistance = attackDistance;
             }
 
+            if(enemyObjectDistanceArray[0] < stopByObjectDistance)
+            {
+                stopByObjectDistance = 1.5f;
+            }
+            else
+            {
+                stopByObjectDistance = 1f;
+            }
 
             if (!attackAnimIsPlaying && !isDead)
                 anim.Play("WalkL");
@@ -289,7 +298,7 @@ public class EnemyScript : MonoBehaviour
                     Invoke("ResetAttackedCheck", attackDelay);
                     //공격 애니메이션 출력
                 }
-            
+
         }
     }
     public void GetDamage()
@@ -479,9 +488,14 @@ public class EnemyScript : MonoBehaviour
 
                 if (objectDistanceArray[a + 1] < shortestDistance && fusionManager.unitScript[a].GetCurrentPosition().x <= currentPosition.x + 0.5f)
                 {
-                    shortestDistance = objectDistanceArray[a + 1];
-                    shortestScript = fusionManager.unitScript[a];
-                    buildingIsShortest = false;
+                    bool arrayDistanceCheck = (objectDistanceArray[a + 1] == 0);
+
+                    if (!arrayDistanceCheck)
+                    {
+                        shortestDistance = objectDistanceArray[a + 1];
+                        shortestScript = fusionManager.unitScript[a];
+                        buildingIsShortest = false;
+                    }
                 }
             }
         }
