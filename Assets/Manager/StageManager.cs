@@ -86,7 +86,7 @@ public class StageManager : MonoBehaviour
         audi.volume = gameManager.GetSoundValue();
 
         if(gameManager.GetCST())
-            t += Time.deltaTime;
+            t += Time.deltaTime; 
     }
     public void StageClear(bool a)
     {

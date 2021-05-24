@@ -11991,7 +11991,7 @@ MonoBehaviour:
   useMoneyText: {fileID: 144685297}
   deathPlayerUnitText: {fileID: 972447995}
   killedEnemyUnitText: {fileID: 1866676939}
-  plusGold: 200
+  plusGold: 300
 --- !u!1 &793254176
 GameObject:
   m_ObjectHideFlags: 0
@@ -19415,6 +19415,7 @@ GameObject:
   - component: {fileID: 1164809939}
   - component: {fileID: 1164809938}
   - component: {fileID: 1164809942}
+  - component: {fileID: 1164809944}
   - component: {fileID: 1164809943}
   - component: {fileID: 1164809941}
   - component: {fileID: 1164809940}
@@ -19622,12 +19623,6 @@ MonoBehaviour:
   g_slider: {fileID: 171102474}
   audi: {fileID: 0}
   destroy1: {fileID: 8300000, guid: 2a0f7f0bf2563464aa4bcccc85bc8ae5, type: 3}
-  skeletonDelay: 20
-  minusSkeletonDelayPerCurrentStage: 0.3
-  archerDelay: 20
-  minusArcherDelayPerCurrentStage: 0.3
-  oSkeleton: {fileID: 5259757820760417429, guid: 4a18ad45f61b63442a0e495e849204db, type: 3}
-  oArcher: {fileID: 7371477088570212303, guid: cf3c16e177ec04342818f92e8b86cf5d, type: 3}
   strongest:
   - {fileID: 2523426427407952207, guid: 3386c9046dcca0a4bb325970a172a72f, type: 3}
   - {fileID: 3326938116672063030, guid: b2a9ec5f9a7213a43bdb145822e09c5d, type: 3}
@@ -19649,6 +19644,29 @@ MonoBehaviour:
   spawnGlingmanStage: 5
   spawnUmikoStage: 10
   stageManager: {fileID: 455854534}
+--- !u!114 &1164809944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164809937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9d95576d9ec8c4e825baa15b245ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonDelay: 20
+  minusSkeletonDelayPerCurrentStage: 0.2
+  archerDelay: 20
+  minusArcherDelayPerCurrentStage: 0.25
+  archerSpawnStartStage: 2
+  madBlindDelay: 15
+  minusMadBlindDelayPerCurrentStage: 0.1
+  madBlindSpawnStartStage: 6
+  oSkeleton: {fileID: 5259757820760417429, guid: 4a18ad45f61b63442a0e495e849204db, type: 3}
+  oArcher: {fileID: 7371477088570212303, guid: cf3c16e177ec04342818f92e8b86cf5d, type: 3}
+  oMadBlind: {fileID: 7558579589176618438, guid: f7fecd00fe042e24e8f4c914ccd8d588, type: 3}
 --- !u!1 &1173495500
 GameObject:
   m_ObjectHideFlags: 0
@@ -27221,7 +27239,7 @@ MonoBehaviour:
     _maxFusionLev: 5
   goldText: {fileID: 626100252}
   _dovalueTime: 0.4
-  _plusMoneyTime: 0.8
+  _plusMoneyTime: 0.6
   _minusPluseMoneyTimePerLev: 0.03
   mapSliderMoving: 0
 --- !u!4 &1625583762

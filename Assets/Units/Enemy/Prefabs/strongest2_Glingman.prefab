@@ -131,7 +131,7 @@ MonoBehaviour:
   heart: 20
   heartUp: 1
   ap: 0.33333334
-  apUp: 0.02
+  apUp: 0.01
   dp: 2
   dpUp: 0.25
   attackDelay: 1

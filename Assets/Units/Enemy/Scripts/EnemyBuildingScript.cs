@@ -24,24 +24,6 @@ public class EnemyBuildingScript : MonoBehaviour
 
     private Animator anim = null;
 
-    private Transform spawnPosition = null;
-
-    [SerializeField]
-    private float skeletonDelay = 1f;
-    private float firstSkeletonDelay = 1f;
-    [SerializeField]
-    private float minusSkeletonDelayPerCurrentStage = 0.02f;
-    [SerializeField]
-    private float archerDelay = 1f;
-    private float firstArcherDelay = 1f;
-    [SerializeField]
-    private float minusArcherDelayPerCurrentStage = 0.02f;
-
-    [SerializeField]
-    private GameObject oSkeleton = null;
-    [SerializeField]
-    private GameObject oArcher = null;
-
     [SerializeField]
     private GameObject[] strongest = new GameObject[2];
 
@@ -54,8 +36,6 @@ public class EnemyBuildingScript : MonoBehaviour
 
     private float firstHeart = 0f;
 
-    private bool skeSpawned = false;
-    private bool arcSpawned = false;
     private bool[] strongestSpawned = new bool[5]{false, false, false, false, false};
 
     private bool destroy1Played = false;
@@ -63,18 +43,14 @@ public class EnemyBuildingScript : MonoBehaviour
 
     public Vector2 currentPosition = Vector2.zero;
 
-    void Awake()
-    {
-        firstSkeletonDelay = skeletonDelay;
-        firstArcherDelay = archerDelay;
-    }
+    
     void Start()
     {
         gameManager = GameManager.Instance;
         fusionManager = FindObjectOfType<FusionManager>();
         stageManager = FindObjectOfType<StageManager>();
         mapSliderScript = FindObjectOfType<MapSliderScript>();
-        spawnPosition = gameManager.GetEnemyUnitSpawnPosition();
+        
 
         audi = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
@@ -92,25 +68,17 @@ public class EnemyBuildingScript : MonoBehaviour
         currentPosition = transform.localPosition;
         audi.volume = gameManager.GetSoundValue();
 
-        InitSpawnDelay();
         HealthBar();
         Breaking();
-        Spawn();
-
     }
 
-    private void InitSpawnDelay()
-    {
-        skeletonDelay = firstSkeletonDelay - minusSkeletonDelayPerCurrentStage * gameManager.GetSaveData().currentStage;
-        archerDelay = firstArcherDelay - minusArcherDelayPerCurrentStage * gameManager.GetSaveData().currentStage;
-    }
+    
 
     public void SetMaxHealth()
     {
         slider.maxValue = heart;
         slider.value = heart;
         slider.minValue = 0;
-
     }
     private void HealthBar()
     {
@@ -126,31 +94,6 @@ public class EnemyBuildingScript : MonoBehaviour
     }
     // 이 소환코드들을 따로 스크립트로 빼놓자.
     // 새로 만들 스크립트는 spawnPosition과 stageManager.GetCurrentStage()가 필요할 듯 하다.
-    
-    private IEnumerator skeleton()
-    {
-        if (!skeSpawned)
-        {
-            Vector2 a = spawnPosition.position;
-            a.x += 0.1f;
-            skeSpawned = true;
-            yield return new WaitForSeconds(skeletonDelay);
-            Instantiate(oSkeleton, a, Quaternion.identity);
-            skeSpawned = false;
-        }
-    }
-    private IEnumerator archer()
-    {
-        if (!arcSpawned)
-        {
-            Vector2 a = spawnPosition.position;
-            a.x += 0.1f;
-            arcSpawned = true;
-            yield return new WaitForSeconds(archerDelay);
-            Instantiate(oArcher, a, Quaternion.identity);
-            arcSpawned = false;
-        }
-    }
     public float getHe()
     {
         return heart;
@@ -162,7 +105,6 @@ public class EnemyBuildingScript : MonoBehaviour
     public float getD()
     {
         return dp;
-
     }
     public void SetHP(float he)
     {
@@ -178,11 +120,6 @@ public class EnemyBuildingScript : MonoBehaviour
     {
         heart = firstHeart + heartUp;
         dp = dpUp;
-    }
-    void Spawn()
-    {
-        StartCoroutine(skeleton());
-        StartCoroutine(archer());
     }
     void Breaking()
     {
@@ -219,10 +156,6 @@ public class EnemyBuildingScript : MonoBehaviour
     public GameObject GetStrongest(int index)
     {
         return strongest[index];
-    }
-    public Transform GetSpawnPosition()
-    {
-        return spawnPosition;
     }
     public void SetstrongestSpawned(int index, bool a)
     {

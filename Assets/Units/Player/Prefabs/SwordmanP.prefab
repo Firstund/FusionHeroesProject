@@ -386,12 +386,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   attackDistance: 2
-  _heart: 17
+  _heart: 20
   heartUp: 5
-  _heartUpPerLev: 1
+  _heartUpPerLev: 1.5
   _ap: 3
   apUp: 1
-  _apUpPerLev: 0.8
+  _apUpPerLev: 0.5
   _dp: 1
   dpUp: 0.5
   _dpUpPerLev: 0.3

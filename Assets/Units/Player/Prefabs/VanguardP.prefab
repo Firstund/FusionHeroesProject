@@ -5461,9 +5461,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   attackDistance: 5
-  _heart: 1
+  _heart: 2
   heartUp: 0.3
-  _heartUpPerLev: 0.1
+  _heartUpPerLev: 0.2
   _ap: 0.2
   apUp: 0.1
   _apUpPerLev: 0.01
