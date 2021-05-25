@@ -581,7 +581,7 @@ public class UnitScript : MonoBehaviour
                 {
                     LevelUp(shortestScript.unitId, unitLev, shortestScript.unitLev);
                 }
-                else if (shortestScript.unitId == unitId)
+                else if (shortestScript.unitId == unitId && gameManager.GetMoney() < levelUpCost)
                 {
                     Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
                 }
