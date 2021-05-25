@@ -110,6 +110,10 @@ public class EnemyBuildingScript : MonoBehaviour
     }
     public void Reset()
     {
+        for(int i = 0; i < strongestSpawned.Length - 1; i++)
+        {
+            strongestSpawned[i] = false;
+        }
         setStat();
         destroy1Played = false;
         destroy2Played = false;

@@ -19664,7 +19664,7 @@ MonoBehaviour:
   archerSpawnStartStage: 2
   madBlindDelay: 15
   minusMadBlindDelayPerCurrentStage: 0.1
-  madBlindSpawnStartStage: 2
+  madBlindSpawnStartStage: 8
   oSkeleton: {fileID: 5259757820760417429, guid: 4a18ad45f61b63442a0e495e849204db, type: 3}
   oArcher: {fileID: 7371477088570212303, guid: cf3c16e177ec04342818f92e8b86cf5d, type: 3}
   oMadBlind: {fileID: 7558579589176618438, guid: f7fecd00fe042e24e8f4c914ccd8d588, type: 3}
@@ -32293,7 +32293,7 @@ MonoBehaviour:
   audi: {fileID: 0}
   destroy1: {fileID: 8300000, guid: 2a0f7f0bf2563464aa4bcccc85bc8ae5, type: 3}
   heart: 100
-  heartUp: 25
+  heartUp: 10
   destroy1Played: 0
   destroy2Played: 0
   currentPosition: {x: 0, y: 0}

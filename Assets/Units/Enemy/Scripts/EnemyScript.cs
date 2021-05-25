@@ -79,8 +79,16 @@ public class EnemyScript : MonoBehaviour
     protected float shortestForwardDistance = 10f;
     protected float shortestEnemyDistance = 10f;
 
-    protected bool attackedCheck = false;
-    protected bool attackAnimIsPlaying = false;
+    protected bool _attackedCheck = false;
+    public bool attackedCheck{
+        get{return _attackedCheck;}
+        set{_attackedCheck = value;}
+    }
+    protected bool _attackAnimIsPlaying = false;
+    public bool attackAnimIsPlaying{
+        get{return _attackAnimIsPlaying;}
+        set{_attackAnimIsPlaying = value;}
+    }
     protected bool buildingIsShortest = false;//building이 shortest일 때 true. unit이 shortest일 때 false
     protected bool isAttackOne = true;
     protected bool isDead = false;

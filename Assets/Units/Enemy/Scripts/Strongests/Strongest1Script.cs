@@ -106,12 +106,13 @@ public class Strongest1Script : MonoBehaviour
 
         if ((shortestScript != null) && canUseSkill[1] && distanceCheck)
         {
-
+            
             thisObjectScript.GetAudi().clip = skillSound[1];
             thisObjectScript.GetAudi().Play();
 
             skillUsed = true;
             canUseSkill[1] = false;
+            thisObjectScript.attackAnimIsPlaying = true;
 
             if (!thisObjectScript.GetIsDead())
                 anim.Play("Strongest1Attack2");

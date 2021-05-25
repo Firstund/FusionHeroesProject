@@ -129,7 +129,7 @@ MonoBehaviour:
   minimumD: 0
   maximumD: 3
   heart: 20
-  heartUp: 1
+  heartUp: 0.5
   ap: 0.33333334
   apUp: 0.01
   dp: 2
