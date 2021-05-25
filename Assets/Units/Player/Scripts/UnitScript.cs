@@ -512,7 +512,7 @@ public class UnitScript : MonoBehaviour
             stopByEnemyDistance = attackDistance;
         }
 
-        if(objectDistanceArray[0] < stopByEnemyDistance) // 이 유닛이 소환되어 spawnPosition에서 1f이상 이동한 상태가 아니라면
+        if (objectDistanceArray[0] < stopByEnemyDistance) // 이 유닛이 소환되어 spawnPosition에서 1f이상 이동한 상태가 아니라면
         {
             stopByEnemyDistance = 1.5f; // 이 유닛은 적 유닛이 이 유닛을 감지하여 이동을 멈추게 되는 거리보다 먼 거리에서 멈춘다.
                                         // 그렇게 되면 적은 이 유닛보다, 건물을 우선 공격하게 된다.
@@ -577,18 +577,24 @@ public class UnitScript : MonoBehaviour
             }
             if (shortestScript != null)
             {
-                if (shortestScript.unitId == unitId && shortestDistance < firstUnitClickableRange && gameManager.GetMoney() >= levelUpCost)
+                if (shortestScript.unitId == unitId)
                 {
-                    LevelUp(shortestScript.unitId, unitLev, shortestScript.unitLev);
-                }
-                else if (shortestScript.unitId == unitId && gameManager.GetMoney() < levelUpCost)
-                {
-                    Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
+                    if (shortestDistance < firstUnitClickableRange && gameManager.GetMoney() >= levelUpCost)
+                    {
+                        LevelUp(shortestScript.unitId, unitLev, shortestScript.unitLev);
+                    }
+                    else if (gameManager.GetMoney() < levelUpCost)
+                    {
+                        Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
+                    }
+                    else if (unitLev >= gameManager.GetSaveData().maxFusionLev)
+                    {
+                        Instantiate(stageManager.maxLevelText, stageManager.textSpawnPosition);
+                    }
                 }
             }
 
             ComeBack();
-
 
             mapSliderScript.gameObject.SetActive(true);
             mouseCheck = false;

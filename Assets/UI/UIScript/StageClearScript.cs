@@ -56,7 +56,6 @@ public class StageClearScript : PopUpScaleScript
             clearText.text = "Stage" + stageManager.GetCurrentStage() + " Clear!";
 
             plusGoldText.text = "+" + (plusGold + (stageManager.GetCurrentStage() * (plusGold / 2)));
-
         }
         else
         {

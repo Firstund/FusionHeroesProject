@@ -30,6 +30,12 @@ public class StageManager : MonoBehaviour
         get{return _saveDoneText;}
     }
     [SerializeField]
+    private GameObject _maxLevelText = null;
+    public GameObject maxLevelText
+    {
+        get{return _maxLevelText;}
+    }
+    [SerializeField]
     private StageClearScript stageClearScript = null;
     
     [SerializeField]
@@ -95,7 +101,6 @@ public class StageManager : MonoBehaviour
     }
     public void StageReset()
     {
-        stageClearScript.OnNextStage();
         stageClearPopUp.SetActive(false);
         gameManager.SetCSt(true);
 

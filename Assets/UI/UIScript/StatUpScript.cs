@@ -179,9 +179,13 @@ public class StatUpScript : MonoBehaviour
         {
             unitStatLev = saveData.maxStatLev;
         }
-        else
+        else if(unitStatLev < saveData.maxStatLev)
         {
             Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
+        }
+        else
+        {
+            Instantiate(stageManager.maxLevelText, stageManager.textSpawnPosition);
         }
 
         return unitStatLev;
@@ -197,9 +201,13 @@ public class StatUpScript : MonoBehaviour
         {
             unitStatLev = saveData.maxStatLev;
         }
-        else
+        else if(unitStatLev < saveData.maxStatLev)
         {
             Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
+        }
+        else
+        {
+            Instantiate(stageManager.maxLevelText, stageManager.textSpawnPosition);
         }
 
         return unitStatLev;
@@ -215,9 +223,13 @@ public class StatUpScript : MonoBehaviour
         {
             unitStatLev = saveData.maxStatLev;
         }
-        else
+        else if(unitStatLev < saveData.maxStatLev)
         {
             Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
+        }
+        else
+        {
+            Instantiate(stageManager.maxLevelText, stageManager.textSpawnPosition);
         }
 
         return unitStatLev;

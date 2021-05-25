@@ -92,8 +92,6 @@ public class EnemyBuildingScript : MonoBehaviour
         }
         slider.DOValue(heart, gameManager.dovalueTime);
     }
-    // 이 소환코드들을 따로 스크립트로 빼놓자.
-    // 새로 만들 스크립트는 spawnPosition과 stageManager.GetCurrentStage()가 필요할 듯 하다.
     public float getHe()
     {
         return heart;

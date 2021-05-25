@@ -68,7 +68,7 @@ public class EnemySpawnScript : MonoBehaviour
     }
     private IEnumerator madBlind()
     {
-        if(!madSpawned && gameManager.GetSaveData().maxReachedStage >= madBlindSpawnStartStage)
+        if(!madSpawned && gameManager.GetSaveData().currentStage >= madBlindSpawnStartStage)
         {
             Vector2 a = spawnPosition.position;
             a.x += 0.1f;
@@ -92,7 +92,7 @@ public class EnemySpawnScript : MonoBehaviour
     }
     private IEnumerator archer()
     {
-        if (!arcSpawned && gameManager.GetSaveData().maxReachedStage >= archerSpawnStartStage)
+        if (!arcSpawned && gameManager.GetSaveData().currentStage >= archerSpawnStartStage)
         {
             Vector2 a = spawnPosition.position;
             a.x += 0.1f;
