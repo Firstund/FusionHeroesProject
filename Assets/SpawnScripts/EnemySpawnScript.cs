@@ -43,6 +43,7 @@ public class EnemySpawnScript : MonoBehaviour
     {
         firstSkeletonDelay = skeletonDelay;
         firstArcherDelay = archerDelay;
+        firstMadBlindDelay = madBlindDelay;
     }
     void Start()
     {   
@@ -59,6 +60,7 @@ public class EnemySpawnScript : MonoBehaviour
     {
         skeletonDelay = firstSkeletonDelay - minusSkeletonDelayPerCurrentStage * gameManager.GetSaveData().currentStage;
         archerDelay = firstArcherDelay - minusArcherDelayPerCurrentStage * gameManager.GetSaveData().currentStage;
+        madBlindDelay = firstMadBlindDelay - minusMadBlindDelayPerCurrentStage * gameManager.GetSaveData().currentStage;
     }
     void Spawn()
     {

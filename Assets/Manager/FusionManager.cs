@@ -48,12 +48,6 @@ public class FusionManager : MonoBehaviour
 
     private GameManager gameManager = null;
 
-    private GameObject[] fusionObject = null;
-
-
-    private bool monsterSpawned = false;
-
-    private bool isDowned = false;
     private bool isUped = false;
 
     private bool isFollow = false;
@@ -157,14 +151,11 @@ public class FusionManager : MonoBehaviour
     }
     public void clickMouseCheck()
     {
-        monsterSpawned = false;
-        isDowned = true;
         isUped = false;
     }
     public void upClickMouseCheck()
     {
         isFollow = false;
-        isDowned = false;
         isUped = true;
         StartCoroutine(UpedRe());
     }

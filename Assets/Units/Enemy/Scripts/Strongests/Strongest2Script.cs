@@ -12,8 +12,6 @@ public class Strongest2Script : MonoBehaviour
     [SerializeField]
     private AudioClip[] skillSound = new AudioClip[2] { null, null };
     [SerializeField]
-    private GameObject Particle = null;
-    [SerializeField]
     private new ParticleSystem particleSystem = null;
 
     private EnemyScript thisObjectScript = null;
