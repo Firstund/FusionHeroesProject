@@ -46,15 +46,18 @@ public class EnemySpawnScript : MonoBehaviour
         firstMadBlindDelay = madBlindDelay;
     }
     void Start()
-    {   
+    {
         gameManager = GameManager.Instance;
         spawnPosition = gameManager.GetEnemyUnitSpawnPosition();
     }
 
     void Update()
     {
-        InitSpawnDelay();
-        Spawn();
+        if (!gameManager.tutoIsPlaying)
+        {
+            InitSpawnDelay();
+            Spawn();
+        }
     }
     private void InitSpawnDelay()
     {
@@ -70,7 +73,7 @@ public class EnemySpawnScript : MonoBehaviour
     }
     private IEnumerator madBlind()
     {
-        if(!madSpawned && gameManager.GetSaveData().currentStage >= madBlindSpawnStartStage)
+        if (!madSpawned && gameManager.GetSaveData().currentStage >= madBlindSpawnStartStage)
         {
             Vector2 a = spawnPosition.position;
             a.x += 0.1f;
@@ -104,7 +107,7 @@ public class EnemySpawnScript : MonoBehaviour
             arcSpawned = false;
         }
     }
-     public Transform GetSpawnPosition()
+    public Transform GetSpawnPosition()
     {
         return spawnPosition;
     }

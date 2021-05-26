@@ -16,10 +16,4 @@ public class EncyclopediaScrollViewScript : MonoBehaviour
             scrollRect.content.sizeDelta += scrollRect.content.transform.GetChild(i).GetComponent<RectTransform>().sizeDelta;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

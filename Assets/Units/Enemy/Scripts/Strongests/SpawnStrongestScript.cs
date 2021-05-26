@@ -19,13 +19,16 @@ public class SpawnStrongestScript : MonoBehaviour
     }
     void Update()
     {
-        umiko();
-        glingman();
+        if (!GameManager.Instance.tutoIsPlaying)
+        {
+            umiko();
+            glingman();
+        }
     }
     #region strongests
     private void glingman()
     {
-        if (!enemyBuildingScript.GetStrongestSpawned(0) && stageManager.GetCurrentStage() == spawnGlingmanStage  && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() / 5)
+        if (!enemyBuildingScript.GetStrongestSpawned(0) && stageManager.GetCurrentStage() == spawnGlingmanStage && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() / 5)
         {
             enemyBuildingScript.SetstrongestSpawned(0, true);
             Instantiate(enemyBuildingScript.GetStrongest(0), enemySpawnScript.GetSpawnPosition());
@@ -33,12 +36,12 @@ public class SpawnStrongestScript : MonoBehaviour
     }
     private void umiko()
     {
-        if (!enemyBuildingScript.GetStrongestSpawned(1) && stageManager.GetCurrentStage() == spawnUmikoStage  && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() / 2)
+        if (!enemyBuildingScript.GetStrongestSpawned(1) && stageManager.GetCurrentStage() == spawnUmikoStage && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() / 2)
         {
             enemyBuildingScript.SetstrongestSpawned(1, true);
             Instantiate(enemyBuildingScript.GetStrongest(1), enemySpawnScript.GetSpawnPosition());
         }
     }
-    
+
     #endregion
 }

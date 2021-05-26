@@ -8,14 +8,14 @@ using System;
 public class SaveData
 {
     [SerializeField]
-    private int _curretnStage = 1;
+    private int _curretnStage = 0;
     public int currentStage
     {
         get { return _curretnStage; }
         set { _curretnStage = value; }
     }
     [SerializeField]
-    private int _maxReachedStage = 1;
+    private int _maxReachedStage = 0;
     public int maxReachedStage
     {
         get { return _maxReachedStage; }
@@ -30,43 +30,43 @@ public class SaveData
     }
     // 업그레이드를 하지 않은 상태에선, 스탯 레벨은 0이다.
     [SerializeField]
-    private List<int> _unitHeartLev = new List<int>();
-    public List<int> unitHeartLev
+    private int[] _unitHeartLev = new int[100];
+    public int[] unitHeartLev
     {
         get { return _unitHeartLev; }
         set { _unitHeartLev = value; }
     }
     [SerializeField]
-    private List<int>  _unitApLev = new List<int>();
-    public List<int> unitApLev
+    private int[] _unitApLev = new int[100];
+    public int[] unitApLev
     {
         get { return _unitApLev; }
         set { _unitApLev = value; }
     }
     [SerializeField]
-    private List<int> _unitDpLev = new List<int>();
-    public List<int> unitDpLev
+    private int[] _unitDpLev = new int[100];
+    public int[] unitDpLev
     {
         get { return _unitDpLev; }
         set { _unitDpLev = value; }
     }
     [SerializeField]
-    private List<float> _heart = new List<float>();
-    public List<float> heart
+    private float[] _heart = new float[100];
+    public float[] heart
     {
         get { return _heart; }
         set { _heart = value; }
     }
     [SerializeField]
-    private List<float> _ap = new List<float>();
-    public List<float> ap
+    private float[] _ap = new float[100];
+    public float[] ap
     {
         get { return _ap; }
         set { _ap = value; }
     }
     [SerializeField]
-    private List<float> _dp = new List<float>(); // index는 유닛 ID로, 건물의 경우 아군의 건물은 0, 적의 건물은 1로한다.
-    public List<float> dp
+    private float[] _dp = new float[100]; // index는 유닛 ID로, 건물의 경우 아군의 건물은 0, 적의 건물은 1로한다.
+    public float[] dp
     {
         get { return _dp; }
         set { _dp = value; }
@@ -110,14 +110,14 @@ public class GameManager : MonoBehaviour
     private Vector2 _mousePosition = Vector2.zero;
     public Vector2 mousePosition
     {
-        get{return _mousePosition;}
-        set{_mousePosition = value;}
+        get { return _mousePosition; }
+        set { _mousePosition = value; }
     }
     private float _halfScreenSizeX = 0f;
     public float halfScreenSizeX
     {
-        get{return _halfScreenSizeX;}
-        set{_halfScreenSizeX = value;}
+        get { return _halfScreenSizeX; }
+        set { _halfScreenSizeX = value; }
     }
     [SerializeField]
     private bool canTimeStop = true;
@@ -127,12 +127,16 @@ public class GameManager : MonoBehaviour
     private bool _canGetOutPopUpSpawn = true;
     public bool canGetOutPopUpSpawn
     {
-        get{return _canGetOutPopUpSpawn;}
-        set{_canGetOutPopUpSpawn = value;}
+        get { return _canGetOutPopUpSpawn; }
+        set { _canGetOutPopUpSpawn = value; }
     }
     private static GameManager instance;
+
     [SerializeField]
     private GameObject gameOut = null;
+    [SerializeField]
+    private GameObject tutorial = null;
+
     private bool gameOutSpawned = false;
     [SerializeField]
     private UnitScript[] _playerUnitPrefabs;
@@ -173,7 +177,7 @@ public class GameManager : MonoBehaviour
     public int hadMoney
     {
         get { return _hadMoney; }
-        set{_hadMoney = value;}
+        set { _hadMoney = value; }
     }
     private int plusMoney = 1;
     [SerializeField]
@@ -207,12 +211,25 @@ public class GameManager : MonoBehaviour
     private bool _popUpIsSpawned = false;
     public bool popUpIsSpawned
     {
-        get{return _popUpIsSpawned;}
-        set{_popUpIsSpawned = value;}
+        get { return _popUpIsSpawned; }
+        set { _popUpIsSpawned = value; }
+    }
+    private bool _tutoIsPlaying = false;
+    public bool tutoIsPlaying
+    {
+        get { return _tutoIsPlaying; }
+        set { _tutoIsPlaying = value; }
     }
     void Awake()
     {
         halfScreenSizeX = (Screen.width / 2);
+    }
+    void Start()
+    {
+        if (saveData.currentStage <= 0)
+        {
+            SpawnTutorial();
+        }
     }
 
     void Update()
@@ -223,6 +240,10 @@ public class GameManager : MonoBehaviour
         CheckSpawnGetOut();
 
         goldText.text = saveData.gold + "";
+    }
+    public void SpawnTutorial()
+    {
+        Instantiate(tutorial);
     }
 
     private void CheckSpawnGetOut()
@@ -243,14 +264,17 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator PlusMoney()
     {
-        canMoneyPlus = false;
+        if (!tutoIsPlaying)
+        {
+            canMoneyPlus = false;
 
-        yield return new WaitForSeconds(plusMoneyTime - (saveData.plusMoneySpeedLev * minusPluseMoneyTimePerLev));
+            yield return new WaitForSeconds(plusMoneyTime - (saveData.plusMoneySpeedLev * minusPluseMoneyTimePerLev));
 
-        money += plusMoney;
-        hadMoney += plusMoney;
+            money += plusMoney;
+            hadMoney += plusMoney;
 
-        canMoneyPlus = true;
+            canMoneyPlus = true;
+        }
     }
     public int GetMoney()
     {

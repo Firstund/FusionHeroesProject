@@ -29,19 +29,22 @@ public class MapSliderScript : MonoBehaviour
     }
     void Update()
     {
-        if (!gameManager.GetUiClicked())
+        if (!gameManager.tutoIsPlaying)
         {
-
-            if (gameManager.GetCST() && Input.GetMouseButton(0))
+            if (!gameManager.GetUiClicked())
             {
-                if (gameManager.mousePosition.x >= gameManager.halfScreenSizeX)
-                    mapSlider.value += moveSliderXSpeed * Time.deltaTime;
-                else if (gameManager.mousePosition.x < gameManager.halfScreenSizeX)
-                    mapSlider.value -= moveSliderXSpeed * Time.deltaTime;
+
+                if (gameManager.GetCST() && Input.GetMouseButton(0))
+                {
+                    if (gameManager.mousePosition.x >= gameManager.halfScreenSizeX)
+                        mapSlider.value += moveSliderXSpeed * Time.deltaTime;
+                    else if (gameManager.mousePosition.x < gameManager.halfScreenSizeX)
+                        mapSlider.value -= moveSliderXSpeed * Time.deltaTime;
+                }
             }
+            cameraPosition = mainCamera.transform.position;
+            cameraPosition.x = mapSlider.value * mousePositionPerValue;
+            mainCamera.transform.position = cameraPosition;
         }
-        cameraPosition = mainCamera.transform.position;
-        cameraPosition.x = mapSlider.value * mousePositionPerValue;
-        mainCamera.transform.position = cameraPosition;
     }
 }

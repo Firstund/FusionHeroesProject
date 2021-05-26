@@ -208,33 +208,36 @@ public class UnitScript : MonoBehaviour
 
     void Update()
     {
-        audi.volume = gameManager.GetSoundValue();
-        levelText.text = string.Format("Level: {0}", unitLev); // 레벨 텍스트
-        currentPosition = transform.localPosition;
-        isFollow = fusionManager.GetIsFollow();
-
-        SetDistanceArrayIndex();
-
-        onClickMouse();
-
-        ODCheck();
-        if (gameManager.GetCST())
+        if (!gameManager.tutoIsPlaying)
         {
-            ForwardODCheck();
-            BackwardODCheck();
-            EDCheck();
-        }
-        FusionCheck();
-        Move();
-        HealthBar();
-        DestroyCheck();
+            audi.volume = gameManager.GetSoundValue();
+            levelText.text = string.Format("Level: {0}", unitLev); // 레벨 텍스트
+            currentPosition = transform.localPosition;
+            isFollow = fusionManager.GetIsFollow();
 
-        if (gameManager.GetCST())
-            AttackCheck();
+            SetDistanceArrayIndex();
 
-        if (followingCheck)
-        {
-            gameManager.SetCSt(false);
+            onClickMouse();
+
+            ODCheck();
+            if (gameManager.GetCST())
+            {
+                ForwardODCheck();
+                BackwardODCheck();
+                EDCheck();
+            }
+            FusionCheck();
+            Move();
+            HealthBar();
+            DestroyCheck();
+
+            if (gameManager.GetCST())
+                AttackCheck();
+
+            if (followingCheck)
+            {
+                gameManager.SetCSt(false);
+            }
         }
     }
     public void SetDistanceArrayIndex()

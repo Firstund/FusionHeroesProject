@@ -80,14 +80,16 @@ public class EnemyScript : MonoBehaviour
     protected float shortestEnemyDistance = 10f;
 
     protected bool _attackedCheck = false;
-    public bool attackedCheck{
-        get{return _attackedCheck;}
-        set{_attackedCheck = value;}
+    public bool attackedCheck
+    {
+        get { return _attackedCheck; }
+        set { _attackedCheck = value; }
     }
     protected bool _attackAnimIsPlaying = false;
-    public bool attackAnimIsPlaying{
-        get{return _attackAnimIsPlaying;}
-        set{_attackAnimIsPlaying = value;}
+    public bool attackAnimIsPlaying
+    {
+        get { return _attackAnimIsPlaying; }
+        set { _attackAnimIsPlaying = value; }
     }
     protected bool buildingIsShortest = false;//building이 shortest일 때 true. unit이 shortest일 때 false
     protected bool isAttackOne = true;
@@ -129,20 +131,23 @@ public class EnemyScript : MonoBehaviour
 
     void Update()
     {
-        currentPosition = transform.localPosition;
-        audi.volume = gameManager.GetSoundValue();
+        if (!gameManager.tutoIsPlaying)
+        {
+            currentPosition = transform.localPosition;
+            audi.volume = gameManager.GetSoundValue();
 
-        SetDistanceArrayIndex();
+            SetDistanceArrayIndex();
 
-        EDCheck();
-        ODCheck();
+            EDCheck();
+            ODCheck();
 
-        if (gameManager.GetCST())
-            AttackCheck();
+            if (gameManager.GetCST())
+                AttackCheck();
 
-        Move();
-        HealthBar();
-        DestroyCheck();
+            Move();
+            HealthBar();
+            DestroyCheck();
+        }
     }
     public void SetDistanceArrayIndex()
     {
@@ -224,14 +229,14 @@ public class EnemyScript : MonoBehaviour
         if (!isDead)
         {
             float stopByObjectDistance = 1f;
-           
+
 
             if (attackDistance < stopByObjectDistance)
             {
                 stopByObjectDistance = attackDistance;
             }
 
-            if(enemyObjectDistanceArray[0] < stopByObjectDistance)
+            if (enemyObjectDistanceArray[0] < stopByObjectDistance)
             {
                 stopByObjectDistance = 1.5f;
             }

@@ -26,4 +26,20 @@ public class SpawnDespawnScript : MonoBehaviour
         deSpawnIt.SetActive(false);
         spawnIt.SetActive(true);
     }
+    public GameObject GetSpawnIt()
+    {
+        return spawnIt;
+    }
+    public GameObject GetDeSpawnIt()
+    {
+        return deSpawnIt;
+    }
+    public void SetSpawnIt(GameObject a)
+    {
+        spawnIt = a;
+    }
+    public void SetDeSpawnIt(GameObject a)
+    {
+        deSpawnIt = a;
+    }
 }
