@@ -747,16 +747,20 @@ public class UnitScript : MonoBehaviour
         {
             if (fusionManager.unitScript[a] != null)
             {
+                Debug.Log("a");
                 objectDistanceArray[a + 1] = Vector2.Distance(fusionManager.unitScript[a].currentPosition, currentPosition);
 
                 if (objectDistanceArray[a + 1] < _ShortestDistance)
                 {
+                    Debug.Log("aa");
                     bool arrayDistanceCheck = (objectDistanceArray[a + 1] == 0);
 
                     if (!arrayDistanceCheck)
                     {
+                        Debug.Log("aaa");
                         if (fusionManager.unitScript[a] != this)
                         {
+                            Debug.Log("aaaa");
                             shortestScript = fusionManager.unitScript[a];
                             _ShortestDistance = objectDistanceArray[a + 1];
                             shortestDistance = _ShortestDistance;

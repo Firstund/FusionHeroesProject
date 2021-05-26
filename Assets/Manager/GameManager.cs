@@ -30,43 +30,43 @@ public class SaveData
     }
     // 업그레이드를 하지 않은 상태에선, 스탯 레벨은 0이다.
     [SerializeField]
-    private int[] _unitHeartLev = new int[100];
-    public int[] unitHeartLev
+    private List<int> _unitHeartLev = new List<int>();
+    public List<int> unitHeartLev
     {
         get { return _unitHeartLev; }
         set { _unitHeartLev = value; }
     }
     [SerializeField]
-    private int[] _unitApLev = new int[100];
-    public int[] unitApLev
+    private List<int>  _unitApLev = new List<int>();
+    public List<int> unitApLev
     {
         get { return _unitApLev; }
         set { _unitApLev = value; }
     }
     [SerializeField]
-    private int[] _unitDpLev = new int[100];
-    public int[] unitDpLev
+    private List<int> _unitDpLev = new List<int>();
+    public List<int> unitDpLev
     {
         get { return _unitDpLev; }
         set { _unitDpLev = value; }
     }
     [SerializeField]
-    private float[] _heart = new float[100];
-    public float[] heart
+    private List<float> _heart = new List<float>();
+    public List<float> heart
     {
         get { return _heart; }
         set { _heart = value; }
     }
     [SerializeField]
-    private float[] _ap = new float[100];
-    public float[] ap
+    private List<float> _ap = new List<float>();
+    public List<float> ap
     {
         get { return _ap; }
         set { _ap = value; }
     }
     [SerializeField]
-    private float[] _dp = new float[100]; // index는 유닛 ID로, 건물의 경우 아군의 건물은 0, 적의 건물은 1로한다.
-    public float[] dp
+    private List<float> _dp = new List<float>(); // index는 유닛 ID로, 건물의 경우 아군의 건물은 0, 적의 건물은 1로한다.
+    public List<float> dp
     {
         get { return _dp; }
         set { _dp = value; }

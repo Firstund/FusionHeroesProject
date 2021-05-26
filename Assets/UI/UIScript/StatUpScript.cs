@@ -136,21 +136,21 @@ public class StatUpScript : MonoBehaviour
         {
             case "he":
                 if (currentUnit != null)
-                    saveData.unitHeartLev[unitStatIndex] = UpgradeStat(saveData.unitHeartLev[unitStatIndex], ref saveData.heart[unitStatIndex], currentUnit.heart, currentUnit.heartUpPerLev);
+                    saveData.unitHeartLev[unitStatIndex] = UpgradeStat(saveData.unitHeartLev[unitStatIndex], currentUnit.heart, "heart", currentUnit.heartUpPerLev);
                 else
-                    saveData.unitHeartLev[unitStatIndex] = UpgradeStat(saveData.unitHeartLev[unitStatIndex], ref saveData.heart[unitStatIndex]);
+                    saveData.unitHeartLev[unitStatIndex] = UpgradeStat(saveData.unitHeartLev[unitStatIndex]);
                 break;
             case "ap":
                 if (currentUnit != null)
-                    saveData.unitApLev[unitStatIndex] = UpgradeStat(saveData.unitApLev[unitStatIndex], ref saveData.ap[unitStatIndex], currentUnit.ap, currentUnit.apUpPerLev);
+                    saveData.unitApLev[unitStatIndex] = UpgradeStat(saveData.unitApLev[unitStatIndex], currentUnit.ap, "ap", currentUnit.apUpPerLev);
                 else
-                    saveData.unitApLev[unitStatIndex] = UpgradeStat(saveData.unitApLev[unitStatIndex], ref saveData.ap[unitStatIndex]);
+                    saveData.unitApLev[unitStatIndex] = UpgradeStat(saveData.unitApLev[unitStatIndex]);
                 break;
             case "dp":
                 if (currentUnit != null)
-                    saveData.unitDpLev[unitStatIndex] = UpgradeStat(saveData.unitDpLev[unitStatIndex], ref saveData.dp[unitStatIndex], currentUnit.dp, currentUnit.dpUpPerLev);
+                    saveData.unitDpLev[unitStatIndex] = UpgradeStat(saveData.unitDpLev[unitStatIndex], currentUnit.dp, "dp", currentUnit.dpUpPerLev);
                 else
-                    saveData.unitDpLev[unitStatIndex] = UpgradeStat(saveData.unitDpLev[unitStatIndex], ref saveData.dp[unitStatIndex]);
+                    saveData.unitDpLev[unitStatIndex] = UpgradeStat(saveData.unitDpLev[unitStatIndex]);
                 break;
             case "fusionLev":
                 saveData.maxFusionLev = UpgradeStat(saveData.maxFusionLev);
@@ -166,36 +166,27 @@ public class StatUpScript : MonoBehaviour
         gameManager.SetSaveData(saveData);
     }
 
-    private int UpgradeStat(int unitStatLev, ref float unitStat, float currentUnitStat, float currentUnitStatUpPerLev)
+    private int UpgradeStat(int unitStatLev, float currentUnitStat, string statName, float currentUnitStatUpPerLev)
     {
         if (saveData.gold >= upgradeCost && unitStatLev < saveData.maxStatLev)
         {
             saveData.gold -= upgradeCost;
             unitStatLev++;
             if (currentUnit != null)
-                unitStat = currentUnitStat + unitStatLev * currentUnitStatUpPerLev;
-        }
-        else if (unitStatLev > saveData.maxStatLev)
-        {
-            unitStatLev = saveData.maxStatLev;
-        }
-        else if(unitStatLev < saveData.maxStatLev)
-        {
-            Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
-        }
-        else
-        {
-            Instantiate(stageManager.maxLevelText, stageManager.textSpawnPosition);
-        }
-
-        return unitStatLev;
-    }
-    private int UpgradeStat(int unitStatLev, ref float unitStat)
-    {
-        if (saveData.gold >= upgradeCost && unitStatLev < saveData.maxStatLev)
-        {
-            saveData.gold -= upgradeCost;
-            unitStatLev++;
+            {
+                switch(statName)
+                {
+                    case "ap":
+                        saveData.ap[unitStatIndex] = currentUnitStat + unitStatLev * currentUnitStatUpPerLev;
+                    break;
+                    case "dp":
+                        saveData.dp[unitStatIndex] = currentUnitStat + unitStatLev * currentUnitStatUpPerLev;
+                    break;
+                    case "heart":
+                        saveData.heart[unitStatIndex] = currentUnitStat + unitStatLev * currentUnitStatUpPerLev;
+                    break;
+                }
+            }
         }
         else if (unitStatLev > saveData.maxStatLev)
         {
