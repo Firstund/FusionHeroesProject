@@ -24,9 +24,19 @@ public class TutorialScript : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        if (Input.GetMouseButtonUp(0) || time > autoTime)
+        if (tutorialChapterNum == 0)
         {
-            OnClick();
+            if (Input.GetMouseButtonUp(0))
+            {
+                OnClick();
+            }
+        }
+        else
+        {
+            if (Input.GetMouseButtonUp(0) || time > autoTime)
+            {
+                OnClick();
+            }
         }
     }
     private void OnClick()
