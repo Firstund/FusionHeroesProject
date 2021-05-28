@@ -129,6 +129,7 @@ public class UnitScript : MonoBehaviour
 
     private float firstUnitClickableRange = 0f;
 
+    [SerializeField]
     protected float mouseDistance = 0f;
 
     [SerializeField]

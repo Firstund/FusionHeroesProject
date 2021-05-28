@@ -5486,6 +5486,7 @@ MonoBehaviour:
   levelUpCost: 30
   unitClickableRange: 1
   firstUnitClickableRange: 0
+  mouseDistance: 0
   objectDistanceArray: []
   enemyObjectDistanceArray: []
   shortestDistance: 10
