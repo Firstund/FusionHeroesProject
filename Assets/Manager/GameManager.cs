@@ -180,6 +180,7 @@ public class GameManager : MonoBehaviour
         get{return _maxMoney;}
         set{_maxMoney = value;}
     }
+    private int firstMaxMoney = 0;
     [SerializeField]
     private float maxMoneyUp = 1.5f;
 
@@ -264,6 +265,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         firstGetMoneyUpgradeCost = getMoneyUpgradeCost;
+        firstMaxMoney = maxMoney;
         if (saveData.currentStage <= 0)
         {
             SpawnTutorial();
@@ -297,6 +299,7 @@ public class GameManager : MonoBehaviour
     public void Reset()
     {
         getMoneyUpgradeCost = firstGetMoneyUpgradeCost;
+        maxMoney = firstMaxMoney;
         getMoneyUpgradeLev = 0;
         money = 0;
         FindObjectOfType<GetMoneySpeedUpBtnScript>().SetText();
