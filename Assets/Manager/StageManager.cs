@@ -104,7 +104,7 @@ public class StageManager : MonoBehaviour
         stageClearPopUp.SetActive(false);
         gameManager.SetCSt(true);
 
-        gameManager.SetMoney(0);
+        gameManager.Reset();
 
         fusionManager.enemyBuildingScript.Reset();
         fusionManager.buildingScript.Reset();

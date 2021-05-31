@@ -173,6 +173,16 @@ public class GameManager : MonoBehaviour
         }
     }
     private int money = 0;
+
+    [SerializeField]
+    private int _maxMoney = 100;
+    public int maxMoney{
+        get{return _maxMoney;}
+        set{_maxMoney = value;}
+    }
+    [SerializeField]
+    private float maxMoneyUp = 1.5f;
+
     private int _hadMoney = 0; // 처음부터 끝까지 money를 하나도 안썼을 경우의 money의 양
     public int hadMoney
     {
@@ -191,6 +201,33 @@ public class GameManager : MonoBehaviour
                 _plusMoneyTime = value;
         }
     }
+    [SerializeField]
+    private int _getMoneyUpgradeLev = 0;
+    public int getMoneyUpgradeLev
+    {
+        get{return _getMoneyUpgradeLev;}
+        set{_getMoneyUpgradeLev = value;}
+    }
+    [SerializeField]
+    private float _minusPlusMoneyTimePerUpgrade = 0.005f;
+    public float minusPlusMoneyTimePerUpgrade{
+        get{return _minusPlusMoneyTimePerUpgrade;}
+        set{_minusPlusMoneyTimePerUpgrade = value;}
+    }
+    [SerializeField]
+    private int maxGetMoneyUpgradeLev = 8;
+    [SerializeField]
+    private int _getMoneyUpgradeCost = 20;
+    public int getMoneyUpgradeCost
+    {
+        get{return _getMoneyUpgradeCost;}
+        set{_getMoneyUpgradeCost = value;}
+    }
+    private int firstGetMoneyUpgradeCost = 0;
+    [SerializeField]
+    private float getMoneyUpgradeCostUp = 1.5f;
+    
+
     [SerializeField]
     private float _minusPluseMoneyTimePerLev = 0.005f;
     public float minusPluseMoneyTimePerLev
@@ -226,10 +263,12 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        firstGetMoneyUpgradeCost = getMoneyUpgradeCost;
         if (saveData.currentStage <= 0)
         {
             SpawnTutorial();
         }
+        
     }
 
     void Update()
@@ -244,6 +283,23 @@ public class GameManager : MonoBehaviour
     public void SpawnTutorial()
     {
         Instantiate(tutorial);
+    }
+    public void OnClickMinusPlusMoneyTimePerUpgradeNutton()
+    {
+        if(money >= getMoneyUpgradeCost && getMoneyUpgradeLev < maxGetMoneyUpgradeLev)
+        {
+            money -= getMoneyUpgradeCost;
+            getMoneyUpgradeLev++;
+            getMoneyUpgradeCost = (int)(getMoneyUpgradeCostUp * getMoneyUpgradeCost);
+            maxMoney = (int)(maxMoney * maxMoneyUp);
+        }
+    }
+    public void Reset()
+    {
+        getMoneyUpgradeCost = firstGetMoneyUpgradeCost;
+        getMoneyUpgradeLev = 0;
+        money = 0;
+        FindObjectOfType<GetMoneySpeedUpBtnScript>().SetText();
     }
 
     private void CheckSpawnGetOut()
@@ -264,16 +320,20 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator PlusMoney()
     {
-        if (!tutoIsPlaying)
+        if (!tutoIsPlaying && money + plusMoney < maxMoney)
         {
             canMoneyPlus = false;
 
-            yield return new WaitForSeconds(plusMoneyTime - (saveData.plusMoneySpeedLev * minusPluseMoneyTimePerLev));
+            yield return new WaitForSeconds(plusMoneyTime - (saveData.plusMoneySpeedLev * minusPluseMoneyTimePerLev) - (getMoneyUpgradeLev * minusPlusMoneyTimePerUpgrade));
 
             money += plusMoney;
             hadMoney += plusMoney;
 
             canMoneyPlus = true;
+        }
+        else if(money < maxMoney)
+        {
+            money = maxMoney;
         }
     }
     public int GetMoney()

@@ -577,15 +577,27 @@ public class EnemyScript : MonoBehaviour
     }
     public void Destroye()
     {
-        int money = gameManager.GetMoney() + plusMoney;
-        int hadMoney = gameManager.hadMoney + plusMoney;
+        if (gameManager.GetMoney() + plusMoney < gameManager.maxMoney)
+        {
+            int money = gameManager.GetMoney() + plusMoney;
+            int hadMoney = gameManager.hadMoney + plusMoney;
 
-        gameManager.SetMoney(money);
-        gameManager.hadMoney = hadMoney;
+            gameManager.SetMoney(money);
+            gameManager.hadMoney = hadMoney;
+        }
+        else if(gameManager.GetMoney() < gameManager.maxMoney)
+        {
+            int money = gameManager.maxMoney;
+            int hadMoney = gameManager.maxMoney - gameManager.GetMoney();
+
+            gameManager.SetMoney(money);
+            gameManager.hadMoney = hadMoney;
+        }
 
         stageManager.killedEnemyUnitNum++;
 
         fusionManager.SetCanSetScripts();
+
         Destroy(gameObject);
     }
     public AudioSource GetAudi()

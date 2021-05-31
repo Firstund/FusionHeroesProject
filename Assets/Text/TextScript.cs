@@ -18,6 +18,6 @@ public class TextScript : MonoBehaviour
     }
     void SetText()
     {
-        text.text = string.Format("Current Money: {0}", gameManager.GetMoney());
+        text.text = "Current Money: " + gameManager.GetMoney() + " / " + gameManager.maxMoney;
     }
 }
