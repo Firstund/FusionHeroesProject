@@ -2,6 +2,10 @@
 
 public class MenuButtonScript : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject[] buttons = null;
+    [SerializeField]
+    private GameObject buttonsParent = null;
     private bool menuOpen = false;
     [SerializeField]
     private int comeBackNum = 0;
@@ -13,13 +17,13 @@ public class MenuButtonScript : MonoBehaviour
         {
             comeBackNum = 0;
 
-            for (int i = 0; i < transform.GetChild(0).childCount; i++)
+            foreach(var item in buttons)
             {
-                mBtnScript = transform.GetChild(0).GetChild(i).GetComponent<M_ButtonScript>();
+                mBtnScript = item.GetComponent<M_ButtonScript>();
                 mBtnScript.Reset();
             }
 
-            MenuSet(false);
+            MenuSet(false);////////
         }
         // if(Input.GetKeyUp(KeyCode.Escape))
         // {
@@ -31,9 +35,9 @@ public class MenuButtonScript : MonoBehaviour
     }
     public void OnClick()
     {
-        for (int i = 0; i < transform.GetChild(0).childCount; i++)
+        foreach(var item in buttons)
         {
-            mBtnScript = transform.GetChild(0).GetChild(i).GetComponent<M_ButtonScript>();
+            mBtnScript = item.GetComponent<M_ButtonScript>();
             if(mBtnScript.isMoving)
             {
                 return;
@@ -47,9 +51,9 @@ public class MenuButtonScript : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < transform.GetChild(0).childCount; i++)
+            foreach(var item in buttons)
             {
-                mBtnScript = transform.GetChild(0).GetChild(i).GetComponent<M_ButtonScript>();
+                mBtnScript = item.GetComponent<M_ButtonScript>();
                 mBtnScript.Return();
             }
         }
@@ -57,7 +61,7 @@ public class MenuButtonScript : MonoBehaviour
     }
     private void MenuSet(bool a)
     {
-        transform.GetChild(0).gameObject.SetActive(a);
+        buttonsParent.gameObject.SetActive(a);////
     }
     public void IsComeBack()
     {
