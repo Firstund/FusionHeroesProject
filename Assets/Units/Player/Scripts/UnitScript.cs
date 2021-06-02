@@ -30,6 +30,8 @@ public class UnitScript : MonoBehaviour
                                                          // 인덱스 값은 해당 유닛의 아이디의 (세번째 숫자 - 1)로 설정한다.
                                                          // 첫번 째 배열에 들어가는 유닛의 아이디는 무조건 이 스크립트의 unitId값이다.
     [SerializeField]
+    protected UnitOnMiniMapScript unitOnMiniMap = null;
+    [SerializeField]
     protected float attackDistance = 2f;
     [SerializeField]
     protected float _heart = 100f;
@@ -118,7 +120,6 @@ public class UnitScript : MonoBehaviour
     protected int thisUnitNum = 0; // 현재 소환된 오브젝트들 중 몇번째 오브젝트인가
     [SerializeField]
     protected double thisUnitNO = 0; // 게임 전체에서 몇 번째 소환된 오브젝트인가
-                                     // 이게 왜 곂치지???
     [SerializeField]
     protected int unitLev = 01; // 유닛의 레벨
     [SerializeField]
@@ -205,6 +206,8 @@ public class UnitScript : MonoBehaviour
         setStat();
 
         SetMaxHealth();
+
+        Instantiate(unitOnMiniMap.gameObject, GameObject.Find("MapSlider").transform).GetComponent<UnitOnMiniMapScript>().targetUnitTrm = this.gameObject.transform;
     }
 
     void Update()
@@ -495,6 +498,7 @@ public class UnitScript : MonoBehaviour
 
         stageManager.deathPlayerUnitNum++;
         fusionManager.SetCanSetScripts();
+        Destroy(unitOnMiniMap);
         Destroy(a.gameObject);
     }
     protected void AttackCheck()

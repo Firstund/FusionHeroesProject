@@ -17,7 +17,12 @@ public class MapSliderScript : MonoBehaviour
         set { _mapSlider = value; }
     }
     [SerializeField]
-    private float mousePositionPerValue = 40f;
+    private float _mousePositionPerValue = 40f;
+    public float mousePositionPerValue
+    {
+        get{return _mousePositionPerValue;}
+        set{_mousePositionPerValue = value;}
+    }
     [SerializeField]
     private float moveSliderXSpeed = 1f;
     private Vector3 cameraPosition = Vector3.zero;

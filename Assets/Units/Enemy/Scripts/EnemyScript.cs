@@ -12,6 +12,8 @@ public class EnemyScript : MonoBehaviour
     protected GameManager gameManager = null;
 
     [SerializeField]
+    protected UnitOnMiniMapScript unitOnMiniMap = null;
+    [SerializeField]
     protected Slider slider = null;
     [SerializeField]
     protected UnitScript shortestScript = null;
@@ -127,6 +129,9 @@ public class EnemyScript : MonoBehaviour
 
 
         SetMaxHealth();
+
+        Instantiate(unitOnMiniMap.gameObject, GameObject.Find("MapSlider").transform).GetComponent<UnitOnMiniMapScript>().targetUnitTrm = this.gameObject.transform;
+
     }
 
     void Update()
@@ -598,6 +603,7 @@ public class EnemyScript : MonoBehaviour
 
         fusionManager.SetCanSetScripts();
 
+        Destroy(unitOnMiniMap);
         Destroy(gameObject);
     }
     public AudioSource GetAudi()
