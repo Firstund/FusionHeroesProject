@@ -14,6 +14,7 @@ public class ExitButtonScript : MonoBehaviour
     }
     public void OnClcik()
     {
+        GameManager.Instance.popUpIsSpawned = false;
         popUpScaleScript.OnClickDisable();
     }
 }

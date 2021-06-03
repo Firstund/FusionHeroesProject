@@ -138,7 +138,7 @@ MonoBehaviour:
   attackDelay: 1
   speed: 5
   totalAtk: 0
-  plusMoney: 25
+  plusMoney: 50
   objectDistanceArray: []
   enemyObjectDistanceArray: []
 --- !u!82 &6430110809060685061
@@ -265,7 +265,7 @@ MonoBehaviour:
   - 0
   - 0
   skillDamage:
-  - 1.5
+  - 2
   - 0
 --- !u!1 &4057436545499769125
 GameObject:

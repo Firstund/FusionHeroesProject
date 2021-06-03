@@ -582,22 +582,14 @@ public class EnemyScript : MonoBehaviour
     }
     public void Destroye()
     {
-        if (gameManager.GetMoney() + plusMoney < gameManager.maxMoney)
-        {
-            int money = gameManager.GetMoney() + plusMoney;
-            int hadMoney = gameManager.hadMoney + plusMoney;
+  
+        int money = gameManager.GetMoney() + plusMoney;
+        int hadMoney = gameManager.hadMoney + plusMoney;
 
-            gameManager.SetMoney(money);
-            gameManager.hadMoney = hadMoney;
-        }
-        else if(gameManager.GetMoney() < gameManager.maxMoney)
-        {
-            int money = gameManager.maxMoney;
-            int hadMoney = gameManager.maxMoney - gameManager.GetMoney();
+        Mathf.Clamp(money, 0, gameManager.maxMoney);
 
-            gameManager.SetMoney(money);
-            gameManager.hadMoney = hadMoney;
-        }
+        gameManager.SetMoney(money);
+        gameManager.hadMoney = hadMoney;
 
         stageManager.killedEnemyUnitNum++;
 

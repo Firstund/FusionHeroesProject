@@ -134,6 +134,7 @@ public class GameManager : MonoBehaviour
         set { _canGetOutPopUpSpawn = value; }
     }
     private static GameManager instance;
+    private StageManager stageManager = null;
 
     [SerializeField]
     private GameObject gameOut = null;
@@ -263,6 +264,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        stageManager = FindObjectOfType<StageManager>();
         firstGetMoneyUpgradeCost = getMoneyUpgradeCost;
         firstMaxMoney = maxMoney;
         if (saveData.currentStage <= 0)
@@ -294,6 +296,10 @@ public class GameManager : MonoBehaviour
             getMoneyUpgradeCost = (int)(getMoneyUpgradeCostUp * getMoneyUpgradeCost);
             maxMoney = (int)(maxMoney * maxMoneyUp);
         }
+        else
+        {
+            Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
+        }
     }
     public void Reset()
     {
@@ -322,7 +328,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator PlusMoney()
     {
-        if (!tutoIsPlaying && money + plusMoney < maxMoney)
+        Mathf.Clamp(money, 0, maxMoney);
+
+        if (!tutoIsPlaying)
         {
             canMoneyPlus = false;
 
@@ -333,10 +341,7 @@ public class GameManager : MonoBehaviour
 
             canMoneyPlus = true;
         }
-        else if(money < maxMoney)
-        {
-            money = maxMoney;
-        }
+
     }
     public int GetMoney()
     {

@@ -18,8 +18,8 @@ public class M_ButtonScript : MonoBehaviour
     private bool _isMoving = false;
     public bool isMoving
     {
-        get{return _isMoving;}
-        set{_isMoving = value;}
+        get { return _isMoving; }
+        set { _isMoving = value; }
     }
     [SerializeField]
     private float comeBackVector = -2f;
@@ -42,13 +42,13 @@ public class M_ButtonScript : MonoBehaviour
         currentPosition = transform.localPosition;
 
         if (!haveToBack && (currentPosition - (Vector2)buttonPosition.localPosition).sqrMagnitude >= 0.01f)
-        {   
-            isMoving = true;      
+        {
+            isMoving = true;
             currentPosition = Vector2.Lerp(currentPosition, buttonPosition.localPosition, Time.deltaTime * speed); // 이동
         }
         else
         {
-            if(haveToBack && (currentPosition - menuButtonPositon).sqrMagnitude >= 0.01f)
+            if (haveToBack && (currentPosition - menuButtonPositon).sqrMagnitude >= 0.01f)
             {
                 isMoving = true;
                 currentPosition = Vector2.Lerp(currentPosition, menuButtonPositon, Time.deltaTime * speed); // 되돌아오기
@@ -63,7 +63,7 @@ public class M_ButtonScript : MonoBehaviour
         {
             transform.localPosition = currentPosition;
             menuButtonScript.IsComeBack();
-            
+
             Reset();
             speed = 0f;
             Return();
@@ -88,7 +88,10 @@ public class M_ButtonScript : MonoBehaviour
     }
     public void SpawnPopUp()
     {
-        gameManager.popUpIsSpawned = true;
-        spawnPopUp.SetActive(true);
+        if (!gameManager.popUpIsSpawned)
+        {
+            gameManager.popUpIsSpawned = true;
+            spawnPopUp.SetActive(true);
+        }
     }
 }
