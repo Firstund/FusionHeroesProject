@@ -13,7 +13,8 @@ public class ClickPannelScript : MonoBehaviour
     {
         if(Input.GetMouseButton(0))
         {
-            Vector2 mousePosition = Input.mousePosition;
+            
+            Vector2 mousePosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
             gameManager.mousePosition = mousePosition;
         }
     }

@@ -113,11 +113,14 @@ public class GameManager : MonoBehaviour
         get { return _mousePosition; }
         set { _mousePosition = value; }
     }
-    private float _halfScreenSizeX = 0f;
-    public float halfScreenSizeX
+    [SerializeField]
+    private RectTransform canvasTrm = null;
+    [SerializeField]
+    private float _halfViewportSizeX = 0f;
+    public float halfViewportSizeX
     {
-        get { return _halfScreenSizeX; }
-        set { _halfScreenSizeX = value; }
+        get { return _halfViewportSizeX; }
+        set { _halfViewportSizeX = value; }
     }
     [SerializeField]
     private bool canTimeStop = true;
@@ -257,10 +260,6 @@ public class GameManager : MonoBehaviour
     {
         get { return _tutoIsPlaying; }
         set { _tutoIsPlaying = value; }
-    }
-    void Awake()
-    {
-        halfScreenSizeX = (Screen.width / 2);
     }
     void Start()
     {

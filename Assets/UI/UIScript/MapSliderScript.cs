@@ -41,9 +41,9 @@ public class MapSliderScript : MonoBehaviour
 
                 if (gameManager.GetCST() && Input.GetMouseButton(0))
                 {
-                    if (gameManager.mousePosition.x >= gameManager.halfScreenSizeX)
+                    if (gameManager.mousePosition.x >= gameManager.halfViewportSizeX)
                         mapSlider.value += moveSliderXSpeed * Time.deltaTime;
-                    else if (gameManager.mousePosition.x < gameManager.halfScreenSizeX)
+                    else if (gameManager.mousePosition.x < gameManager.halfViewportSizeX)
                         mapSlider.value -= moveSliderXSpeed * Time.deltaTime;
                 }
             }
