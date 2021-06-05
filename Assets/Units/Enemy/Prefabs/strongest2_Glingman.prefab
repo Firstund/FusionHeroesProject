@@ -129,11 +129,11 @@ MonoBehaviour:
   attackDistance: 2
   minimumD: 0
   maximumD: 3
-  heart: 20
+  heart: 30
   heartUp: 0.5
   ap: 0.33333334
   apUp: 0.01
-  dp: 2
+  dp: 3
   dpUp: 0.25
   attackDelay: 1
   speed: 5
@@ -265,7 +265,7 @@ MonoBehaviour:
   - 0
   - 0
   skillDamage:
-  - 2
+  - 3
   - 0
 --- !u!1 &4057436545499769125
 GameObject:

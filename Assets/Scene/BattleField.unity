@@ -19479,7 +19479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1062759389}
   m_Layer: 5
-  m_Name: Units
+  m_Name: UnitList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32420,7 +32420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1659796014}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Units
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34555,7 +34555,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1768152564}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: EnemyUnits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
