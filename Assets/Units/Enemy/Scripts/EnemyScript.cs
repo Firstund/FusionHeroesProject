@@ -571,6 +571,8 @@ public class EnemyScript : MonoBehaviour
     }
     protected void DestroyCheck()
     {
+            // Destroy(unitOnMiniMap);
+        
         if (heart <= 0f && !isDead)
         {
             anim.Play("Dead");
@@ -584,9 +586,12 @@ public class EnemyScript : MonoBehaviour
     {
   
         int money = gameManager.GetMoney() + plusMoney;
-        int hadMoney = gameManager.hadMoney + plusMoney;
+        int hadMoney = 0;
 
-        Mathf.Clamp(money, 0, gameManager.maxMoney);
+        if(money >= gameManager.maxMoney)
+            money = Mathf.Clamp(money, 0, gameManager.maxMoney);
+        else
+            hadMoney = gameManager.hadMoney + plusMoney;
 
         gameManager.SetMoney(money);
         gameManager.hadMoney = hadMoney;
@@ -595,7 +600,6 @@ public class EnemyScript : MonoBehaviour
 
         fusionManager.SetCanSetScripts();
 
-        Destroy(unitOnMiniMap);
         Destroy(gameObject);
     }
     public AudioSource GetAudi()

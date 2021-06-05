@@ -21,7 +21,7 @@ public class UnitOnMiniMapScript : MonoBehaviour
 
     void Update()
     {
-        try{
+        if(targetUnitTrm != null){
             
         Vector2 a = targetUnitTrm.localPosition;  
 
@@ -29,7 +29,7 @@ public class UnitOnMiniMapScript : MonoBehaviour
 
         thisRectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, a.x, thisRectTransform.rect.width);
         }
-        catch(MissingReferenceException)
+        else
         {
             Destroy(gameObject);
         }

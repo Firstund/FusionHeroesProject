@@ -481,7 +481,7 @@ public class UnitScript : MonoBehaviour
             ap = 0f;
             isDead = true;
             MinusUnitNum();
-
+            // Destroy(unitOnMiniMap);
         }
     }
 
@@ -498,7 +498,6 @@ public class UnitScript : MonoBehaviour
 
         stageManager.deathPlayerUnitNum++;
         fusionManager.SetCanSetScripts();
-        Destroy(unitOnMiniMap);
         Destroy(a.gameObject);
     }
     protected void AttackCheck()

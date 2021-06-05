@@ -328,8 +328,6 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator PlusMoney()
     {
-        Mathf.Clamp(money, 0, maxMoney);
-
         if (!tutoIsPlaying)
         {
             canMoneyPlus = false;
@@ -338,7 +336,7 @@ public class GameManager : MonoBehaviour
 
             money += plusMoney;
             hadMoney += plusMoney;
-
+            money = Mathf.Clamp(money, 0, maxMoney);
             canMoneyPlus = true;
         }
 
