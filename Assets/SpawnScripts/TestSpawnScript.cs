@@ -24,7 +24,11 @@ public class TestSpawnScript : MonoBehaviour
     [SerializeField]
     private Image respawnImage = null;
     [SerializeField]
-    private int spawnMoney = 5;
+    private int _spawnMoney = 5;
+    public int spawnMoney{
+        get{return _spawnMoney;}
+        set{_spawnMoney = value;}
+    }
     [SerializeField]
     private float spawnSpeed = 3f;
     private float nextTimeToSpawn = 0f;
