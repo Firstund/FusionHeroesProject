@@ -67,8 +67,8 @@ public class EnemySpawnScript : MonoBehaviour
     }
     void Spawn()
     {
-        StartCoroutine(skeleton());
         StartCoroutine(archer());
+        StartCoroutine(skeleton());
         StartCoroutine(madBlind());
     }
     private IEnumerator madBlind()
