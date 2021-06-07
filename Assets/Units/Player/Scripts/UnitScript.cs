@@ -18,17 +18,18 @@ public class UnitScript : MonoBehaviour
     protected int unitId = 01; // 유닛의 종류
                                // 첫번째 자리: (이 유닛을 소환하기 위해 필요한 퓨전 수 + 1)
                                // 두번째 자리: 0 (특수 케이스가 떠오를 때를 대비)
-                               // 세번째 자리: unitId의 첫번째 자리가 같은 숫자들 중 이 유닛이 생긴 순서
+                               // 세번째 자리: unitId의 첫번째 자리가 같은 숫자의 그룹 중 이 유닛이 생긴 순서
     public int unitStatIndex
     {
         get { return (unitId / 50 + unitId % 100); }
     }
     // [SerializeField]
-    // protected int[] fusionUnitId = new int[5]; // 이 유닛과 퓨전할 수 있는 유닛들의 유닛 아이디 // 퓨전은 잠시 보류 (사유: 게임은 퓨전이 없어도 충분히 복잡하다.)
-    [SerializeField]
-    protected GameObject[] nextUnit = new GameObject[5]; // 이 유닛이 퓨전한 후 나올수 있는 유닛들,
-                                                         // 인덱스 값은 해당 유닛의 아이디의 (세번째 숫자 - 1)로 설정한다.
-                                                         // 첫번 째 배열에 들어가는 유닛의 아이디는 무조건 이 스크립트의 unitId값이다.
+    // protected int[] fusionUnitId = new int[5]; // 이 유닛과 퓨전할 수 있는 유닛들의 유닛 아이디 
+    //// 퓨전은 잠시 보류 (사유: 게임은 퓨전이 없어도 충분히 복잡하다.)
+    // [SerializeField]
+    // protected GameObject[] nextUnit = new GameObject[5]; // 이 유닛이 퓨전한 후 나올수 있는 유닛들,
+    //                                                      // 인덱스 값은 해당 유닛의 아이디의 (세번째 숫자 - 1)로 설정한다.
+    //                                                      // 첫번 째 배열에 들어가는 유닛의 아이디는 무조건 이 스크립트의 unitId값이다.
     [SerializeField]
     protected UnitOnMiniMapScript unitOnMiniMap = null;
     [SerializeField]
@@ -86,7 +87,12 @@ public class UnitScript : MonoBehaviour
     }
 
     [SerializeField]
-    protected float speed = 0f;
+    protected float _speed = 0f;
+    public float speed
+    {
+        get { return _speed; }
+        set { _speed = value; }
+    }
     [SerializeField]
     protected float attackDelay = 1f;
     protected float firstSpeed = 0f;
@@ -108,10 +114,20 @@ public class UnitScript : MonoBehaviour
     protected EnemyScript shortestEnemyScript = null;
 
     [SerializeField]
-    protected AudioSource audi = null;
+    protected AudioSource _audi = null;
+    public AudioSource audi
+    {
+        get { return _audi; }
+        set { _audi = value; }
+    }
     [SerializeField]
     protected AudioClip attackSound = null;
-    protected Animator anim = null;
+    protected Animator _anim = null;
+    public Animator anim
+    {
+        get { return _anim; }
+        set { _anim = value; }
+    }
 
     [SerializeField]
     protected bool onlyOneFollowUnitNum = false;
@@ -160,13 +176,24 @@ public class UnitScript : MonoBehaviour
     protected bool firstPositionSet = false;
     protected bool followingCheck = false;
     protected bool canAttack = false;
-    protected bool attackAnimIsPlaying = false;
+    protected bool _attackAnimIsPlaying = false;
+    public bool attackAnimIsPlaying
+    {
+        get { return _attackAnimIsPlaying; }
+        set { _attackAnimIsPlaying = value; }
+    }
     protected bool buildingIsShortest = false;
     protected bool mouseCheck = false;
     protected bool followingMouse = false;
     protected bool isDead = false;
     private bool isAttackOne = true;
     public bool isFollow = false;
+    private bool _canSetSpeed = true;
+    public bool canSetSpeed
+    {
+        get { return _canSetSpeed; }
+        set { _canSetSpeed = value; }
+    }
 
     void Awake()
     {
@@ -529,19 +556,7 @@ public class UnitScript : MonoBehaviour
             stopByEnemyDistance = 1f;
         }
 
-        if (shortestScript != null)
-        {
-            if (shortestScript.getHe() <= 0f)
-            {
-                speed = firstSpeed;
-            }
-            else
-            {
-                speed = 0f;
-            }
-        }
-
-        if ((shortestForwardDistance > 1) && (shortestEnemyDistance > stopByEnemyDistance))
+        if ((shortestForwardDistance > 1) && (shortestEnemyDistance > stopByEnemyDistance) && canSetSpeed)
             speed = firstSpeed;
         else
         {

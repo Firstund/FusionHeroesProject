@@ -178,7 +178,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1735795042999459589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,12 +398,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 3052960253844545953}
   unitId: 101
-  nextUnit:
-  - {fileID: 0}
-  - {fileID: 5819720412174049884, guid: 17c574807e0144c4abebeaba3b54136f, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   unitOnMiniMap: {fileID: 297964726054720325, guid: 9a2b50b1974b9b944afc2bd08f1fec61, type: 3}
   attackDistance: 10
   _heart: 7
@@ -415,7 +409,7 @@ MonoBehaviour:
   _dp: 0
   dpUp: 0.3
   _dpUpPerLev: 0.05
-  speed: 1
+  _speed: 1
   attackDelay: 1
   totalAtk: 0
   Lev: {fileID: 234471825981898669}

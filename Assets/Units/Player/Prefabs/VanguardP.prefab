@@ -5454,12 +5454,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 3318772828121097187}
   unitId: 103
-  nextUnit:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   unitOnMiniMap: {fileID: 297964726054720325, guid: 9a2b50b1974b9b944afc2bd08f1fec61, type: 3}
   attackDistance: 5
   _heart: 2
@@ -5471,7 +5465,7 @@ MonoBehaviour:
   _dp: 10
   dpUp: 5
   _dpUpPerLev: 0.5
-  speed: 1
+  _speed: 1
   attackDelay: 1
   totalAtk: 0
   Lev: {fileID: 3318772828615442364}
