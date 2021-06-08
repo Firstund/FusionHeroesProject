@@ -17,11 +17,12 @@ public class UnitScript : MonoBehaviour
     [SerializeField]
     protected int unitId = 01; // 유닛의 종류
                                // 첫번째 자리: (이 유닛을 소환하기 위해 필요한 퓨전 수 + 1)
-                               // 두번째 자리: 0 (특수 케이스가 떠오를 때를 대비)
+                               // 두번째 자리: 0 (특수 케이스가 떠오를 때를 대비) // 특수케이스->다른 유닛에 의해 소환된경우 그 유닛의 ID에, 두번째자리만 변경. 
+                               // 두번째 자리는 이 유닛이 소환자 유닛의 몇번째 소환수인지를 의미.
                                // 세번째 자리: unitId의 첫번째 자리가 같은 숫자의 그룹 중 이 유닛이 생긴 순서
     public int unitStatIndex
     {
-        get { return (unitId / 50 + unitId % 100); }
+        get { return (unitId / 50 + ((unitId % 100) % 10)); }
     }
     // [SerializeField]
     // protected int[] fusionUnitId = new int[5]; // 이 유닛과 퓨전할 수 있는 유닛들의 유닛 아이디 
@@ -175,7 +176,12 @@ public class UnitScript : MonoBehaviour
     //
     protected bool firstPositionSet = false;
     protected bool followingCheck = false;
-    protected bool canAttack = false;
+    protected bool _canAttack = true;
+    public bool canAttack 
+    {
+        get{return _canAttack;}
+        set{_canAttack = value;}
+    }
     protected bool _attackAnimIsPlaying = false;
     public bool attackAnimIsPlaying
     {
@@ -282,9 +288,9 @@ public class UnitScript : MonoBehaviour
     protected void Attack()
     {
         //단일공격
-        if (!canAttack && !onlyOneFollowUnitNum)
+        if (canAttack && !onlyOneFollowUnitNum)
         {
-            canAttack = true;
+            canAttack = false;
             attackAnimIsPlaying = true;
 
             if (!isDead)
@@ -374,7 +380,7 @@ public class UnitScript : MonoBehaviour
     }
     public void ResetAttackedCheck()
     {
-        canAttack = false;
+        canAttack = true;
     }
     public void ResetAttackAnimIsPlaying()
     {
@@ -479,7 +485,7 @@ public class UnitScript : MonoBehaviour
     }
     protected void setStat()
     {
-        heart = firstHeart + heartUpPerLev * gameManager.GetSaveData().unitHeartLev[unitStatIndex] + heartUp * (unitLev);
+        heart = firstHeart + heartUpPerLev * gameManager.GetSaveData().unitHeartLev[unitStatIndex] + heartUp * (unitLev* unitLev);
 
         dp = firstDp + dpUpPerLev * gameManager.GetSaveData().unitDpLev[unitStatIndex] + dpUp * (unitLev * unitLev);
 
@@ -707,7 +713,7 @@ public class UnitScript : MonoBehaviour
         }
         else
         {
-            canAttack = false;
+            canAttack = true;
             shortestEnemyDistance = 100f;
             shortestEnemyScript = null;
         }

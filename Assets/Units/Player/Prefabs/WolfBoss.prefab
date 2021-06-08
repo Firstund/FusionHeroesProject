@@ -117,7 +117,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a46be8093b0ad2f4db669b20f9620df4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8fea530083b58334a9dd2006b992df4c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -219,14 +219,14 @@ MonoBehaviour:
   unitId: 105
   unitOnMiniMap: {fileID: 297964726054720325, guid: 9a2b50b1974b9b944afc2bd08f1fec61, type: 3}
   attackDistance: 2
-  _heart: 100
+  _heart: 40
   heartUp: 5
   _heartUpPerLev: 0.1
   _ap: 2
   apUp: 0.5
-  _apUpPerLev: 0.02
-  _dp: 2
-  dpUp: 0.25
+  _apUpPerLev: 0.3
+  _dp: 1
+  dpUp: 2
   _dpUpPerLev: 0.01
   _speed: 2
   attackDelay: 1
@@ -235,8 +235,8 @@ MonoBehaviour:
   costText: {fileID: 8320676803810666351}
   shortestScript: {fileID: 0}
   shortestEnemyScript: {fileID: 0}
-  audi: {fileID: 0}
-  attackSound: {fileID: 0}
+  _audi: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 8fea530083b58334a9dd2006b992df4c, type: 3}
   onlyOneFollowUnitNum: 0
   thisUnitNum: 0
   thisUnitNO: 0
@@ -263,10 +263,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eed54ea407cfcd4e869e7666f7a38d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  howling: {fileID: 0}
-  wolf: {fileID: 4323624078091657384, guid: 4f3b3859af179f040b019efde896d1df, type: 3}
-  wolfSpawnTime: 10
-  minusWolfSpawnTimePerLev: 0.02
+  wolf: {fileID: 6708528392320978716, guid: 52fd5e2701860e241be6a24d058fb9e0, type: 3}
+  soundBox: {fileID: 6530719832843430112, guid: 85fee5c9b346cdf408c617d317f75a72, type: 3}
+  wolfSpawnTime: 5
+  minusWolfSpawnTimePerLev: 0.2
 --- !u!1 &8320676802577826756
 GameObject:
   m_ObjectHideFlags: 0

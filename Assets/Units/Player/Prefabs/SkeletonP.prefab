@@ -112,7 +112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.0003, y: -0.46179986}
+  m_AnchoredPosition: {x: 0, y: -0.4}
   m_SizeDelta: {x: 1.6024413, y: 0.48788643}
   m_Pivot: {x: 0.5, y: 0.43834373}
 --- !u!223 &6220228851563899117
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &6220228851563899107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,12 +467,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 6220228852734831928}
   unitId: 102
-  nextUnit:
-  - {fileID: 0}
-  - {fileID: 5819720412174049884, guid: 17c574807e0144c4abebeaba3b54136f, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   unitOnMiniMap: {fileID: 297964726054720325, guid: 9a2b50b1974b9b944afc2bd08f1fec61, type: 3}
   attackDistance: 4
   _heart: 3
@@ -484,20 +478,20 @@ MonoBehaviour:
   _dp: 2
   dpUp: 0.5
   _dpUpPerLev: 0.05
-  speed: 1.7
+  _speed: 1.3
   attackDelay: 1
   totalAtk: 0
   Lev: {fileID: 6220228852725416648}
   costText: {fileID: 6119833633627318555}
   shortestScript: {fileID: 0}
   shortestEnemyScript: {fileID: 0}
-  audi: {fileID: 0}
+  _audi: {fileID: 0}
   attackSound: {fileID: 8300000, guid: a46be8093b0ad2f4db669b20f9620df4, type: 3}
   onlyOneFollowUnitNum: 0
   thisUnitNum: 0
   thisUnitNO: 0
   unitLev: 1
-  levelUpCost: 10
+  levelUpCost: 5
   unitClickableRange: 1
   firstUnitClickableRange: 0
   mouseDistance: 0
