@@ -140,4 +140,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55fb6b6d9e51d8a449d5e087e415aad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playTime: 5
+  playTime: 10
