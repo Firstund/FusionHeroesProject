@@ -79,6 +79,12 @@ public class SaveData
         set { _plusMoneySpeedLev = value; }
     }
     [SerializeField]
+    private int _maxMoneyLev = 0;
+    public int maxMoneyLev{
+        get{return _maxMoneyLev;}
+        set{_maxMoneyLev = value;}
+    }
+    [SerializeField]
     private int _maxPlusMoneySpeedLev = 10;
     public int maxPlusMoneySpeedLev
     {
@@ -187,6 +193,8 @@ public class GameManager : MonoBehaviour
     private int firstMaxMoney = 0;
     [SerializeField]
     private float maxMoneyUp = 1.5f;
+    [SerializeField]
+    private int maxMoneyUpPerLev = 30;
 
     private int _hadMoney = 0; // 처음부터 끝까지 money를 하나도 안썼을 경우의 money의 양
     public int hadMoney
@@ -267,6 +275,7 @@ public class GameManager : MonoBehaviour
         stageManager = FindObjectOfType<StageManager>();
         firstGetMoneyUpgradeCost = getMoneyUpgradeCost;
         firstMaxMoney = maxMoney;
+
         if (saveData.currentStage <= 0)
         {
             SpawnTutorial();
@@ -280,9 +289,22 @@ public class GameManager : MonoBehaviour
             StartCoroutine(PlusMoney());
         TimeSet();
         CheckSpawnGetOut();
+        SetMaxMoney();
 
         goldText.text = saveData.gold + "";
     }
+
+    private void SetMaxMoney()
+    {
+        int _maxMoney = 0;
+        _maxMoney = firstMaxMoney + (maxMoneyUpPerLev * saveData.maxMoneyLev);
+
+        for (int i = 0; i < getMoneyUpgradeLev; i++)
+            _maxMoney = (int)(_maxMoney * maxMoneyUp);
+
+        maxMoney = _maxMoney;
+    }
+
     public void SpawnTutorial()
     {
         Instantiate(tutorial);
@@ -294,7 +316,7 @@ public class GameManager : MonoBehaviour
             money -= getMoneyUpgradeCost;
             getMoneyUpgradeLev++;
             getMoneyUpgradeCost = (int)(getMoneyUpgradeCostUp * getMoneyUpgradeCost);
-            maxMoney = (int)(maxMoney * maxMoneyUp);
+            
         }
         else
         {

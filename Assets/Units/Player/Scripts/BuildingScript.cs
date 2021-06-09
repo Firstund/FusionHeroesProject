@@ -26,8 +26,9 @@ public class BuildingScript : MonoBehaviour
     private float firstHeart = 0f;
     [SerializeField]
     private float heartUp = 1000f;
-    private float dp = 10f;
+    private float dp = 1f;
     private float firstDp = 0f;
+    [SerializeField]
     private float dpUp = 1f;
 
     [SerializeField]

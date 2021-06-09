@@ -107,6 +107,9 @@ public class StatUpScript : MonoBehaviour
             case "plusMoney":
                 SetTexts(saveData.plusMoneySpeedLev, gameManager.plusMoneyTime - (saveData.plusMoneySpeedLev * gameManager.minusPluseMoneyTimePerLev), true, "현재 시간:");
                 break;
+            case "maxMoney":
+                SetTexts(saveData.maxMoneyLev, 0, false, "");
+                break;
 
             default:
                 Debug.LogError($"{statName} is Disappeared");
@@ -157,6 +160,9 @@ public class StatUpScript : MonoBehaviour
                 break;
             case "plusMoney":
                 saveData.plusMoneySpeedLev = UpgradeStat(saveData.plusMoneySpeedLev);
+                break;
+            case "maxMoney":
+                saveData.maxMoneyLev = UpgradeStat(saveData.maxMoneyLev);
                 break;
             default:
                 Debug.LogError($"{statName} is Disappeared");

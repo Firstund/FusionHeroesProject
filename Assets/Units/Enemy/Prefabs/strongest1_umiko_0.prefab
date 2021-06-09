@@ -292,13 +292,13 @@ MonoBehaviour:
   attackDistance: 2
   minimumD: 0
   maximumD: 3
-  heart: 100
+  heart: 50
   heartUp: 2
   ap: 5
   apUp: 0.5
   dp: 2
   dpUp: 0.2
-  attackDelay: 1
+  attackDelay: 1.5
   speed: 2.5
   totalAtk: 0
   plusMoney: 50

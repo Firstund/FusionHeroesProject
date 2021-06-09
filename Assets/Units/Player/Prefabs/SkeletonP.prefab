@@ -468,16 +468,16 @@ MonoBehaviour:
   slider: {fileID: 6220228852734831928}
   unitId: 102
   unitOnMiniMap: {fileID: 297964726054720325, guid: 9a2b50b1974b9b944afc2bd08f1fec61, type: 3}
-  attackDistance: 4
+  attackDistance: 3
   _heart: 3
   heartUp: 1
-  _heartUpPerLev: 0.4
+  _heartUpPerLev: 0.5
   _ap: 2
   apUp: 0.3
-  _apUpPerLev: 0.05
+  _apUpPerLev: 0.1
   _dp: 2
   dpUp: 0.5
-  _dpUpPerLev: 0.05
+  _dpUpPerLev: 0.15
   _speed: 1.3
   attackDelay: 1
   totalAtk: 0
@@ -719,7 +719,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.28, y: 2.22}
+  m_AnchoredPosition: {x: 0, y: 2.22}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6513319610323426483

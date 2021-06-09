@@ -60,6 +60,7 @@ public class StageClearScript : PopUpScaleScript
         else
         {
             clearText.text = "GameOver";
+             plusGoldText.text = "+0";
         }
     }
     public void SetGameClear(bool a)

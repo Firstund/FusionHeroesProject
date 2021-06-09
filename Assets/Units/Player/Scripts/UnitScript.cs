@@ -177,10 +177,10 @@ public class UnitScript : MonoBehaviour
     protected bool firstPositionSet = false;
     protected bool followingCheck = false;
     protected bool _canAttack = true;
-    public bool canAttack 
+    public bool canAttack
     {
-        get{return _canAttack;}
-        set{_canAttack = value;}
+        get { return _canAttack; }
+        set { _canAttack = value; }
     }
     protected bool _attackAnimIsPlaying = false;
     public bool attackAnimIsPlaying
@@ -485,11 +485,11 @@ public class UnitScript : MonoBehaviour
     }
     protected void setStat()
     {
-        heart = firstHeart + heartUpPerLev * gameManager.GetSaveData().unitHeartLev[unitStatIndex] + heartUp * (unitLev* unitLev);
+        heart = firstHeart + heartUpPerLev * gameManager.GetSaveData().unitHeartLev[unitStatIndex] + heartUp * ((unitLev * unitLev) - 1);
 
-        dp = firstDp + dpUpPerLev * gameManager.GetSaveData().unitDpLev[unitStatIndex] + dpUp * (unitLev * unitLev);
+        dp = firstDp + dpUpPerLev * gameManager.GetSaveData().unitDpLev[unitStatIndex] + dpUp * ((unitLev * unitLev) - 1);
 
-        ap = firstAp + apUpPerLev * gameManager.GetSaveData().unitApLev[unitStatIndex] + apUp * (unitLev * unitLev);
+        ap = firstAp + apUpPerLev * gameManager.GetSaveData().unitApLev[unitStatIndex] + apUp * ((unitLev * unitLev) - 1);
     }
     protected void FirstEDSet()
     {
