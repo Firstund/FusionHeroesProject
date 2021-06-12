@@ -458,12 +458,15 @@ MonoBehaviour:
   attackDistance: 2
   _heart: 3
   heartUp: 1
+  plusHeartUpPerLev: 0.1
   _heartUpPerLev: 0.2
   _ap: 1.5
   apUp: 0.5
+  plusApUpPerLev: 0.02
   _apUpPerLev: 0.1
   _dp: 1
-  dpUp: 0.25
+  dpUp: 0.2
+  plusDpUpPerLev: 0.01
   _dpUpPerLev: 0.1
   _speed: 3
   attackDelay: 1
@@ -478,7 +481,7 @@ MonoBehaviour:
   thisUnitNum: 0
   thisUnitNO: 0
   unitLev: 1
-  levelUpCost: 8
+  levelUpCost: 10
   unitClickableRange: 1
   firstUnitClickableRange: 0
   mouseDistance: 0

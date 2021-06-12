@@ -335,7 +335,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1683381767091621482, guid: 40447c5263fff0f4e87efde3ea1fb1d5, type: 3}
+  m_Sprite: {fileID: 1502282039330750875, guid: b92fc2fbec2602248830d3d370df8d75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -343,7 +343,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &6675871503759901570
@@ -382,13 +382,16 @@ MonoBehaviour:
   unitOnMiniMap: {fileID: 297964726054720325, guid: 9a2b50b1974b9b944afc2bd08f1fec61, type: 3}
   attackDistance: 2
   _heart: 20
-  heartUp: 5
+  heartUp: 4
+  plusHeartUpPerLev: 0.2
   _heartUpPerLev: 1.5
   _ap: 3
-  apUp: 1
+  apUp: 0.2
+  plusApUpPerLev: 0.05
   _apUpPerLev: 0.5
   _dp: 1
-  dpUp: 0.5
+  dpUp: 0.1
+  plusDpUpPerLev: 0.001
   _dpUpPerLev: 0.3
   _speed: 1.8
   attackDelay: 1

@@ -46,6 +46,8 @@ public class UnitScript : MonoBehaviour
     [SerializeField]
     protected float heartUp = 5f;
     [SerializeField]
+    protected float plusHeartUpPerLev = 0.2f;
+    [SerializeField]
     protected float _heartUpPerLev = 0.1f;
     public float heartUpPerLev
     {
@@ -63,6 +65,8 @@ public class UnitScript : MonoBehaviour
     [SerializeField]
     protected float apUp = 0.5f;
     [SerializeField]
+    protected float plusApUpPerLev = 1f;
+    [SerializeField]
     protected float _apUpPerLev = 0.02f;
     public float apUpPerLev
     {
@@ -79,6 +83,8 @@ public class UnitScript : MonoBehaviour
     protected float firstDp = 0f;
     [SerializeField]
     protected float dpUp = 0.25f;
+    [SerializeField]
+    protected float plusDpUpPerLev = 0.1f;
     [SerializeField]
     protected float _dpUpPerLev = 0.01f;
     public float dpUpPerLev
@@ -485,11 +491,14 @@ public class UnitScript : MonoBehaviour
     }
     protected void setStat()
     {
-        heart = firstHeart + heartUpPerLev * gameManager.GetSaveData().unitHeartLev[unitStatIndex] + heartUp * ((unitLev * unitLev) - 1);
+        float _heartUp = heartUp + plusHeartUpPerLev * gameManager.GetSaveData().unitHeartLev[unitStatIndex];
+        heart = firstHeart + heartUpPerLev * gameManager.GetSaveData().unitHeartLev[unitStatIndex] + _heartUp * ((unitLev * unitLev) - 1);
 
-        dp = firstDp + dpUpPerLev * gameManager.GetSaveData().unitDpLev[unitStatIndex] + dpUp * ((unitLev * unitLev) - 1);
+        float _dpUp = dpUp + plusDpUpPerLev * gameManager.GetSaveData().unitDpLev[unitStatIndex];
+        dp = firstDp + dpUpPerLev * gameManager.GetSaveData().unitDpLev[unitStatIndex] + _dpUp * ((unitLev * unitLev) - 1);
 
-        ap = firstAp + apUpPerLev * gameManager.GetSaveData().unitApLev[unitStatIndex] + apUp * ((unitLev * unitLev) - 1);
+        float _apUp = apUp + plusApUpPerLev * gameManager.GetSaveData().unitApLev[unitStatIndex];
+        ap = firstAp + apUpPerLev * gameManager.GetSaveData().unitApLev[unitStatIndex] + _apUp * ((unitLev * unitLev) - 1);
     }
     protected void FirstEDSet()
     {

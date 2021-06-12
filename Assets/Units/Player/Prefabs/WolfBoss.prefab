@@ -221,12 +221,15 @@ MonoBehaviour:
   attackDistance: 2
   _heart: 30
   heartUp: 5
+  plusHeartUpPerLev: 0.2
   _heartUpPerLev: 0.5
   _ap: 2
   apUp: 0.5
+  plusApUpPerLev: 0.02
   _apUpPerLev: 0.3
-  _dp: 1
-  dpUp: 2
+  _dp: 2
+  dpUp: 0.5
+  plusDpUpPerLev: 0.02
   _dpUpPerLev: 0.2
   _speed: 2
   attackDelay: 1

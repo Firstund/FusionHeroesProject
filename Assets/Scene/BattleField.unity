@@ -7376,7 +7376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &416672890
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15521,7 +15521,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &835399611
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24998,10 +24998,12 @@ GameObject:
   - component: {fileID: 1164809939}
   - component: {fileID: 1164809938}
   - component: {fileID: 1164809942}
-  - component: {fileID: 1164809944}
   - component: {fileID: 1164809943}
   - component: {fileID: 1164809941}
   - component: {fileID: 1164809940}
+  - component: {fileID: 1164809944}
+  - component: {fileID: 1164809945}
+  - component: {fileID: 1164809946}
   m_Layer: 10
   m_Name: EnemyBuilding
   m_TagString: Untagged
@@ -25239,17 +25241,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9d95576d9ec8c4e825baa15b245ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDelay: 20
-  minusSkeletonDelayPerCurrentStage: 0.3
-  archerDelay: 20
-  minusArcherDelayPerCurrentStage: 0.25
-  archerSpawnStartStage: 2
-  madBlindDelay: 15
-  minusMadBlindDelayPerCurrentStage: 0.1
-  madBlindSpawnStartStage: 15
-  oSkeleton: {fileID: 5259757820760417429, guid: 4a18ad45f61b63442a0e495e849204db, type: 3}
-  oArcher: {fileID: 7371477088570212303, guid: cf3c16e177ec04342818f92e8b86cf5d, type: 3}
-  oMadBlind: {fileID: 7558579589176618438, guid: f7fecd00fe042e24e8f4c914ccd8d588, type: 3}
+  spawnObject: {fileID: 5259757820760417429, guid: 4a18ad45f61b63442a0e495e849204db, type: 3}
+  spawnDelay: 8
+  minusObjDelayPerCurrentStage: 0.04
+  spawnStartStage: 0
+  endSpawnStage: 15
+--- !u!114 &1164809945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164809937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9d95576d9ec8c4e825baa15b245ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnObject: {fileID: 7371477088570212303, guid: cf3c16e177ec04342818f92e8b86cf5d, type: 3}
+  spawnDelay: 20
+  minusObjDelayPerCurrentStage: 0.03
+  spawnStartStage: 3
+  endSpawnStage: 30
+--- !u!114 &1164809946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164809937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9d95576d9ec8c4e825baa15b245ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnObject: {fileID: 7558579589176618438, guid: f7fecd00fe042e24e8f4c914ccd8d588, type: 3}
+  spawnDelay: 30
+  minusObjDelayPerCurrentStage: 0.02
+  spawnStartStage: 16
+  endSpawnStage: 40
 --- !u!1 &1166167067
 GameObject:
   m_ObjectHideFlags: 0
@@ -29891,7 +29921,7 @@ MonoBehaviour:
   spawnCostText: {fileID: 0}
   _spawnPosition: {fileID: 0}
   respawnImage: {fileID: 640874261}
-  _spawnMoney: 10
+  _spawnMoney: 15
   spawnSpeed: 2
   canSpawnAgain: 1
 --- !u!114 &1374105358
@@ -35459,14 +35489,14 @@ MonoBehaviour:
   _dovalueTime: 0.4
   _maxMoney: 50
   maxMoneyUp: 1.5
-  maxMoneyUpPerLev: 30
+  maxMoneyUpPerLev: 10
   _plusMoneyTime: 0.6
   _getMoneyUpgradeLev: 0
   _minusPlusMoneyTimePerUpgrade: 0.05
   maxGetMoneyUpgradeLev: 7
   _getMoneyUpgradeCost: 30
   getMoneyUpgradeCostUp: 1.5
-  _minusPluseMoneyTimePerLev: 0.01
+  _minusPluseMoneyTimePerLev: 0.02
   mapSliderMoving: 0
 --- !u!4 &1625583762
 Transform:
@@ -42100,7 +42130,7 @@ MonoBehaviour:
   destroy1: {fileID: 8300000, guid: 2a0f7f0bf2563464aa4bcccc85bc8ae5, type: 3}
   heart: 100
   heartUp: 10
-  dpUp: 1
+  dpUp: 0.5
   destroy1Played: 0
   destroy2Played: 0
   currentPosition: {x: 0, y: 0}

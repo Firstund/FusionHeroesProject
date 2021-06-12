@@ -367,7 +367,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7371477088570212303}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.28, y: -0.017, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1802161928896761348}
@@ -468,7 +468,7 @@ MonoBehaviour:
   maximumD: 3
   heart: 10
   heartUp: 0.2
-  ap: 3
+  ap: 2
   apUp: 0.3
   dp: 0
   dpUp: 0.1

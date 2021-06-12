@@ -8,47 +8,32 @@ public class EnemySpawnScript : MonoBehaviour
     private Transform spawnPosition = null;
 
     [SerializeField]
-    private float skeletonDelay = 1f;
-    private float firstSkeletonDelay = 1f;
-    [SerializeField]
-    private float minusSkeletonDelayPerCurrentStage = 0.02f;
-    //
-    [SerializeField]
-    private float archerDelay = 1f;
-    private float firstArcherDelay = 1f;
-    [SerializeField]
-    private float minusArcherDelayPerCurrentStage = 0.02f;
-    [SerializeField]
-    private int archerSpawnStartStage = 2;
-    // 
-    [SerializeField]
-    private float madBlindDelay = 1f;
-    private float firstMadBlindDelay = 1f;
-    [SerializeField]
-    private float minusMadBlindDelayPerCurrentStage = 0.02f;
-    [SerializeField]
-    private int madBlindSpawnStartStage = 6;
-    //
+    private GameObject spawnObject = null;
 
+    // 이 스크립트를 유닛들이 우려먹을 수 있도록 바꾸기
+    private float objAtLeastDelay = 0f;
     [SerializeField]
-    private GameObject oSkeleton = null;
+    private float spawnDelay = 1f;
+    private float firstObjDelay = 1f;
     [SerializeField]
-    private GameObject oArcher = null;
+    private float minusObjDelayPerCurrentStage = 0.02f;
+    // 이 유닛을 어느 스테이지때부터 스폰하는가? 어느 스테이지때부터 스폰을 안하는가?
     [SerializeField]
-    private GameObject oMadBlind = null;
-    private bool skeSpawned = false;
-    private bool arcSpawned = false;
-    private bool madSpawned = false;
+    private int spawnStartStage = 0;
+    [SerializeField]
+    private int endSpawnStage = 100;
+
+    private bool objSpawned = false;
     void Awake()
     {
-        firstSkeletonDelay = skeletonDelay;
-        firstArcherDelay = archerDelay;
-        firstMadBlindDelay = madBlindDelay;
+        firstObjDelay = spawnDelay;
     }
     void Start()
     {
         gameManager = GameManager.Instance;
         spawnPosition = gameManager.GetEnemyUnitSpawnPosition();
+
+        objAtLeastDelay = minusObjDelayPerCurrentStage * 0f;
     }
 
     void Update()
@@ -61,50 +46,29 @@ public class EnemySpawnScript : MonoBehaviour
     }
     private void InitSpawnDelay()
     {
-        skeletonDelay = firstSkeletonDelay - minusSkeletonDelayPerCurrentStage * gameManager.GetSaveData().currentStage;
-        archerDelay = firstArcherDelay - minusArcherDelayPerCurrentStage * gameManager.GetSaveData().currentStage;
-        madBlindDelay = firstMadBlindDelay - minusMadBlindDelayPerCurrentStage * gameManager.GetSaveData().currentStage;
+        spawnDelay = firstObjDelay - minusObjDelayPerCurrentStage * gameManager.GetSaveData().currentStage;
+        spawnDelay = Mathf.Clamp(spawnDelay, objAtLeastDelay, firstObjDelay) + 1f;
     }
     void Spawn()
     {
-        StartCoroutine(archer());
-        StartCoroutine(skeleton());
-        StartCoroutine(madBlind());
+        StartCoroutine(spawn());
     }
-    private IEnumerator madBlind()
+    private IEnumerator spawn()
     {
-        if (!madSpawned && gameManager.GetSaveData().currentStage >= madBlindSpawnStartStage)
+        if (gameManager.GetSaveData().currentStage >= spawnStartStage && gameManager.GetSaveData().currentStage <= endSpawnStage)
         {
-            Vector2 a = spawnPosition.position;
-            a.x += 0.1f;
-            madSpawned = true;
-            yield return new WaitForSeconds(madBlindDelay);
-            Instantiate(oMadBlind, a, Quaternion.identity);
-            madSpawned = false;
-        }
-    }
-    private IEnumerator skeleton()
-    {
-        if (!skeSpawned)
-        {
-            Vector2 a = spawnPosition.position;
-            a.x += 0.1f;
-            skeSpawned = true;
-            yield return new WaitForSeconds(skeletonDelay);
-            Instantiate(oSkeleton, a, Quaternion.identity);
-            skeSpawned = false;
-        }
-    }
-    private IEnumerator archer()
-    {
-        if (!arcSpawned && gameManager.GetSaveData().currentStage >= archerSpawnStartStage)
-        {
-            Vector2 a = spawnPosition.position;
-            a.x += 0.1f;
-            arcSpawned = true;
-            yield return new WaitForSeconds(archerDelay);
-            Instantiate(oArcher, a, Quaternion.identity);
-            arcSpawned = false;
+            if (!objSpawned)
+            {
+                Vector2 a = spawnPosition.position;
+                a.x += 0.1f;
+                objSpawned = true;
+                yield return new WaitForSeconds(spawnDelay);
+
+                if (gameManager.GetSaveData().currentStage >= spawnStartStage && gameManager.GetSaveData().currentStage <= endSpawnStage)
+                    Instantiate(spawnObject, a, Quaternion.identity);
+                    
+                objSpawned = false;
+            }
         }
     }
     public Transform GetSpawnPosition()
