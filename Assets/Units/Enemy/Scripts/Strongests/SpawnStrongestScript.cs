@@ -9,13 +9,17 @@ public class SpawnStrongestScript : MonoBehaviour
     [SerializeField]
     private int spawnUmikoStage = 10;
     [SerializeField]
+    private int spawnGolemStage = 20;
+    [SerializeField]
     private StageManager stageManager = null;
     private EnemyBuildingScript enemyBuildingScript = null;
     private EnemySpawnScript enemySpawnScript = null;
+    private Transform spawnPosition = null;
     void Start()
     {
         enemyBuildingScript = gameObject.GetComponent<EnemyBuildingScript>();
         enemySpawnScript = gameObject.GetComponent<EnemySpawnScript>();
+        spawnPosition = enemySpawnScript.GetSpawnPosition();
     }
     void Update()
     {
@@ -23,6 +27,7 @@ public class SpawnStrongestScript : MonoBehaviour
         {
             umiko();
             glingman();
+            golem();
         }
     }
     #region strongests
@@ -40,6 +45,14 @@ public class SpawnStrongestScript : MonoBehaviour
         {
             enemyBuildingScript.SetstrongestSpawned(1, true);
             Instantiate(enemyBuildingScript.GetStrongest(1), enemySpawnScript.GetSpawnPosition());
+        }
+    }
+    private void golem()
+    {
+        if(!enemyBuildingScript.GetStrongestSpawned(2) && stageManager.GetCurrentStage() == spawnGolemStage && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe())
+        {
+            enemyBuildingScript.SetstrongestSpawned(2, true);
+            Instantiate(enemyBuildingScript.GetStrongest(2), enemySpawnScript.GetSpawnPosition());
         }
     }
 

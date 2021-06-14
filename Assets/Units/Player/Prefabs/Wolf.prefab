@@ -362,7 +362,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6708528392320978716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children:
   - {fileID: 7404282702084286150}
@@ -478,6 +478,7 @@ MonoBehaviour:
   _audi: {fileID: 0}
   attackSound: {fileID: 8300000, guid: 8fea530083b58334a9dd2006b992df4c, type: 3}
   onlyOneFollowUnitNum: 0
+  _isStopByObject: 0
   thisUnitNum: 0
   thisUnitNO: 0
   unitLev: 1
@@ -490,6 +491,8 @@ MonoBehaviour:
   shortestDistance: 10
   shortestForwardDistance: 10
   shortestBackwardDistance: 10
+  stopByEnemyDistance: 1.2
+  stopByObjectDistance: 1.4
   isFollow: 0
 --- !u!82 &7553376643240647271
 AudioSource:

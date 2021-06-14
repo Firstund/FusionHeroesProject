@@ -12,6 +12,12 @@ public class EnemyScript : MonoBehaviour
     protected GameManager gameManager = null;
 
     [SerializeField]
+    protected bool _isStopByEnemy = true;
+    public bool isStopByEnemy
+    {
+        get { return _isStopByEnemy; }
+    }
+    [SerializeField]
     protected UnitOnMiniMapScript unitOnMiniMap = null;
     [SerializeField]
     protected Slider slider = null;
@@ -69,6 +75,11 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField]
     protected int plusMoney = 25;
+    [SerializeField]
+    protected float stopByObjectDistance = 1f;
+    [SerializeField]
+    protected float stopByEnemyDistance = 1.5f;
+    protected float firstStopByObjectDistance = 0f;
     protected int thisUnitNum = 0; // 현재 오브젝트들중 몇번째 오브젝트인가 -> 공격체크에 쓰임
     protected double thisUnitNO = 0; // 게임 전체에서 몇번째 소환됬는가 -> 유닛의 이동에 쓰임
 
@@ -96,6 +107,12 @@ public class EnemyScript : MonoBehaviour
     protected bool buildingIsShortest = false;//building이 shortest일 때 true. unit이 shortest일 때 false
     protected bool isAttackOne = true;
     protected bool isDead = false;
+    protected bool _canSetSpeed = true;
+    public bool canSetSpeed
+    {
+        get { return _canSetSpeed; }
+        set { _canSetSpeed = value; }
+    }
 
     protected Vector2 currentPosition = new Vector2(100f, 100f);
     void Awake()
@@ -123,6 +140,7 @@ public class EnemyScript : MonoBehaviour
         firstHeart = heart;
         firstAp = ap;
         firstDp = dp;
+        firstStopByObjectDistance = stopByObjectDistance;
 
         setStat();
         SetDistanceArrayIndex();
@@ -233,9 +251,6 @@ public class EnemyScript : MonoBehaviour
 
         if (!isDead)
         {
-            float stopByObjectDistance = 1f;
-
-
             if (attackDistance < stopByObjectDistance)
             {
                 stopByObjectDistance = attackDistance;
@@ -243,11 +258,11 @@ public class EnemyScript : MonoBehaviour
 
             if (enemyObjectDistanceArray[0] < stopByObjectDistance)
             {
-                stopByObjectDistance = 1.5f;
+                stopByObjectDistance = firstStopByObjectDistance + 0.5f;
             }
             else
             {
-                stopByObjectDistance = 1f;
+                stopByObjectDistance = firstStopByObjectDistance;
             }
 
             if (!attackAnimIsPlaying && !isDead)
@@ -263,11 +278,31 @@ public class EnemyScript : MonoBehaviour
                     speed = firstSpeed;
                 }
 
-            if ((shortestForwardDistance > 1) && (shortestDistance > stopByObjectDistance))
-                speed = firstSpeed;
+            if (shortestEnemyScript != null)
+            {
+                if (shortestEnemyScript.isStopByEnemy && isStopByEnemy)
+                {
+                    if ((shortestForwardDistance > stopByEnemyDistance) && (shortestDistance > stopByObjectDistance) && canSetSpeed)
+                        speed = firstSpeed;
+                    else
+                    {
+                        speed = 0f;
+                    }
+                }
+                else
+                {
+                    if ((shortestDistance > stopByObjectDistance) && canSetSpeed)
+                        speed = firstSpeed;
+                    else
+                        speed = 0f;
+                }
+            }
             else
             {
-                speed = 0f;
+                if ((shortestDistance > stopByObjectDistance) && canSetSpeed)
+                    speed = firstSpeed;
+                else
+                    speed = 0f;
             }
 
             CheckHe();

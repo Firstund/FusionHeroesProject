@@ -367,7 +367,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7371477088570212303}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.28, y: -0.017, z: 0}
+  m_LocalPosition: {x: 0.28, y: -0.017, z: -1}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1802161928896761348}
@@ -456,6 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10dbe38d438148f4385b92ebba80c6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isStopByEnemy: 1
   unitOnMiniMap: {fileID: 297964726054720325, guid: de53d8407df486b488ee1e4be3bfd84d, type: 3}
   slider: {fileID: 6827093709953375945}
   shortestScript: {fileID: 0}
@@ -476,6 +477,8 @@ MonoBehaviour:
   speed: 1
   totalAtk: 0
   plusMoney: 10
+  stopByObjectDistance: 2
+  stopByEnemyDistance: 1.4
   objectDistanceArray: []
   enemyObjectDistanceArray: []
 --- !u!82 &412918273576655672

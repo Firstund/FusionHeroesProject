@@ -59,7 +59,10 @@ public class EnemyBuildingScript : MonoBehaviour
         fusionManager.SetEnemyUnitNum(enemyUnitNum);
 
         firstHeart = heart;
-        setStat();
+
+        for(int i = 0; i < gameManager.GetSaveData().currentStage; i++)
+            setStat();
+            
         SetMaxHealth();
     }
 
@@ -114,13 +117,17 @@ public class EnemyBuildingScript : MonoBehaviour
         {
             strongestSpawned[i] = false;
         }
-        setStat();
+
+        for(int i = 0; i < gameManager.GetSaveData().currentStage; i++)
+            setStat();
+
         destroy1Played = false;
         destroy2Played = false;
     }
     private void setStat() // 나중에 건물 업그레이드 기능을 넣었을 때 제대로 작동시킬것
     {
         heart = firstHeart + heartUp;
+        firstHeart = heart;
         dp = dpUp;
     }
     void Breaking()

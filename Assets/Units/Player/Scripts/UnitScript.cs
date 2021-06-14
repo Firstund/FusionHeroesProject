@@ -138,6 +138,12 @@ public class UnitScript : MonoBehaviour
 
     [SerializeField]
     protected bool onlyOneFollowUnitNum = false;
+    [SerializeField]
+    protected bool _isStopByObject = true;
+    public bool isStopByObject
+    {
+        get { return _isStopByObject; }
+    }
 
     [SerializeField]
     protected int thisUnitNum = 0; // 현재 소환된 오브젝트들 중 몇번째 오브젝트인가
@@ -167,6 +173,11 @@ public class UnitScript : MonoBehaviour
     protected float shortestForwardDistance = 10f;
     [SerializeField]
     protected float shortestBackwardDistance = 10f; // 넉백됬을 때 unitNO를 새로 설정해 줄 때 필요.
+    [SerializeField]
+    protected float stopByEnemyDistance = 1f;
+    [SerializeField]
+    protected float stopByObjectDistance = 1.5f;
+    protected float firstStopByEnemyDistance = 0f;
     protected UnitScript shortestForwardScript = null;
     protected UnitScript shortestBackwardScript = null;
 
@@ -225,6 +236,7 @@ public class UnitScript : MonoBehaviour
         firstAp = ap;
         firstDp = dp;
         firstHeart = heart;
+        firstStopByEnemyDistance = stopByEnemyDistance;
     }
 
     void Start()
@@ -554,7 +566,7 @@ public class UnitScript : MonoBehaviour
     }
     void Move()
     {
-        float stopByEnemyDistance = 1f;
+
 
         if (attackDistance < stopByEnemyDistance)
         {
@@ -563,19 +575,39 @@ public class UnitScript : MonoBehaviour
 
         if (objectDistanceArray[0] < stopByEnemyDistance) // 이 유닛이 소환되어 spawnPosition에서 1f이상 이동한 상태가 아니라면
         {
-            stopByEnemyDistance = 1.5f; // 이 유닛은 적 유닛이 이 유닛을 감지하여 이동을 멈추게 되는 거리보다 먼 거리에서 멈춘다.
-                                        // 그렇게 되면 적은 이 유닛보다, 건물을 우선 공격하게 된다.
+            stopByEnemyDistance = firstStopByEnemyDistance + 0.5f; // 이 유닛은 적 유닛이 이 유닛을 감지하여 이동을 멈추게 되는 거리보다 먼 거리에서 멈춘다.
+                                                                   // 그렇게 되면 적은 이 유닛보다, 건물을 우선 공격하게 된다.
         }
         else
         {
-            stopByEnemyDistance = 1f;
+            stopByEnemyDistance = firstStopByEnemyDistance;
         }
 
-        if ((shortestForwardDistance > 1) && (shortestEnemyDistance > stopByEnemyDistance) && canSetSpeed)
-            speed = firstSpeed;
+        if (shortestScript != null)
+        {
+            if (shortestScript.isStopByObject && isStopByObject)
+            {
+                if ((shortestForwardDistance > stopByObjectDistance) && (shortestEnemyDistance > stopByEnemyDistance) && canSetSpeed)
+                    speed = firstSpeed;
+                else
+                {
+                    speed = 0f;
+                }
+            }
+            else
+            {
+                if ((shortestEnemyDistance > stopByEnemyDistance) && canSetSpeed)
+                    speed = firstSpeed;
+                else
+                    speed = 0f;
+            }
+        }
         else
         {
-            speed = 0f;
+            if ((shortestEnemyDistance > stopByEnemyDistance) && canSetSpeed)
+                speed = firstSpeed;
+            else
+                speed = 0f;
         }
 
         if (!attackAnimIsPlaying && !isDead)

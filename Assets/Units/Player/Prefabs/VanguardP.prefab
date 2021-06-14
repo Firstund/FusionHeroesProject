@@ -5361,7 +5361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3318772828785144205}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 3318772828615442353}
@@ -5459,7 +5459,7 @@ MonoBehaviour:
   _heart: 2
   heartUp: 0.3
   plusHeartUpPerLev: 0.001
-  _heartUpPerLev: 0.2
+  _heartUpPerLev: 0.15
   _ap: 0.2
   apUp: 0.1
   plusApUpPerLev: 0.001
@@ -5478,6 +5478,7 @@ MonoBehaviour:
   _audi: {fileID: 0}
   attackSound: {fileID: 0}
   onlyOneFollowUnitNum: 0
+  _isStopByObject: 1
   thisUnitNum: 0
   thisUnitNO: 0
   unitLev: 1
@@ -5490,6 +5491,8 @@ MonoBehaviour:
   shortestDistance: 10
   shortestForwardDistance: 10
   shortestBackwardDistance: 10
+  stopByEnemyDistance: 1.2
+  stopByObjectDistance: 1.4
   isFollow: 0
   dependParticle: {fileID: 3318772828709197147}
 --- !u!82 &3318772828785144192
