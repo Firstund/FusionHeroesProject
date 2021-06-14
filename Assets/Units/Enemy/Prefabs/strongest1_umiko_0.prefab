@@ -429,7 +429,7 @@ MonoBehaviour:
   - 1
   skillDistance:
   - 12
-  - 3
+  - 5
   skillDamage:
   - 0
   - 20
