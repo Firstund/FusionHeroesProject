@@ -31,8 +31,10 @@ public class EnemyBuildingScript : MonoBehaviour
     private float heart = 10000f;
     [SerializeField]
     private float heartUp = 1000f;
-    private float dp = 10f;
-    private float dpUp = 1f;
+    [SerializeField]
+    private float dp = 2f;
+    [SerializeField]
+    private float dpUp = 1.1f;
 
     private float firstHeart = 0f;
 
@@ -118,7 +120,11 @@ public class EnemyBuildingScript : MonoBehaviour
             strongestSpawned[i] = false;
         }
 
-        for(int i = 0; i < gameManager.GetSaveData().currentStage; i++)
+        int j = 0;
+        for(j = 0; j < gameManager.GetSaveData().currentStage; j++)
+            setStat();
+
+        if(j == 0)
             setStat();
 
         destroy1Played = false;
@@ -127,7 +133,9 @@ public class EnemyBuildingScript : MonoBehaviour
     private void setStat() // 나중에 건물 업그레이드 기능을 넣었을 때 제대로 작동시킬것
     {
         heart = firstHeart + heartUp;
+        SetMaxHealth();
         firstHeart = heart;
+
         dp = dpUp;
     }
     void Breaking()

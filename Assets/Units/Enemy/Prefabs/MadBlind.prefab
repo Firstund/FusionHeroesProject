@@ -474,7 +474,7 @@ MonoBehaviour:
   dp: 2
   dpUp: 0.2
   attackDelay: 1
-  speed: 0.8
+  speed: 1
   totalAtk: 0
   plusMoney: 5
   stopByObjectDistance: 1.2

@@ -4011,6 +4011,7 @@ GameObject:
   - component: {fileID: 185170932}
   - component: {fileID: 185170931}
   - component: {fileID: 185170930}
+  - component: {fileID: 185170934}
   m_Layer: 5
   m_Name: PlusMoneySpeedButton
   m_TagString: Untagged
@@ -4163,6 +4164,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185170928}
   m_CullTransparentMesh: 0
+--- !u!114 &185170934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185170928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &190283508
 GameObject:
   m_ObjectHideFlags: 0
@@ -6267,7 +6283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &309409523
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21918,6 +21934,7 @@ GameObject:
   - component: {fileID: 1065379654}
   - component: {fileID: 1065379653}
   - component: {fileID: 1065379652}
+  - component: {fileID: 1065379656}
   m_Layer: 5
   m_Name: MaxMoneyLevButton
   m_TagString: Untagged
@@ -22070,6 +22087,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065379650}
   m_CullTransparentMesh: 0
+--- !u!114 &1065379656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065379650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1069185699
 GameObject:
   m_ObjectHideFlags: 0
@@ -23509,7 +23541,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1105315994
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25405,8 +25437,10 @@ MonoBehaviour:
   - {fileID: 2523426427407952207, guid: 3386c9046dcca0a4bb325970a172a72f, type: 3}
   - {fileID: 3326938116672063030, guid: b2a9ec5f9a7213a43bdb145822e09c5d, type: 3}
   - {fileID: 1888308309157576710, guid: 531352b1a2113304492cc04d238fe683, type: 3}
-  heart: 500
+  heart: 250
   heartUp: 10
+  dp: 1
+  dpUp: 0.5
   currentPosition: {x: 0, y: 0}
 --- !u!114 &1164809943
 MonoBehaviour:
@@ -25456,7 +25490,7 @@ MonoBehaviour:
   spawnObject: {fileID: 7371477088570212303, guid: cf3c16e177ec04342818f92e8b86cf5d, type: 3}
   spawnDelay: 15
   minusObjDelayPerCurrentStage: 0.03
-  spawnStartStage: 3
+  spawnStartStage: 2
   endSpawnStage: 30
 --- !u!114 &1164809946
 MonoBehaviour:
@@ -42408,6 +42442,7 @@ MonoBehaviour:
   destroy1: {fileID: 8300000, guid: 2a0f7f0bf2563464aa4bcccc85bc8ae5, type: 3}
   heart: 100
   heartUp: 10
+  dp: 1
   dpUp: 0.5
   destroy1Played: 0
   destroy2Played: 0

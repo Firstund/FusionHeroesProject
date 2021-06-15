@@ -26,6 +26,7 @@ public class BuildingScript : MonoBehaviour
     private float firstHeart = 0f;
     [SerializeField]
     private float heartUp = 1000f;
+    [SerializeField]
     private float dp = 1f;
     private float firstDp = 0f;
     [SerializeField]
@@ -118,6 +119,8 @@ public class BuildingScript : MonoBehaviour
     {
         heart = firstHeart + heartUp * saveData.unitHeartLev[0];
         saveData.heart[0] = firstHeart = heart;
+
+        SetMaxHealth();
 
         dp = firstDp + dpUp * saveData.unitDpLev[0];
         saveData.dp[0] = firstDp = dp;

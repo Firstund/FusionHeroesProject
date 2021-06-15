@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10dbe38d438148f4385b92ebba80c6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isStopByEnemy: 1
+  _isStopByEnemy: 0
   unitOnMiniMap: {fileID: 297964726054720325, guid: de53d8407df486b488ee1e4be3bfd84d, type: 3}
   slider: {fileID: 4730501924127666388}
   shortestScript: {fileID: 0}

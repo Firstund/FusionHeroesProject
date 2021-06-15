@@ -478,7 +478,7 @@ MonoBehaviour:
   _audi: {fileID: 0}
   attackSound: {fileID: 8300000, guid: 8fea530083b58334a9dd2006b992df4c, type: 3}
   onlyOneFollowUnitNum: 0
-  _isStopByObject: 0
+  _isStopByObject: 1
   thisUnitNum: 0
   thisUnitNO: 0
   unitLev: 1

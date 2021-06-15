@@ -25,6 +25,7 @@ public class EnemyScript : MonoBehaviour
     protected UnitScript shortestScript = null;
     [SerializeField]
     protected EnemyScript shortestEnemyScript = null;
+    
     [SerializeField]
     protected Strongest1Script strongest1Script = null;
 
