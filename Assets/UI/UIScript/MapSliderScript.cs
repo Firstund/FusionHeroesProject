@@ -80,10 +80,11 @@ public class MapSliderScript : MonoBehaviour
             // else if (gameManager.mousePosition.x < gameManager.halfViewportSizeX)
             //     mapSlider.value -= moveSliderXSpeed * Time.deltaTime;
 
-            targetPosition.x += targetPosition.x - mouseFirstPosition.x;
-            targetPosition.x = Mathf.Clamp(targetPosition.x, 0f, maxCameraPosition);
+            // targetPosition.x += targetPosition.x - mouseFirstPosition.x;
             
-            mapSlider.DOValue(targetPosition.x, moveSliderXSpeed);
+            mapSlider.DOValue(mapSlider.value + targetPosition.x - mouseFirstPosition.x, moveSliderXSpeed);
+            mapSlider.value = Mathf.Clamp(mapSlider.value, 0f, maxCameraPosition);
+
 
         
         }
