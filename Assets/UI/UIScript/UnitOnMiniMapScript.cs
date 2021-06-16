@@ -25,7 +25,7 @@ public class UnitOnMiniMapScript : MonoBehaviour
             
         Vector2 a = targetUnitTrm.localPosition;  
 
-        a.x = (a.x) * (1000f / mapSliderScript.mousePositionPerValue) - 7.5f;
+        a.x = (a.x) * (1000f / mapSliderScript.maxCameraPosition) - 7.5f;
 
         thisRectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, a.x, thisRectTransform.rect.width);
         }

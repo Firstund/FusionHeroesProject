@@ -4704,7 +4704,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -120.299805}
+  m_AnchoredPosition: {x: 0, y: -120.29883}
   m_SizeDelta: {x: 1000, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &221801127
@@ -4772,8 +4772,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 574352873}
   _mapSlider: {fileID: 221801127}
-  _mousePositionPerValue: 40
-  moveSliderXSpeed: 0.5
+  _maxCameraPosition: 40
+  moveSliderXSpeed: 1
+  targetPosition: {x: 0, y: 0}
 --- !u!114 &221801129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16334,6 +16335,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a2c655bb06aab4d826943dfb8c5f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startSpawnStage: 6
+  iconImage: {fileID: 1696390461}
+  thisUpgradePannel: {fileID: 880413509}
+  uCannotSpawnItYetText: {fileID: 3771758476958319216, guid: 6868514c806d30242b4f2ef59736ac2a, type: 3}
   spawnThis: {fileID: 3318772828785144205, guid: f4788e6259156574ca2e105a8d27295e, type: 3}
   haveToWaitMoreTimeText: {fileID: 3771758476958319216, guid: 7222020ad4c347444b6c0cfc86ea494e, type: 3}
   spawnCostText: {fileID: 0}
@@ -26814,6 +26819,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a2c655bb06aab4d826943dfb8c5f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startSpawnStage: 10
+  iconImage: {fileID: 916933685}
+  thisUpgradePannel: {fileID: 1248717872}
+  uCannotSpawnItYetText: {fileID: 3771758476958319216, guid: 6868514c806d30242b4f2ef59736ac2a, type: 3}
   spawnThis: {fileID: 8320676802245799533, guid: dcc9694e290c3b940a5a3910b0c234bb, type: 3}
   haveToWaitMoreTimeText: {fileID: 3771758476958319216, guid: 7222020ad4c347444b6c0cfc86ea494e, type: 3}
   spawnCostText: {fileID: 0}
@@ -29814,6 +29823,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a2c655bb06aab4d826943dfb8c5f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startSpawnStage: 0
+  iconImage: {fileID: 111048383}
+  thisUpgradePannel: {fileID: 1583979812}
+  uCannotSpawnItYetText: {fileID: 3771758476958319216, guid: 6868514c806d30242b4f2ef59736ac2a, type: 3}
   spawnThis: {fileID: 4323624078091657384, guid: 4f3b3859af179f040b019efde896d1df, type: 3}
   haveToWaitMoreTimeText: {fileID: 3771758476958319216, guid: 7222020ad4c347444b6c0cfc86ea494e, type: 3}
   spawnCostText: {fileID: 0}
@@ -30161,6 +30174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a2c655bb06aab4d826943dfb8c5f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startSpawnStage: 0
+  iconImage: {fileID: 640874259}
+  thisUpgradePannel: {fileID: 2078259438}
+  uCannotSpawnItYetText: {fileID: 3771758476958319216, guid: 6868514c806d30242b4f2ef59736ac2a, type: 3}
   spawnThis: {fileID: 6220228852626342961, guid: 554295bff4b2e8b4ea5ec86e28c1e0b4, type: 3}
   haveToWaitMoreTimeText: {fileID: 3771758476958319216, guid: 7222020ad4c347444b6c0cfc86ea494e, type: 3}
   spawnCostText: {fileID: 0}
@@ -44900,6 +44917,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a2c655bb06aab4d826943dfb8c5f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startSpawnStage: 3
+  iconImage: {fileID: 1632451450}
+  thisUpgradePannel: {fileID: 1966513754}
+  uCannotSpawnItYetText: {fileID: 3771758476958319216, guid: 6868514c806d30242b4f2ef59736ac2a, type: 3}
   spawnThis: {fileID: 4863631796403791270, guid: 5626db95e2ec8e641ba1918955b51029, type: 3}
   haveToWaitMoreTimeText: {fileID: 3771758476958319216, guid: 7222020ad4c347444b6c0cfc86ea494e, type: 3}
   spawnCostText: {fileID: 0}
