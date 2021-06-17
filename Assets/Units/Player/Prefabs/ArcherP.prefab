@@ -448,7 +448,7 @@ MonoBehaviour:
   unitOnMiniMap: {fileID: 297964726054720325, guid: 9a2b50b1974b9b944afc2bd08f1fec61, type: 3}
   projection: {fileID: 3058082302345719292, guid: 32626a78018e58a48baebde2e0768b87, type: 3}
   projectionSpawnPosition: {fileID: 3758029220359645050}
-  attackDistance: 10
+  _attackDistance: 10
   _heart: 7
   heartUp: 2
   plusHeartUpPerLev: 0.05
@@ -467,7 +467,7 @@ MonoBehaviour:
   Lev: {fileID: 234471825981898669}
   costText: {fileID: 2379171402371545669}
   shortestScript: {fileID: 0}
-  shortestEnemyScript: {fileID: 0}
+  _shortestEnemyScript: {fileID: 0}
   _audi: {fileID: 0}
   attackSound: {fileID: 8300000, guid: a46be8093b0ad2f4db669b20f9620df4, type: 3}
   onlyOneFollowUnitNum: 0

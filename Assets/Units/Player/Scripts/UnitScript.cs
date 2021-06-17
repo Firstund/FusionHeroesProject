@@ -38,7 +38,12 @@ public class UnitScript : MonoBehaviour
     [SerializeField]
     protected Transform projectionSpawnPosition = null;
     [SerializeField]
-    protected float attackDistance = 2f;
+    protected float _attackDistance = 2f;
+    public float attackDistance
+    {
+        get { return _attackDistance; }
+        set { _attackDistance = value; }
+    }
     [SerializeField]
     protected float _heart = 100f;
     public float heart
@@ -755,14 +760,11 @@ public class UnitScript : MonoBehaviour
                 if (enemyObjectDistanceArray[a + 1] < shortestEnemyDistance &&  // shortest 갱신을 위한 조건문
                     fusionManager.enemyScript[a].GetCurrentPosition().x >= currentPosition.x - 0.5f) // 해당 enemyScript가 전방에 있는지 체크하기 위한 조건문                                                                                
                 {
-                    bool arrayDistanceCheck = (enemyObjectDistanceArray[a + 1] == 0);
-
-                    if (!arrayDistanceCheck)
-                    {
-                        shortestEnemyScript = fusionManager.enemyScript[a];
-                        shortestEnemyDistance = enemyObjectDistanceArray[a + 1];
-                        buildingIsShortest = false;
-                    }
+                    
+                    shortestEnemyScript = fusionManager.enemyScript[a];
+                    shortestEnemyDistance = enemyObjectDistanceArray[a + 1];
+                    buildingIsShortest = false;
+                    
                 }
             }
         }
@@ -834,9 +836,9 @@ public class UnitScript : MonoBehaviour
 
                 if (objectDistanceArray[a + 1] < _ShortestDistance)
                 {
-                    bool arrayDistanceCheck = (objectDistanceArray[a + 1] == 0);
+                    bool isThisObject = (fusionManager.unitScript[a] == this);
 
-                    if (!arrayDistanceCheck)
+                    if (!isThisObject)
                     {
                         if (fusionManager.unitScript[a] != this)
                         {

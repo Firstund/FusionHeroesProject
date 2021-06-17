@@ -43,7 +43,12 @@ public class EnemyScript : MonoBehaviour
     //단일공격때 필요
 
     [SerializeField]
-    protected float attackDistance = 2f;
+    protected float _attackDistance = 2f;
+    public float attackDistance
+    {
+        get{return _attackDistance;}
+        set{_attackDistance = value;}
+    }
     // protected int stopByObjectDistance = 0;
     [SerializeField]
     protected float minimumD = 0f;
@@ -298,7 +303,7 @@ public class EnemyScript : MonoBehaviour
             {
                 if (shortestEnemyScript.isStopByEnemy && isStopByEnemy)
                 {
-                    if ((shortestForwardDistance > stopByEnemyDistance) && (shortestDistance > stopByObjectDistance) && canSetSpeed)
+                    if ((shortestForwardDistance >= stopByEnemyDistance) && (shortestDistance > stopByObjectDistance) && canSetSpeed)
                         speed = firstSpeed;
                     else
                     {
@@ -307,7 +312,7 @@ public class EnemyScript : MonoBehaviour
                 }
                 else
                 {
-                    if ((shortestDistance > stopByObjectDistance) && canSetSpeed)
+                    if ((shortestDistance >= stopByObjectDistance) && canSetSpeed)
                         speed = firstSpeed;
                     else
                         speed = 0f;
@@ -557,14 +562,9 @@ public class EnemyScript : MonoBehaviour
 
                 if (objectDistanceArray[a + 1] < shortestDistance && fusionManager.unitScript[a].GetCurrentPosition().x <= currentPosition.x + 0.5f)
                 {
-                    bool arrayDistanceCheck = (objectDistanceArray[a + 1] == 0);
-
-                    if (!arrayDistanceCheck)
-                    {
-                        shortestDistance = objectDistanceArray[a + 1];
-                        shortestScript = fusionManager.unitScript[a];
-                        buildingIsShortest = false;
-                    }
+                    shortestDistance = objectDistanceArray[a + 1];
+                    shortestScript = fusionManager.unitScript[a];
+                    buildingIsShortest = false;
                 }
             }
         }
@@ -589,9 +589,9 @@ public class EnemyScript : MonoBehaviour
 
                 if (enemyObjectDistanceArray[a + 1] < shortestEnemyDistance)  // shortest 갱신을 위한 조건문                                                                                     
                 {
-                    bool arrayDistanceCheck = (enemyObjectDistanceArray[a + 1] == 0);
+                    bool isThisObject = (fusionManager.enemyScript[a] == this);
 
-                    if (!arrayDistanceCheck)
+                    if (!isThisObject)
                     {
                         shortestEnemyScript = fusionManager.enemyScript[a];
                         shortestEnemyDistance = enemyObjectDistanceArray[a + 1];

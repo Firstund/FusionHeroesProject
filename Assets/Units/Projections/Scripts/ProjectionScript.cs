@@ -15,11 +15,13 @@ public class ProjectionScript : MonoBehaviour
     private float speed = 1f;
     [SerializeField]
     private float hitRange = 1f;
+    private Vector2 originPosition = Vector2.zero;
     private Vector2 currentPosition = Vector2.zero;
 
     void Start()
     {
         gameManager = GameManager.Instance;
+        originPosition = transform.position;
 
         if (isPlayerProjection)
         {
@@ -43,16 +45,26 @@ public class ProjectionScript : MonoBehaviour
 
     private void Move()
     {
+        currentPosition = transform.position;
+
+        float distanceToOrigin = Vector2.Distance(currentPosition, originPosition);
+
         if (isPlayerProjection)
         {
+            if(distanceToOrigin >= thisUnitScript.attackDistance)
+            {
+                Destroy(gameObject);
+            }
             transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
         else
         {
+            if(distanceToOrigin >= thisEnemyScript.attackDistance)
+            {
+                Destroy(gameObject);
+            }
             transform.Translate(Vector2.left * speed * Time.deltaTime);
         }
-
-        currentPosition = transform.position;
     }
 
     private void CheckAttack()

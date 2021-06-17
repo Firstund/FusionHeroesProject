@@ -459,12 +459,12 @@ MonoBehaviour:
   _isStopByEnemy: 1
   unitOnMiniMap: {fileID: 297964726054720325, guid: de53d8407df486b488ee1e4be3bfd84d, type: 3}
   slider: {fileID: 6827093709953375945}
-  shortestScript: {fileID: 0}
+  _shortestScript: {fileID: 0}
   shortestEnemyScript: {fileID: 0}
   strongest1Script: {fileID: 0}
   audi: {fileID: 0}
   attackSound: {fileID: 8300000, guid: a46be8093b0ad2f4db669b20f9620df4, type: 3}
-  attackDistance: 10
+  _attackDistance: 10
   minimumD: 0
   maximumD: 3
   heart: 10

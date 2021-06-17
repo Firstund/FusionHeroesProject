@@ -468,7 +468,9 @@ MonoBehaviour:
   slider: {fileID: 6220228852734831928}
   unitId: 102
   unitOnMiniMap: {fileID: 297964726054720325, guid: 9a2b50b1974b9b944afc2bd08f1fec61, type: 3}
-  attackDistance: 3
+  projection: {fileID: 0}
+  projectionSpawnPosition: {fileID: 0}
+  _attackDistance: 3
   _heart: 3
   heartUp: 1
   plusHeartUpPerLev: 0.01
@@ -487,7 +489,7 @@ MonoBehaviour:
   Lev: {fileID: 6220228852725416648}
   costText: {fileID: 6119833633627318555}
   shortestScript: {fileID: 0}
-  shortestEnemyScript: {fileID: 0}
+  _shortestEnemyScript: {fileID: 0}
   _audi: {fileID: 0}
   attackSound: {fileID: 8300000, guid: a46be8093b0ad2f4db669b20f9620df4, type: 3}
   onlyOneFollowUnitNum: 0
@@ -501,7 +503,7 @@ MonoBehaviour:
   mouseDistance: 0
   objectDistanceArray: []
   enemyObjectDistanceArray: []
-  shortestDistance: 10
+  _shortestDistance: 10
   shortestForwardDistance: 10
   shortestBackwardDistance: 10
   stopByEnemyDistance: 2
