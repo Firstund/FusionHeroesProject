@@ -4,11 +4,16 @@ using UnityEngine;
 public class ProjectionScript : MonoBehaviour
 {
     private GameManager gameManager = null;
+    private SpriteRenderer s_renderer = null;
 
     [SerializeField]
     private Transform parent = null;
     private UnitScript thisUnitScript = null;
     private EnemyScript thisEnemyScript = null;
+
+    [SerializeField]
+    private Sprite leftSprite = null;
+
     [SerializeField]
     private bool isPlayerProjection = true;
 
@@ -22,6 +27,8 @@ public class ProjectionScript : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.Instance;
+        s_renderer = GetComponent<SpriteRenderer>();
+
         originPosition = transform.position;
 
         if (isPlayerProjection)
@@ -31,6 +38,7 @@ public class ProjectionScript : MonoBehaviour
         }
         else
         {
+            s_renderer.sprite = leftSprite;
             thisEnemyScript = transform.parent.transform.parent.transform.GetComponent<EnemyScript>();
             parent = GameObject.Find("EnemyProjections").transform;
         }
@@ -102,7 +110,7 @@ public class ProjectionScript : MonoBehaviour
                     distance = Vector2.Distance(currentPosition, thisEnemyScript.shortestScript.GetCurrentPosition());
                 }
 
-                if (thisEnemyScript.shortestDistance <= hitRange)
+                if (distance <= hitRange)
                 {
                     thisEnemyScript.GetDamage();
                     Destroy(gameObject);

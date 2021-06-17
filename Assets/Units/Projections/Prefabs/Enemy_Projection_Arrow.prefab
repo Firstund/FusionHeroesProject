@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1050733751014981284}
   - component: {fileID: 3396441695240476390}
   m_Layer: 0
-  m_Name: Archer_Projection_Arrow
+  m_Name: Enemy_Projection_Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  isPlayerProjection: 1
-  speed: 10
+  leftSprite: {fileID: 21300000, guid: eaf0288b49e18704f90e64171d93f481, type: 3}
+  isPlayerProjection: 0
+  speed: 20
   hitRange: 1

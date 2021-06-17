@@ -17,8 +17,14 @@ public class EnemyScript : MonoBehaviour
     {
         get { return _isStopByEnemy; }
     }
+
     [SerializeField]
     protected UnitOnMiniMapScript unitOnMiniMap = null;
+    [SerializeField]
+    protected GameObject projection = null;
+    [SerializeField]
+    protected Transform projectionSpawnPosition = null;
+
     [SerializeField]
     protected Slider slider = null;
     [SerializeField]
@@ -28,6 +34,7 @@ public class EnemyScript : MonoBehaviour
         get { return _shortestScript; }
         set { _shortestScript = value; }
     }
+
     [SerializeField]
     protected EnemyScript shortestEnemyScript = null;
 
@@ -375,6 +382,10 @@ public class EnemyScript : MonoBehaviour
 
         }
     }
+    public void SpawnProjection()
+    {
+        Instantiate(projection, projectionSpawnPosition);
+    }
     public void GetDamage()
     {
         if (shortestDistance < attackDistance)
@@ -382,10 +393,6 @@ public class EnemyScript : MonoBehaviour
             bool attackOne = isAttackOne;
             float minimumD = 0f;
             float maximumD = attackDistance;
-            if (audi.clip != attackSound)
-                audi.clip = attackSound;
-            //공격 애니메이션 출력
-            audi.Play();
 
             if (attackOne)
             {
@@ -447,6 +454,14 @@ public class EnemyScript : MonoBehaviour
             }
         }
     }
+    public void PlayAttackSound()
+    {
+        if (audi.clip != attackSound)
+            audi.clip = attackSound;
+            
+        audi.Play();
+    }
+
     public void ResetAttackedCheck()
     {
         attackedCheck = false;

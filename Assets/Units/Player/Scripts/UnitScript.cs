@@ -363,8 +363,6 @@ public class UnitScript : MonoBehaviour
 
             if (attackOne)
             {
-                audi.clip = attackSound;
-                audi.Play();
                 if (buildingIsShortest)
                 {
                     shortestHeart = fusionManager.enemyBuildingScript.getHe();
@@ -423,6 +421,15 @@ public class UnitScript : MonoBehaviour
 
         }
     }
+
+    public void PlayAttackSound()
+    {
+        if (audi.clip != attackSound)
+            audi.clip = attackSound;
+            
+        audi.Play();
+    }
+
     public void ResetAttackedCheck()
     {
         canAttack = true;

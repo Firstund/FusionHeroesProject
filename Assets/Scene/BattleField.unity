@@ -25528,8 +25528,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 7371477088570212303, guid: cf3c16e177ec04342818f92e8b86cf5d, type: 3}
-  spawnDelay: 15
-  minusObjDelayPerCurrentStage: 0.03
+  spawnDelay: 10
+  minusObjDelayPerCurrentStage: 0.02
   spawnStartStage: 2
   endSpawnStage: 30
 --- !u!114 &1164809946
@@ -41229,13 +41229,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isStopByEnemy: 1
   unitOnMiniMap: {fileID: 0}
+  projection: {fileID: 0}
+  projectionSpawnPosition: {fileID: 0}
   slider: {fileID: 1214530974}
   _shortestScript: {fileID: 0}
   shortestEnemyScript: {fileID: 0}
   strongest1Script: {fileID: 0}
   audi: {fileID: 0}
   attackSound: {fileID: 0}
-  attackDistance: 2
+  _attackDistance: 2
   minimumD: 0
   maximumD: 3
   heart: 100
