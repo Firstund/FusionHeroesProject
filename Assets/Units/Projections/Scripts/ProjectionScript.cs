@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ProjectionScript : MonoBehaviour
@@ -51,7 +52,7 @@ public class ProjectionScript : MonoBehaviour
 
         if (isPlayerProjection)
         {
-            if(distanceToOrigin >= thisUnitScript.attackDistance)
+            if (distanceToOrigin >= thisUnitScript.attackDistance)
             {
                 Destroy(gameObject);
             }
@@ -59,7 +60,7 @@ public class ProjectionScript : MonoBehaviour
         }
         else
         {
-            if(distanceToOrigin >= thisEnemyScript.attackDistance)
+            if (distanceToOrigin >= thisEnemyScript.attackDistance)
             {
                 Destroy(gameObject);
             }
@@ -71,39 +72,46 @@ public class ProjectionScript : MonoBehaviour
     {
         float distance = 0f;
 
-        if (isPlayerProjection)
+        try
         {
-            if(thisUnitScript.buildingIsShortest)
+            if (isPlayerProjection)
             {
-                distance = Vector2.Distance(currentPosition, gameManager.GetEnemyUnitSpawnPosition().position);
+                if (thisUnitScript.buildingIsShortest)
+                {
+                    distance = Vector2.Distance(currentPosition, gameManager.GetEnemyUnitSpawnPosition().position);
+                }
+                else
+                {
+                    distance = Vector2.Distance(currentPosition, thisUnitScript.shortestEnemyScript.GetCurrentPosition());
+                }
+
+                if (distance <= hitRange)
+                {
+                    thisUnitScript.GetDamage();
+                    Destroy(gameObject);
+                }
             }
             else
             {
-                distance = Vector2.Distance(currentPosition, thisUnitScript.shortestEnemyScript.GetCurrentPosition());
-            }
+                if (thisEnemyScript.buildingIsShortest)
+                {
+                    distance = Vector2.Distance(currentPosition, gameManager.GetUnitSpawnPosition().position);
+                }
+                else
+                {
+                    distance = Vector2.Distance(currentPosition, thisEnemyScript.shortestScript.GetCurrentPosition());
+                }
 
-            if (distance <= hitRange)
-            {
-                thisUnitScript.GetDamage();
-                Destroy(gameObject);
+                if (thisEnemyScript.shortestDistance <= hitRange)
+                {
+                    thisEnemyScript.GetDamage();
+                    Destroy(gameObject);
+                }
             }
         }
-        else
+        catch (NullReferenceException)
         {
-            if(thisEnemyScript.buildingIsShortest)
-            {
-                distance = Vector2.Distance(currentPosition, gameManager.GetUnitSpawnPosition().position);
-            }
-            else
-            {
-                distance = Vector2.Distance(currentPosition, thisEnemyScript.shortestScript.GetCurrentPosition());
-            }
-
-            if (thisEnemyScript.shortestDistance <= hitRange)
-            {
-                thisEnemyScript.GetDamage();
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
     }
 }
