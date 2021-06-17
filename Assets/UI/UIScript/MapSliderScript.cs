@@ -32,7 +32,9 @@ public class MapSliderScript : MonoBehaviour
     [SerializeField]
     private Vector2 targetPosition = Vector2.zero;
     private Vector2 mouseFirstPosition = Vector2.zero;
+    [SerializeField]
     private bool mouseButtonDowned = false;
+    [SerializeField]
     private bool mouseDrag = false;
 
 
@@ -44,9 +46,9 @@ public class MapSliderScript : MonoBehaviour
     }
     void Update()
     {
-        if (!gameManager.GetUiClicked())
+        if (gameManager.GetCST())
         {
-            if (gameManager.GetCST())
+            if (!gameManager.GetUiClicked())
             {
                 if (Input.GetMouseButtonDown(0) && !mouseButtonDowned)
                 {
@@ -61,39 +63,31 @@ public class MapSliderScript : MonoBehaviour
             }
         }
 
-        if(mouseButtonDowned)
+        if (mouseButtonDowned)
         {
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            
+
             float a = Vector2.Distance(mouseFirstPosition, targetPosition);
 
-            if(a > minDragRange)
+            if (a > minDragRange)
             {
                 mouseDrag = true;
             }
         }
 
-        if (!gameManager.tutoIsPlaying && mouseDrag)
+        if (!gameManager.tutoIsPlaying && mouseDrag && gameManager.GetCST())
         {
-            // if (gameManager.mousePosition.x >= gameManager.halfViewportSizeX)
-            //     mapSlider.value += moveSliderXSpeed * Time.deltaTime;
-            // else if (gameManager.mousePosition.x < gameManager.halfViewportSizeX)
-            //     mapSlider.value -= moveSliderXSpeed * Time.deltaTime;
-
-            // targetPosition.x += targetPosition.x - mouseFirstPosition.x;
-            
             mapSlider.DOValue(mapSlider.value + targetPosition.x - mouseFirstPosition.x, moveSliderXSpeed);
             mapSlider.value = Mathf.Clamp(mapSlider.value, 0f, maxCameraPosition);
-
-
-        
         }
+
         cameraPosition = mainCamera.transform.position;
         cameraPosition.x = mapSlider.value;
         mainCamera.transform.position = cameraPosition;
     }
-    void SetMouseDrag()
+    public void ReSet()
     {
         mouseDrag = false;
+        mouseButtonDowned = false;
     }
 }

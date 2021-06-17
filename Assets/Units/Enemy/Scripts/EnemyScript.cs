@@ -22,10 +22,15 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     protected Slider slider = null;
     [SerializeField]
-    protected UnitScript shortestScript = null;
+    protected UnitScript _shortestScript = null;
+    public UnitScript shortestScript
+    {
+        get { return _shortestScript; }
+        set { _shortestScript = value; }
+    }
     [SerializeField]
     protected EnemyScript shortestEnemyScript = null;
-    
+
     [SerializeField]
     protected Strongest1Script strongest1Script = null;
 
@@ -89,7 +94,12 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     protected float[] enemyObjectDistanceArray;
 
-    protected float shortestDistance = 100f;
+    protected float _shortestDistance = 100f;
+    public float shortestDistance
+    {
+        get { return _shortestDistance; }
+        set { _shortestDistance = value; }
+    }
     protected float shortestForwardDistance = 10f;
     protected float shortestEnemyDistance = 10f;
 
@@ -105,7 +115,12 @@ public class EnemyScript : MonoBehaviour
         get { return _attackAnimIsPlaying; }
         set { _attackAnimIsPlaying = value; }
     }
-    protected bool buildingIsShortest = false;//building이 shortest일 때 true. unit이 shortest일 때 false
+    protected bool _buildingIsShortest = false;//building이 shortest일 때 true. unit이 shortest일 때 false
+    public bool buildingIsShortest
+    {
+        get { return _buildingIsShortest; }
+        set { _buildingIsShortest = value; }
+    }
     protected bool isAttackOne = true;
     protected bool isDead = false;
     protected bool _canSetSpeed = true;

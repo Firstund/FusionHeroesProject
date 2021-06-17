@@ -34,6 +34,10 @@ public class UnitScript : MonoBehaviour
     [SerializeField]
     protected UnitOnMiniMapScript unitOnMiniMap = null;
     [SerializeField]
+    protected GameObject projection = null;
+    [SerializeField]
+    protected Transform projectionSpawnPosition = null;
+    [SerializeField]
     protected float attackDistance = 2f;
     [SerializeField]
     protected float _heart = 100f;
@@ -118,7 +122,12 @@ public class UnitScript : MonoBehaviour
     [SerializeField]
     protected UnitScript shortestScript = null;
     [SerializeField]
-    protected EnemyScript shortestEnemyScript = null;
+    protected EnemyScript _shortestEnemyScript = null;
+    public EnemyScript shortestEnemyScript
+    {
+        get { return _shortestEnemyScript; }
+        set { _shortestEnemyScript = value; }
+    }
 
     [SerializeField]
     protected AudioSource _audi = null;
@@ -168,7 +177,12 @@ public class UnitScript : MonoBehaviour
     protected float[] enemyObjectDistanceArray;
 
     [SerializeField]
-    protected float shortestDistance = 10f;
+    protected float _shortestDistance = 10f;
+    public float shortestDistance
+    {
+        get { return _shortestDistance; }
+        set { _shortestDistance = value; }
+    }
     [SerializeField]
     protected float shortestForwardDistance = 10f;
     [SerializeField]
@@ -187,7 +201,6 @@ public class UnitScript : MonoBehaviour
 
     protected Vector2 targetPosition = Vector2.zero;
 
-    protected float testDistance = 0f;
 
     protected Vector2 firstPosition = Vector2.zero;
     //
@@ -205,7 +218,12 @@ public class UnitScript : MonoBehaviour
         get { return _attackAnimIsPlaying; }
         set { _attackAnimIsPlaying = value; }
     }
-    protected bool buildingIsShortest = false;
+    protected bool _buildingIsShortest = false;
+    public bool buildingIsShortest
+    {
+        get { return _buildingIsShortest; }
+        set { _buildingIsShortest = value; }
+    }
     protected bool mouseCheck = false;
     protected bool followingMouse = false;
     protected bool isDead = false;
@@ -322,6 +340,10 @@ public class UnitScript : MonoBehaviour
             }
             //공격 애니메이션 출력
         }
+    }
+    public void SpawnProjection()
+    {
+        Instantiate(projection, projectionSpawnPosition);
     }
     public void GetDamage()
     {
@@ -447,14 +469,6 @@ public class UnitScript : MonoBehaviour
     public void SetFirstPosition(Vector2 a)
     {
         firstPosition = a;
-    }
-    public float GetDistance()
-    {
-        return testDistance;
-    }
-    public void SetDistance(float a)
-    {
-        testDistance = a;
     }
     public int GetUnitLev()
     {

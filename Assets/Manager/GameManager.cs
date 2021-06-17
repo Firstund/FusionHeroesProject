@@ -141,6 +141,8 @@ public class GameManager : MonoBehaviour
     }
     private static GameManager instance;
     private StageManager stageManager = null;
+    [SerializeField]
+    private MapSliderScript mapSliderScript = null;
 
     [SerializeField]
     private GameObject gameOut = null;
@@ -397,6 +399,7 @@ public class GameManager : MonoBehaviour
     }
     public void SetCSt(bool a)
     {
+        mapSliderScript.ReSet();
         canTimeStop = a;
     }
     public void SetCDT(bool a)
