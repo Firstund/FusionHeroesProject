@@ -53,8 +53,8 @@ public class EnemyScript : MonoBehaviour
     protected float _attackDistance = 2f;
     public float attackDistance
     {
-        get{return _attackDistance;}
-        set{_attackDistance = value;}
+        get { return _attackDistance; }
+        set { _attackDistance = value; }
     }
     // protected int stopByObjectDistance = 0;
     [SerializeField]
@@ -189,11 +189,15 @@ public class EnemyScript : MonoBehaviour
 
             SetDistanceArrayIndex();
 
-            EDCheck();
-            ODCheck();
-
             if (gameManager.GetCST())
+            {
+                EDCheck();
+                ODCheck();
+            }
+            if (gameManager.GetCST())
+            {
                 AttackCheck();
+            }
 
             Move();
             HealthBar();
@@ -458,7 +462,7 @@ public class EnemyScript : MonoBehaviour
     {
         if (audi.clip != attackSound)
             audi.clip = attackSound;
-            
+
         audi.Play();
     }
 

@@ -592,8 +592,6 @@ public class UnitScript : MonoBehaviour
     }
     void Move()
     {
-
-
         if (attackDistance < stopByEnemyDistance)
         {
             stopByEnemyDistance = attackDistance;
@@ -655,7 +653,6 @@ public class UnitScript : MonoBehaviour
             firstPositionSet = false;
             onlyOneFollowUnitNum = false;
             followingMouse = false;
-            gameManager.SetCSt(true);
 
         }
 
@@ -720,6 +717,9 @@ public class UnitScript : MonoBehaviour
         unitClickableRange = firstUnitClickableRange;
         followingMouse = false;
         transform.localPosition = firstPosition;
+        currentPosition = transform.localPosition;
+
+        gameManager.SetCSt(true);
     }
     public void LevelUp(int id, int aLev, int bLev)
     {
@@ -748,8 +748,6 @@ public class UnitScript : MonoBehaviour
             {
                 ComeBack();
             }
-
-            gameManager.SetCSt(true);
 
         }
     }
