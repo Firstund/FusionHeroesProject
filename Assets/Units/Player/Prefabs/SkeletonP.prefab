@@ -511,7 +511,7 @@ MonoBehaviour:
   plusApUpPerLev: 0.003
   _apUpPerLev: 0.1
   _dp: 2
-  dpUp: 0.25
+  dpUp: 0.1
   plusDpUpPerLev: 0.002
   _dpUpPerLev: 0.15
   _speed: 1.3

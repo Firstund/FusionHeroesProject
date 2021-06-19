@@ -312,10 +312,6 @@ public class UnitScript : MonoBehaviour
             if (gameManager.GetCST())
                 AttackCheck();
 
-            if (followingCheck)
-            {
-                gameManager.SetCSt(false);
-            }
         }
     }
     public void SetDistanceArrayIndex()
@@ -563,6 +559,15 @@ public class UnitScript : MonoBehaviour
             MinusUnitNum();
             // Destroy(unitOnMiniMap);
         }
+        else if(heart > 0f)
+        {
+            // if(thisUnitNum > fusionManager.GetUnitNum())
+            // {
+            //     fusionManager.SetUnitNum(thisUnitNum);
+            // }
+
+            isDead = false;
+        }
     }
 
     private void MinusUnitNum()
@@ -673,7 +678,8 @@ public class UnitScript : MonoBehaviour
                 {
                     if (shortestDistance < firstUnitClickableRange && gameManager.GetMoney() >= levelUpCost)
                     {
-                        LevelUp(shortestScript.unitId, unitLev, shortestScript.unitLev);
+                        if(!shortestScript.isDead)
+                            LevelUp(shortestScript.unitId, unitLev, shortestScript.unitLev);
                     }
                     else if (gameManager.GetMoney() < levelUpCost)
                     {
@@ -727,7 +733,6 @@ public class UnitScript : MonoBehaviour
 
         if (id == unitId && unitLev == shortestScript.GetUnitLev())
         {
-
             if (unitLev < gameManager.GetSaveData().maxFusionLev)
             {
                 money = gameManager.GetMoney() - levelUpCost;
@@ -748,7 +753,6 @@ public class UnitScript : MonoBehaviour
             {
                 ComeBack();
             }
-
         }
     }
     #endregion
@@ -893,6 +897,7 @@ public class UnitScript : MonoBehaviour
                     transform.localPosition = currentPosition;
 
                     followingMouse = true;
+                    gameManager.SetCSt(false);
                 }
                 else
                 {
