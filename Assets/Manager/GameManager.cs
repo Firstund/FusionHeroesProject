@@ -230,7 +230,11 @@ public class GameManager : MonoBehaviour
         set{_minusPlusMoneyTimePerUpgrade = value;}
     }
     [SerializeField]
-    private int maxGetMoneyUpgradeLev = 8;
+    private int _maxGetMoneyUpgradeLev = 8;
+    public int maxGetMoneyUpgradeLev
+    {
+        get{return _maxGetMoneyUpgradeLev;}
+    }
     [SerializeField]
     private int _getMoneyUpgradeCost = 20;
     public int getMoneyUpgradeCost
@@ -313,17 +317,21 @@ public class GameManager : MonoBehaviour
     }
     public void OnClickMinusPlusMoneyTimePerUpgradeNutton()
     {
-        if(money >= getMoneyUpgradeCost && getMoneyUpgradeLev < maxGetMoneyUpgradeLev)
+        if(money >= getMoneyUpgradeCost && getMoneyUpgradeLev + 1 < maxGetMoneyUpgradeLev)
         {
             money -= getMoneyUpgradeCost;
             getMoneyUpgradeLev++;
             getMoneyUpgradeCost = (int)(getMoneyUpgradeCostUp * getMoneyUpgradeCost);
-            
+        }
+        else if(getMoneyUpgradeLev + 1 >= maxGetMoneyUpgradeLev)
+        {
+            Instantiate(stageManager.maxLevelText, stageManager.textSpawnPosition);
         }
         else
         {
             Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
         }
+        
     }
     public void Reset()
     {

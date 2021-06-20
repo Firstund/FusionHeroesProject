@@ -26,7 +26,16 @@ public class GetMoneySpeedUpBtnScript : MonoBehaviour
     }
     public void SetText()
     {
-        upgradeCostText.text = gameManager.getMoneyUpgradeCost + "";
         upgradeCostLev.text = "Lv." + (gameManager.getMoneyUpgradeLev + 1) + "";
+
+        if(gameManager.getMoneyUpgradeLev + 1 >= gameManager.maxGetMoneyUpgradeLev)
+        {
+            upgradeCostText.text = "MAX";
+        }
+        else
+        {
+            upgradeCostText.text = gameManager.getMoneyUpgradeCost + "";
+        }
+
     }
 }
