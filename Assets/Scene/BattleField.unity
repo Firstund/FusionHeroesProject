@@ -14939,6 +14939,7 @@ MonoBehaviour:
   unitNum: 0
   enemyUnitNum: 0
   _playerUnitSpawnPosition: {fileID: 0}
+  _projectionScripts: []
   _buildingScript: {fileID: 1940142427}
   _enemyBuildingScript: {fileID: 1164809942}
 --- !u!1 &793844089
@@ -25837,6 +25838,7 @@ MonoBehaviour:
   strongest:
   - {fileID: 2523426427407952207, guid: 3386c9046dcca0a4bb325970a172a72f, type: 3}
   - {fileID: 3326938116672063030, guid: b2a9ec5f9a7213a43bdb145822e09c5d, type: 3}
+  - {fileID: 4676621821654574949, guid: 0d29f6a07e6136f46b42a9e3ed75b94f, type: 3}
   - {fileID: 1888308309157576710, guid: 531352b1a2113304492cc04d238fe683, type: 3}
   heart: 250
   heartUp: 10
@@ -25857,6 +25859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnGlingmanStage: 5
   spawnUmikoStage: 10
+  spawnImpStage: 15
   spawnGolemStage: 20
   stageManager: {fileID: 455854534}
 --- !u!114 &1164809944
@@ -25906,9 +25909,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 7558579589176618438, guid: f7fecd00fe042e24e8f4c914ccd8d588, type: 3}
-  spawnDelay: 30
-  minusObjDelayPerCurrentStage: 0.02
-  spawnStartStage: 16
+  spawnDelay: 25
+  minusObjDelayPerCurrentStage: 0.03
+  spawnStartStage: 10
   endSpawnStage: 40
 --- !u!1 &1166167067
 GameObject:

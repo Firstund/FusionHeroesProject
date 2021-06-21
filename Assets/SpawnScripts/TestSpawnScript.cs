@@ -64,7 +64,7 @@ public class TestSpawnScript : MonoBehaviour
     {
         if (iconImage != null && thisUpgradePannel != null)
         {
-            if (gameManager.GetSaveData().currentStage < startSpawnStage)
+            if (gameManager.GetSaveData().maxReachedStage < startSpawnStage)
             {
                 canSpawnIt = false;
                 iconImage.SetActive(false);

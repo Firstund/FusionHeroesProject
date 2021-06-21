@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1888308309157576706}
   - component: {fileID: 1888308309157576705}
   m_Layer: 0
-  m_Name: strongest3_golem
+  m_Name: strongest4_golem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,13 +119,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isStopByEnemy: 0
   unitOnMiniMap: {fileID: 297964726054720325, guid: a0cb9de1184ba474699d46473f63e535, type: 3}
+  projection: {fileID: 0}
+  projectionSpawnPosition: {fileID: 0}
   slider: {fileID: 1888308309872061614}
-  shortestScript: {fileID: 0}
+  _shortestScript: {fileID: 0}
   shortestEnemyScript: {fileID: 0}
   strongest1Script: {fileID: 0}
   audi: {fileID: 0}
   attackSound: {fileID: 8300000, guid: 709ac486a9cb06d4c8fa44d502060f8b, type: 3}
-  attackDistance: 3
+  _attackDistance: 2
   minimumD: 0
   maximumD: 3
   heart: 500

@@ -1,67 +1,55 @@
 fileFormatVersion: 2
-guid: 9d0e4efd189e0874b8310a70beee7540
+guid: 2a02c72f2089d8d409102c342bab8017
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4154269033526545840
-    second: arrow_sheet_0
+      213: 6666899368776408100
+    second: walk - pitchfork shield_0
   - first:
-      213: 6929796847539506788
-    second: arrow_sheet_1
+      213: -5914820920998566687
+    second: walk - pitchfork shield_1
   - first:
-      213: 6307816809715567844
-    second: arrow_sheet_2
+      213: -4338513553770212534
+    second: walk - pitchfork shield_2
   - first:
-      213: -8221198534443510762
-    second: arrow_sheet_3
+      213: -7053231102332278324
+    second: walk - pitchfork shield_3
   - first:
-      213: -5653577687671624502
-    second: arrow_sheet_4
+      213: 90478803042798944
+    second: L0
   - first:
-      213: -644163056422730441
-    second: arrow_sheet_5
+      213: 2193738642681369986
+    second: L1
   - first:
-      213: -6112137618773998278
-    second: arrow_sheet_6
+      213: 1033237211409131155
+    second: L2
   - first:
-      213: 2036685095101581854
-    second: arrow_sheet_7
+      213: -6052591795538784518
+    second: L3
   - first:
-      213: 5596114693444862571
-    second: arrow_sheet_8
+      213: 9142157441007995543
+    second: walk - pitchfork shield_8
   - first:
-      213: -5814473358275561676
-    second: arrow_sheet_9
+      213: 4818878068793840473
+    second: walk - pitchfork shield_9
   - first:
-      213: -1099190586790654724
-    second: arrow_sheet_10
+      213: -7227277398673114113
+    second: walk - pitchfork shield_10
   - first:
-      213: -557719614759569245
-    second: arrow_sheet_11
+      213: 5823520776913413889
+    second: walk - pitchfork shield_11
   - first:
-      213: 5020755997992778441
-    second: arrow_sheet_12
+      213: 3506650526877411193
+    second: R0
   - first:
-      213: 5626777687542718210
-    second: arrow_sheet_13
+      213: 1693111774697553272
+    second: R1
   - first:
-      213: -1515041129995075293
-    second: arrow_sheet_14
+      213: -1876966007782992035
+    second: R2
   - first:
-      213: 4547016840052647821
-    second: arrow_sheet_15
-  - first:
-      213: -2202470255078789629
-    second: arrow_sheet_16
-  - first:
-      213: 4052498169347160463
-    second: arrow_sheet_17
-  - first:
-      213: 3310983192333328581
-    second: arrow_sheet_18
-  - first:
-      213: -2661332398844600387
-    second: arrow_sheet_19
+      213: -2474528918504715653
+    second: R3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -101,7 +89,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -163,421 +151,337 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arrow_sheet_0
+      name: walk - pitchfork shield_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 84
-        width: 28
-        height: 21
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bd41ccfcade6a930800000000000000
-      internalID: 4154269033526545840
+      spriteID: 42c913537a5958c50800000000000000
+      internalID: 6666899368776408100
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_sheet_1
+      name: walk - pitchfork shield_1
       rect:
         serializedVersion: 2
-        x: 28
-        y: 84
-        width: 28
-        height: 21
+        x: 64
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46ec63764859b2060800000000000000
-      internalID: 6929796847539506788
+      spriteID: 1e4e4ddd5b55aeda0800000000000000
+      internalID: -5914820920998566687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_sheet_2
+      name: walk - pitchfork shield_2
       rect:
         serializedVersion: 2
-        x: 56
-        y: 84
-        width: 28
-        height: 21
+        x: 128
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ec855bd7fdd98750800000000000000
-      internalID: 6307816809715567844
+      spriteID: a431f46c8e08ac3c0800000000000000
+      internalID: -4338513553770212534
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_sheet_3
+      name: walk - pitchfork shield_3
       rect:
         serializedVersion: 2
-        x: 84
-        y: 84
-        width: 28
-        height: 21
+        x: 192
+        y: 192
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 614588e9d7f68ed80800000000000000
-      internalID: -8221198534443510762
+      spriteID: cc96fba9ea3ed1e90800000000000000
+      internalID: -7053231102332278324
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_sheet_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 63
-        width: 28
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: acc22480c057a81b0800000000000000
-      internalID: -5653577687671624502
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arrow_sheet_5
-      rect:
-        serializedVersion: 2
-        x: 28
-        y: 63
-        width: 28
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7354e74fc197f07f0800000000000000
-      internalID: -644163056422730441
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arrow_sheet_6
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 63
-        width: 28
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a358cae18335d2ba0800000000000000
-      internalID: -6112137618773998278
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arrow_sheet_7
-      rect:
-        serializedVersion: 2
-        x: 84
-        y: 63
-        width: 28
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e1accdc9d42c34c10800000000000000
-      internalID: 2036685095101581854
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arrow_sheet_8
+      name: L0
       rect:
         serializedVersion: 2
         x: 0
-        y: 42
-        width: 28
-        height: 21
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6200290aa469ad40800000000000000
-      internalID: 5596114693444862571
+      spriteID: 06d8113fdf1714100800000000000000
+      internalID: 90478803042798944
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_sheet_9
+      name: L1
       rect:
         serializedVersion: 2
-        x: 28
-        y: 42
-        width: 28
-        height: 21
+        x: 64
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 437330c7947de4fa0800000000000000
-      internalID: -5814473358275561676
+      spriteID: 285121f2ca9b17e10800000000000000
+      internalID: 2193738642681369986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_sheet_10
+      name: L2
       rect:
         serializedVersion: 2
-        x: 56
-        y: 42
-        width: 28
-        height: 21
+        x: 128
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfcc3ed2cf3eeb0f0800000000000000
-      internalID: -1099190586790654724
+      spriteID: 396a1caf4cbc65e00800000000000000
+      internalID: 1033237211409131155
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_sheet_11
+      name: L3
       rect:
         serializedVersion: 2
-        x: 84
-        y: 42
-        width: 28
-        height: 21
+        x: 192
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a8fcfd17f49248f0800000000000000
-      internalID: -557719614759569245
+      spriteID: afe877874dfd00ca0800000000000000
+      internalID: -6052591795538784518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_sheet_12
+      name: walk - pitchfork shield_8
       rect:
         serializedVersion: 2
         x: 0
-        y: 21
-        width: 28
-        height: 21
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ca7544aafe4da540800000000000000
-      internalID: 5020755997992778441
+      spriteID: 79ac9ff51c77fde70800000000000000
+      internalID: 9142157441007995543
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_sheet_13
+      name: walk - pitchfork shield_9
       rect:
         serializedVersion: 2
-        x: 28
-        y: 21
-        width: 28
-        height: 21
+        x: 64
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20fd310be74561e40800000000000000
-      internalID: 5626777687542718210
+      spriteID: 9539062721810e240800000000000000
+      internalID: 4818878068793840473
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_sheet_14
+      name: walk - pitchfork shield_10
       rect:
         serializedVersion: 2
-        x: 56
-        y: 21
-        width: 28
-        height: 21
+        x: 128
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 321898a8e1e79fae0800000000000000
-      internalID: -1515041129995075293
+      spriteID: ffb31e66f7d83bb90800000000000000
+      internalID: -7227277398673114113
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_sheet_15
+      name: walk - pitchfork shield_11
       rect:
         serializedVersion: 2
-        x: 84
-        y: 21
-        width: 28
-        height: 21
+        x: 192
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d87ae0399bf3a1f30800000000000000
-      internalID: 4547016840052647821
+      spriteID: 107e702da4d41d050800000000000000
+      internalID: 5823520776913413889
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_sheet_16
+      name: R0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 28
-        height: 21
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30e2aa1e8f04f61e0800000000000000
-      internalID: -2202470255078789629
+      spriteID: 977e6fd33102aa030800000000000000
+      internalID: 3506650526877411193
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_sheet_17
+      name: R1
       rect:
         serializedVersion: 2
-        x: 28
+        x: 64
         y: 0
-        width: 28
-        height: 21
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f89bbdc2d9d5d3830800000000000000
-      internalID: 4052498169347160463
+      spriteID: 87df0e740342f7710800000000000000
+      internalID: 1693111774697553272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_sheet_18
+      name: R2
       rect:
         serializedVersion: 2
-        x: 56
+        x: 128
         y: 0
-        width: 28
-        height: 21
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c0215ccba9f2fd20800000000000000
-      internalID: 3310983192333328581
+      spriteID: d579c9a4c5da3f5e0800000000000000
+      internalID: -1876966007782992035
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arrow_sheet_19
+      name: R3
       rect:
         serializedVersion: 2
-        x: 84
+        x: 192
         y: 0
-        width: 28
-        height: 21
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dbf11a9984c011bd0800000000000000
-      internalID: -2661332398844600387
+      spriteID: b7a481a2f05b8add0800000000000000
+      internalID: -2474528918504715653
       vertices: []
       indices: 
       edges: []
@@ -585,7 +489,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ce3c50897caf4bd4399ceb7342767545
+    spriteID: 2c6512bf60f8ecb4cb19049a874f2ba5
     internalID: 0
     vertices: []
     indices: 

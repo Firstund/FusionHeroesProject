@@ -9,7 +9,10 @@ public class SpawnStrongestScript : MonoBehaviour
     [SerializeField]
     private int spawnUmikoStage = 10;
     [SerializeField]
+    private int spawnImpStage = 15;
+    [SerializeField]
     private int spawnGolemStage = 20;
+    
     [SerializeField]
     private StageManager stageManager = null;
     private EnemyBuildingScript enemyBuildingScript = null;
@@ -27,6 +30,7 @@ public class SpawnStrongestScript : MonoBehaviour
         {
             umiko();
             glingman();
+            imp();
             golem();
         }
     }
@@ -47,12 +51,20 @@ public class SpawnStrongestScript : MonoBehaviour
             Instantiate(enemyBuildingScript.GetStrongest(1), enemySpawnScript.GetSpawnPosition());
         }
     }
-    private void golem()
+    private void imp()
     {
-        if(!enemyBuildingScript.GetStrongestSpawned(2) && stageManager.GetCurrentStage() == spawnGolemStage && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe())
+        if (!enemyBuildingScript.GetStrongestSpawned(2) && stageManager.GetCurrentStage() == spawnImpStage && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe())
         {
             enemyBuildingScript.SetstrongestSpawned(2, true);
             Instantiate(enemyBuildingScript.GetStrongest(2), enemySpawnScript.GetSpawnPosition());
+        }
+    }
+    private void golem()
+    {
+        if(!enemyBuildingScript.GetStrongestSpawned(3) && stageManager.GetCurrentStage() == spawnGolemStage && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe())
+        {
+            enemyBuildingScript.SetstrongestSpawned(3, true);
+            Instantiate(enemyBuildingScript.GetStrongest(3), enemySpawnScript.GetSpawnPosition());
         }
     }
 
