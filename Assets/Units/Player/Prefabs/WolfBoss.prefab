@@ -218,18 +218,20 @@ MonoBehaviour:
   slider: {fileID: 8320676804210235390}
   unitId: 105
   unitOnMiniMap: {fileID: 297964726054720325, guid: 9a2b50b1974b9b944afc2bd08f1fec61, type: 3}
-  attackDistance: 2
+  projection: {fileID: 0}
+  projectionSpawnPosition: {fileID: 0}
+  _attackDistance: 2
   _heart: 30
   heartUp: 5
-  plusHeartUpPerLev: 0.2
+  plusHeartUpPerLev: 0.1
   _heartUpPerLev: 0.5
-  _ap: 2
+  _ap: 3.5
   apUp: 0.5
-  plusApUpPerLev: 0.02
+  plusApUpPerLev: 0.01
   _apUpPerLev: 0.3
   _dp: 2
   dpUp: 0.5
-  plusDpUpPerLev: 0.02
+  plusDpUpPerLev: 0.001
   _dpUpPerLev: 0.2
   _speed: 2
   attackDelay: 1
@@ -237,7 +239,7 @@ MonoBehaviour:
   Lev: {fileID: 8320676802804371235}
   costText: {fileID: 8320676803810666351}
   shortestScript: {fileID: 0}
-  shortestEnemyScript: {fileID: 0}
+  _shortestEnemyScript: {fileID: 0}
   _audi: {fileID: 0}
   attackSound: {fileID: 8300000, guid: 8fea530083b58334a9dd2006b992df4c, type: 3}
   onlyOneFollowUnitNum: 0
@@ -251,7 +253,7 @@ MonoBehaviour:
   mouseDistance: 0
   objectDistanceArray: []
   enemyObjectDistanceArray: []
-  shortestDistance: 10
+  _shortestDistance: 10
   shortestForwardDistance: 10
   shortestBackwardDistance: 10
   stopByEnemyDistance: 1.2
@@ -271,8 +273,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wolf: {fileID: 6708528392320978716, guid: 52fd5e2701860e241be6a24d058fb9e0, type: 3}
   soundBox: {fileID: 6530719832843430112, guid: 85fee5c9b346cdf408c617d317f75a72, type: 3}
-  wolfSpawnTime: 7
-  minusWolfSpawnTimePerLev: 1
+  wolfSpawnTime: 11
+  minusWolfSpawnTimePerLev: 2
 --- !u!1 &8320676802577826756
 GameObject:
   m_ObjectHideFlags: 0

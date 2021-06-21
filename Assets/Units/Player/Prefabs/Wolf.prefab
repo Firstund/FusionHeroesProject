@@ -455,10 +455,12 @@ MonoBehaviour:
   slider: {fileID: 1494130941108486121}
   unitId: 115
   unitOnMiniMap: {fileID: 297964726054720325, guid: 9a2b50b1974b9b944afc2bd08f1fec61, type: 3}
-  attackDistance: 2
+  projection: {fileID: 0}
+  projectionSpawnPosition: {fileID: 0}
+  _attackDistance: 2
   _heart: 3
   heartUp: 1
-  plusHeartUpPerLev: 0.1
+  plusHeartUpPerLev: 0.15
   _heartUpPerLev: 0.2
   _ap: 1.5
   apUp: 0.5
@@ -466,7 +468,7 @@ MonoBehaviour:
   _apUpPerLev: 0.1
   _dp: 1
   dpUp: 0.2
-  plusDpUpPerLev: 0.01
+  plusDpUpPerLev: 0.007
   _dpUpPerLev: 0.1
   _speed: 3
   attackDelay: 1
@@ -474,7 +476,7 @@ MonoBehaviour:
   Lev: {fileID: 5537943067633985534}
   costText: {fileID: 8000634299909755542}
   shortestScript: {fileID: 0}
-  shortestEnemyScript: {fileID: 0}
+  _shortestEnemyScript: {fileID: 0}
   _audi: {fileID: 0}
   attackSound: {fileID: 8300000, guid: 8fea530083b58334a9dd2006b992df4c, type: 3}
   onlyOneFollowUnitNum: 0
@@ -488,7 +490,7 @@ MonoBehaviour:
   mouseDistance: 0
   objectDistanceArray: []
   enemyObjectDistanceArray: []
-  shortestDistance: 10
+  _shortestDistance: 10
   shortestForwardDistance: 10
   shortestBackwardDistance: 10
   stopByEnemyDistance: 1.2

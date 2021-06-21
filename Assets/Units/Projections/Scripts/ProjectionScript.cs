@@ -4,6 +4,7 @@ using UnityEngine;
 public class ProjectionScript : MonoBehaviour
 {
     private GameManager gameManager = null;
+    private FusionManager fusionManager = null;
     private SpriteRenderer s_renderer = null;
 
     [SerializeField]
@@ -27,6 +28,10 @@ public class ProjectionScript : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.Instance;
+        fusionManager = FindObjectOfType<FusionManager>();
+
+        fusionManager.projectionScripts.Add(this);
+    
         s_renderer = GetComponent<SpriteRenderer>();
 
         originPosition = transform.position;
@@ -63,6 +68,7 @@ public class ProjectionScript : MonoBehaviour
             if (distanceToOrigin >= thisUnitScript.attackDistance)
             {
                 Destroy(gameObject);
+                fusionManager.projectionScripts.Remove(this);
             }
             transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
@@ -71,6 +77,7 @@ public class ProjectionScript : MonoBehaviour
             if (distanceToOrigin >= thisEnemyScript.attackDistance)
             {
                 Destroy(gameObject);
+                fusionManager.projectionScripts.Remove(this);
             }
             transform.Translate(Vector2.left * speed * Time.deltaTime);
         }
@@ -97,6 +104,7 @@ public class ProjectionScript : MonoBehaviour
                 {
                     thisUnitScript.GetDamage();
                     Destroy(gameObject);
+                    fusionManager.projectionScripts.Remove(this);
                 }
             }
             else
@@ -114,12 +122,14 @@ public class ProjectionScript : MonoBehaviour
                 {
                     thisEnemyScript.GetDamage();
                     Destroy(gameObject);
+                    fusionManager.projectionScripts.Remove(this);
                 }
             }
         }
         catch (NullReferenceException)
         {
             Destroy(gameObject);
+            fusionManager.projectionScripts.Remove(this);
         }
     }
 }

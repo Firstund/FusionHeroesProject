@@ -129,6 +129,16 @@ public class StageManager : MonoBehaviour
         fusionManager.enemyScript = new EnemyScript[0];
         fusionManager.SetEnemyUnitNum(1);
 
+        while(fusionManager.projectionScripts.Count > 0)
+        {
+            if(fusionManager.projectionScripts[0] != null)
+            {
+                Destroy(fusionManager.projectionScripts[0]);
+            }
+            fusionManager.projectionScripts.Remove(fusionManager.projectionScripts[0]);
+        }
+        
+
     }
     public void SetCurrentStage(int a)
     {

@@ -114,6 +114,7 @@ public class TestSpawnScript : MonoBehaviour
         }
         else
         {
+            uCannotSpawnItYetText.transform.GetChild(0).GetComponent<Text>().text = startSpawnStage + "스테이지 이후부터 소환할 수 있습니다.";
             Instantiate(uCannotSpawnItYetText, stageManager.textSpawnPosition);
         }
     }

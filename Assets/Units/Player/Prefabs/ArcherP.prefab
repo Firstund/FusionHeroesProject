@@ -455,11 +455,11 @@ MonoBehaviour:
   _heartUpPerLev: 0.3
   _ap: 3
   apUp: 1
-  plusApUpPerLev: 0.05
+  plusApUpPerLev: 0.01
   _apUpPerLev: 0.5
   _dp: 0
   dpUp: 0.3
-  plusDpUpPerLev: 0.001
+  plusDpUpPerLev: 0.0005
   _dpUpPerLev: 0.05
   _speed: 1
   attackDelay: 1

@@ -561,11 +561,6 @@ public class UnitScript : MonoBehaviour
         }
         else if(heart > 0f)
         {
-            // if(thisUnitNum > fusionManager.GetUnitNum())
-            // {
-            //     fusionManager.SetUnitNum(thisUnitNum);
-            // }
-
             isDead = false;
         }
     }

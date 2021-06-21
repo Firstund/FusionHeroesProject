@@ -506,9 +506,9 @@ MonoBehaviour:
   heartUp: 1
   plusHeartUpPerLev: 0.01
   _heartUpPerLev: 0.5
-  _ap: 2
+  _ap: 2.5
   apUp: 0.3
-  plusApUpPerLev: 0.003
+  plusApUpPerLev: 0.005
   _apUpPerLev: 0.1
   _dp: 2
   dpUp: 0.1
