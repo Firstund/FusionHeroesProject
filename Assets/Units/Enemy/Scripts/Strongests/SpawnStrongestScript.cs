@@ -53,7 +53,7 @@ public class SpawnStrongestScript : MonoBehaviour
     }
     private void imp()
     {
-        if (!enemyBuildingScript.GetStrongestSpawned(2) && stageManager.GetCurrentStage() == spawnImpStage && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe())
+        if (!enemyBuildingScript.GetStrongestSpawned(2) && stageManager.GetCurrentStage() == spawnImpStage && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() / 5 * 4)
         {
             enemyBuildingScript.SetstrongestSpawned(2, true);
             Instantiate(enemyBuildingScript.GetStrongest(2), enemySpawnScript.GetSpawnPosition());

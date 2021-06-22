@@ -450,8 +450,8 @@ MonoBehaviour:
   projectionSpawnPosition: {fileID: 3758029220359645050}
   _attackDistance: 10
   _heart: 7
-  heartUp: 2
-  plusHeartUpPerLev: 0.05
+  heartUp: 1
+  plusHeartUpPerLev: 0.025
   _heartUpPerLev: 0.3
   _ap: 3
   apUp: 1

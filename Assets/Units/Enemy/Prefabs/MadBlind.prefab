@@ -463,6 +463,7 @@ MonoBehaviour:
   slider: {fileID: 7942226430985299606}
   _shortestScript: {fileID: 0}
   shortestEnemyScript: {fileID: 0}
+  LShortestEnemyScript: {fileID: 0}
   strongest1Script: {fileID: 0}
   audi: {fileID: 0}
   attackSound: {fileID: 8300000, guid: 709ac486a9cb06d4c8fa44d502060f8b, type: 3}
@@ -470,10 +471,10 @@ MonoBehaviour:
   minimumD: 0
   maximumD: 3
   heart: 15
-  heartUp: 1.5
+  heartUp: 1
   ap: 1.3
   apUp: 0.1
-  dp: 2
+  dp: 1
   dpUp: 0.3
   attackDelay: 1
   speed: 1

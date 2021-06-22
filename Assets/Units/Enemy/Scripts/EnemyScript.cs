@@ -36,8 +36,6 @@ public class EnemyScript : MonoBehaviour
     }
 
     [SerializeField]
-    protected EnemyScript shortestEnemyScript = null;
-    [SerializeField]
     protected EnemyScript LShortestEnemyScript = null;
 
     [SerializeField]
@@ -312,9 +310,9 @@ public class EnemyScript : MonoBehaviour
                     speed = firstSpeed;
                 }
 
-            if (shortestEnemyScript != null)
+            if (LShortestEnemyScript != null)
             {
-                if (shortestEnemyScript.isStopByEnemy && isStopByEnemy)
+                if (LShortestEnemyScript.isStopByEnemy && isStopByEnemy)
                 {
                     if ((shortestForwardDistance >= stopByEnemyDistance) && (shortestDistance > stopByObjectDistance) && canSetSpeed)
                         speed = firstSpeed;
@@ -576,7 +574,7 @@ public class EnemyScript : MonoBehaviour
     }
     protected void ODCheck()
     {
-        if (shortestScript == null)
+        if (shortestScript == null || shortestScript.isDead)
         {
             SetObjectDistanceArray();
         }
@@ -609,20 +607,18 @@ public class EnemyScript : MonoBehaviour
     }
     public void EDCheck()
     {
-        if (shortestEnemyScript == null || LShortestEnemyScript == null) // 최적화 위한 코드
+        if (LShortestEnemyScript == null || LShortestEnemyScript.GetIsDead()) // 최적화 위한 코드
         {
             SetEnemyObjectDistanceArray();
         }
         else
         {
-            shortestEnemyDistance = Vector2.Distance(shortestEnemyScript.GetCurrentPosition(), currentPosition);
             shortestForwardDistance = Vector2.Distance(LShortestEnemyScript.GetCurrentPosition(), currentPosition);
         }
     }
 
     private void SetEnemyObjectDistanceArray()
     {
-        EnemyScript _ShortestEnemyScript = null;
         EnemyScript _LShortestEnemyScript = null;
         bool shortestForwardIsSet = false;
         float LShortestForwardDistance = 100f;
@@ -634,16 +630,6 @@ public class EnemyScript : MonoBehaviour
             {
                 enemyObjectDistanceArray[a + 1] = Vector2.Distance(fusionManager.enemyScript[a].GetCurrentPosition(), currentPosition);
 
-                if (enemyObjectDistanceArray[a + 1] < shortestEnemyDistance)  // shortest 갱신을 위한 조건문                                                                                     
-                {
-                    bool isThisObject = (fusionManager.enemyScript[a] == this);
-
-                    if (!isThisObject)
-                    {
-                        _ShortestEnemyScript = fusionManager.enemyScript[a];
-                        shortestEnemyDistance = enemyObjectDistanceArray[a + 1];
-                    }
-                }
                 if (fusionManager.enemyScript[a].GetThisUnitNO() < thisUnitNO) // unitScript에도 이거 적용할것
                 {
                     if (enemyObjectDistanceArray[a + 1] < LShortestForwardDistance)
@@ -660,7 +646,6 @@ public class EnemyScript : MonoBehaviour
                 }
             }
 
-            shortestEnemyScript = _ShortestEnemyScript;
             LShortestEnemyScript = _LShortestEnemyScript;
         }
     }

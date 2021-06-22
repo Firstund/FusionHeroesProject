@@ -231,7 +231,11 @@ public class UnitScript : MonoBehaviour
     }
     protected bool mouseCheck = false;
     protected bool followingMouse = false;
-    protected bool isDead = false;
+    protected bool _isDead = false;
+    public bool isDead
+    {
+        get{return _isDead;}
+    }
     private bool isAttackOne = true;
     public bool isFollow = false;
     private bool _canSetSpeed = true;
@@ -307,7 +311,7 @@ public class UnitScript : MonoBehaviour
             }
 
             FusionCheck();
-            
+
             Move();
             HealthBar();
             DestroyCheck();
@@ -558,13 +562,12 @@ public class UnitScript : MonoBehaviour
             anim.Play("Dead");
             speed = 0f;
             ap = 0f;
-            isDead = true;
+            _isDead = true;
             MinusUnitNum();
-            // Destroy(unitOnMiniMap);
         }
         else if (heart > 0f)
         {
-            isDead = false;
+            _isDead = false;
         }
     }
 
@@ -757,7 +760,7 @@ public class UnitScript : MonoBehaviour
     #region distance 관련 함수들
     public void EDCheck()
     {
-        if (shortestEnemyScript == null)
+        if (shortestEnemyScript == null || shortestEnemyScript.GetIsDead())
         {
             SetEnemyObjectDistanceArray();
         }
@@ -794,7 +797,7 @@ public class UnitScript : MonoBehaviour
 
     private void ForwardODCheck()
     {
-        if (shortestForwardScript == null)
+        if (shortestForwardScript == null || shortestForwardScript.isDead)
         {
             UnitScript _ShortestForwardScript = null;
 
@@ -862,7 +865,7 @@ public class UnitScript : MonoBehaviour
     }
     public void ODCheck()//이 함수 복사, 수정 후 Enemy의 위치를 구하는 함수로 변환
     {
-        if (shortestScript == null)
+        if (shortestScript == null || shortestScript.isDead)
         {
             SetObjectDistanceArray();
         }
@@ -932,6 +935,8 @@ public class UnitScript : MonoBehaviour
                 }
                 if (followingCheck)
                 {
+                    SetObjectDistanceArray();
+
                     mapSliderScript.gameObject.SetActive(false);
 
                     unitClickableRange = 10f;
