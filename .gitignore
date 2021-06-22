@@ -2,7 +2,7 @@ Assembly-CSharp.csproj
 FusionHerosProject.sln
 .vs/FusionHerosProject/v16/.suo
 .vscode/settings.json
-Program/FusionHerosProject/Library/
+FusionHerosProject/Library/
 Library/ArtifactDB
 Library/ArtifactDB-lock
 Library/CurrentLayout-default.dwlt
