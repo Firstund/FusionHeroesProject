@@ -37,6 +37,8 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField]
     protected EnemyScript shortestEnemyScript = null;
+    [SerializeField]
+    protected EnemyScript LShortestEnemyScript = null;
 
     [SerializeField]
     protected Strongest1Script strongest1Script = null;
@@ -523,8 +525,9 @@ public class EnemyScript : MonoBehaviour
             //광역공격
 
             attackedCheck = true;
-            //anim.Play("TestAnimationAttack");
+
             yield return new WaitForSeconds(attackDelay);
+            SetObjectDistanceArray();
 
             for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
             {
@@ -548,6 +551,7 @@ public class EnemyScript : MonoBehaviour
             }
         }
     }
+
     protected void AttackCheck()
     {
         if (shortestDistance < attackDistance)
@@ -572,6 +576,20 @@ public class EnemyScript : MonoBehaviour
     }
     protected void ODCheck()
     {
+        if (shortestScript == null)
+        {
+            SetObjectDistanceArray();
+        }
+        else
+        {
+            shortestDistance = Vector2.Distance(shortestScript.GetCurrentPosition(), currentPosition);
+            buildingIsShortest = false;
+        }
+    }
+    private void SetObjectDistanceArray()
+    {
+        UnitScript _ShortestScript = null;
+
         FirstODSet();
         if (fusionManager.GetUnitNum() > 0)
         {
@@ -582,20 +600,30 @@ public class EnemyScript : MonoBehaviour
                 if (objectDistanceArray[a + 1] < shortestDistance && fusionManager.unitScript[a].GetCurrentPosition().x <= currentPosition.x + 0.5f)
                 {
                     shortestDistance = objectDistanceArray[a + 1];
-                    shortestScript = fusionManager.unitScript[a];
+                    _ShortestScript = fusionManager.unitScript[a];
                     buildingIsShortest = false;
                 }
             }
-        }
-        else
-        {
-            attackedCheck = false;
-            shortestDistance = 100f;
-            shortestScript = null;
+            shortestScript = _ShortestScript;
         }
     }
     public void EDCheck()
     {
+        if (shortestEnemyScript == null || LShortestEnemyScript == null) // 최적화 위한 코드
+        {
+            SetEnemyObjectDistanceArray();
+        }
+        else
+        {
+            shortestEnemyDistance = Vector2.Distance(shortestEnemyScript.GetCurrentPosition(), currentPosition);
+            shortestForwardDistance = Vector2.Distance(LShortestEnemyScript.GetCurrentPosition(), currentPosition);
+        }
+    }
+
+    private void SetEnemyObjectDistanceArray()
+    {
+        EnemyScript _ShortestEnemyScript = null;
+        EnemyScript _LShortestEnemyScript = null;
         bool shortestForwardIsSet = false;
         float LShortestForwardDistance = 100f;
 
@@ -612,9 +640,8 @@ public class EnemyScript : MonoBehaviour
 
                     if (!isThisObject)
                     {
-                        shortestEnemyScript = fusionManager.enemyScript[a];
+                        _ShortestEnemyScript = fusionManager.enemyScript[a];
                         shortestEnemyDistance = enemyObjectDistanceArray[a + 1];
-                        buildingIsShortest = false;
                     }
                 }
                 if (fusionManager.enemyScript[a].GetThisUnitNO() < thisUnitNO) // unitScript에도 이거 적용할것
@@ -622,6 +649,7 @@ public class EnemyScript : MonoBehaviour
                     if (enemyObjectDistanceArray[a + 1] < LShortestForwardDistance)
                     {
                         LShortestForwardDistance = enemyObjectDistanceArray[a + 1];
+                        _LShortestEnemyScript = fusionManager.enemyScript[a];
                         shortestForwardDistance = LShortestForwardDistance;
                         shortestForwardIsSet = true;
                     }
@@ -631,14 +659,12 @@ public class EnemyScript : MonoBehaviour
                     shortestForwardDistance = 10f;
                 }
             }
-        }
-        else
-        {
-            attackedCheck = false;
-            shortestEnemyDistance = 100f;
-            shortestEnemyScript = null;
+
+            shortestEnemyScript = _ShortestEnemyScript;
+            LShortestEnemyScript = _LShortestEnemyScript;
         }
     }
+
     protected void DestroyCheck()
     {
         // Destroy(unitOnMiniMap);

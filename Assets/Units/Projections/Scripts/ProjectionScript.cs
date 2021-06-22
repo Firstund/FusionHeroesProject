@@ -9,7 +9,9 @@ public class ProjectionScript : MonoBehaviour
 
     [SerializeField]
     private Transform parent = null;
+    [SerializeField]
     private UnitScript thisUnitScript = null;
+    [SerializeField]
     private EnemyScript thisEnemyScript = null;
 
     [SerializeField]
