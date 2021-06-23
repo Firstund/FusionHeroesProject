@@ -197,6 +197,7 @@ public class UnitScript : MonoBehaviour
     [SerializeField]
     protected float stopByObjectDistance = 1.5f;
     protected float firstStopByEnemyDistance = 0f;
+    [SerializeField]
     protected UnitScript shortestForwardScript = null;
     protected UnitScript shortestBackwardScript = null;
 
@@ -827,7 +828,14 @@ public class UnitScript : MonoBehaviour
         }
         else
         {
-            shortestForwardDistance = Vector2.Distance(shortestForwardScript.GetCurrentPosition(), currentPosition);
+            if (shortestForwardScript.GetThisUnitNO() < thisUnitNO)
+            {
+                shortestForwardDistance = Vector2.Distance(shortestForwardScript.GetCurrentPosition(), currentPosition);
+            }
+            else
+            {
+                shortestForwardScript = null;
+            }
         }
     }
     private void BackwardODCheck()

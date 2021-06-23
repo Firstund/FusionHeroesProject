@@ -134,11 +134,12 @@ public class StageManager : MonoBehaviour
         {
             if (fusionManager.projectionScripts[0] != null)
             {
-                Destroy(fusionManager.projectionScripts[0]);
+                Destroy(fusionManager.projectionScripts[0].gameObject);
                 fusionManager.projectionScripts.Remove(fusionManager.projectionScripts[0]);
             }
             else if(fusionManager.projectionScripts[0] == null)
             {
+                Destroy(fusionManager.projectionScripts[0].gameObject);
                 fusionManager.projectionScripts.Remove(fusionManager.projectionScripts[0]);
             }
         }

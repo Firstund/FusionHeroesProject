@@ -339,6 +339,7 @@ public class GameManager : MonoBehaviour
         maxMoney = firstMaxMoney;
         getMoneyUpgradeLev = 0;
         money = 0;
+        hadMoney = 0;
         FindObjectOfType<GetMoneySpeedUpBtnScript>().SetText();
     }
 

@@ -26154,10 +26154,10 @@ MonoBehaviour:
   - {fileID: 3326938116672063030, guid: b2a9ec5f9a7213a43bdb145822e09c5d, type: 3}
   - {fileID: 4676621821654574949, guid: 0d29f6a07e6136f46b42a9e3ed75b94f, type: 3}
   - {fileID: 1888308309157576710, guid: 531352b1a2113304492cc04d238fe683, type: 3}
-  heart: 250
+  heart: 150
   heartUp: 10
   dp: 1
-  dpUp: 0.5
+  dpUp: 0.05
   currentPosition: {x: 0, y: 0}
 --- !u!114 &1164809943
 MonoBehaviour:
@@ -43497,7 +43497,7 @@ MonoBehaviour:
   heart: 100
   heartUp: 10
   dp: 1
-  dpUp: 0.5
+  dpUp: 0.05
   destroy1Played: 0
   destroy2Played: 0
   currentPosition: {x: 0, y: 0}

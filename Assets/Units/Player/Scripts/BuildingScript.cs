@@ -111,9 +111,19 @@ public class BuildingScript : MonoBehaviour
     }
     public void Reset()
     {
-        setStat();
+        ResetStat();
         destroy1Played = false;
         destroy2Played = false;
+    }
+    private void ResetStat()
+    {
+        heart = firstHeart;
+        saveData.heart[0] = firstHeart = heart;
+
+        SetMaxHealth();
+
+        dp = firstDp;
+        saveData.dp[0] = firstDp = dp;
     }
     private void setStat()
     {
