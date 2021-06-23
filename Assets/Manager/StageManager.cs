@@ -15,61 +15,62 @@ public class StageManager : MonoBehaviour
     private Transform _textSpawnPosition = null;
     public Transform textSpawnPosition
     {
-        get{return _textSpawnPosition;}
+        get { return _textSpawnPosition; }
     }
     [SerializeField]
     private GameObject _notEnoughMoneyText = null;
     public GameObject notEnoughMoneyText
     {
-        get{return _notEnoughMoneyText;}
+        get { return _notEnoughMoneyText; }
     }
     [SerializeField]
     private GameObject _saveDoneText = null;
     public GameObject saveDoneText
     {
-        get{return _saveDoneText;}
+        get { return _saveDoneText; }
     }
     [SerializeField]
     private GameObject _maxLevelText = null;
     public GameObject maxLevelText
     {
-        get{return _maxLevelText;}
+        get { return _maxLevelText; }
     }
     [SerializeField]
     private StageClearScript stageClearScript = null;
-    
+
     [SerializeField]
     private Text stageText = null;
     [SerializeField]
     private int currentStage = 1;
     [SerializeField]
     private int _useMoneyNum = 0;
-    public int useMoneyNum{
-        get{return _useMoneyNum;}
-        set{_useMoneyNum = value;}
+    public int useMoneyNum
+    {
+        get { return _useMoneyNum; }
+        set { _useMoneyNum = value; }
     }
     [SerializeField]
     private int _deathPlayerUnitNum = 0;
     public int deathPlayerUnitNum
     {
-        get{return _deathPlayerUnitNum;}
-        set{_deathPlayerUnitNum = value;}
+        get { return _deathPlayerUnitNum; }
+        set { _deathPlayerUnitNum = value; }
     }
     [SerializeField]
     private int _killedEnemyUnitNum = 0;
     public int killedEnemyUnitNum
     {
-        get{return _killedEnemyUnitNum;}
-        set{_killedEnemyUnitNum = value;}
+        get { return _killedEnemyUnitNum; }
+        set { _killedEnemyUnitNum = value; }
     }
     [SerializeField]
     private double _t = 0; // 여기에 Time.deltaTime을 곱하면 지난 시간이 나온다.
-    public double t 
+    public double t
     {
-        get{return  _t;}
-        set{_t = value;}
+        get { return _t; }
+        set { _t = value; }
     }
-    
+
     void Start()
     {
         gameManager = GameManager.Instance;
@@ -81,8 +82,8 @@ public class StageManager : MonoBehaviour
 
     }
     void Update()
-    {   
-        if(saveData != gameManager.GetSaveData())
+    {
+        if (saveData != gameManager.GetSaveData())
         {
             saveData = gameManager.GetSaveData();
         }
@@ -91,8 +92,8 @@ public class StageManager : MonoBehaviour
         stageText.text = "CurrentStage: " + currentStage;
         audi.volume = gameManager.GetSoundValue();
 
-        if(gameManager.GetCST())
-            t += Time.deltaTime; 
+        if (gameManager.GetCST())
+            t += Time.deltaTime;
     }
     public void StageClear(bool a)
     {
@@ -129,15 +130,19 @@ public class StageManager : MonoBehaviour
         fusionManager.enemyScript = new EnemyScript[0];
         fusionManager.SetEnemyUnitNum(1);
 
-        while(fusionManager.projectionScripts.Count > 0)
+        while (fusionManager.projectionScripts.Count > 0)
         {
-            if(fusionManager.projectionScripts[0] != null)
+            if (fusionManager.projectionScripts[0] != null)
             {
                 Destroy(fusionManager.projectionScripts[0]);
+                fusionManager.projectionScripts.Remove(fusionManager.projectionScripts[0]);
             }
-            fusionManager.projectionScripts.Remove(fusionManager.projectionScripts[0]);
+            else if(fusionManager.projectionScripts[0] == null)
+            {
+                fusionManager.projectionScripts.Remove(fusionManager.projectionScripts[0]);
+            }
         }
-        
+
 
     }
     public void SetCurrentStage(int a)

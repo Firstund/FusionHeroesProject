@@ -36626,7 +36626,7 @@ MonoBehaviour:
   _maxMoney: 50
   maxMoneyUp: 1.5
   maxMoneyUpPerLev: 10
-  _plusMoneyTime: 0
+  _plusMoneyTime: 0.6
   _getMoneyUpgradeLev: 0
   _minusPlusMoneyTimePerUpgrade: 0.05
   _maxGetMoneyUpgradeLev: 8

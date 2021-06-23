@@ -273,7 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wolf: {fileID: 6708528392320978716, guid: 52fd5e2701860e241be6a24d058fb9e0, type: 3}
   soundBox: {fileID: 6530719832843430112, guid: 85fee5c9b346cdf408c617d317f75a72, type: 3}
-  wolfSpawnTime: 11
+  wolfSpawnTime: 10
   minusWolfSpawnTimePerLev: 2
 --- !u!1 &8320676802577826756
 GameObject:
