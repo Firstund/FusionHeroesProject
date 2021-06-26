@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
 
-public class U_Vanguard : UnitScript
+public class U_VanguardSkillScript : MonoBehaviour
 {
     [SerializeField]
+    private UnitScript thisScript = null;
+    [SerializeField]
     private ParticleSystem dependParticle = null;
+    void Start()
+    {
+        thisScript = GetComponent<UnitScript>();
+    }
     public void SetDP()
     {
-        if (canAttack)
+        if (thisScript.canAttack)
         {
             PlusDp();
         }
@@ -18,12 +24,12 @@ public class U_Vanguard : UnitScript
     private void PlusDp()
     {
         SetParticle(true);
-        dp = firstDp + firstDp / 2;
+        thisScript.dp = thisScript.firstDp + thisScript.firstDp / 2;
     }
     private void MinusDp()
     {
         SetParticle(false);
-        dp = firstDp;
+        thisScript.dp = thisScript.firstDp;
     }
     private void SetParticle(bool isActive)
     {

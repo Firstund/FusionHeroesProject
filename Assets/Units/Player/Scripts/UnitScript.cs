@@ -7,95 +7,100 @@ using DG.Tweening;
 public class UnitScript : MonoBehaviour
 {
     //공격대기시간, 소환 대기시간 설정할것.
-    protected FusionManager fusionManager = null;
-    protected GameManager gameManager = null;
-    protected StageManager stageManager = null;
+    private FusionManager fusionManager = null;
+    private GameManager gameManager = null;
+    private StageManager stageManager = null;
     [SerializeField]
-    protected Slider slider = null;
+    private Slider slider = null;
     private MapSliderScript mapSliderScript = null;
 
     [SerializeField]
-    protected int unitId = 01; // 유닛의 종류
-                               // 첫번째 자리: (이 유닛을 소환하기 위해 필요한 퓨전 수 + 1)
-                               // 두번째 자리: 0 (특수 케이스가 떠오를 때를 대비) // 특수케이스->다른 유닛에 의해 소환된경우 그 유닛의 ID에, 두번째자리만 변경. 
-                               // 두번째 자리는 이 유닛이 소환자 유닛의 몇번째 소환수인지를 의미.
-                               // 세번째 자리: unitId의 첫번째 자리가 같은 숫자의 그룹 중 이 유닛이 생긴 순서
+    private int unitId = 01; // 유닛의 종류
+                             // 첫번째 자리: (이 유닛을 소환하기 위해 필요한 퓨전 수 + 1)
+                             // 두번째 자리: 0 (특수 케이스가 떠오를 때를 대비) // 특수케이스->다른 유닛에 의해 소환된경우 그 유닛의 ID에, 두번째자리만 변경. 
+                             // 두번째 자리는 이 유닛이 소환자 유닛의 몇번째 소환수인지를 의미.
+                             // 세번째 자리: unitId의 첫번째 자리가 같은 숫자의 그룹 중 이 유닛이 생긴 순서
     public int unitStatIndex
     {
         get { return (unitId / 50 + ((unitId % 100) % 10)); }
     }
     // [SerializeField]
-    // protected int[] fusionUnitId = new int[5]; // 이 유닛과 퓨전할 수 있는 유닛들의 유닛 아이디 
+    // private int[] fusionUnitId = new int[5]; // 이 유닛과 퓨전할 수 있는 유닛들의 유닛 아이디 
     //// 퓨전은 잠시 보류 (사유: 게임은 퓨전이 없어도 충분히 복잡하다.)
     // [SerializeField]
-    // protected GameObject[] nextUnit = new GameObject[5]; // 이 유닛이 퓨전한 후 나올수 있는 유닛들,
+    // private GameObject[] nextUnit = new GameObject[5]; // 이 유닛이 퓨전한 후 나올수 있는 유닛들,
     //                                                      // 인덱스 값은 해당 유닛의 아이디의 (세번째 숫자 - 1)로 설정한다.
     //                                                      // 첫번 째 배열에 들어가는 유닛의 아이디는 무조건 이 스크립트의 unitId값이다.
     [SerializeField]
-    protected UnitOnMiniMapScript unitOnMiniMap = null;
+    private UnitOnMiniMapScript unitOnMiniMap = null;
     [SerializeField]
-    protected GameObject projection = null;
+    private GameObject projection = null;
     [SerializeField]
-    protected Transform projectionSpawnPosition = null;
+    private Transform projectionSpawnPosition = null;
     [SerializeField]
-    protected float _attackDistance = 2f;
+    private float _attackDistance = 2f;
     public float attackDistance
     {
         get { return _attackDistance; }
         set { _attackDistance = value; }
     }
     [SerializeField]
-    protected float _heart = 100f;
+    private float _heart = 100f;
     public float heart
     {
         get { return _heart; }
         set { _heart = value; }
     }
-    protected float firstHeart = 0f;
+    private float firstHeart = 0f;
     [SerializeField]
-    protected float heartUp = 5f;
+    private float heartUp = 5f;
     [SerializeField]
-    protected float plusHeartUpPerLev = 0.2f;
+    private float plusHeartUpPerLev = 0.2f;
     [SerializeField]
-    protected float _heartUpPerLev = 0.1f;
+    private float _heartUpPerLev = 0.1f;
     public float heartUpPerLev
     {
         get { return _heartUpPerLev; }
         set { _heartUpPerLev = value; }
     }
     [SerializeField]
-    protected float _ap = 2f;
+    private float _ap = 2f;
     public float ap
     {
         get { return _ap; }
         set { _ap = value; }
     }
-    protected float firstAp = 0f;
+    private float firstAp = 0f;
     [SerializeField]
-    protected float apUp = 0.5f;
+    private float apUp = 0.5f;
     [SerializeField]
-    protected float plusApUpPerLev = 1f;
+    private float plusApUpPerLev = 1f;
     [SerializeField]
-    protected float _apUpPerLev = 0.02f;
+    private float _apUpPerLev = 0.02f;
     public float apUpPerLev
     {
         get { return _apUpPerLev; }
         set { _apUpPerLev = value; }
     }
     [SerializeField]
-    protected float _dp = 2f;
+    private float _dp = 2f;
     public float dp
     {
         get { return _dp; }
         set { _dp = value; }
     }
-    protected float firstDp = 0f;
+    private float _firstDp = 0f;
+    public float firstDp
+    {
+        get { return _firstDp; }
+        set { _firstDp = value; }
+    }
     [SerializeField]
-    protected float dpUp = 0.25f;
+    private float dpUp = 0.25f;
     [SerializeField]
-    protected float plusDpUpPerLev = 0.1f;
+    private float plusDpUpPerLev = 0.1f;
     [SerializeField]
-    protected float _dpUpPerLev = 0.01f;
+    private float _dpUpPerLev = 0.01f;
     public float dpUpPerLev
     {
         get { return _dpUpPerLev; }
@@ -103,31 +108,31 @@ public class UnitScript : MonoBehaviour
     }
 
     [SerializeField]
-    protected float _speed = 0f;
+    private float _speed = 0f;
     public float speed
     {
         get { return _speed; }
         set { _speed = value; }
     }
     [SerializeField]
-    protected float attackDelay = 1f;
-    protected float firstSpeed = 0f;
+    private float attackDelay = 1f;
+    private float firstSpeed = 0f;
     [SerializeField]
-    protected float totalAtk = 0f;
+    private float totalAtk = 0f;
 
     [SerializeField]
-    protected GameObject Lev = null;
-    protected TextMesh levelText = null;
+    private GameObject Lev = null;
+    private TextMesh levelText = null;
     [SerializeField]
-    protected Text costText = null;
+    private Text costText = null;
 
-    protected float shortestHeart = 0f;
-    protected float shortestDp = 0f;
+    private float shortestHeart = 0f;
+    private float shortestDp = 0f;
 
     [SerializeField]
-    protected UnitScript shortestScript = null;
+    private UnitScript shortestScript = null;
     [SerializeField]
-    protected EnemyScript _shortestEnemyScript = null;
+    private EnemyScript _shortestEnemyScript = null;
     public EnemyScript shortestEnemyScript
     {
         get { return _shortestEnemyScript; }
@@ -135,15 +140,15 @@ public class UnitScript : MonoBehaviour
     }
 
     [SerializeField]
-    protected AudioSource _audi = null;
+    private AudioSource _audi = null;
     public AudioSource audi
     {
         get { return _audi; }
         set { _audi = value; }
     }
     [SerializeField]
-    protected AudioClip attackSound = null;
-    protected Animator _anim = null;
+    private AudioClip attackSound = null;
+    private Animator _anim = null;
     public Animator anim
     {
         get { return _anim; }
@@ -151,91 +156,91 @@ public class UnitScript : MonoBehaviour
     }
 
     [SerializeField]
-    protected bool onlyOneFollowUnitNum = false;
+    private bool onlyOneFollowUnitNum = false;
     [SerializeField]
-    protected bool _isStopByObject = true;
+    private bool _isStopByObject = true;
     public bool isStopByObject
     {
         get { return _isStopByObject; }
     }
 
     [SerializeField]
-    protected int thisUnitNum = 0; // 현재 소환된 오브젝트들 중 몇번째 오브젝트인가
+    private int thisUnitNum = 0; // 현재 소환된 오브젝트들 중 몇번째 오브젝트인가
     [SerializeField]
-    protected double thisUnitNO = 0; // 게임 전체에서 몇 번째 소환된 오브젝트인가
+    private double thisUnitNO = 0; // 게임 전체에서 몇 번째 소환된 오브젝트인가
     [SerializeField]
-    protected int unitLev = 01; // 유닛의 레벨
+    private int unitLev = 01; // 유닛의 레벨
     [SerializeField]
-    protected int levelUpCost = 10;
+    private int levelUpCost = 10;
     [SerializeField]
-    protected float unitClickableRange = 0f;
+    private float unitClickableRange = 0f;
     [SerializeField]
 
     private float firstUnitClickableRange = 0f;
 
     [SerializeField]
-    protected float mouseDistance = 0f;
+    private float mouseDistance = 0f;
 
     [SerializeField]
-    protected float[] objectDistanceArray;
+    private float[] objectDistanceArray;
     [SerializeField]
-    protected float[] enemyObjectDistanceArray;
+    private float[] enemyObjectDistanceArray;
 
     [SerializeField]
-    protected float _shortestDistance = 10f;
+    private float _shortestDistance = 10f;
     public float shortestDistance
     {
         get { return _shortestDistance; }
         set { _shortestDistance = value; }
     }
     [SerializeField]
-    protected float shortestForwardDistance = 10f;
+    private float shortestForwardDistance = 10f;
     [SerializeField]
-    protected float shortestBackwardDistance = 10f; // 넉백됬을 때 unitNO를 새로 설정해 줄 때 필요.
+    private float shortestBackwardDistance = 10f; // 넉백됬을 때 unitNO를 새로 설정해 줄 때 필요.
     [SerializeField]
-    protected float stopByEnemyDistance = 1f;
+    private float stopByEnemyDistance = 1f;
     [SerializeField]
-    protected float stopByObjectDistance = 1.5f;
-    protected float firstStopByEnemyDistance = 0f;
+    private float stopByObjectDistance = 1.5f;
+    private float firstStopByEnemyDistance = 0f;
     [SerializeField]
-    protected UnitScript shortestForwardScript = null;
-    protected UnitScript shortestBackwardScript = null;
+    private UnitScript shortestForwardScript = null;
+    private UnitScript shortestBackwardScript = null;
 
-    protected float shortestEnemyDistance = 10f;
+    private float shortestEnemyDistance = 10f;
     //
-    protected Vector2 currentPosition = new Vector2(100f, 100f);
+    private Vector2 currentPosition = new Vector2(100f, 100f);
 
-    protected Vector2 targetPosition = Vector2.zero;
+    private Vector2 targetPosition = Vector2.zero;
 
 
-    protected Vector2 firstPosition = Vector2.zero;
+    private Vector2 firstPosition = Vector2.zero;
     //
-    protected bool firstPositionSet = false;
-    protected bool followingCheck = false;
-    protected bool _canAttack = true;
+    private bool firstPositionSet = false;
+    private bool followingCheck = false;
+    private bool _canAttack = true;
     public bool canAttack
     {
         get { return _canAttack; }
         set { _canAttack = value; }
     }
-    protected bool _attackAnimIsPlaying = false;
+    private bool _attackAnimIsPlaying = false;
     public bool attackAnimIsPlaying
     {
         get { return _attackAnimIsPlaying; }
         set { _attackAnimIsPlaying = value; }
     }
-    protected bool _buildingIsShortest = false;
+    private bool _buildingIsShortest = false;
     public bool buildingIsShortest
     {
         get { return _buildingIsShortest; }
         set { _buildingIsShortest = value; }
     }
-    protected bool mouseCheck = false;
-    protected bool followingMouse = false;
-    protected bool _isDead = false;
+    private bool mouseCheck = false;
+    private bool followingMouse = false;
+    private bool _isDead = false;
     public bool isDead
     {
-        get{return _isDead;}
+        get { return _isDead; }
     }
     private bool isAttackOne = true;
     public bool isFollow = false;
@@ -330,7 +335,7 @@ public class UnitScript : MonoBehaviour
         if (enemyObjectDistanceArray.Length != fusionManager.GetEnemyUnitNum())
             enemyObjectDistanceArray = new float[fusionManager.GetEnemyUnitNum()];
     }
-    protected void Attack()
+    private void Attack()
     {
         //단일공격
         if (canAttack && !onlyOneFollowUnitNum)
@@ -449,11 +454,11 @@ public class UnitScript : MonoBehaviour
         slider.minValue = 0;
 
     }
-    protected void HealthBar()
+    private void HealthBar()
     {
         slider.DOValue(heart, gameManager.dovalueTime);
     }
-    protected void CheckHe()
+    private void CheckHe()
     {
         if (heart <= 0)
         {
@@ -531,7 +536,7 @@ public class UnitScript : MonoBehaviour
     {
         heart = he;
     }
-    protected void setStat()
+    private void setStat()
     {
         float _heartUp = heartUp + plusHeartUpPerLev * gameManager.GetSaveData().unitHeartLev[unitStatIndex];
         heart = firstHeart + heartUpPerLev * gameManager.GetSaveData().unitHeartLev[unitStatIndex] + _heartUp * ((unitLev * unitLev) - 1);
@@ -542,7 +547,7 @@ public class UnitScript : MonoBehaviour
         float _apUp = apUp + plusApUpPerLev * gameManager.GetSaveData().unitApLev[unitStatIndex];
         ap = firstAp + apUpPerLev * gameManager.GetSaveData().unitApLev[unitStatIndex] + _apUp * ((unitLev * unitLev) - 1);
     }
-    protected void FirstEDSet()
+    private void FirstEDSet()
     {
         enemyObjectDistanceArray[0] = Vector2.Distance(gameManager.GetEnemyUnitSpawnPosition().position, currentPosition);
 
@@ -550,13 +555,13 @@ public class UnitScript : MonoBehaviour
         buildingIsShortest = true;
         shortestEnemyDistance = enemyObjectDistanceArray[0];
     }
-    protected void FirstODSet()
+    private void FirstODSet()
     {
         objectDistanceArray[0] = Vector2.Distance(gameManager.GetUnitSpawnPosition().position, currentPosition);
 
         shortestDistance = objectDistanceArray[0];
     }
-    protected void DestroyCheck()
+    private void DestroyCheck()
     {
         if (heart <= 0f && !isDead)
         {
@@ -587,7 +592,7 @@ public class UnitScript : MonoBehaviour
         fusionManager.SetCanSetScripts();
         Destroy(a.gameObject);
     }
-    protected void AttackCheck()
+    private void AttackCheck()
     {
         if (!followingMouse)
         {
@@ -720,7 +725,7 @@ public class UnitScript : MonoBehaviour
             costText.text = "";
         }
     }
-    protected void ComeBack()
+    private void ComeBack()
     {
         unitClickableRange = firstUnitClickableRange;
         followingMouse = false;
