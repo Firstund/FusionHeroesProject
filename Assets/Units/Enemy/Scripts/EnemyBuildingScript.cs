@@ -89,7 +89,7 @@ public class EnemyBuildingScript : MonoBehaviour
     }
     private void HealthBar()
     {
-        if(mapSliderScript.mapSlider.value <= 40f - 0.7f)
+        if(mapSliderScript.mapSlider.value <= 40f - 3.5f)
         {
             g_slider.SetActive(false);
         }

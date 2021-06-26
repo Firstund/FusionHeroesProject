@@ -89,7 +89,16 @@ public class StageManager : MonoBehaviour
         }
 
         currentStage = saveData.currentStage;
-        stageText.text = "CurrentStage: " + currentStage;
+
+        if (currentStage <= 0)
+        {
+            stageText.text = "TutorialStage";
+        }
+        else
+        {
+            stageText.text = "CurrentStage: " + currentStage;
+        }
+
         audi.volume = gameManager.GetSoundValue();
 
         if (gameManager.GetCST())
@@ -137,7 +146,7 @@ public class StageManager : MonoBehaviour
                 Destroy(fusionManager.projectionScripts[0].gameObject);
                 fusionManager.projectionScripts.Remove(fusionManager.projectionScripts[0]);
             }
-            else if(fusionManager.projectionScripts[0] == null)
+            else if (fusionManager.projectionScripts[0] == null)
             {
                 Destroy(fusionManager.projectionScripts[0].gameObject);
                 fusionManager.projectionScripts.Remove(fusionManager.projectionScripts[0]);

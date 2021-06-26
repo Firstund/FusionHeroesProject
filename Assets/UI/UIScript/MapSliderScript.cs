@@ -27,10 +27,13 @@ public class MapSliderScript : MonoBehaviour
     [SerializeField]
     private float minDragRange = 1f;
     [SerializeField]
-    private float moveSliderXSpeed = 1f;
+    private float moveSliderXChangeTime = 1f;
+    [SerializeField]
+    private float moveSliderSpeed = 20f;
     private Vector3 cameraPosition = Vector3.zero;
     [SerializeField]
     private Vector2 targetPosition = Vector2.zero;
+    [SerializeField]
     private Vector2 mouseFirstPosition = Vector2.zero;
     [SerializeField]
     private bool mouseButtonDowned = false;
@@ -52,7 +55,8 @@ public class MapSliderScript : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0) && !mouseButtonDowned)
                 {
-                    mouseFirstPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    mouseFirstPosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+                    mouseFirstPosition *= moveSliderSpeed;
                     mouseButtonDowned = true;
                 }
                 if (Input.GetMouseButtonUp(0) && mouseButtonDowned)
@@ -65,7 +69,8 @@ public class MapSliderScript : MonoBehaviour
 
         if (mouseButtonDowned)
         {
-            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            targetPosition = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+            targetPosition *= moveSliderSpeed;
 
             float a = Vector2.Distance(mouseFirstPosition, targetPosition);
 
@@ -77,7 +82,7 @@ public class MapSliderScript : MonoBehaviour
 
         if (!gameManager.tutoIsPlaying && mouseDrag && gameManager.GetCST())
         {
-            mapSlider.DOValue(mapSlider.value + targetPosition.x - mouseFirstPosition.x, moveSliderXSpeed);
+            mapSlider.DOValue(mapSlider.value + targetPosition.x - mouseFirstPosition.x, moveSliderXChangeTime);
             mapSlider.value = Mathf.Clamp(mapSlider.value, 0f, maxCameraPosition);
         }
 

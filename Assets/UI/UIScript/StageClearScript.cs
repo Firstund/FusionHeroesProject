@@ -53,7 +53,13 @@ public class StageClearScript : PopUpScaleScript
 
         if (gameClear)
         {
+            if(saveData.currentStage <= 0)
+            {
+                clearText.text = "TutorialStage Clear!";
+            }
+            else{
             clearText.text = "Stage" + stageManager.GetCurrentStage() + " Clear!";
+            }
 
             plusGoldText.text = "+" + (plusGold + (stageManager.GetCurrentStage() * (plusGold / 2)));
         }
