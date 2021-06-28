@@ -15,8 +15,8 @@ public class SpawnStrongestScript : MonoBehaviour
     private Transform spawnPosition = null;
     void Start()
     {
-        enemyBuildingScript = gameObject.GetComponent<EnemyBuildingScript>();
-        enemySpawnScript = gameObject.GetComponent<EnemySpawnScript>();
+        enemyBuildingScript = GetComponent<EnemyBuildingScript>();
+        enemySpawnScript = GetComponent<EnemySpawnScript>();
         spawnPosition = enemySpawnScript.GetSpawnPosition();
     }
     void Update()
@@ -29,7 +29,7 @@ public class SpawnStrongestScript : MonoBehaviour
     }
     private void SpawnStrongest()
     {
-        if (!enemyBuildingScript.GetStrongestSpawned(strongestSpawnNum) && stageManager.GetCurrentStage() % 5 == 0 && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() * enemyBuildingScript.strongestSpawnPerHp[strongestSpawnNum])
+        if (!enemyBuildingScript.GetStrongestSpawned(strongestSpawnNum) && stageManager.GetCurrentStage()  != 0 && stageManager.GetCurrentStage() % 5 == 0 && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() * enemyBuildingScript.strongestSpawnPerHp[strongestSpawnNum])
         {
             enemyBuildingScript.SetstrongestSpawned(strongestSpawnNum, true);
             Instantiate(enemyBuildingScript.GetStrongest(strongestSpawnNum), enemySpawnScript.GetSpawnPosition());

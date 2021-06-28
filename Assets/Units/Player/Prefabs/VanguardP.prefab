@@ -5306,11 +5306,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 8116652493122119259}
-  unitId: 1
+  unitId: 103
   unitOnMiniMap: {fileID: 297964726054720325, guid: 9a2b50b1974b9b944afc2bd08f1fec61, type: 3}
   projection: {fileID: 0}
   projectionSpawnPosition: {fileID: 0}
   _attackDistance: 5
+  damageDistance: 10
   _heart: 2
   heartUp: 0.3
   plusHeartUpPerLev: 0.001
@@ -5349,6 +5350,7 @@ MonoBehaviour:
   stopByEnemyDistance: 1
   stopByObjectDistance: 1.5
   shortestForwardScript: {fileID: 0}
+  isAttackOne: 1
   isFollow: 0
 --- !u!114 &3318772828785144193
 MonoBehaviour:

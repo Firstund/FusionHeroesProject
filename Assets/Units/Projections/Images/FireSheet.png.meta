@@ -1,0 +1,1320 @@
+fileFormatVersion: 2
+guid: fd8f9f36453a1174cabdb0295724a43e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7089876097379660711
+    second: FireSheet_0
+  - first:
+      213: -5188282436411280346
+    second: FireSheet_1
+  - first:
+      213: 7291854790689109697
+    second: FireSheet_2
+  - first:
+      213: -1091957149811076115
+    second: FireSheet_3
+  - first:
+      213: 1283657047374740678
+    second: FireSheet_4
+  - first:
+      213: -3723338099833800154
+    second: FireSheet_5
+  - first:
+      213: -8180685025269282869
+    second: FireSheet_6
+  - first:
+      213: 4388623736939442167
+    second: FireSheet_7
+  - first:
+      213: -7140916014545146575
+    second: FireSheet_8
+  - first:
+      213: 6193845157644290682
+    second: FireSheet_9
+  - first:
+      213: 5239967447479170440
+    second: FireSheet_10
+  - first:
+      213: 6846023334024375190
+    second: FireSheet_11
+  - first:
+      213: 5610126023005608029
+    second: FireSheet_12
+  - first:
+      213: 8870173281765597801
+    second: FireSheet_13
+  - first:
+      213: 8469194635558850174
+    second: FireSheet_14
+  - first:
+      213: 715316741217104960
+    second: FireSheet_15
+  - first:
+      213: 3495704071798118254
+    second: FireSheet_16
+  - first:
+      213: -797786798421931659
+    second: FireSheet_17
+  - first:
+      213: 8758864694206457321
+    second: FireSheet_18
+  - first:
+      213: 6565223561442896842
+    second: FireSheet_19
+  - first:
+      213: 3567237774118577607
+    second: FireSheet_20
+  - first:
+      213: 641187788483455729
+    second: FireSheet_21
+  - first:
+      213: 8545140849584332566
+    second: FireSheet_22
+  - first:
+      213: -6255283545480485859
+    second: FireSheet_23
+  - first:
+      213: -7017952032020025953
+    second: FireSheet_24
+  - first:
+      213: -7522309625887638457
+    second: FireSheet_25
+  - first:
+      213: -4018860130842297886
+    second: FireSheet_26
+  - first:
+      213: 8667097272083521244
+    second: FireSheet_27
+  - first:
+      213: 1512326284608872805
+    second: FireSheet_28
+  - first:
+      213: -8178701355956514534
+    second: FireSheet_29
+  - first:
+      213: -4092526070283129285
+    second: FireSheet_30
+  - first:
+      213: -6556807762831702334
+    second: FireSheet_31
+  - first:
+      213: -5514035399980786204
+    second: FireSheet_32
+  - first:
+      213: -76040119822023678
+    second: FireSheet_33
+  - first:
+      213: -1964014015994029801
+    second: FireSheet_34
+  - first:
+      213: -970508291899004623
+    second: FireSheet_35
+  - first:
+      213: -8489191594097215502
+    second: FireSheet_36
+  - first:
+      213: -4196363690415977594
+    second: FireSheet_37
+  - first:
+      213: -3308804008012548896
+    second: FireSheet_38
+  - first:
+      213: -4905360831611489979
+    second: FireSheet_39
+  - first:
+      213: 967867461360551441
+    second: FireSheet_40
+  - first:
+      213: 999761412509110092
+    second: FireSheet_41
+  - first:
+      213: -7529514256465984428
+    second: FireSheet_42
+  - first:
+      213: -4987525478172214553
+    second: FireSheet_43
+  - first:
+      213: -8082198057420589340
+    second: FireSheet_44
+  - first:
+      213: -8754687160253591453
+    second: FireSheet_45
+  - first:
+      213: -3629345126640564404
+    second: FireSheet_46
+  - first:
+      213: -3725485268537442288
+    second: FireSheet_47
+  - first:
+      213: 5619654576575303955
+    second: FireSheet_48
+  - first:
+      213: -6309498078224377123
+    second: FireSheet_49
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FireSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95c0722d043bb9d90800000000000000
+      internalID: -7089876097379660711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_1
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 624be4fdc948ff7b0800000000000000
+      internalID: -5188282436411280346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_2
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c631c85c4fd13560800000000000000
+      internalID: 7291854790689109697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_3
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de31097f1c698d0f0800000000000000
+      internalID: -1091957149811076115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_4
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ccb232984770d110800000000000000
+      internalID: 1283657047374740678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_5
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62a7abca9bb045cc0800000000000000
+      internalID: -3723338099833800154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_6
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc78779005e587e80800000000000000
+      internalID: -8180685025269282869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_7
+      rect:
+        serializedVersion: 2
+        x: 1512
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ff6f1d690687ec30800000000000000
+      internalID: 4388623736939442167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_8
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13d632e08be56ec90800000000000000
+      internalID: -7140916014545146575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_9
+      rect:
+        serializedVersion: 2
+        x: 1944
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7a492fba55f4f550800000000000000
+      internalID: 6193845157644290682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_10
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8853b9581aa18b840800000000000000
+      internalID: 5239967447479170440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_11
+      rect:
+        serializedVersion: 2
+        x: 2376
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69bee8453f5f10f50800000000000000
+      internalID: 6846023334024375190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_12
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d589c6ae4eb2bdd40800000000000000
+      internalID: 5610126023005608029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_13
+      rect:
+        serializedVersion: 2
+        x: 2808
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 962acc38a9f291b70800000000000000
+      internalID: 8870173281765597801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_14
+      rect:
+        serializedVersion: 2
+        x: 3024
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7e012a36af988570800000000000000
+      internalID: 8469194635558850174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_15
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 044b22649c05de900800000000000000
+      internalID: 715316741217104960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_16
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e67d96f055c338030800000000000000
+      internalID: 3495704071798118254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_17
+      rect:
+        serializedVersion: 2
+        x: 3672
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57980993221bde4f0800000000000000
+      internalID: -797786798421931659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_18
+      rect:
+        serializedVersion: 2
+        x: 3888
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e5e2ed680dbd8970800000000000000
+      internalID: 8758864694206457321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_19
+      rect:
+        serializedVersion: 2
+        x: 4104
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acb24da8b0c5c1b50800000000000000
+      internalID: 6565223561442896842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_20
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c561b30bdf518130800000000000000
+      internalID: 3567237774118577607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_21
+      rect:
+        serializedVersion: 2
+        x: 4536
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1faefde75e4f5e800800000000000000
+      internalID: 641187788483455729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_22
+      rect:
+        serializedVersion: 2
+        x: 4752
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61f572f1450769670800000000000000
+      internalID: 8545140849584332566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_23
+      rect:
+        serializedVersion: 2
+        x: 4968
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d142a4ed1c4c039a0800000000000000
+      internalID: -6255283545480485859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_24
+      rect:
+        serializedVersion: 2
+        x: 5184
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9d27b04fc93b9e90800000000000000
+      internalID: -7017952032020025953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_25
+      rect:
+        serializedVersion: 2
+        x: 5400
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74c377a00436b9790800000000000000
+      internalID: -7522309625887638457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_26
+      rect:
+        serializedVersion: 2
+        x: 5616
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e93a2bf0042a38c0800000000000000
+      internalID: -4018860130842297886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_27
+      rect:
+        serializedVersion: 2
+        x: 5832
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cde9b487c07b74870800000000000000
+      internalID: 8667097272083521244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_28
+      rect:
+        serializedVersion: 2
+        x: 6048
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56129924ebcdcf410800000000000000
+      internalID: 1512326284608872805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_29
+      rect:
+        serializedVersion: 2
+        x: 6264
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a11d43a037a6f7e80800000000000000
+      internalID: -8178701355956514534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_30
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3eafb2e83d6437c0800000000000000
+      internalID: -4092526070283129285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_31
+      rect:
+        serializedVersion: 2
+        x: 6696
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c684e3441a8105a0800000000000000
+      internalID: -6556807762831702334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_32
+      rect:
+        serializedVersion: 2
+        x: 6912
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ed5731b4063a73b0800000000000000
+      internalID: -5514035399980786204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_33
+      rect:
+        serializedVersion: 2
+        x: 7128
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2048455f9e9d1fef0800000000000000
+      internalID: -76040119822023678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_34
+      rect:
+        serializedVersion: 2
+        x: 7344
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71999c288ab6eb4e0800000000000000
+      internalID: -1964014015994029801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_35
+      rect:
+        serializedVersion: 2
+        x: 7560
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 139e9c9b9df0882f0800000000000000
+      internalID: -970508291899004623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_36
+      rect:
+        serializedVersion: 2
+        x: 7776
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f77a9b0935503a80800000000000000
+      internalID: -8489191594097215502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_37
+      rect:
+        serializedVersion: 2
+        x: 7992
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68b8864f47583c5c0800000000000000
+      internalID: -4196363690415977594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_38
+      rect:
+        serializedVersion: 2
+        x: 8208
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e4f5071944c412d0800000000000000
+      internalID: -3308804008012548896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_39
+      rect:
+        serializedVersion: 2
+        x: 8424
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 541bea83058acebb0800000000000000
+      internalID: -4905360831611489979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_40
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1160e00045e8e6d00800000000000000
+      internalID: 967867461360551441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_41
+      rect:
+        serializedVersion: 2
+        x: 8856
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4f8fbc25bddfdd00800000000000000
+      internalID: 999761412509110092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_42
+      rect:
+        serializedVersion: 2
+        x: 9072
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4540b144daac18790800000000000000
+      internalID: -7529514256465984428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_43
+      rect:
+        serializedVersion: 2
+        x: 9288
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eab55da000c8cab0800000000000000
+      internalID: -4987525478172214553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_44
+      rect:
+        serializedVersion: 2
+        x: 9504
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e6f71720b346df80800000000000000
+      internalID: -8082198057420589340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_45
+      rect:
+        serializedVersion: 2
+        x: 9720
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 360596d796a118680800000000000000
+      internalID: -8754687160253591453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_46
+      rect:
+        serializedVersion: 2
+        x: 9936
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c474b4f16d9f1adc0800000000000000
+      internalID: -3629345126640564404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_47
+      rect:
+        serializedVersion: 2
+        x: 10152
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01000e003ea6c4cc0800000000000000
+      internalID: -3725485268537442288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_48
+      rect:
+        serializedVersion: 2
+        x: 10368
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3115b2d20160dfd40800000000000000
+      internalID: 5619654576575303955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSheet_49
+      rect:
+        serializedVersion: 2
+        x: 10584
+        y: 0
+        width: 216
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dda1d605de82078a0800000000000000
+      internalID: -6309498078224377123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: c76b4b0b99b507d4f84c5926f5764b61
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

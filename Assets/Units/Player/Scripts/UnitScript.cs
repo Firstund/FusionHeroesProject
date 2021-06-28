@@ -45,6 +45,8 @@ public class UnitScript : MonoBehaviour
         set { _attackDistance = value; }
     }
     [SerializeField]
+    private float damageDistance = 10; //투사체 광역공격의 데미지 계산에 이용되는 변수
+    [SerializeField]
     private float _heart = 100f;
     public float heart
     {
@@ -242,6 +244,7 @@ public class UnitScript : MonoBehaviour
     {
         get { return _isDead; }
     }
+    [SerializeField]
     private bool isAttackOne = true;
     public bool isFollow = false;
     private bool _canSetSpeed = true;
@@ -367,10 +370,21 @@ public class UnitScript : MonoBehaviour
 
             bool attackOne = isAttackOne;
             float minimumD = 0f;
-            float maximumD = attackDistance;
+            float maximumD = damageDistance;
 
 
-            if (attackOne)
+            if (attackOne) // 단일공격
+            {
+                if (buildingIsShortest)
+                {
+                    BuildingAttack();
+                }
+                else if (shortestEnemyScript != null)
+                {
+                    ShortestEnemyAttack();
+                }
+            }
+            else // 광역공격
             {
                 if (buildingIsShortest)
                 {
@@ -387,25 +401,7 @@ public class UnitScript : MonoBehaviour
 
                     fusionManager.enemyBuildingScript.SetHP(shortestHeart);
                 }
-                else if (shortestEnemyScript != null)
-                {
-                    shortestHeart = shortestEnemyScript.getHe();
-                    shortestDp = shortestEnemyScript.getD();
 
-                    totalAtk = (ap - shortestDp);//데미지 공식 적용
-
-                    if (totalAtk <= 0)
-                    {
-                        totalAtk = 1;
-                    }
-
-                    shortestHeart -= totalAtk; //단일공격
-
-                    shortestEnemyScript.SetHP(shortestHeart);
-                }
-            }
-            else
-            {
                 for (int a = 0; a < fusionManager.GetEnemyUnitNum() - 1; a++)
                 {
                     if (enemyObjectDistanceArray[a] < maximumD && enemyObjectDistanceArray[a] >= minimumD)//minimum, maxism attackDistance를 이용하여 공격 범위 설정가능
@@ -429,6 +425,87 @@ public class UnitScript : MonoBehaviour
             }
 
         }
+    }
+
+    public void GetDamage(Transform projection) // 투사체를 날리는 공격을 실행하는 함수
+    {
+
+        float minimumD = 0f;
+        float maximumD = damageDistance;
+        float enemyBuildingDistance = Vector2.Distance(projection.position, gameManager.GetEnemyUnitSpawnPosition().position);
+
+        if (isAttackOne)
+        {
+            if (buildingIsShortest)
+            {
+                BuildingAttack();
+            }
+
+            ShortestEnemyAttack();
+        }
+        else
+        {
+            if (enemyBuildingDistance < maximumD && enemyBuildingDistance >= minimumD)
+            {
+                BuildingAttack();
+            }
+
+            for (int a = 0; a < fusionManager.GetEnemyUnitNum() - 1; a++)
+            {
+                float distance = Vector2.Distance(projection.position, fusionManager.enemyScript[a].transform.position);
+
+                if (distance < maximumD && distance >= minimumD)//minimum, maxism damageDistance를 이용하여 공격 범위 설정가능
+                {
+                    float dp = fusionManager.enemyScript[a].getD();
+                    float heart = fusionManager.enemyScript[a].getHe();
+
+                    totalAtk = (ap - dp);
+
+                    if (totalAtk <= 0f)
+                    {
+                        totalAtk = 0.2f;
+                    }
+
+
+                    heart -= totalAtk;
+
+                    fusionManager.enemyScript[a].SetHP(heart);
+                }
+            }
+        }
+
+    }
+
+    private void BuildingAttack()
+    {
+        shortestHeart = fusionManager.enemyBuildingScript.getHe();
+        shortestDp = fusionManager.enemyBuildingScript.getD();
+
+        totalAtk = (ap - shortestDp);
+        if (totalAtk <= 0f)
+        {
+            totalAtk = 1f;
+        }
+
+        shortestHeart -= totalAtk;
+
+        fusionManager.enemyBuildingScript.SetHP(shortestHeart);
+    }
+     private void ShortestEnemyAttack()
+    {
+        shortestHeart = shortestEnemyScript.getHe();
+        shortestDp = shortestEnemyScript.getD();
+
+        totalAtk = (ap - shortestDp);//데미지 공식 적용
+
+        if (totalAtk <= 0)
+        {
+            totalAtk = 1;
+        }
+
+        shortestHeart -= totalAtk;
+
+        shortestEnemyScript.SetHP(shortestHeart);
     }
 
     public void PlayAttackSound()
@@ -799,59 +876,59 @@ public class UnitScript : MonoBehaviour
     private void ForwardODCheck()
     {
 
-            UnitScript _ShortestForwardScript = null;
+        UnitScript _ShortestForwardScript = null;
 
-            float _ShortestForwardDistance = 100f;
-            bool shortestForwardIsSet = false;
+        float _ShortestForwardDistance = 100f;
+        bool shortestForwardIsSet = false;
 
-            for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
+        for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
+        {
+            if (fusionManager.unitScript[a].GetThisUnitNO() < thisUnitNO) // 해당 unit오브젝트가 먼저 소환된 오브젝트인지 체크
             {
-                if (fusionManager.unitScript[a].GetThisUnitNO() < thisUnitNO) // 해당 unit오브젝트가 먼저 소환된 오브젝트인지 체크
+                if (objectDistanceArray[a + 1] < _ShortestForwardDistance)
                 {
-                    if (objectDistanceArray[a + 1] < _ShortestForwardDistance)
-                    {
-                        _ShortestForwardDistance = objectDistanceArray[a + 1];
-                        shortestForwardDistance = _ShortestForwardDistance;
-                        _ShortestForwardScript = fusionManager.unitScript[a];
-                        shortestForwardIsSet = true;
-                    }
+                    _ShortestForwardDistance = objectDistanceArray[a + 1];
+                    shortestForwardDistance = _ShortestForwardDistance;
+                    _ShortestForwardScript = fusionManager.unitScript[a];
+                    shortestForwardIsSet = true;
                 }
             }
+        }
 
-            shortestForwardScript = _ShortestForwardScript;
+        shortestForwardScript = _ShortestForwardScript;
 
-            if (!shortestForwardIsSet)
-            {
-                shortestForwardDistance = 10f;
-            }
+        if (!shortestForwardIsSet)
+        {
+            shortestForwardDistance = 10f;
+        }
     }
     private void BackwardODCheck()
     {
- 
-            UnitScript _shortestBackWardScript = null;
-            float _ShortestBackwardDistance = 100f;
-            bool shortestBackwardIsSet = false;
 
-            for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
+        UnitScript _shortestBackWardScript = null;
+        float _ShortestBackwardDistance = 100f;
+        bool shortestBackwardIsSet = false;
+
+        for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
+        {
+            if (fusionManager.unitScript[a].GetThisUnitNO() > thisUnitNO) // 해당 unit오브젝트가 나중에 소환된 오브젝트인지 체크
             {
-                if (fusionManager.unitScript[a].GetThisUnitNO() > thisUnitNO) // 해당 unit오브젝트가 나중에 소환된 오브젝트인지 체크
+                if (objectDistanceArray[a + 1] < _ShortestBackwardDistance)
                 {
-                    if (objectDistanceArray[a + 1] < _ShortestBackwardDistance)
-                    {
-                        _ShortestBackwardDistance = objectDistanceArray[a + 1];
-                        shortestBackwardDistance = _ShortestBackwardDistance;
-                        _shortestBackWardScript = fusionManager.unitScript[a];
-                        shortestBackwardIsSet = true;
-                    }
-                }
-
-                if (!shortestBackwardIsSet)
-                {
-                    shortestBackwardDistance = 10f;
+                    _ShortestBackwardDistance = objectDistanceArray[a + 1];
+                    shortestBackwardDistance = _ShortestBackwardDistance;
+                    _shortestBackWardScript = fusionManager.unitScript[a];
+                    shortestBackwardIsSet = true;
                 }
             }
-            shortestBackwardScript = _shortestBackWardScript;
-        
+
+            if (!shortestBackwardIsSet)
+            {
+                shortestBackwardDistance = 10f;
+            }
+        }
+        shortestBackwardScript = _shortestBackWardScript;
+
     }
     public void ODCheck()//이 함수 복사, 수정 후 Enemy의 위치를 구하는 함수로 변환
     {

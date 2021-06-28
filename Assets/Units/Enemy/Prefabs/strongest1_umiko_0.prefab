@@ -282,7 +282,7 @@ MonoBehaviour:
   minimumD: 0
   maximumD: 3
   heart: 50
-  heartUp: 2
+  heartUp: 4
   ap: 5
   apUp: 0.5
   dp: 2
@@ -421,6 +421,9 @@ MonoBehaviour:
   skillDamage:
   - 0
   - 20
+  skillDamageUpPerStage:
+  - 0
+  - 2
   deathSpeed: 1
 --- !u!1 &3693366468639980647
 GameObject:

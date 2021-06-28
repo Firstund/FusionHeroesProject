@@ -25,8 +25,11 @@ public class Strongest1Script : MonoBehaviour
     private float[] skiilDelay = new float[2]; // 스킬 딜레이
     [SerializeField]
     private float[] skillDistance = new float[2] { 1f, 1f };
+
     [SerializeField]
-    private float[] skillDamage = new float[2];
+    private float[] skillDamage;
+    [SerializeField]
+    private float[] skillDamageUpPerStage;
     [SerializeField]
     private float deathSpeed = 1f;
 
@@ -122,7 +125,7 @@ public class Strongest1Script : MonoBehaviour
 
             //애니 출력
 
-            thisObjectScript.DoAttackSkill(false, skillDamage[1], skiilDelay[1], 0f, skillDistance[1]);//(단일공격인가?, 스킬 데미지, 스킬 쿨타임, 광역공격일 때 사용되는 광역공격 범위들(미니멈, 멕시멈))
+            thisObjectScript.DoAttackSkill(false, skillDamage[1] + skillDamageUpPerStage[1] * gameManager.GetSaveData().currentStage, skiilDelay[1], 0f, skillDistance[1]);//(단일공격인가?, 스킬 데미지, 스킬 쿨타임, 광역공격일 때 사용되는 광역공격 범위들(미니멈, 멕시멈))
 
             yield return new WaitForSeconds(skiilDelay[1]);
 

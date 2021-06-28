@@ -27,6 +27,8 @@ public class Strongest2Script : MonoBehaviour
     private float[] skillDistance = new float[2] { 1f, 1f };
     [SerializeField]
     private float[] skillDamage = new float[2];
+    [SerializeField]
+    private float[] skillDamageUpPerStage;
 
     private bool particleIsPlaying = true;
     bool MaxCheck;
@@ -43,8 +45,6 @@ public class Strongest2Script : MonoBehaviour
 
         if (thisObjectScript.GetSpeed() == 0f)
         {
-            // Particle.SetActive(false);
-            // particleSystem.Play(false);
             if (particleIsPlaying)
             {
                 particleSystem.Stop();
@@ -54,7 +54,6 @@ public class Strongest2Script : MonoBehaviour
         }
         else
         {
-            // Particle.SetActive(true);
             if (!particleIsPlaying)
             {
                 particleSystem.Play();
@@ -63,10 +62,9 @@ public class Strongest2Script : MonoBehaviour
 
         }
 
-        StartCoroutine(skill1());
         if (gameManager.GetCST())
         {
-            StartCoroutine(skill2());
+            StartCoroutine(skill1());
         }
     }
     private IEnumerator skill1()
@@ -85,7 +83,7 @@ public class Strongest2Script : MonoBehaviour
             skillUsed = false;
             StartCoroutine(skill1Re());
 
-            thisObjectScript.SetHP(thisObjectScript.getHe() + skillDamage[0]);//스킬 사용
+            thisObjectScript.SetHP(thisObjectScript.getHe() + skillDamage[0] + skillDamage[0] * gameManager.GetSaveData().currentStage);//스킬 사용
             //
 
             //skill1Used를 EnemyScript에서 참조할 수 있도록 하고 Skill1Used가 true일 때 이동, 공격 기능이 정지되도록 해보자.
@@ -97,44 +95,6 @@ public class Strongest2Script : MonoBehaviour
 
         if (!thisObjectScript.GetIsDead())
             canUseSkill[0] = true;
-    }
-    private IEnumerator skill2()
-    {
-        bool distanceCheck = (thisObjectScript.GetShortestDistance() < skillDistance[1]);
-
-
-        if ((shortestScript != null) && canUseSkill[1] && distanceCheck)
-        {
-            thisObjectScript.GetAudi().clip = skillSound[1];
-            thisObjectScript.GetAudi().Play();
-
-            skillUsed = true;
-            canUseSkill[1] = false;
-
-            if (!thisObjectScript.GetIsDead())
-                anim.Play("Strongest1Attack2");//
-
-
-            thisObjectScript.AttackedCheck(skiilDelay[1]);
-
-            //애니 출력
-
-            thisObjectScript.DoAttackSkill(false, skillDamage[1], skiilDelay[1], 0f, skillDistance[1]);//(단일공격인가?, 스킬 데미지, 스킬 쿨타임, 광역공격일 때 사용되는 광역공격 범위들(미니멈, 멕시멈))
-            //
-
-
-            yield return new WaitForSeconds(skiilDelay[1]);
-
-            skillUsed = false;
-            StartCoroutine(skill2Re());
-        }
-    }
-    private IEnumerator skill2Re()
-    {
-        yield return new WaitForSeconds(skillReTime[1]);
-
-        if (!thisObjectScript.GetIsDead())
-            canUseSkill[1] = true;
     }
     public bool GetSkillUsed()
     {

@@ -19,6 +19,8 @@ public class ProjectionScript : MonoBehaviour
 
     [SerializeField]
     private bool isPlayerProjection = true;
+    [SerializeField]
+    private bool isAttackOne = true;
 
     [SerializeField]
     private float speed = 1f;
@@ -33,7 +35,7 @@ public class ProjectionScript : MonoBehaviour
         fusionManager = FindObjectOfType<FusionManager>();
 
         fusionManager.projectionScripts.Add(this);
-    
+
         s_renderer = GetComponent<SpriteRenderer>();
 
         originPosition = transform.position;
@@ -104,7 +106,9 @@ public class ProjectionScript : MonoBehaviour
 
                 if (distance <= hitRange)
                 {
-                    thisUnitScript.GetDamage();
+
+                    thisUnitScript.GetDamage(this.transform);
+                    
                     Destroy(gameObject);
                     fusionManager.projectionScripts.Remove(this);
                 }
@@ -122,7 +126,14 @@ public class ProjectionScript : MonoBehaviour
 
                 if (distance <= hitRange)
                 {
-                    thisEnemyScript.GetDamage();
+                    if (isAttackOne)
+                    {
+                        thisEnemyScript.GetDamage();
+                    }
+                    else
+                    {
+                        thisEnemyScript.GetDamage(this.transform);
+                    }
                     Destroy(gameObject);
                     fusionManager.projectionScripts.Remove(this);
                 }
