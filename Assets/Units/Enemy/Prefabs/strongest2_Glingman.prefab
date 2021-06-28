@@ -297,10 +297,10 @@ MonoBehaviour:
   _attackDistance: 2
   minimumD: 0
   maximumD: 3
-  heart: 30
-  heartUp: 0.5
+  heart: 10
+  heartUp: 5
   ap: 0.33333334
-  apUp: 0.01
+  apUp: 0.1
   dp: 3
   dpUp: 0.25
   attackDelay: 1
@@ -308,7 +308,7 @@ MonoBehaviour:
   totalAtk: 0
   plusMoney: 50
   stopByObjectDistance: 1.2
-  stopByEnemyDistance: 1.4
+  stopByEnemyDistance: 2
   objectDistanceArray: []
   enemyObjectDistanceArray: []
 --- !u!82 &6430110809060685061

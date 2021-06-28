@@ -556,8 +556,8 @@ MonoBehaviour:
   speed: 1
   totalAtk: 0
   plusMoney: 10
-  stopByObjectDistance: 2
-  stopByEnemyDistance: 1.4
+  stopByObjectDistance: 1.4
+  stopByEnemyDistance: 2
   objectDistanceArray: []
   enemyObjectDistanceArray: []
 --- !u!82 &412918273576655672

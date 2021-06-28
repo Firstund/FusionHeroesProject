@@ -7,7 +7,7 @@ using DG.Tweening;
 public class EnemyBuildingScript : MonoBehaviour
 {
     //enemy 자동소환기능 넣기
-  
+
     FusionManager fusionManager = null;
     StageManager stageManager = null;
     GameManager gameManager = null;
@@ -38,22 +38,37 @@ public class EnemyBuildingScript : MonoBehaviour
     private float dpUp = 1.1f;
 
     private float firstHeart = 0f;
+    [SerializeField]
+    private float[] _strongestSpawnPerHp;
+    public float[] strongestSpawnPerHp
+    {
+        get { return _strongestSpawnPerHp; }
+        set { _strongestSpawnPerHp = value; }
+    }
 
-    private bool[] strongestSpawned = new bool[5]{false, false, false, false, false};
+    private int _spawnStrongestNum = 0;
+    public int spawnStrongestNum
+    {
+        get { return _spawnStrongestNum; }
+        set { _spawnStrongestNum = value; }
+    }
+
+    [SerializeField]
+    private bool[] strongestSpawned;
 
     private bool destroy1Played = false;
     private bool destroy2Played = false;
 
     public Vector2 currentPosition = Vector2.zero;
 
-    
+
     void Start()
     {
         gameManager = GameManager.Instance;
         fusionManager = FindObjectOfType<FusionManager>();
         stageManager = FindObjectOfType<StageManager>();
         mapSliderScript = FindObjectOfType<MapSliderScript>();
-        
+
 
         audi = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
@@ -64,9 +79,11 @@ public class EnemyBuildingScript : MonoBehaviour
         firstHeart = heart;
         firstDp = dp;
 
-        for(int i = 0; i < gameManager.GetSaveData().currentStage; i++)
+        spawnStrongestNum = Random.Range(0, strongestSpawned.Length);
+
+        for (int i = 0; i < gameManager.GetSaveData().currentStage; i++)
             setStat();
-            
+
         SetMaxHealth();
     }
 
@@ -79,7 +96,7 @@ public class EnemyBuildingScript : MonoBehaviour
         Breaking();
     }
 
-    
+
 
     public void SetMaxHealth()
     {
@@ -89,7 +106,7 @@ public class EnemyBuildingScript : MonoBehaviour
     }
     private void HealthBar()
     {
-        if(mapSliderScript.mapSlider.value <= 40f - 3.5f)
+        if (mapSliderScript.mapSlider.value <= 40f - 3.5f)
         {
             g_slider.SetActive(false);
         }
@@ -117,7 +134,9 @@ public class EnemyBuildingScript : MonoBehaviour
     }
     public void Reset()
     {
-        for(int i = 0; i < strongestSpawned.Length - 1; i++)
+        spawnStrongestNum = Random.Range(0, strongestSpawned.Length);
+
+        for (int i = 0; i < strongestSpawned.Length - 1; i++)
         {
             strongestSpawned[i] = false;
         }

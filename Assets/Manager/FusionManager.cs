@@ -19,6 +19,7 @@ public class FusionManager : MonoBehaviour
 
     //private int a = 0;
 
+    [SerializeField]
     private UnitScript[] _unitScript = null;
     public UnitScript[] unitScript
     {
@@ -26,6 +27,7 @@ public class FusionManager : MonoBehaviour
         set { _unitScript = value; }
     }
     private double unitNO = 0f;
+    [SerializeField]
     private EnemyScript[] _enemyScript = null;
     public EnemyScript[] enemyScript
     {

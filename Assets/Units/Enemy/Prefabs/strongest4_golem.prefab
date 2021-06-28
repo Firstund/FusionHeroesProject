@@ -132,7 +132,7 @@ MonoBehaviour:
   maximumD: 3
   heart: 500
   heartUp: 22
-  ap: 2
+  ap: 10
   apUp: 1
   dp: 0
   dpUp: 0.1
@@ -140,8 +140,8 @@ MonoBehaviour:
   speed: 0.1
   totalAtk: 0
   plusMoney: 150
-  stopByObjectDistance: 2
-  stopByEnemyDistance: 1.4
+  stopByObjectDistance: 1.4
+  stopByEnemyDistance: 2
   objectDistanceArray: []
   enemyObjectDistanceArray: []
 --- !u!82 &1888308309157576705

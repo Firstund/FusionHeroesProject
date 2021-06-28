@@ -574,15 +574,7 @@ public class EnemyScript : MonoBehaviour
     }
     private void ODCheck()
     {
-        if (shortestScript == null || shortestScript.isDead)
-        {
-            SetObjectDistanceArray();
-        }
-        else
-        {
-            shortestDistance = Vector2.Distance(shortestScript.GetCurrentPosition(), currentPosition);
-            buildingIsShortest = false;
-        }
+        SetObjectDistanceArray();
     }
     private void SetObjectDistanceArray()
     {
@@ -607,14 +599,7 @@ public class EnemyScript : MonoBehaviour
     }
     public void EDCheck()
     {
-        if (LShortestEnemyScript == null || LShortestEnemyScript.GetIsDead()) // 최적화 위한 코드
-        {
-            SetEnemyObjectDistanceArray();
-        }
-        else
-        {
-            shortestForwardDistance = Vector2.Distance(LShortestEnemyScript.GetCurrentPosition(), currentPosition);
-        }
+        SetEnemyObjectDistanceArray();
     }
 
     private void SetEnemyObjectDistanceArray()

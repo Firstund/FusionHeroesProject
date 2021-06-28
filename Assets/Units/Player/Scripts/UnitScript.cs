@@ -570,6 +570,7 @@ public class UnitScript : MonoBehaviour
             ap = 0f;
             _isDead = true;
             MinusUnitNum();
+
         }
         else if (heart > 0f)
         {
@@ -589,7 +590,9 @@ public class UnitScript : MonoBehaviour
             a = this;
 
         stageManager.deathPlayerUnitNum++;
+
         fusionManager.SetCanSetScripts();
+
         Destroy(a.gameObject);
     }
     private void AttackCheck()
@@ -766,15 +769,7 @@ public class UnitScript : MonoBehaviour
     #region distance 관련 함수들
     public void EDCheck()
     {
-        if (shortestEnemyScript == null || shortestEnemyScript.GetIsDead())
-        {
-            SetEnemyObjectDistanceArray();
-        }
-        else
-        {
-            shortestEnemyDistance = Vector2.Distance(shortestEnemyScript.GetCurrentPosition(), currentPosition);
-            buildingIsShortest = false;
-        }
+        SetEnemyObjectDistanceArray();
     }
 
     private void SetEnemyObjectDistanceArray()
@@ -803,8 +798,7 @@ public class UnitScript : MonoBehaviour
 
     private void ForwardODCheck()
     {
-        if (shortestForwardScript == null || shortestForwardScript.isDead)
-        {
+
             UnitScript _ShortestForwardScript = null;
 
             float _ShortestForwardDistance = 100f;
@@ -830,23 +824,10 @@ public class UnitScript : MonoBehaviour
             {
                 shortestForwardDistance = 10f;
             }
-        }
-        else
-        {
-            if (shortestForwardScript.GetThisUnitNO() < thisUnitNO)
-            {
-                shortestForwardDistance = Vector2.Distance(shortestForwardScript.GetCurrentPosition(), currentPosition);
-            }
-            else
-            {
-                shortestForwardScript = null;
-            }
-        }
     }
     private void BackwardODCheck()
     {
-        if (shortestBackwardScript == null)
-        {
+ 
             UnitScript _shortestBackWardScript = null;
             float _ShortestBackwardDistance = 100f;
             bool shortestBackwardIsSet = false;
@@ -870,22 +851,11 @@ public class UnitScript : MonoBehaviour
                 }
             }
             shortestBackwardScript = _shortestBackWardScript;
-        }
-        else
-        {
-            shortestBackwardDistance = Vector2.Distance(shortestBackwardScript.GetCurrentPosition(), currentPosition);
-        }
+        
     }
     public void ODCheck()//이 함수 복사, 수정 후 Enemy의 위치를 구하는 함수로 변환
     {
-        if (shortestScript == null || shortestScript.isDead)
-        {
-            SetObjectDistanceArray();
-        }
-        else
-        {
-            shortestDistance = Vector2.Distance(shortestScript.GetCurrentPosition(), currentPosition);
-        }
+        SetObjectDistanceArray();
     }
 
     private void SetObjectDistanceArray()

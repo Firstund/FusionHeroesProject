@@ -118,6 +118,11 @@ public class StageManager : MonoBehaviour
 
         fusionManager.enemyBuildingScript.Reset();
         fusionManager.buildingScript.Reset();
+        
+        fusionManager.SetUnitNO(0);
+        fusionManager.SetUnitNum(0);
+        fusionManager.SetEnemyUnitNO(0);
+        fusionManager.SetEnemyUnitNum(0);
 
         useMoneyNum = 0;
         deathPlayerUnitNum = 0;

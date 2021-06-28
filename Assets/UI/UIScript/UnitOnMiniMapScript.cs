@@ -17,6 +17,7 @@ public class UnitOnMiniMapScript : MonoBehaviour
     {
         thisRectTransform = GetComponent<RectTransform>();
         mapSliderScript = FindObjectOfType<MapSliderScript>();
+        transform.SetParent(GameObject.Find("UnitOnMiniMaps").transform);
     }
 
     void Update()

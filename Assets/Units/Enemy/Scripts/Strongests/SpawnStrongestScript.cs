@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class SpawnStrongestScript : MonoBehaviour
 {
+
     [SerializeField]
-    private int spawnGlingmanStage = 1;
-    [SerializeField]
-    private int spawnUmikoStage = 10;
-    [SerializeField]
-    private int spawnImpStage = 15;
-    [SerializeField]
-    private int spawnGolemStage = 20;
+    private int strongestSpawnNum = 0;
     
     [SerializeField]
     private StageManager stageManager = null;
@@ -26,47 +21,18 @@ public class SpawnStrongestScript : MonoBehaviour
     }
     void Update()
     {
+        strongestSpawnNum = enemyBuildingScript.spawnStrongestNum;
         if (!GameManager.Instance.tutoIsPlaying)
         {
-            umiko();
-            glingman();
-            imp();
-            golem();
+            SpawnStrongest();
         }
     }
-    #region strongests
-    private void glingman()
+    private void SpawnStrongest()
     {
-        if (!enemyBuildingScript.GetStrongestSpawned(0) && stageManager.GetCurrentStage() == spawnGlingmanStage && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() / 5)
+        if (!enemyBuildingScript.GetStrongestSpawned(strongestSpawnNum) && stageManager.GetCurrentStage() % 5 == 0 && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() * enemyBuildingScript.strongestSpawnPerHp[strongestSpawnNum])
         {
-            enemyBuildingScript.SetstrongestSpawned(0, true);
-            Instantiate(enemyBuildingScript.GetStrongest(0), enemySpawnScript.GetSpawnPosition());
+            enemyBuildingScript.SetstrongestSpawned(strongestSpawnNum, true);
+            Instantiate(enemyBuildingScript.GetStrongest(strongestSpawnNum), enemySpawnScript.GetSpawnPosition());
         }
     }
-    private void umiko()
-    {
-        if (!enemyBuildingScript.GetStrongestSpawned(1) && stageManager.GetCurrentStage() == spawnUmikoStage && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() / 2)
-        {
-            enemyBuildingScript.SetstrongestSpawned(1, true);
-            Instantiate(enemyBuildingScript.GetStrongest(1), enemySpawnScript.GetSpawnPosition());
-        }
-    }
-    private void imp()
-    {
-        if (!enemyBuildingScript.GetStrongestSpawned(2) && stageManager.GetCurrentStage() == spawnImpStage && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe() / 5 * 4)
-        {
-            enemyBuildingScript.SetstrongestSpawned(2, true);
-            Instantiate(enemyBuildingScript.GetStrongest(2), enemySpawnScript.GetSpawnPosition());
-        }
-    }
-    private void golem()
-    {
-        if(!enemyBuildingScript.GetStrongestSpawned(3) && stageManager.GetCurrentStage() == spawnGolemStage && enemyBuildingScript.getHe() <= enemyBuildingScript.getFirstHe())
-        {
-            enemyBuildingScript.SetstrongestSpawned(3, true);
-            Instantiate(enemyBuildingScript.GetStrongest(3), enemySpawnScript.GetSpawnPosition());
-        }
-    }
-
-    #endregion
 }
