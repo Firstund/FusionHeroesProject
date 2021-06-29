@@ -5338,8 +5338,8 @@ MonoBehaviour:
   thisUnitNum: 0
   thisUnitNO: 0
   unitLev: 1
-  levelUpCost: 10
-  unitClickableRange: 0
+  levelUpCost: 50
+  unitClickableRange: 1
   firstUnitClickableRange: 0
   mouseDistance: 0
   objectDistanceArray: []

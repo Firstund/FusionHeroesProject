@@ -444,6 +444,7 @@ MonoBehaviour:
   projection: {fileID: 0}
   projectionSpawnPosition: {fileID: 0}
   _attackDistance: 2
+  damageDistance: 10
   _heart: 20
   heartUp: 4
   plusHeartUpPerLev: 0.2
@@ -470,7 +471,7 @@ MonoBehaviour:
   thisUnitNum: 0
   thisUnitNO: 0
   unitLev: 1
-  levelUpCost: 15
+  levelUpCost: 30
   unitClickableRange: 1
   firstUnitClickableRange: 0
   mouseDistance: 0
@@ -482,6 +483,7 @@ MonoBehaviour:
   stopByEnemyDistance: 1.2
   stopByObjectDistance: 1.4
   shortestForwardScript: {fileID: 0}
+  isAttackOne: 1
   isFollow: 0
 --- !u!82 &3073379449823954690
 AudioSource:

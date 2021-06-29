@@ -386,7 +386,7 @@ MonoBehaviour:
   ap: 1.3
   apUp: 0.1
   dp: 1
-  dpUp: 0.3
+  dpUp: 0.25
   attackDelay: 1
   speed: 1
   totalAtk: 0

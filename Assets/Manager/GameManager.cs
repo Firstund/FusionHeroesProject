@@ -207,6 +207,8 @@ public class GameManager : MonoBehaviour
     private int plusMoney = 1;
     [SerializeField]
     private float _plusMoneyTime = 0.1f;
+    [SerializeField]
+    private float totalPlusMoneyTime = 0f;
     public float plusMoneyTime
     {
         get { return _plusMoneyTime; }
@@ -365,7 +367,8 @@ public class GameManager : MonoBehaviour
         {
             canMoneyPlus = false;
 
-            yield return new WaitForSeconds(plusMoneyTime - (saveData.plusMoneySpeedLev * minusPluseMoneyTimePerLev) - (getMoneyUpgradeLev * minusPlusMoneyTimePerUpgrade));
+            totalPlusMoneyTime = ((plusMoneyTime - saveData.plusMoneySpeedLev * minusPluseMoneyTimePerLev) / (getMoneyUpgradeLev + 1) * minusPlusMoneyTimePerUpgrade);
+            yield return new WaitForSeconds(totalPlusMoneyTime);
 
             money += plusMoney;
             hadMoney += plusMoney;

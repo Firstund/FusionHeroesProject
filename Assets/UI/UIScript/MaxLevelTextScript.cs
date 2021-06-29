@@ -10,10 +10,6 @@ public class MaxLevelTextScript : MonoBehaviour
 
     private int currentStage = 0;
     private int nextUpgradeStage = 0;
-    void Start()
-    {
-        
-    }
 
     void Update()
     {

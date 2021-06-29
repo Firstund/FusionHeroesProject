@@ -577,6 +577,7 @@ MonoBehaviour:
   projection: {fileID: 3058082302345719292, guid: 32626a78018e58a48baebde2e0768b87, type: 3}
   projectionSpawnPosition: {fileID: 2039997880422295738}
   _attackDistance: 3
+  damageDistance: 10
   _heart: 3
   heartUp: 1
   plusHeartUpPerLev: 0.01
@@ -603,7 +604,7 @@ MonoBehaviour:
   thisUnitNum: 0
   thisUnitNO: 0
   unitLev: 1
-  levelUpCost: 5
+  levelUpCost: 10
   unitClickableRange: 1
   firstUnitClickableRange: 0
   mouseDistance: 0
@@ -615,6 +616,7 @@ MonoBehaviour:
   stopByEnemyDistance: 2
   stopByObjectDistance: 1.4
   shortestForwardScript: {fileID: 0}
+  isAttackOne: 1
   isFollow: 0
 --- !u!1 &6220228852725416648
 GameObject:

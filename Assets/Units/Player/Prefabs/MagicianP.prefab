@@ -328,7 +328,7 @@ MonoBehaviour:
   _heart: 10
   heartUp: 0.5
   plusHeartUpPerLev: 0.5
-  _heartUpPerLev: 0.1
+  _heartUpPerLev: 0.2
   _ap: 20
   apUp: 5
   plusApUpPerLev: 0.2
@@ -351,7 +351,7 @@ MonoBehaviour:
   thisUnitNum: 0
   thisUnitNO: 0
   unitLev: 1
-  levelUpCost: 50
+  levelUpCost: 30
   unitClickableRange: 1
   firstUnitClickableRange: 0
   mouseDistance: 0
