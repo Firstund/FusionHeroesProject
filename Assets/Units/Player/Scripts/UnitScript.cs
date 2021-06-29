@@ -440,8 +440,10 @@ public class UnitScript : MonoBehaviour
             {
                 BuildingAttack();
             }
-
-            ShortestEnemyAttack();
+            else if (shortestEnemyScript != null)
+            {
+                ShortestEnemyAttack();
+            }
         }
         else
         {
@@ -491,7 +493,7 @@ public class UnitScript : MonoBehaviour
 
         fusionManager.enemyBuildingScript.SetHP(shortestHeart);
     }
-     private void ShortestEnemyAttack()
+    private void ShortestEnemyAttack()
     {
         shortestHeart = shortestEnemyScript.getHe();
         shortestDp = shortestEnemyScript.getD();

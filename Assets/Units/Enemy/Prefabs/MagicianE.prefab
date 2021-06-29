@@ -313,7 +313,7 @@ MonoBehaviour:
   LShortestEnemyScript: {fileID: 0}
   strongest1Script: {fileID: 0}
   audi: {fileID: 0}
-  attackSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 2af331fa1277bae4497f92a410a6c7a7, type: 3}
   _attackDistance: 10
   damageDistance: 5
   minimumD: 0
@@ -324,12 +324,12 @@ MonoBehaviour:
   apUp: 1
   dp: 2
   dpUp: 0.25
-  attackDelay: 2
+  attackDelay: 15
   speed: 0.5
   totalAtk: 0
   plusMoney: 30
-  stopByObjectDistance: 1
-  stopByEnemyDistance: 1.5
+  stopByObjectDistance: 2
+  stopByEnemyDistance: 1.4
   objectDistanceArray: []
   enemyObjectDistanceArray: []
   isAttackOne: 0

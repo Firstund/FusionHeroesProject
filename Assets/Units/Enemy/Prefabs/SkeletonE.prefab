@@ -334,6 +334,7 @@ MonoBehaviour:
   audi: {fileID: 0}
   attackSound: {fileID: 8300000, guid: a46be8093b0ad2f4db669b20f9620df4, type: 3}
   _attackDistance: 3
+  damageDistance: 5
   minimumD: 0
   maximumD: 3
   heart: 4
@@ -346,10 +347,11 @@ MonoBehaviour:
   speed: 1.7
   totalAtk: 0
   plusMoney: 10
-  stopByObjectDistance: 1.4
-  stopByEnemyDistance: 2
+  stopByObjectDistance: 2
+  stopByEnemyDistance: 1.4
   objectDistanceArray: []
   enemyObjectDistanceArray: []
+  isAttackOne: 1
 --- !u!82 &9170293796550323700
 AudioSource:
   m_ObjectHideFlags: 0

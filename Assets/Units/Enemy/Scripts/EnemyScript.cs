@@ -405,33 +405,11 @@ public class EnemyScript : MonoBehaviour
             {
                 if (buildingIsShortest)
                 {
-                    shortestHeart = fusionManager.buildingScript.getHe();
-                    shortestDp = fusionManager.buildingScript.getD();
-
-                    totalAtk = (ap - shortestDp);
-
-                    if (totalAtk <= 0f)
-                    {
-                        totalAtk = 0.2f;
-                    }
-
-                    shortestHeart -= totalAtk;
-
-                    fusionManager.buildingScript.SetHP(shortestHeart);
+                    BuildingAttack();
                 }
                 else if (shortestScript != null)
                 {
-                    shortestHeart = shortestScript.getHe();
-                    shortestDp = shortestScript.getD();
-
-                    totalAtk = (ap - shortestDp);//데미지 공식 적용
-
-                    if (totalAtk <= 0f)
-                    {
-                        totalAtk = 0.2f;
-                    }
-                    shortestHeart -= totalAtk; //단일공격
-                    shortestScript.SetHP(shortestHeart);
+                    ShortestAttack();
                 }
             }
             else
@@ -440,19 +418,7 @@ public class EnemyScript : MonoBehaviour
 
                 if (buildingIsShortest)
                 {
-                    shortestHeart = fusionManager.buildingScript.getHe();
-                    shortestDp = fusionManager.buildingScript.getD();
-
-                    totalAtk = (ap - shortestDp);
-
-                    if (totalAtk <= 0f)
-                    {
-                        totalAtk = 0.2f;
-                    }
-
-                    shortestHeart -= totalAtk;
-
-                    fusionManager.buildingScript.SetHP(shortestHeart);
+                    BuildingAttack();
                 }
 
                 for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
@@ -478,51 +444,87 @@ public class EnemyScript : MonoBehaviour
             }
         }
     }
+
+    private void ShortestAttack()
+    {
+        shortestHeart = shortestScript.getHe();
+        shortestDp = shortestScript.getD();
+
+        totalAtk = (ap - shortestDp);//데미지 공식 적용
+
+        if (totalAtk <= 0f)
+        {
+            totalAtk = 0.2f;
+        }
+        shortestHeart -= totalAtk; //단일공격
+        shortestScript.SetHP(shortestHeart);
+    }
+
     public void GetDamage(Transform projection)
     {
         float minimumD = 0f;
         float maximumD = damageDistance;
         float buildingDistance = Vector2.Distance(projection.position, gameManager.GetUnitSpawnPosition().position);
 
-        if (buildingDistance < maximumD && buildingDistance >= minimumD)
+        if (isAttackOne)
         {
-            shortestHeart = fusionManager.buildingScript.getHe();
-            shortestDp = fusionManager.buildingScript.getD();
-
-            totalAtk = (ap - shortestDp);
-            if (totalAtk <= 0f)
+            if (buildingIsShortest)
             {
-                totalAtk = 1f;
+                BuildingAttack();
+            }
+            else if (shortestScript != null)
+            {
+                ShortestAttack();
+            }
+        }
+        else
+        {
+            if (buildingDistance < maximumD && buildingDistance >= minimumD)
+            {
+                BuildingAttack();
             }
 
-            shortestHeart -= totalAtk;
-
-            fusionManager.buildingScript.SetHP(shortestHeart);
-        }
-
-        for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
-        {
-            float distance = Vector2.Distance(projection.position, fusionManager.unitScript[a].transform.position);
-
-            if (distance < maximumD && distance >= minimumD)//minimum, maxism damageDistance를 이용하여 공격 범위 설정가능
+            for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
             {
-                float dp = fusionManager.unitScript[a].getD();
-                float heart = fusionManager.unitScript[a].getHe();
+                float distance = Vector2.Distance(projection.position, fusionManager.unitScript[a].transform.position);
 
-                totalAtk = (ap - dp);
-
-                if (totalAtk <= 0f)
+                if (distance < maximumD && distance >= minimumD)//minimum, maxism damageDistance를 이용하여 공격 범위 설정가능
                 {
-                    totalAtk = 0.2f;
+                    float dp = fusionManager.unitScript[a].getD();
+                    float heart = fusionManager.unitScript[a].getHe();
+
+                    totalAtk = (ap - dp);
+
+                    if (totalAtk <= 0f)
+                    {
+                        totalAtk = 0.2f;
+                    }
+
+
+                    heart -= totalAtk;
+
+                    fusionManager.unitScript[a].SetHP(heart);
                 }
-
-
-                heart -= totalAtk;
-
-                fusionManager.unitScript[a].SetHP(heart);
             }
         }
     }
+
+    private void BuildingAttack()
+    {
+        shortestHeart = fusionManager.buildingScript.getHe();
+        shortestDp = fusionManager.buildingScript.getD();
+
+        totalAtk = (ap - shortestDp);
+        if (totalAtk <= 0f)
+        {
+            totalAtk = 1f;
+        }
+
+        shortestHeart -= totalAtk;
+
+        fusionManager.buildingScript.SetHP(shortestHeart);
+    }
+
     public void PlayAttackSound()
     {
         if (audi.clip != attackSound)

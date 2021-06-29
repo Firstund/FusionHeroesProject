@@ -6242,7 +6242,7 @@ MonoBehaviour:
   mainCamera: {fileID: 574352873}
   _mapSlider: {fileID: 221801127}
   _maxCameraPosition: 40
-  minDragRange: 3
+  minDragRange: 1
   moveSliderXChangeTime: 1
   moveSliderSpeed: 30
   targetPosition: {x: 0, y: 0}
@@ -15587,7 +15587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a2c655bb06aab4d826943dfb8c5f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpawnStage: 6
+  startSpawnStage: 21
   iconImage: {fileID: 112623753}
   thisUpgradePannel: {fileID: 1206008259}
   uCannotSpawnItYetText: {fileID: 3771758476958319216, guid: 6868514c806d30242b4f2ef59736ac2a, type: 3}
@@ -32881,8 +32881,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObject: {fileID: 4139820892959463898, guid: 983c2eef9480646468c13202b4532be2, type: 3}
   spawnDelay: 60
-  minusObjDelayPerCurrentStage: 0.01
-  spawnStartStage: 0
+  minusObjDelayPerCurrentStage: 0.03
+  spawnStartStage: 25
   endSpawnStage: 60
 --- !u!1 &1165195343
 GameObject:

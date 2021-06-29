@@ -106,9 +106,8 @@ public class ProjectionScript : MonoBehaviour
 
                 if (distance <= hitRange)
                 {
-
                     thisUnitScript.GetDamage(this.transform);
-                    
+
                     Destroy(gameObject);
                     fusionManager.projectionScripts.Remove(this);
                 }
@@ -126,14 +125,8 @@ public class ProjectionScript : MonoBehaviour
 
                 if (distance <= hitRange)
                 {
-                    if (isAttackOne)
-                    {
-                        thisEnemyScript.GetDamage();
-                    }
-                    else
-                    {
-                        thisEnemyScript.GetDamage(this.transform);
-                    }
+                    thisEnemyScript.GetDamage(this.transform);
+
                     Destroy(gameObject);
                     fusionManager.projectionScripts.Remove(this);
                 }

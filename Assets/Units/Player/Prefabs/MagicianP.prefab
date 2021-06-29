@@ -325,11 +325,11 @@ MonoBehaviour:
   projectionSpawnPosition: {fileID: 1815894982864951847}
   _attackDistance: 20
   damageDistance: 5
-  _heart: 5
+  _heart: 10
   heartUp: 0.5
   plusHeartUpPerLev: 0.5
   _heartUpPerLev: 0.1
-  _ap: 10
+  _ap: 20
   apUp: 5
   plusApUpPerLev: 0.2
   _apUpPerLev: 1
@@ -345,7 +345,7 @@ MonoBehaviour:
   shortestScript: {fileID: 0}
   _shortestEnemyScript: {fileID: 0}
   _audi: {fileID: 0}
-  attackSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 2af331fa1277bae4497f92a410a6c7a7, type: 3}
   onlyOneFollowUnitNum: 0
   _isStopByObject: 1
   thisUnitNum: 0
