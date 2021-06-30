@@ -314,7 +314,7 @@ MonoBehaviour:
   strongest1Script: {fileID: 0}
   audi: {fileID: 0}
   attackSound: {fileID: 8300000, guid: 2af331fa1277bae4497f92a410a6c7a7, type: 3}
-  _attackDistance: 10
+  _attackDistance: 15
   damageDistance: 5
   minimumD: 0
   maximumD: 3
@@ -323,13 +323,13 @@ MonoBehaviour:
   ap: 20
   apUp: 1
   dp: 2
-  dpUp: 0.25
+  dpUp: 0.1
   attackDelay: 15
   speed: 0.5
   totalAtk: 0
   plusMoney: 30
   stopByObjectDistance: 2
-  stopByEnemyDistance: 1.4
+  stopByEnemyDistance: 1.5
   objectDistanceArray: []
   enemyObjectDistanceArray: []
   isAttackOne: 0

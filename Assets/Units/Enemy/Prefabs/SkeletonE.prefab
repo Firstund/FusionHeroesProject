@@ -348,7 +348,7 @@ MonoBehaviour:
   totalAtk: 0
   plusMoney: 10
   stopByObjectDistance: 2
-  stopByEnemyDistance: 1.4
+  stopByEnemyDistance: 1.5
   objectDistanceArray: []
   enemyObjectDistanceArray: []
   isAttackOne: 1

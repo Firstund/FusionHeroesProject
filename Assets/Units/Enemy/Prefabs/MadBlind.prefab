@@ -382,17 +382,17 @@ MonoBehaviour:
   minimumD: 0
   maximumD: 3
   heart: 15
-  heartUp: 1
+  heartUp: 1.5
   ap: 1.3
   apUp: 0.1
   dp: 1
-  dpUp: 0.2
+  dpUp: 0.1
   attackDelay: 1
   speed: 1
   totalAtk: 0
   plusMoney: 5
   stopByObjectDistance: 1.2
-  stopByEnemyDistance: 1.4
+  stopByEnemyDistance: 1.5
   objectDistanceArray: []
   enemyObjectDistanceArray: []
   isAttackOne: 1

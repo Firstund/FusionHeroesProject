@@ -323,7 +323,7 @@ MonoBehaviour:
   unitOnMiniMap: {fileID: 297964726054720325, guid: 9a2b50b1974b9b944afc2bd08f1fec61, type: 3}
   projection: {fileID: 5356730003051109458, guid: b1fb3408217131d40a94db3a01e40291, type: 3}
   projectionSpawnPosition: {fileID: 1815894982864951847}
-  _attackDistance: 20
+  _attackDistance: 15.5
   damageDistance: 5
   _heart: 10
   heartUp: 0.5

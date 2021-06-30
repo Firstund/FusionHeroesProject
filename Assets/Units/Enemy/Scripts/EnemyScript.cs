@@ -179,7 +179,10 @@ public class EnemyScript : MonoBehaviour
 
         SetMaxHealth();
 
-        Instantiate(unitOnMiniMap.gameObject, GameObject.Find("MapSlider").transform).GetComponent<UnitOnMiniMapScript>().targetUnitTrm = this.gameObject.transform;
+        GameObject _unitOnMiniMap = null;
+
+        _unitOnMiniMap = Instantiate(unitOnMiniMap.gameObject, GameObject.Find("MapSlider").transform);
+        _unitOnMiniMap.GetComponent<UnitOnMiniMapScript>().targetUnitTrm = this.gameObject.transform;
 
     }
 
