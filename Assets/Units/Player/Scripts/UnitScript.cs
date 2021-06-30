@@ -278,9 +278,7 @@ public class UnitScript : MonoBehaviour
     void Start()
     {
         stageManager = FindObjectOfType<StageManager>();
-        fusionManager.SetUnitNum(thisUnitNum = fusionManager.GetUnitNum() + 1);
-
-        fusionManager.SetUnitNO(thisUnitNO = fusionManager.GetUnitNO() + 1d);
+        PlusUnitNum();
 
         levelText = Lev.GetComponent<TextMesh>();
 
@@ -299,6 +297,13 @@ public class UnitScript : MonoBehaviour
 
         _unitOnMiniMap = Instantiate(unitOnMiniMap.gameObject, GameObject.Find("MapSlider").transform);
         _unitOnMiniMap.GetComponent<UnitOnMiniMapScript>().targetUnitTrm = this.gameObject.transform;
+    }
+
+    private void PlusUnitNum()
+    {
+        fusionManager.SetUnitNum(thisUnitNum = fusionManager.GetUnitNum() + 1);
+
+        fusionManager.SetUnitNO(thisUnitNO = fusionManager.GetUnitNO() + 1d);
     }
 
     void Update()
@@ -654,9 +659,10 @@ public class UnitScript : MonoBehaviour
             MinusUnitNum();
 
         }
-        else if (heart > 0f)
+        else if (heart > 0f && _isDead)
         {
             _isDead = false;
+            PlusUnitNum();
         }
     }
 

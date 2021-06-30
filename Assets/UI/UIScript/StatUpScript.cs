@@ -47,7 +47,6 @@ public class StatUpScript : MonoBehaviour
             unitStatIndex = 0;
         }
 
-        MaxCheck();
         SetStat();
 
         firstUpgradeCost = upgradeCost;
@@ -85,6 +84,7 @@ public class StatUpScript : MonoBehaviour
 
     private void Update()
     {
+        MaxCheck();
         if (saveData != gameManager.GetSaveData())
         {
             saveData = gameManager.GetSaveData();

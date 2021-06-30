@@ -77,17 +77,16 @@ public class StageManager : MonoBehaviour
         dataManager = DataManager.Instance;
         audi = GetComponent<AudioSource>();
         saveData = gameManager.GetSaveData();
-
-        saveData.maxStatLev = 5 + 5 * (saveData.maxReachedStage / 10);
-
     }
     void Update()
     {
+        saveData.maxStatLev = 5 + 5 * (saveData.maxReachedStage / 10);
+
         if (saveData != gameManager.GetSaveData())
         {
             saveData = gameManager.GetSaveData();
         }
-
+        
         currentStage = saveData.currentStage;
 
         if (currentStage <= 0)

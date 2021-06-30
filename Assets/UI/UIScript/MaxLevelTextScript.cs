@@ -14,7 +14,7 @@ public class MaxLevelTextScript : MonoBehaviour
     void Update()
     {
         maxReachedStage = GameManager.Instance.GetSaveData().maxReachedStage;
-        nextUpgradeStage = maxReachedStage / 10 * 10 + 10;
+        nextUpgradeStage = (maxReachedStage) / 10 * 10 + 10;
 
         text.text = "이미 최대레벨입니다! " + nextUpgradeStage +"스테이지부터 새로운 레벨이 해금됩니다.";
 
