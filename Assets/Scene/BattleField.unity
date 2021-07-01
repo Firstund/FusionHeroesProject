@@ -15691,7 +15691,7 @@ MonoBehaviour:
   iconImage: {fileID: 112623753}
   thisUpgradePannel: {fileID: 1206008259}
   uCannotSpawnItYetText: {fileID: 3771758476958319216, guid: 6868514c806d30242b4f2ef59736ac2a, type: 3}
-  spawnThis: {fileID: 1815894982716345837, guid: 0387021fac3a6eb4691a1afeadace6ad, type: 3}
+  spawnThis: {fileID: 1815894982716345826, guid: 0387021fac3a6eb4691a1afeadace6ad, type: 3}
   haveToWaitMoreTimeText: {fileID: 3771758476958319216, guid: 7222020ad4c347444b6c0cfc86ea494e, type: 3}
   spawnCostText: {fileID: 0}
   _spawnPosition: {fileID: 0}
@@ -21871,7 +21871,7 @@ MonoBehaviour:
   iconImage: {fileID: 1696390461}
   thisUpgradePannel: {fileID: 880413509}
   uCannotSpawnItYetText: {fileID: 3771758476958319216, guid: 6868514c806d30242b4f2ef59736ac2a, type: 3}
-  spawnThis: {fileID: 3318772828785144205, guid: f4788e6259156574ca2e105a8d27295e, type: 3}
+  spawnThis: {fileID: 6669676595651772330, guid: f4788e6259156574ca2e105a8d27295e, type: 3}
   haveToWaitMoreTimeText: {fileID: 3771758476958319216, guid: 7222020ad4c347444b6c0cfc86ea494e, type: 3}
   spawnCostText: {fileID: 0}
   _spawnPosition: {fileID: 0}
@@ -33118,7 +33118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9d95576d9ec8c4e825baa15b245ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject: {fileID: 5259757820760417429, guid: 4a18ad45f61b63442a0e495e849204db, type: 3}
+  spawnThis: {fileID: 6746246876821737179, guid: 4a18ad45f61b63442a0e495e849204db, type: 3}
   spawnDelay: 8
   minusObjDelayPerCurrentStage: 0.04
   spawnStartStage: 0
@@ -33135,7 +33135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9d95576d9ec8c4e825baa15b245ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject: {fileID: 7371477088570212303, guid: cf3c16e177ec04342818f92e8b86cf5d, type: 3}
+  spawnThis: {fileID: 4895063930205227255, guid: cf3c16e177ec04342818f92e8b86cf5d, type: 3}
   spawnDelay: 10
   minusObjDelayPerCurrentStage: 0.02
   spawnStartStage: 2
@@ -33152,7 +33152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9d95576d9ec8c4e825baa15b245ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject: {fileID: 7558579589176618438, guid: f7fecd00fe042e24e8f4c914ccd8d588, type: 3}
+  spawnThis: {fileID: 3316262425017102815, guid: f7fecd00fe042e24e8f4c914ccd8d588, type: 3}
   spawnDelay: 30
   minusObjDelayPerCurrentStage: 0.03
   spawnStartStage: 10
@@ -33169,7 +33169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9d95576d9ec8c4e825baa15b245ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject: {fileID: 4139820892959463898, guid: 983c2eef9480646468c13202b4532be2, type: 3}
+  spawnThis: {fileID: 4139820892959463899, guid: 983c2eef9480646468c13202b4532be2, type: 3}
   spawnDelay: 60
   minusObjDelayPerCurrentStage: 0.03
   spawnStartStage: 25
@@ -35269,7 +35269,7 @@ MonoBehaviour:
   iconImage: {fileID: 916933685}
   thisUpgradePannel: {fileID: 1248717872}
   uCannotSpawnItYetText: {fileID: 3771758476958319216, guid: 6868514c806d30242b4f2ef59736ac2a, type: 3}
-  spawnThis: {fileID: 8320676802245799533, guid: dcc9694e290c3b940a5a3910b0c234bb, type: 3}
+  spawnThis: {fileID: 6968915021697743930, guid: dcc9694e290c3b940a5a3910b0c234bb, type: 3}
   haveToWaitMoreTimeText: {fileID: 3771758476958319216, guid: 7222020ad4c347444b6c0cfc86ea494e, type: 3}
   spawnCostText: {fileID: 0}
   _spawnPosition: {fileID: 0}
@@ -38785,7 +38785,7 @@ MonoBehaviour:
   iconImage: {fileID: 111048383}
   thisUpgradePannel: {fileID: 1583979812}
   uCannotSpawnItYetText: {fileID: 3771758476958319216, guid: 6868514c806d30242b4f2ef59736ac2a, type: 3}
-  spawnThis: {fileID: 4323624078091657384, guid: 4f3b3859af179f040b019efde896d1df, type: 3}
+  spawnThis: {fileID: 1431830793274202509, guid: 4f3b3859af179f040b019efde896d1df, type: 3}
   haveToWaitMoreTimeText: {fileID: 3771758476958319216, guid: 7222020ad4c347444b6c0cfc86ea494e, type: 3}
   spawnCostText: {fileID: 0}
   _spawnPosition: {fileID: 0}
@@ -39136,7 +39136,7 @@ MonoBehaviour:
   iconImage: {fileID: 640874259}
   thisUpgradePannel: {fileID: 2078259438}
   uCannotSpawnItYetText: {fileID: 3771758476958319216, guid: 6868514c806d30242b4f2ef59736ac2a, type: 3}
-  spawnThis: {fileID: 6220228852626342961, guid: 554295bff4b2e8b4ea5ec86e28c1e0b4, type: 3}
+  spawnThis: {fileID: 6220228852626342960, guid: 554295bff4b2e8b4ea5ec86e28c1e0b4, type: 3}
   haveToWaitMoreTimeText: {fileID: 3771758476958319216, guid: 7222020ad4c347444b6c0cfc86ea494e, type: 3}
   spawnCostText: {fileID: 0}
   _spawnPosition: {fileID: 0}
@@ -47316,6 +47316,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1659796014}
+  - component: {fileID: 1659796015}
   m_Layer: 0
   m_Name: Units
   m_TagString: Untagged
@@ -47337,6 +47338,19 @@ Transform:
   m_Father: {fileID: 256241478}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1659796015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659796013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e98d5678d9cfb44b71d5b2571a7917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _units: []
 --- !u!1 &1661409845
 GameObject:
   m_ObjectHideFlags: 0
@@ -50469,6 +50483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1768152564}
+  - component: {fileID: 1768152565}
   m_Layer: 0
   m_Name: EnemyUnits
   m_TagString: Untagged
@@ -50490,6 +50505,19 @@ Transform:
   m_Father: {fileID: 256241478}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1768152565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768152563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf78c434f0d76c049894e947b8e5b290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemies: []
 --- !u!1 &1775295199
 GameObject:
   m_ObjectHideFlags: 0
@@ -57110,7 +57138,7 @@ MonoBehaviour:
   iconImage: {fileID: 1632451450}
   thisUpgradePannel: {fileID: 1966513754}
   uCannotSpawnItYetText: {fileID: 3771758476958319216, guid: 6868514c806d30242b4f2ef59736ac2a, type: 3}
-  spawnThis: {fileID: 4863631796403791270, guid: 5626db95e2ec8e641ba1918955b51029, type: 3}
+  spawnThis: {fileID: 3865285618791641192, guid: 5626db95e2ec8e641ba1918955b51029, type: 3}
   haveToWaitMoreTimeText: {fileID: 3771758476958319216, guid: 7222020ad4c347444b6c0cfc86ea494e, type: 3}
   spawnCostText: {fileID: 0}
   _spawnPosition: {fileID: 0}

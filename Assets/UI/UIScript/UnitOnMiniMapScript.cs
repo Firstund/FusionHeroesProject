@@ -6,6 +6,11 @@ public class UnitOnMiniMapScript : MonoBehaviour
 {
     private MapSliderScript mapSliderScript = null;
     private RectTransform thisRectTransform = null;
+    private GameObject _targetObject = null;
+    public GameObject targetObject
+    {
+        set{_targetObject = value;}
+    }
     [SerializeField]
     private Transform _targetUnitTrm = null;
     public Transform targetUnitTrm
@@ -22,6 +27,7 @@ public class UnitOnMiniMapScript : MonoBehaviour
 
     void Update()
     {
+        
         if(targetUnitTrm != null){
             
         Vector2 a = targetUnitTrm.localPosition;  
@@ -29,6 +35,8 @@ public class UnitOnMiniMapScript : MonoBehaviour
         a.x = (a.x) * (1000f / mapSliderScript.maxCameraPosition) - 7.5f;
 
         thisRectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, a.x, thisRectTransform.rect.width);
+
+        gameObject.SetActive(_targetObject.active);
         }
         else
         {

@@ -5,10 +5,11 @@ using UnityEngine;
 public class EnemySpawnScript : MonoBehaviour
 {
     private GameManager gameManager = null;
+    private EnemyPooling poolManager = null;
     private Transform spawnPosition = null;
 
     [SerializeField]
-    private GameObject spawnObject = null;
+    private EnemyScript spawnThis = null;
 
     // 이 스크립트를 유닛들이 우려먹을 수 있도록 바꾸기
     private float objAtLeastDelay = 0f;
@@ -31,6 +32,8 @@ public class EnemySpawnScript : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.Instance;
+        poolManager = FindObjectOfType<EnemyPooling>();
+
         spawnPosition = gameManager.GetEnemyUnitSpawnPosition();
 
         objAtLeastDelay = minusObjDelayPerCurrentStage * 0f;
@@ -65,8 +68,13 @@ public class EnemySpawnScript : MonoBehaviour
                 yield return new WaitForSeconds(spawnDelay);
 
                 if (gameManager.GetSaveData().currentStage >= spawnStartStage && gameManager.GetSaveData().currentStage <= endSpawnStage)
-                    Instantiate(spawnObject, a, Quaternion.identity);
-                    
+                {
+                    if (!poolManager.Go(spawnThis.GetUnitID()))
+                    {
+                        Instantiate(spawnThis.gameObject, a, Quaternion.identity);
+                    }
+                }
+
                 objSpawned = false;
             }
         }

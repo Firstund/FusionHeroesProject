@@ -310,6 +310,7 @@ MonoBehaviour:
   projectionSpawnPosition: {fileID: 4139820892844346896}
   slider: {fileID: 4139820893950725646}
   _shortestScript: {fileID: 0}
+  unitId: 104
   LShortestEnemyScript: {fileID: 0}
   strongest1Script: {fileID: 0}
   audi: {fileID: 0}

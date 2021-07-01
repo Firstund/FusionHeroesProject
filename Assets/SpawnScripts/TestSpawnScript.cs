@@ -7,6 +7,7 @@ public class TestSpawnScript : MonoBehaviour
 {
     StageManager stageManager = null;
     GameManager gameManager = null;
+    UnitPooling poolManager = null;
     [SerializeField]
     private int startSpawnStage = 0;
     private bool canSpawnIt = true;
@@ -18,7 +19,7 @@ public class TestSpawnScript : MonoBehaviour
     private GameObject uCannotSpawnItYetText = null;
 
     [SerializeField]
-    private GameObject spawnThis = null;
+    private UnitScript spawnThis = null;
     [SerializeField]
     private GameObject haveToWaitMoreTimeText = null;
     [SerializeField]
@@ -50,6 +51,8 @@ public class TestSpawnScript : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         stageManager = FindObjectOfType<StageManager>();
+        poolManager = FindObjectOfType<UnitPooling>();
+
         spawnPosition = gameManager.GetUnitSpawnPosition();
         spawnCostText = transform.GetChild(1).GetComponent<Text>();
     }
@@ -77,11 +80,11 @@ public class TestSpawnScript : MonoBehaviour
                 thisUpgradePannel.SetActive(true);
             }
         }
-        else if(iconImage == null)
+        else if (iconImage == null)
         {
             Debug.LogError($"{this}.iconImage is null");
         }
-        else if(thisUpgradePannel == null)
+        else if (thisUpgradePannel == null)
         {
             Debug.LogError($"{this}.thisUpgradePannel is null");
         }
@@ -98,7 +101,10 @@ public class TestSpawnScript : MonoBehaviour
                 gameManager.SetMoney(money);
                 Vector2 a = spawnPosition.position;
                 a.x -= 0.1f;
-                Instantiate(spawnThis, a, Quaternion.identity);
+                if (!poolManager.Go(spawnThis.GetUnitID()))
+                {
+                    Instantiate(spawnThis.gameObject, a, Quaternion.identity);
+                }
                 respawnMaxTime = nextTimeToSpawn - Time.time;
                 respawnCurTime = 0f;
                 canSpawnAgain = false;
@@ -111,6 +117,7 @@ public class TestSpawnScript : MonoBehaviour
             {
                 Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
             }
+
         }
         else
         {

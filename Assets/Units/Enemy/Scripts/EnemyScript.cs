@@ -10,6 +10,7 @@ public class EnemyScript : MonoBehaviour
     private FusionManager fusionManager = null;
     private StageManager stageManager = null;
     private GameManager gameManager = null;
+    private EnemyPooling poolManager = null;
 
     [SerializeField]
     private bool _isStopByEnemy = true;
@@ -20,6 +21,7 @@ public class EnemyScript : MonoBehaviour
 
     [SerializeField]
     private UnitOnMiniMapScript unitOnMiniMap = null;
+    private GameObject _unitOnMiniMap = null;
     [SerializeField]
     private GameObject projection = null;
     [SerializeField]
@@ -29,6 +31,9 @@ public class EnemyScript : MonoBehaviour
     private Slider slider = null;
     [SerializeField]
     private UnitScript _shortestScript = null;
+
+    [SerializeField]
+    private int unitId = 01; // 적용 공식은 UnitScript와 동일
     public UnitScript shortestScript
     {
         get { return _shortestScript; }
@@ -164,26 +169,44 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         stageManager = FindObjectOfType<StageManager>();
-        fusionManager.SetEnemyUnitNum(thisUnitNum = fusionManager.GetEnemyUnitNum() + 1);
-
-        fusionManager.SetEnemyUnitNO(thisUnitNO = fusionManager.GetEnemyUnitNO() + 1d);
+        poolManager = FindObjectOfType<EnemyPooling>();
 
         firstHeart = heart;
         firstAp = ap;
         firstDp = dp;
         firstStopByObjectDistance = stopByObjectDistance;
 
+        _unitOnMiniMap = Instantiate(unitOnMiniMap.gameObject, GameObject.Find("MapSlider").transform);
+
+        UnitOnMiniMapScript unitOnMiniMapScript = _unitOnMiniMap.GetComponent<UnitOnMiniMapScript>();
+
+        unitOnMiniMapScript.targetObject = gameObject;
+        unitOnMiniMapScript.targetUnitTrm = gameObject.transform;
+
+        SpawnSet();
+    }
+
+    public void SpawnSet()
+    {
+        isDead = false;
+
+        gameObject.transform.position = gameManager.GetEnemyUnitSpawnPosition().position;
+
+        _unitOnMiniMap.SetActive(true);
+
+        PlusEnemyNum();
+
         setStat();
         SetDistanceArrayIndex();
 
-
         SetMaxHealth();
+    }
 
-        GameObject _unitOnMiniMap = null;
+    private void PlusEnemyNum()
+    {
+        fusionManager.SetEnemyUnitNum(thisUnitNum = fusionManager.GetEnemyUnitNum() + 1);
 
-        _unitOnMiniMap = Instantiate(unitOnMiniMap.gameObject, GameObject.Find("MapSlider").transform);
-        _unitOnMiniMap.GetComponent<UnitOnMiniMapScript>().targetUnitTrm = this.gameObject.transform;
-
+        fusionManager.SetEnemyUnitNO(thisUnitNO = fusionManager.GetEnemyUnitNO() + 1d);
     }
 
     void Update()
@@ -256,6 +279,10 @@ public class EnemyScript : MonoBehaviour
     {
         return dp;
 
+    }
+    public int GetUnitID()
+    {
+        return unitId;
     }
     public void SetHP(float he)
     {
@@ -653,16 +680,27 @@ public class EnemyScript : MonoBehaviour
         FirstODSet();
         if (fusionManager.GetUnitNum() > 0)
         {
-            for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
+            int a = 0;
+            foreach (var item in fusionManager.unitScript)
             {
-                objectDistanceArray[a + 1] = Vector2.Distance(fusionManager.unitScript[a].GetCurrentPosition(), currentPosition);
-
-                if (objectDistanceArray[a + 1] < shortestDistance && fusionManager.unitScript[a].GetCurrentPosition().x <= currentPosition.x + 0.5f)
+                try
                 {
-                    shortestDistance = objectDistanceArray[a + 1];
-                    _ShortestScript = fusionManager.unitScript[a];
-                    buildingIsShortest = false;
+                    objectDistanceArray[a] = Vector2.Distance(item.GetCurrentPosition(), currentPosition);
+
+                    if (objectDistanceArray[a] < shortestDistance && item.GetCurrentPosition().x <= currentPosition.x + 0.5f)
+                    {
+                        shortestDistance = objectDistanceArray[a];
+                        _ShortestScript = item;
+                        buildingIsShortest = false;
+                    }
                 }
+                catch (System.IndexOutOfRangeException)
+                {
+                    break;
+                }
+
+                a++;
+
             }
             shortestScript = _ShortestScript;
         }
@@ -681,23 +719,33 @@ public class EnemyScript : MonoBehaviour
         FirstEDSet();
         if (fusionManager.GetEnemyUnitNum() > 0)
         {
-            for (int a = 0; a < fusionManager.GetEnemyUnitNum() - 1; a++)
+            int a = 0;
+            foreach (var item in fusionManager.enemyScript)
             {
-                enemyObjectDistanceArray[a + 1] = Vector2.Distance(fusionManager.enemyScript[a].GetCurrentPosition(), currentPosition);
-
-                if (fusionManager.enemyScript[a].GetThisUnitNO() < thisUnitNO) // unitScript에도 이거 적용할것
+                try
                 {
-                    if (enemyObjectDistanceArray[a + 1] < LShortestForwardDistance)
+                    a++;
+
+                    enemyObjectDistanceArray[a] = Vector2.Distance(item.GetCurrentPosition(), currentPosition);
+
+                    if (item.GetThisUnitNO() < thisUnitNO) // unitScript에도 이거 적용할것
                     {
-                        LShortestForwardDistance = enemyObjectDistanceArray[a + 1];
-                        _LShortestEnemyScript = fusionManager.enemyScript[a];
-                        shortestForwardDistance = LShortestForwardDistance;
-                        shortestForwardIsSet = true;
+                        if (enemyObjectDistanceArray[a] < LShortestForwardDistance)
+                        {
+                            LShortestForwardDistance = enemyObjectDistanceArray[a];
+                            _LShortestEnemyScript = item;
+                            shortestForwardDistance = LShortestForwardDistance;
+                            shortestForwardIsSet = true;
+                        }
+                    }
+                    if (!shortestForwardIsSet)
+                    {
+                        shortestForwardDistance = 10f;
                     }
                 }
-                if (!shortestForwardIsSet)
+                catch (System.IndexOutOfRangeException)
                 {
-                    shortestForwardDistance = 10f;
+                    break;
                 }
             }
 
@@ -739,7 +787,9 @@ public class EnemyScript : MonoBehaviour
 
         fusionManager.SetCanSetScripts();
 
-        Destroy(gameObject);
+        poolManager.enemies.Add(this);
+
+        gameObject.SetActive(false);
     }
     public AudioSource GetAudi()
     {
