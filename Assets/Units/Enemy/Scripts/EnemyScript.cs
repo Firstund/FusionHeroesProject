@@ -64,10 +64,6 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     private float damageDistance = 5f;
     // private int stopByObjectDistance = 0;
-    [SerializeField]
-    private float minimumD = 0f;
-    [SerializeField]
-    private float maximumD = 3f;
 
     [SerializeField]
     private float heart = 100f;
@@ -122,11 +118,12 @@ public class EnemyScript : MonoBehaviour
     private float shortestForwardDistance = 10f;
     private float shortestEnemyDistance = 10f;
 
-    private bool _attackedCheck = false;
-    public bool attackedCheck
+    [SerializeField]
+    private bool _canAttack = false;
+    public bool canAttack
     {
-        get { return _attackedCheck; }
-        set { _attackedCheck = value; }
+        get { return _canAttack; }
+        set { _canAttack = value; }
     }
     private bool _attackAnimIsPlaying = false;
     public bool attackAnimIsPlaying
@@ -189,6 +186,8 @@ public class EnemyScript : MonoBehaviour
     public void SpawnSet()
     {
         isDead = false;
+        attackAnimIsPlaying = false;
+        canAttack = true;
 
         gameObject.transform.position = gameManager.GetEnemyUnitSpawnPosition().position;
 
@@ -304,12 +303,12 @@ public class EnemyScript : MonoBehaviour
     }
     public void AttackedCheck(float time)
     {
-        attackedCheck = true;
+        canAttack =false;
         StartCoroutine(ReTrue(time));
     }
     public bool GetAttackedCheck()
     {
-        return attackedCheck;
+        return canAttack;
     }
     private void Move()
     {
@@ -378,7 +377,7 @@ public class EnemyScript : MonoBehaviour
     private IEnumerator ReTrue(float time)
     {
         yield return new WaitForSeconds(time);
-        attackedCheck = false;
+        canAttack = true;
     }
     private void Attack()
     {
@@ -387,9 +386,9 @@ public class EnemyScript : MonoBehaviour
         {
             if (strongest1Script == null)
             {
-                if (!attackedCheck)
+                if (canAttack)
                 {
-                    attackedCheck = true;
+                    canAttack = false;
                     attackAnimIsPlaying = true;
 
                     if (!isDead)
@@ -406,9 +405,9 @@ public class EnemyScript : MonoBehaviour
                 }
             }
             else if (!strongest1Script.GetSkillUsed())
-                if (!attackedCheck)
+                if (canAttack)
                 {
-                    attackedCheck = true;
+                    canAttack = false;
                     attackAnimIsPlaying = true;
 
                     if (!isDead)
@@ -444,14 +443,15 @@ public class EnemyScript : MonoBehaviour
             }
             else
             {
-                attackedCheck = true;
+                canAttack = false;
 
                 if (buildingIsShortest)
                 {
                     BuildingAttack();
                 }
 
-                for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
+                int a = 0;
+                foreach (var item in fusionManager.unitScript)
                 {
                     if (objectDistanceArray[a] < maximumD && objectDistanceArray[a] >= minimumD)//minimum, maxism attackDistance를 이용하여 공격 범위 설정가능
                     {
@@ -470,6 +470,8 @@ public class EnemyScript : MonoBehaviour
 
                         fusionManager.unitScript[a].SetHP(heart);
                     }
+
+                    a++;
                 }
             }
         }
@@ -514,14 +516,14 @@ public class EnemyScript : MonoBehaviour
                 BuildingAttack();
             }
 
-            for (int a = 0; a < fusionManager.GetUnitNum() - 1; a++)
+            foreach (var item in fusionManager.unitScript)
             {
-                float distance = Vector2.Distance(projection.position, fusionManager.unitScript[a].transform.position);
+                float distance = Vector2.Distance(projection.position, item.transform.position);
 
                 if (distance < maximumD && distance >= minimumD)//minimum, maxism damageDistance를 이용하여 공격 범위 설정가능
                 {
-                    float dp = fusionManager.unitScript[a].getD();
-                    float heart = fusionManager.unitScript[a].getHe();
+                    float dp = item.getD();
+                    float heart = item.getHe();
 
                     totalAtk = (ap - dp);
 
@@ -533,7 +535,7 @@ public class EnemyScript : MonoBehaviour
 
                     heart -= totalAtk;
 
-                    fusionManager.unitScript[a].SetHP(heart);
+                    item.SetHP(heart);
                 }
             }
         }
@@ -565,7 +567,7 @@ public class EnemyScript : MonoBehaviour
 
     public void ResetAttackedCheck()
     {
-        attackedCheck = false;
+        canAttack = true;
     }
     public void ResetAttackAnimIsPlaying()
     {
@@ -619,7 +621,7 @@ public class EnemyScript : MonoBehaviour
         {
             //광역공격
 
-            attackedCheck = true;
+            canAttack = false;
 
             yield return new WaitForSeconds(attackDelay);
             SetObjectDistanceArray();

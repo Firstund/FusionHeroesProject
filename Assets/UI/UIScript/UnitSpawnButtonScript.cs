@@ -10,7 +10,7 @@ public class UnitSpawnButtonScript : MonoBehaviour
     private List<int> unitSpawnCosts;
     void Start()
     {
-        for (int i = 0; i < transform.GetChildCount(); i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             unitSpawnButtons.Add(transform.GetChild(i));
         }

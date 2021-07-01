@@ -129,16 +129,16 @@ public class StageManager : MonoBehaviour
 
         saveData.maxStatLev = 5 + 5 * (saveData.maxReachedStage / 10);
 
-        for (int i = 0; i < fusionManager.unitScript.Length; i++)
+        foreach(var item in fusionManager.unitScript)
         {
-            Destroy(fusionManager.unitScript[i].gameObject);
+            item.Destroye();
         }
 
         fusionManager.unitScript = new UnitScript[0];
         fusionManager.SetUnitNum(1);
-        for (int i = 0; i < fusionManager.enemyScript.Length; i++)
+        foreach(var item in fusionManager.enemyScript)
         {
-            Destroy(fusionManager.enemyScript[i].gameObject);
+            item.Destroye();
         }
         fusionManager.enemyScript = new EnemyScript[0];
         fusionManager.SetEnemyUnitNum(1);

@@ -120,15 +120,6 @@ public class GameManager : MonoBehaviour
         set { _mousePosition = value; }
     }
     [SerializeField]
-    private RectTransform canvasTrm = null;
-    [SerializeField]
-    private float _halfViewportSizeX = 0f;
-    public float halfViewportSizeX
-    {
-        get { return _halfViewportSizeX; }
-        set { _halfViewportSizeX = value; }
-    }
-    [SerializeField]
     private bool canTimeStop = true;
     [SerializeField]
     private bool canTimeDouble = true;

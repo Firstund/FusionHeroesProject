@@ -19,8 +19,6 @@ public class ProjectionScript : MonoBehaviour
 
     [SerializeField]
     private bool isPlayerProjection = true;
-    [SerializeField]
-    private bool isAttackOne = true;
 
     [SerializeField]
     private float speed = 1f;

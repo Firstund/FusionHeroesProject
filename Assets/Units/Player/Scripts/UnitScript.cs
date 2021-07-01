@@ -229,6 +229,7 @@ public class UnitScript : MonoBehaviour
         get { return _canAttack; }
         set { _canAttack = value; }
     }
+    [SerializeField]
     private bool _attackAnimIsPlaying = false;
     public bool attackAnimIsPlaying
     {
@@ -243,6 +244,7 @@ public class UnitScript : MonoBehaviour
     }
     private bool mouseCheck = false;
     private bool followingMouse = false;
+    [SerializeField]
     private bool _isDead = false;
     public bool isDead
     {
@@ -304,6 +306,8 @@ public class UnitScript : MonoBehaviour
     public void SpawnSet()
     {
         _isDead = false;
+        attackAnimIsPlaying = false;
+        canAttack = true;
 
         gameObject.transform.position = gameManager.GetUnitSpawnPosition().position;
 
@@ -429,30 +433,31 @@ public class UnitScript : MonoBehaviour
                 }
 
                 int a = 0;
-                foreach(var item in fusionManager.enemyScript)
+                foreach (var item in fusionManager.enemyScript)
                 {
-                    try{
-                    if (enemyObjectDistanceArray[a] < maximumD && enemyObjectDistanceArray[a] >= minimumD)//minimum, maxism attackDistance를 이용하여 공격 범위 설정가능
+                    try
                     {
-                        float dp = item.getD();
-                        float heart = item.getHe();
-
-                        totalAtk = (ap - dp);
-
-                        if (totalAtk <= 0f)
+                        if (enemyObjectDistanceArray[a] < maximumD && enemyObjectDistanceArray[a] >= minimumD)//minimum, maxism attackDistance를 이용하여 공격 범위 설정가능
                         {
-                            totalAtk = 0.2f;
+                            float dp = item.getD();
+                            float heart = item.getHe();
+
+                            totalAtk = (ap - dp);
+
+                            if (totalAtk <= 0f)
+                            {
+                                totalAtk = 0.2f;
+                            }
+
+
+                            heart -= totalAtk;
+
+                            item.SetHP(heart);
                         }
 
-
-                        heart -= totalAtk;
-
-                        item.SetHP(heart);
+                        a++;
                     }
-
-                    a++;
-                    }
-                    catch(System.IndexOutOfRangeException)
+                    catch (System.IndexOutOfRangeException)
                     {
                         break;
                     }
@@ -487,7 +492,7 @@ public class UnitScript : MonoBehaviour
                 BuildingAttack();
             }
 
-            foreach(var item in fusionManager.enemyScript)
+            foreach (var item in fusionManager.enemyScript)
             {
                 float distance = Vector2.Distance(projection.position, item.transform.position);
 
