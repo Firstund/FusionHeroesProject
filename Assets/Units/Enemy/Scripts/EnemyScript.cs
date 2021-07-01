@@ -151,9 +151,7 @@ public class EnemyScript : MonoBehaviour
     void Awake()
     {
         gameObject.transform.SetParent(GameObject.Find("EnemyUnits").gameObject.transform, true);
-        fusionManager = FindObjectOfType<FusionManager>();
-
-        fusionManager.SetCanSetScripts();
+        
 
         gameManager = GameManager.Instance;
 
@@ -167,6 +165,7 @@ public class EnemyScript : MonoBehaviour
     {
         stageManager = FindObjectOfType<StageManager>();
         poolManager = FindObjectOfType<EnemyPooling>();
+        fusionManager = FindObjectOfType<FusionManager>();
 
         firstHeart = heart;
         firstAp = ap;
@@ -190,6 +189,8 @@ public class EnemyScript : MonoBehaviour
         canAttack = true;
 
         gameObject.transform.position = gameManager.GetEnemyUnitSpawnPosition().position;
+        
+        fusionManager.SetCanSetScripts();
 
         _unitOnMiniMap.SetActive(true);
 
@@ -685,6 +686,8 @@ public class EnemyScript : MonoBehaviour
             int a = 0;
             foreach (var item in fusionManager.unitScript)
             {
+                a++;
+
                 try
                 {
                     objectDistanceArray[a] = Vector2.Distance(item.GetCurrentPosition(), currentPosition);
@@ -700,8 +703,6 @@ public class EnemyScript : MonoBehaviour
                 {
                     break;
                 }
-
-                a++;
 
             }
             shortestScript = _ShortestScript;

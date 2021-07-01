@@ -268,10 +268,6 @@ public class UnitScript : MonoBehaviour
 
         firstUnitClickableRange = unitClickableRange;
 
-        fusionManager = FindObjectOfType<FusionManager>();
-
-        fusionManager.SetCanSetScripts();
-
         anim = GetComponent<Animator>();
         audi = GetComponent<AudioSource>();
 
@@ -283,14 +279,14 @@ public class UnitScript : MonoBehaviour
 
     void Start()
     {
+        fusionManager = FindObjectOfType<FusionManager>();
+
         stageManager = FindObjectOfType<StageManager>();
         poolManager = FindObjectOfType<UnitPooling>();
 
         levelText = Lev.GetComponent<TextMesh>();
 
         mapSliderScript = FindObjectOfType<MapSliderScript>();
-
-        SetDistanceArrayIndex();
 
         _unitOnMiniMap = Instantiate(unitOnMiniMap.gameObject, GameObject.Find("MapSlider").transform);
 
@@ -310,12 +306,15 @@ public class UnitScript : MonoBehaviour
         canAttack = true;
 
         gameObject.transform.position = gameManager.GetUnitSpawnPosition().position;
+        
+        fusionManager.SetCanSetScripts();
 
         _unitOnMiniMap.SetActive(true);
 
         PlusUnitNum();
 
         setStat();
+        SetDistanceArrayIndex();
 
         SetMaxHealth();
         FusionCheck();
