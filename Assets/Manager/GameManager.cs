@@ -85,13 +85,6 @@ public class SaveData
         set{_maxMoneyLev = value;}
     }
     [SerializeField]
-    private int _maxPlusMoneySpeedLev = 10;
-    public int maxPlusMoneySpeedLev
-    {
-        get { return _maxPlusMoneySpeedLev; }
-        set { _maxPlusMoneySpeedLev = value; }
-    }
-    [SerializeField]
     private int _maxStatLev = 10; // 유닛의 업그레이드 최대레벨
     public int maxStatLev
     {
@@ -132,6 +125,7 @@ public class GameManager : MonoBehaviour
     }
     private static GameManager instance;
     private StageManager stageManager = null;
+    private AdsManager adsManager = null;
     [SerializeField]
     private MapSliderScript mapSliderScript = null;
 
@@ -188,6 +182,13 @@ public class GameManager : MonoBehaviour
     private float maxMoneyUp = 1.5f;
     [SerializeField]
     private int maxMoneyUpPerLev = 30;
+    [SerializeField]
+    private int _maxPlusMoneySpeedLev = 10; // 업그레이드패널을 이용한 돈모으기 속도의 최대레벨
+    public int maxPlusMoneySpeedLev
+    {
+        get { return _maxPlusMoneySpeedLev; }
+        set { _maxPlusMoneySpeedLev = value; }
+    }
 
     private int _hadMoney = 0; // 처음부터 끝까지 money를 하나도 안썼을 경우의 money의 양
     public int hadMoney
@@ -271,6 +272,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        adsManager = FindObjectOfType<AdsManager>();
         stageManager = FindObjectOfType<StageManager>();
         firstGetMoneyUpgradeCost = getMoneyUpgradeCost;
         firstMaxMoney = maxMoney;
@@ -419,9 +421,9 @@ public class GameManager : MonoBehaviour
     }
     private void TimeSet()
     {
-        if (!canTimeStop)
+        if (!canTimeStop || adsManager.adsIsShowing)
             Time.timeScale = 0;
-        else if (!canTimeDouble) // canTimeDouble이 false일 때만 Time.timeScale = 0;이 작동한다. 왜지?
+        else if (!canTimeDouble)
             Time.timeScale = 2;
         else
             Time.timeScale = 1;

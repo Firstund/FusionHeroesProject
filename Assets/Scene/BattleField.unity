@@ -7375,7 +7375,7 @@ Transform:
   - {fileID: 890517452}
   - {fileID: 1554877754}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &261559193
 GameObject:
@@ -10877,6 +10877,7 @@ MonoBehaviour:
   _notEnoughMoneyText: {fileID: 3771758476958319216, guid: 30b0d7f633015434991817835a27f805, type: 3}
   _saveDoneText: {fileID: 3771758476958319216, guid: 1748667cf272c9e4e8897d6ab30429d9, type: 3}
   _maxLevelText: {fileID: 3771758476958319216, guid: 283e3117abc214448b25b07389e85f5c, type: 3}
+  _maxPlusMoneyLevelText: {fileID: 3771758476958319216, guid: 72b3b6f528280c449bbaeccca9244af5, type: 3}
   stageClearScript: {fileID: 783232957}
   stageText: {fileID: 724269586}
   currentStage: 1
@@ -29802,7 +29803,6 @@ MonoBehaviour:
     - 0
     _plusMoneySpeedLev: 0
     _maxMoneyLev: 0
-    _maxPlusMoneySpeedLev: 8
     _maxStatLev: 10
     _maxFusionLev: 5
 --- !u!4 &1076641387
@@ -37341,7 +37341,7 @@ Transform:
   - {fileID: 1049579100}
   - {fileID: 1137522774}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1318680673
 GameObject:
@@ -41923,7 +41923,7 @@ Transform:
   - {fileID: 1164809939}
   - {fileID: 1940142426}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1512231523
 GameObject:
@@ -43878,6 +43878,49 @@ MonoBehaviour:
   nextPanel: {fileID: 1966513754}
   endUpgradePannelSprite: {fileID: 1504884045963789781, guid: a1b6a61e8d12ae542b838a86ea8453ef, type: 3}
   middleUpgradePannelSprite: {fileID: -5806981370608260711, guid: a1b6a61e8d12ae542b838a86ea8453ef, type: 3}
+--- !u!1 &1584433044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1584433046}
+  - component: {fileID: 1584433045}
+  m_Layer: 0
+  m_Name: AdsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1584433045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584433044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8257fbae8fda5da478540021d701f3d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1584433046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584433044}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.708149, y: -1.7087309, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1585017393
 GameObject:
   m_ObjectHideFlags: 0
@@ -45698,7 +45741,6 @@ MonoBehaviour:
     - 0
     _plusMoneySpeedLev: 0
     _maxMoneyLev: 0
-    _maxPlusMoneySpeedLev: 10
     _maxStatLev: 10
     _maxFusionLev: 5
   goldText: {fileID: 626100252}
@@ -45706,6 +45748,7 @@ MonoBehaviour:
   _maxMoney: 50
   maxMoneyUp: 1.5
   maxMoneyUpPerLev: 10
+  _maxPlusMoneySpeedLev: 50
   _plusMoneyTime: 0.6
   totalPlusMoneyTime: 0
   _getMoneyUpgradeLev: 0
@@ -48633,7 +48676,7 @@ Transform:
   m_LocalScale: {x: 1.4818841, y: 2.0611916, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1717231420
 GameObject:

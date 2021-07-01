@@ -7,6 +7,7 @@ public class StageClearScript : PopUpScaleScript
 {
     [SerializeField]
     private StageManager stageManager;
+    private AdsManager adsManager = null;
     [SerializeField]
     private Text clearText = null;
     [SerializeField]
@@ -28,6 +29,8 @@ public class StageClearScript : PopUpScaleScript
     void Start()
     {
         stageManager = FindObjectOfType<StageManager>();
+        adsManager = FindObjectOfType<AdsManager>();
+
         PlusStart();
         saveData = gameManager.GetSaveData();
         SetText();
@@ -36,7 +39,7 @@ public class StageClearScript : PopUpScaleScript
     {
         SetScale();
 
-        if(gameManager.GetCST())
+        if (gameManager.GetCST())
             SetText();
 
         if (saveData != gameManager.GetSaveData())
@@ -47,18 +50,19 @@ public class StageClearScript : PopUpScaleScript
     private void SetText()
     {
         clearTimeText.text = "걸린 시간: " + (long)stageManager.t + "초";
-        useMoneyText.text = "사용한 Money: " +(gameManager.hadMoney - gameManager.GetMoney());
+        useMoneyText.text = "사용한 Money: " + (gameManager.hadMoney - gameManager.GetMoney());
         killedEnemyUnitText.text = "죽인 유닛의 수: " + stageManager.killedEnemyUnitNum;
         deathPlayerUnitText.text = "죽은 유닛의 수: " + stageManager.deathPlayerUnitNum;
 
         if (gameClear)
         {
-            if(saveData.currentStage <= 0)
+            if (saveData.currentStage <= 0)
             {
                 clearText.text = "TutorialStage Clear!";
             }
-            else{
-            clearText.text = "Stage" + stageManager.GetCurrentStage() + " Clear!";
+            else
+            {
+                clearText.text = "Stage" + stageManager.GetCurrentStage() + " Clear!";
             }
 
             plusGoldText.text = "+" + (plusGold + (stageManager.GetCurrentStage() * (plusGold / 2)));
@@ -66,7 +70,7 @@ public class StageClearScript : PopUpScaleScript
         else
         {
             clearText.text = "GameOver";
-             plusGoldText.text = "+0";
+            plusGoldText.text = "+0";
         }
     }
     public void SetGameClear(bool a)
@@ -77,12 +81,20 @@ public class StageClearScript : PopUpScaleScript
     {
         if (gameClear)
         {
+            int showAdsNum = Random.Range(1, 10);
+            
+            if(showAdsNum == 5)
+            {
+                adsManager.ShowAds();
+            }
+            
+
             saveData.gold += (plusGold + (stageManager.GetCurrentStage() * (plusGold / 2)));
 
             int a = stageManager.GetCurrentStage();
             stageManager.SetCurrentStage(a + 1);
 
-            if(stageManager.GetCurrentStage() > saveData.maxReachedStage)
+            if (stageManager.GetCurrentStage() > saveData.maxReachedStage)
             {
                 saveData.maxReachedStage = stageManager.GetCurrentStage();
             }

@@ -76,9 +76,9 @@ public class StatUpScript : MonoBehaviour
         {
             saveData.unitDpLev[unitStatIndex] = saveData.maxStatLev;
         }
-        if (saveData.plusMoneySpeedLev > saveData.maxPlusMoneySpeedLev)
+        if (saveData.plusMoneySpeedLev > gameManager.maxPlusMoneySpeedLev)
         {
-            saveData.plusMoneySpeedLev = saveData.maxPlusMoneySpeedLev;
+            saveData.plusMoneySpeedLev = gameManager.maxPlusMoneySpeedLev;
         }
     }
 
@@ -122,7 +122,18 @@ public class StatUpScript : MonoBehaviour
     private void SetTexts(int unitStatLev, float unitStat, bool hasThirdText, string thirdText)
     {
         upgradeCost = firstUpgradeCost + (firstUpgradeCost / 2) * unitStatLev;
-        texts[0].text = "현재 레벨: " + unitStatLev;
+
+        if (statName == "plusMoney" && unitStatLev >= gameManager.maxPlusMoneySpeedLev)
+        {  
+            texts[0].text = "현재 레벨: MAX";
+
+        }
+        else
+        {
+            texts[0].text = "현재 레벨: " + unitStatLev;
+
+        }
+
         texts[1].text = "필요한      : " + upgradeCost;
 
         if (hasThirdText)
@@ -159,7 +170,15 @@ public class StatUpScript : MonoBehaviour
                 saveData.maxFusionLev = UpgradeStat(saveData.maxFusionLev);
                 break;
             case "plusMoney":
-                saveData.plusMoneySpeedLev = UpgradeStat(saveData.plusMoneySpeedLev);
+                if(saveData.plusMoneySpeedLev < gameManager.maxPlusMoneySpeedLev)
+                {
+                    saveData.plusMoneySpeedLev = UpgradeStat(saveData.plusMoneySpeedLev);
+                }
+                else
+                {
+                    Instantiate(stageManager.maxPlusMoneyLevelText, stageManager.textSpawnPosition);
+                }
+
                 break;
             case "maxMoney":
                 saveData.maxMoneyLev = UpgradeStat(saveData.maxMoneyLev);
@@ -180,17 +199,17 @@ public class StatUpScript : MonoBehaviour
             unitStatLev++;
             if (currentUnit != null)
             {
-                switch(statName)
+                switch (statName)
                 {
                     case "ap":
                         saveData.ap[unitStatIndex] = currentUnitStat + unitStatLev * currentUnitStatUpPerLev;
-                    break;
+                        break;
                     case "dp":
                         saveData.dp[unitStatIndex] = currentUnitStat + unitStatLev * currentUnitStatUpPerLev;
-                    break;
+                        break;
                     case "heart":
                         saveData.heart[unitStatIndex] = currentUnitStat + unitStatLev * currentUnitStatUpPerLev;
-                    break;
+                        break;
                 }
             }
         }
@@ -198,7 +217,7 @@ public class StatUpScript : MonoBehaviour
         {
             unitStatLev = saveData.maxStatLev;
         }
-        else if(unitStatLev < saveData.maxStatLev)
+        else if (unitStatLev < saveData.maxStatLev)
         {
             Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
         }
@@ -215,12 +234,13 @@ public class StatUpScript : MonoBehaviour
         {
             saveData.gold -= upgradeCost;
             unitStatLev++;
+            Debug.Log(unitStatLev);
         }
         else if (unitStatLev > saveData.maxStatLev)
         {
             unitStatLev = saveData.maxStatLev;
         }
-        else if(unitStatLev < saveData.maxStatLev)
+        else if (unitStatLev < saveData.maxStatLev)
         {
             Instantiate(stageManager.notEnoughMoneyText, stageManager.textSpawnPosition);
         }

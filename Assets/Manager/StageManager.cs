@@ -36,6 +36,12 @@ public class StageManager : MonoBehaviour
         get { return _maxLevelText; }
     }
     [SerializeField]
+    private GameObject _maxPlusMoneyLevelText = null;
+    public GameObject maxPlusMoneyLevelText
+    {
+        get{return _maxPlusMoneyLevelText;}
+    }
+    [SerializeField]
     private StageClearScript stageClearScript = null;
 
     [SerializeField]
