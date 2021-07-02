@@ -119,15 +119,11 @@ public class StageManager : MonoBehaviour
         stageClearPopUp.SetActive(false);
         gameManager.SetCSt(true);
 
-        gameManager.Reset();
-
         fusionManager.enemyBuildingScript.Reset();
         fusionManager.buildingScript.Reset();
         
         fusionManager.SetUnitNO(0);
-        fusionManager.SetUnitNum(0);
         fusionManager.SetEnemyUnitNO(0);
-        fusionManager.SetEnemyUnitNum(0);
 
         useMoneyNum = 0;
         deathPlayerUnitNum = 0;
@@ -163,7 +159,7 @@ public class StageManager : MonoBehaviour
             }
         }
 
-
+        gameManager.Reset();
     }
     public void SetCurrentStage(int a)
     {

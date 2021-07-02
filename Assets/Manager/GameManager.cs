@@ -125,7 +125,6 @@ public class GameManager : MonoBehaviour
     }
     private static GameManager instance;
     private StageManager stageManager = null;
-    private AdsManager adsManager = null;
     [SerializeField]
     private MapSliderScript mapSliderScript = null;
 
@@ -272,7 +271,6 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        adsManager = FindObjectOfType<AdsManager>();
         stageManager = FindObjectOfType<StageManager>();
         firstGetMoneyUpgradeCost = getMoneyUpgradeCost;
         firstMaxMoney = maxMoney;
@@ -421,7 +419,7 @@ public class GameManager : MonoBehaviour
     }
     private void TimeSet()
     {
-        if (!canTimeStop || adsManager.adsIsShowing)
+        if (!canTimeStop)
             Time.timeScale = 0;
         else if (!canTimeDouble)
             Time.timeScale = 2;

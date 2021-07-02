@@ -7,7 +7,6 @@ public class StageClearScript : PopUpScaleScript
 {
     [SerializeField]
     private StageManager stageManager;
-    private AdsManager adsManager = null;
     [SerializeField]
     private Text clearText = null;
     [SerializeField]
@@ -29,7 +28,6 @@ public class StageClearScript : PopUpScaleScript
     void Start()
     {
         stageManager = FindObjectOfType<StageManager>();
-        adsManager = FindObjectOfType<AdsManager>();
 
         PlusStart();
         saveData = gameManager.GetSaveData();
@@ -81,15 +79,7 @@ public class StageClearScript : PopUpScaleScript
     {
         if (gameClear)
         {
-            int showAdsNum = Random.Range(1, 10);
-            
-            if(showAdsNum == 5)
-            {
-                adsManager.ShowAds();
-            }
-            
-
-            saveData.gold += (plusGold + (stageManager.GetCurrentStage() * (plusGold / 2)));
+            PlusGold();
 
             int a = stageManager.GetCurrentStage();
             stageManager.SetCurrentStage(a + 1);
@@ -99,5 +89,10 @@ public class StageClearScript : PopUpScaleScript
                 saveData.maxReachedStage = stageManager.GetCurrentStage();
             }
         }
+    }
+
+    public void PlusGold()
+    {
+        saveData.gold += (plusGold + (stageManager.GetCurrentStage() * (plusGold / 2)));
     }
 }
