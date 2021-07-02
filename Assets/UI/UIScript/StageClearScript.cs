@@ -8,6 +8,8 @@ public class StageClearScript : PopUpScaleScript
     [SerializeField]
     private StageManager stageManager;
     [SerializeField]
+    private GameObject doubleGoldBtn = null;
+    [SerializeField]
     private Text clearText = null;
     [SerializeField]
     private Text plusGoldText = null;
@@ -23,6 +25,8 @@ public class StageClearScript : PopUpScaleScript
     private bool gameClear = false;
     [SerializeField]
     private int plusGold = 1000;
+
+    private bool getGoldDouble = false;
 
 
     void Start()
@@ -64,11 +68,14 @@ public class StageClearScript : PopUpScaleScript
             }
 
             plusGoldText.text = "+" + (plusGold + (stageManager.GetCurrentStage() * (plusGold / 2)));
+            
+            doubleGoldBtn.SetActive(true);
         }
         else
         {
             clearText.text = "GameOver";
             plusGoldText.text = "+0";
+            doubleGoldBtn.SetActive(false);
         }
     }
     public void SetGameClear(bool a)
@@ -79,7 +86,15 @@ public class StageClearScript : PopUpScaleScript
     {
         if (gameClear)
         {
-            PlusGold();
+            if (!getGoldDouble)
+            {
+                saveData.gold += (plusGold + (stageManager.GetCurrentStage() * (plusGold / 2)));
+            }
+            else if (getGoldDouble)
+            {
+                saveData.gold += (plusGold + (stageManager.GetCurrentStage() * (plusGold / 2))) * 2;
+            }
+
 
             int a = stageManager.GetCurrentStage();
             stageManager.SetCurrentStage(a + 1);
@@ -88,11 +103,15 @@ public class StageClearScript : PopUpScaleScript
             {
                 saveData.maxReachedStage = stageManager.GetCurrentStage();
             }
+
+            getGoldDouble = false;
         }
     }
 
-    public void PlusGold()
+    public void PlusGoldDouble()
     {
-        saveData.gold += (plusGold + (stageManager.GetCurrentStage() * (plusGold / 2)));
+        getGoldDouble = true;
+        plusGoldText.text = "+" + (plusGold + (stageManager.GetCurrentStage() * (plusGold / 2))) * 2;
+
     }
 }

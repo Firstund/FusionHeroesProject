@@ -94,6 +94,7 @@ public class AdmobRewarded : MonoBehaviour
             "HandleRewardedAdRewarded event received for "
                         + amount.ToString() + " " + type);
 
-        stageClearScript.PlusGold();
+        stageClearScript.PlusGoldDouble();
+        gameObject.SetActive(false);
     }
 }
