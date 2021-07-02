@@ -1,26 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using GoogleMobileAds.Api;
 using GoogleMobileAds.Common;
 using System;
 
 public class AdmobRewarded : MonoBehaviour
 {
+    [SerializeField]
+    private Text text = null;
     private StageClearScript stageClearScript = null;
     private RewardedAd rewardedAd;
     void Start()
     {
+        
         stageClearScript = FindObjectOfType<StageClearScript>();
 
         string adUnitId;
-#if UNITY_ANDROID
-        adUnitId = "ca-app-pub-3940256099942544/5224354917";
-#elif UNITY_IPHONE
-            adUnitId = "ca-app-pub-3940256099942544/1712485313";
-#else
-            adUnitId = "unexpected_platform";
-#endif
+
+        adUnitId = "ca-app-pub-2035314174521668~5021375044";
+
+
+        MobileAds.Initialize(initStatus => {});
+
 
         this.rewardedAd = new RewardedAd(adUnitId);
 
