@@ -708,6 +708,8 @@ public class UnitScript : MonoBehaviour
 
         poolManager.units.Add(this);
 
+        gameObject.transform.position = gameManager.GetUnitSpawnPosition().position;
+
         gameObject.SetActive(false);
     }
     private void AttackCheck()
