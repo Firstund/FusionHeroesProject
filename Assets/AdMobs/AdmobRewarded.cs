@@ -19,7 +19,7 @@ public class AdmobRewarded : MonoBehaviour
 
         string adUnitId;
 
-        adUnitId = "ca-app-pub-2035314174521668~5021375044";
+        adUnitId = "ca-app-pub-3940256099942544/5224354917";
 
 
         MobileAds.Initialize(initStatus => {});
@@ -40,19 +40,22 @@ public class AdmobRewarded : MonoBehaviour
         // Called when the ad is closed.
         this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
 
-        AdRequest request = new AdRequest.Builder().Build();
-        this.rewardedAd.LoadAd(request);
+        loadRewardedVideoAd();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
     public void OnAdLoaded()
     {
         Debug.Log("Add");
+    }
+     private void loadRewardedVideoAd() 
+     {
+        AdRequest request = new AdRequest.Builder().Build();
+        this.rewardedAd.LoadAd(request);
     }
     public void UserChoseToWatchAd()
     {
@@ -87,6 +90,7 @@ public class AdmobRewarded : MonoBehaviour
     public void HandleRewardedAdClosed(object sender, EventArgs args)
     {
         MonoBehaviour.print("HandleRewardedAdClosed event received");
+        loadRewardedVideoAd(); 
     }
 
     public void HandleUserEarnedReward(object sender, Reward args)
