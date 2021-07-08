@@ -40,6 +40,8 @@ public class U_ChargerSkillScript : MonoBehaviour
         if (thisScript.shortestEnemyDistance <= thisScript.stopByEnemyDistance)
         {
             thisScript.speed = 0f;
+            isCharging = false;
+            thisScript.attackAnimIsPlaying = false;
         }
         else if (!canUseSkill)
         {
@@ -49,6 +51,7 @@ public class U_ChargerSkillScript : MonoBehaviour
         {
             thisScript.speed = thisScript.firstSpeed;
             isCharging = false;
+            thisScript.attackAnimIsPlaying = false;
         }
     }
     private void MoveBack()
@@ -56,12 +59,14 @@ public class U_ChargerSkillScript : MonoBehaviour
         if(thisScript.shortestEnemyDistance < stopByEnemy && isCharging && thisScript.shortestEnemyScript != null)
         {
             thisScript.shortestEnemyScript.MoveBack();
+            thisScript.GetDamage();
         }
     }
     private void Charge()
     {
         if (canUseSkill && !thisScript.buildingIsShortest)
         {
+            thisScript.attackAnimIsPlaying = true;
             canUseSkill = false;
             isCharging = true;
 
@@ -69,6 +74,7 @@ public class U_ChargerSkillScript : MonoBehaviour
             targetPosition.x += skillRange;
 
             thisScript.speed = skillMoveSpeed;
+            thisScript.anim.Play("DashR");
             thisScript.canSetSpeed = false;
 
             Invoke("SetCanUseSkill", skillDelay);
@@ -80,6 +86,7 @@ public class U_ChargerSkillScript : MonoBehaviour
         {
             thisScript.canSetSpeed = true;
             isCharging = false;
+            thisScript.attackAnimIsPlaying = false;
         }
     }
     private void SetCanUseSkill()
