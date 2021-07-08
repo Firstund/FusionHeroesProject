@@ -26,6 +26,8 @@ public class EnemyScript : MonoBehaviour
     private GameObject projection = null;
     [SerializeField]
     private Transform projectionSpawnPosition = null;
+    [SerializeField]
+    private Vector2 targetPosition = Vector2.zero;
 
     [SerializeField]
     private Slider slider = null;
@@ -87,6 +89,10 @@ public class EnemyScript : MonoBehaviour
     private float attackDelay = 2f;
     [SerializeField]
     private float speed = 0f;
+    [SerializeField]
+    private float moveBackSpeed = 5f;
+    [SerializeField]
+    private float moveBackDistance = 5f;
     private float firstSpeed = 0f;
     [SerializeField]
     private float totalAtk = 0f;
@@ -140,6 +146,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField]
     private bool isAttackOne = true;
     private bool isDead = false;
+    private bool canMoveBack = true;
     private bool _canSetSpeed = true;
     public bool canSetSpeed
     {
@@ -151,7 +158,7 @@ public class EnemyScript : MonoBehaviour
     void Awake()
     {
         gameObject.transform.SetParent(GameObject.Find("EnemyUnits").gameObject.transform, true);
-        
+
 
         gameManager = GameManager.Instance;
 
@@ -189,7 +196,7 @@ public class EnemyScript : MonoBehaviour
         canAttack = true;
 
         gameObject.transform.position = gameManager.GetEnemyUnitSpawnPosition().position;
-        
+
         fusionManager.SetCanSetScripts();
 
         _unitOnMiniMap.SetActive(true);
@@ -229,6 +236,7 @@ public class EnemyScript : MonoBehaviour
             }
 
             Move();
+            SetMoveBack();
             HealthBar();
             DestroyCheck();
         }
@@ -304,7 +312,7 @@ public class EnemyScript : MonoBehaviour
     }
     public void AttackedCheck(float time)
     {
-        canAttack =false;
+        canAttack = false;
         StartCoroutine(ReTrue(time));
     }
     public bool GetAttackedCheck()
@@ -333,7 +341,7 @@ public class EnemyScript : MonoBehaviour
             if (!attackAnimIsPlaying && !isDead)
                 anim.Play("WalkL");
 
-            if (shortestScript != null)
+            if (shortestScript != null && canSetSpeed)
                 if (shortestScript.getHe() <= 0f)
                 {
                     speed = 0f;
@@ -349,7 +357,7 @@ public class EnemyScript : MonoBehaviour
                 {
                     if ((shortestForwardDistance >= stopByEnemyDistance) && (shortestDistance > stopByObjectDistance) && canSetSpeed)
                         speed = firstSpeed;
-                    else
+                    else if (canSetSpeed)
                     {
                         speed = 0f;
                     }
@@ -358,7 +366,7 @@ public class EnemyScript : MonoBehaviour
                 {
                     if ((shortestDistance >= stopByObjectDistance) && canSetSpeed)
                         speed = firstSpeed;
-                    else
+                    else if (canSetSpeed)
                         speed = 0f;
                 }
             }
@@ -366,13 +374,32 @@ public class EnemyScript : MonoBehaviour
             {
                 if ((shortestDistance > stopByObjectDistance) && canSetSpeed)
                     speed = firstSpeed;
-                else
+                else if (canSetSpeed)
                     speed = 0f;
             }
 
             CheckHe();
 
             transform.Translate(Vector2.left * speed * Time.deltaTime);
+        }
+    }
+    private void SetMoveBack()
+    {
+        if (targetPosition.x <= currentPosition.x)
+        {
+            canSetSpeed = true;
+            canMoveBack = true;
+        }
+    }
+    public void MoveBack()
+    {
+        if (canMoveBack)
+        {
+            canSetSpeed = false;
+            canMoveBack = false;
+            speed = -moveBackSpeed;
+            targetPosition = currentPosition;
+            targetPosition.x += moveBackDistance;
         }
     }
     private IEnumerator ReTrue(float time)

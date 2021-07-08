@@ -122,7 +122,11 @@ public class UnitScript : MonoBehaviour
     }
     [SerializeField]
     private float attackDelay = 1f;
-    private float firstSpeed = 0f;
+    private float _firstSpeed = 0f;
+    public float firstSpeed
+    {
+        get { return _firstSpeed; }
+    }
     [SerializeField]
     private float totalAtk = 0f;
 
@@ -168,6 +172,7 @@ public class UnitScript : MonoBehaviour
     public bool isStopByObject
     {
         get { return _isStopByObject; }
+        set { _isStopByObject = value; }
     }
 
     [SerializeField]
@@ -204,15 +209,25 @@ public class UnitScript : MonoBehaviour
     [SerializeField]
     private float shortestBackwardDistance = 10f; // 넉백됬을 때 unitNO를 새로 설정해 줄 때 필요.
     [SerializeField]
-    private float stopByEnemyDistance = 1f;
+    private float _stopByEnemyDistance = 1f;
+    public float stopByEnemyDistance
+    {
+        get { return _stopByEnemyDistance; }
+        set { _stopByEnemyDistance = value; }
+    }
     [SerializeField]
     private float stopByObjectDistance = 1.5f;
     private float firstStopByEnemyDistance = 0f;
     [SerializeField]
     private UnitScript shortestForwardScript = null;
     private UnitScript shortestBackwardScript = null;
-
-    private float shortestEnemyDistance = 10f;
+    [SerializeField]
+    private float _shortestEnemyDistance = 10f;
+    public float shortestEnemyDistance
+    {
+        get { return _shortestEnemyDistance; }
+        set { _shortestEnemyDistance = value; }
+    }
     //
     private Vector2 currentPosition = new Vector2(100f, 100f);
 
@@ -263,7 +278,7 @@ public class UnitScript : MonoBehaviour
     void Awake()
     {
         gameObject.transform.SetParent(GameObject.Find("Units").gameObject.transform, true);
-        firstSpeed = speed;
+        _firstSpeed = speed;
         gameManager = GameManager.Instance;
 
         firstUnitClickableRange = unitClickableRange;
@@ -306,7 +321,7 @@ public class UnitScript : MonoBehaviour
         canAttack = true;
 
         gameObject.transform.position = gameManager.GetUnitSpawnPosition().position;
-        
+
         fusionManager.SetCanSetScripts();
 
         _unitOnMiniMap.SetActive(true);
@@ -745,7 +760,7 @@ public class UnitScript : MonoBehaviour
             {
                 if ((shortestForwardDistance > stopByObjectDistance) && (shortestEnemyDistance > stopByEnemyDistance) && canSetSpeed)
                     speed = firstSpeed;
-                else
+                else if (canSetSpeed)
                 {
                     speed = 0f;
                 }
@@ -754,7 +769,7 @@ public class UnitScript : MonoBehaviour
             {
                 if ((shortestEnemyDistance > stopByEnemyDistance) && canSetSpeed)
                     speed = firstSpeed;
-                else
+                else if (canSetSpeed)
                     speed = 0f;
             }
         }
@@ -762,7 +777,7 @@ public class UnitScript : MonoBehaviour
         {
             if ((shortestEnemyDistance > stopByEnemyDistance) && canSetSpeed)
                 speed = firstSpeed;
-            else
+            else if (canSetSpeed)
                 speed = 0f;
         }
 

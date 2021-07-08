@@ -575,6 +575,8 @@ MonoBehaviour:
   stopByEnemyDistance: 1.2
   stopByObjectDistance: 1.4
   shortestForwardScript: {fileID: 0}
+  _attackAnimIsPlaying: 0
+  _isDead: 0
   isAttackOne: 1
   isFollow: 0
 --- !u!114 &2947464873793322120
