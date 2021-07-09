@@ -15,6 +15,7 @@ public class StatUpScript : MonoBehaviour
     [SerializeField]
     private int unitId = 0; // 스탯을 볼 유닛의 ID를 지정
                             // 플레이어 건물은 0, 적 건물은 1로 지정
+    [SerializeField]
     private int unitStatIndex;
     private UnitScript currentUnit;
 

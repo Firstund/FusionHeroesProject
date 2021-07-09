@@ -29,11 +29,14 @@ public class U_ChargerSkillScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SetSpeed();
-        SetCanSetSpeed();
-        if (canUseSkill && thisScript.shortestEnemyDistance <= skillRange)
-            Charge();
-        MoveBack();
+        if (!thisScript.isDead)
+        {
+            SetSpeed();
+            SetCanSetSpeed();
+            if (canUseSkill && thisScript.shortestEnemyDistance <= skillRange)
+                Charge();
+            MoveBack();
+        }
     }
     private void SetSpeed()
     {
@@ -56,7 +59,7 @@ public class U_ChargerSkillScript : MonoBehaviour
     }
     private void MoveBack()
     {
-        if(thisScript.shortestEnemyDistance < stopByEnemy && isCharging && thisScript.shortestEnemyScript != null)
+        if (thisScript.shortestEnemyDistance < stopByEnemy && isCharging && thisScript.shortestEnemyScript != null)
         {
             thisScript.shortestEnemyScript.MoveBack();
             thisScript.GetDamage();

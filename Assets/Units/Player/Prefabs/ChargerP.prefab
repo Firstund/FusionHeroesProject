@@ -312,8 +312,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5289012047177863110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.52, y: -1.04, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 5289012046257157939}
   - {fileID: 5289012047965324830}
@@ -404,24 +404,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 5289012047099220633}
-  unitId: 1
-  unitOnMiniMap: {fileID: 297964726054720325, guid: de53d8407df486b488ee1e4be3bfd84d, type: 3}
+  unitId: 107
+  unitOnMiniMap: {fileID: 297964726054720325, guid: ebea400e4e45936459980d83075e4a74, type: 3}
   projection: {fileID: 0}
   projectionSpawnPosition: {fileID: 0}
   _attackDistance: 2
   damageDistance: 10
-  _heart: 10
+  _heart: 30
   heartUp: 5
-  plusHeartUpPerLev: 0.2
-  _heartUpPerLev: 0.1
-  _ap: 2
-  apUp: 0.5
-  plusApUpPerLev: 1
-  _apUpPerLev: 0.02
-  _dp: 20
-  dpUp: 0.25
-  plusDpUpPerLev: 0.1
-  _dpUpPerLev: 0.01
+  plusHeartUpPerLev: 1
+  _heartUpPerLev: 0.5
+  _ap: 3
+  apUp: 1
+  plusApUpPerLev: 0.5
+  _apUpPerLev: 1
+  _dp: 0.5
+  dpUp: 1
+  plusDpUpPerLev: 0.2
+  _dpUpPerLev: 0.4
   _speed: 1
   attackDelay: 1
   totalAtk: 0
@@ -436,7 +436,7 @@ MonoBehaviour:
   thisUnitNum: 0
   thisUnitNO: 0
   unitLev: 1
-  levelUpCost: 10
+  levelUpCost: 100
   unitClickableRange: 1
   firstUnitClickableRange: 0
   mouseDistance: 0
@@ -468,7 +468,7 @@ MonoBehaviour:
   thisScript: {fileID: 0}
   stopByEnemy: 1
   skillDelay: 0.1
-  skillRange: 5
+  skillRange: 8
   skillMoveSpeed: 3
   targetPosition: {x: 0, y: 0}
   canUseSkill: 1

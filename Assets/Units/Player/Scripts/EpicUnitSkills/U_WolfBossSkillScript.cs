@@ -25,7 +25,7 @@ public class U_WolfBossSkillScript : MonoBehaviour
     }
     private void Update()
     {
-        if (!isHowling && thisScript.canAttack)
+        if (!isHowling && thisScript.canAttack && !thisScript.isDead)
         {
             thisScript.canAttack = false;
             HowlingSound();

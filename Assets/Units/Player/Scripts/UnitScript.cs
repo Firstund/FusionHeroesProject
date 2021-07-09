@@ -698,12 +698,14 @@ public class UnitScript : MonoBehaviour
     {
         if (heart <= 0f && !isDead)
         {
-            anim.Play("Dead");
             speed = 0f;
             ap = 0f;
             _isDead = true;
             MinusUnitNum();
-
+        }
+        if(isDead)
+        {
+            anim.Play("Dead");
         }
     }
 
