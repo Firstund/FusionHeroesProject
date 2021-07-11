@@ -8,6 +8,12 @@ public class SpawnStrongestScript : MonoBehaviour
 
     [SerializeField]
     private int strongestSpawnNum = 0;
+    [SerializeField]
+    private AudioClip spawnStrongestSound = null;
+    [SerializeField]
+    private AudioSource audi = null;
+    [SerializeField]
+    private GameObject spawnStrongestEnergy = null;
     
     [SerializeField]
     private StageManager stageManager = null;
@@ -19,6 +25,8 @@ public class SpawnStrongestScript : MonoBehaviour
         fusionManager = FindObjectOfType<FusionManager>();
         enemyBuildingScript = GetComponent<EnemyBuildingScript>();
         enemySpawnScript = GetComponent<EnemySpawnScript>();
+        audi = GetComponent<AudioSource>();
+
         spawnPosition = enemySpawnScript.GetSpawnPosition();
     }
     void Update()
@@ -35,11 +43,13 @@ public class SpawnStrongestScript : MonoBehaviour
         {
             enemyBuildingScript.SetstrongestSpawned(strongestSpawnNum, true);
             Instantiate(enemyBuildingScript.GetStrongest(strongestSpawnNum), enemySpawnScript.GetSpawnPosition());
+            audi.clip = spawnStrongestSound;
+            audi.Play();
             foreach(var item in fusionManager.unitScript)
             {
                 item.MoveBack();
             }
-            Debug.Log("aaaa");
+            spawnStrongestEnergy.SetActive(true);
         }
     }
 }
