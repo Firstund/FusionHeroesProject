@@ -101,6 +101,12 @@ public class UnitScript : MonoBehaviour
         get { return _firstDp; }
         set { _firstDp = value; }
     }
+    private float _unSkillDp = 0f;
+    public float unSkillDP
+    {
+        get { return _unSkillDp; }
+        set { _unSkillDp = value; }
+    }
     [SerializeField]
     private float dpUp = 0.25f;
     [SerializeField]
@@ -677,8 +683,11 @@ public class UnitScript : MonoBehaviour
         float _dpUp = dpUp + plusDpUpPerLev * gameManager.GetSaveData().unitDpLev[unitStatIndex];
         dp = firstDp + dpUpPerLev * gameManager.GetSaveData().unitDpLev[unitStatIndex] + _dpUp * ((unitLev * unitLev) - 1);
 
+        unSkillDP = dp;
+
         float _apUp = apUp + plusApUpPerLev * gameManager.GetSaveData().unitApLev[unitStatIndex];
         ap = firstAp + apUpPerLev * gameManager.GetSaveData().unitApLev[unitStatIndex] + _apUp * ((unitLev * unitLev) - 1);
+
     }
     private void FirstEDSet()
     {
@@ -703,7 +712,7 @@ public class UnitScript : MonoBehaviour
             _isDead = true;
             MinusUnitNum();
         }
-        if(isDead)
+        if (isDead)
         {
             anim.Play("Dead");
         }

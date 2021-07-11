@@ -24,12 +24,12 @@ public class U_VanguardSkillScript : MonoBehaviour
     private void PlusDp()
     {
         SetParticle(true);
-        thisScript.dp = thisScript.firstDp + thisScript.firstDp / 2;
+        thisScript.dp = thisScript.unSkillDP + thisScript.unSkillDP / 2;
     }
     private void MinusDp()
     {
         SetParticle(false);
-        thisScript.dp = thisScript.firstDp;
+        thisScript.dp = thisScript.unSkillDP;
     }
     private void SetParticle(bool isActive)
     {
