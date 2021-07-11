@@ -234,6 +234,10 @@ public class UnitScript : MonoBehaviour
         get { return _shortestEnemyDistance; }
         set { _shortestEnemyDistance = value; }
     }
+     [SerializeField]
+    private float moveBackSpeed = 5f;
+    [SerializeField]
+    private float moveBackDistance = 5f;
     //
     private Vector2 currentPosition = new Vector2(100f, 100f);
 
@@ -280,6 +284,7 @@ public class UnitScript : MonoBehaviour
         get { return _canSetSpeed; }
         set { _canSetSpeed = value; }
     }
+    private bool canMoveBack = true;
 
     void Awake()
     {
@@ -377,7 +382,27 @@ public class UnitScript : MonoBehaviour
 
             if (gameManager.GetCST())
                 AttackCheck();
+            SetMoveBack();
 
+        }
+    }
+    private void SetMoveBack()
+    {
+        if (targetPosition.x >= currentPosition.x)
+        {
+            canSetSpeed = true;
+            canMoveBack = true;
+        }
+    }
+    public void MoveBack()
+    {
+        if (canMoveBack)
+        {
+            canSetSpeed = false;
+            canMoveBack = false;
+            speed = -moveBackSpeed;
+            targetPosition = currentPosition;
+            targetPosition.x -= moveBackDistance;
         }
     }
     public void SetDistanceArrayIndex()

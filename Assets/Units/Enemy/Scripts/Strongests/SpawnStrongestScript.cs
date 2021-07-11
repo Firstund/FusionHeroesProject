@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnStrongestScript : MonoBehaviour
 {
+    FusionManager fusionManager = null;
 
     [SerializeField]
     private int strongestSpawnNum = 0;
@@ -15,6 +16,7 @@ public class SpawnStrongestScript : MonoBehaviour
     private Transform spawnPosition = null;
     void Start()
     {
+        fusionManager = FindObjectOfType<FusionManager>();
         enemyBuildingScript = GetComponent<EnemyBuildingScript>();
         enemySpawnScript = GetComponent<EnemySpawnScript>();
         spawnPosition = enemySpawnScript.GetSpawnPosition();
@@ -33,6 +35,11 @@ public class SpawnStrongestScript : MonoBehaviour
         {
             enemyBuildingScript.SetstrongestSpawned(strongestSpawnNum, true);
             Instantiate(enemyBuildingScript.GetStrongest(strongestSpawnNum), enemySpawnScript.GetSpawnPosition());
+            foreach(var item in fusionManager.unitScript)
+            {
+                item.MoveBack();
+            }
+            Debug.Log("aaaa");
         }
     }
 }
