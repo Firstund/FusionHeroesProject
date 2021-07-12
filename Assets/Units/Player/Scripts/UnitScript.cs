@@ -234,7 +234,7 @@ public class UnitScript : MonoBehaviour
         get { return _shortestEnemyDistance; }
         set { _shortestEnemyDistance = value; }
     }
-     [SerializeField]
+    [SerializeField]
     private float moveBackSpeed = 5f;
     [SerializeField]
     private float moveBackDistance = 5f;
@@ -482,6 +482,7 @@ public class UnitScript : MonoBehaviour
                 {
                     try
                     {
+                        a++;
                         if (enemyObjectDistanceArray[a] < maximumD && enemyObjectDistanceArray[a] >= minimumD)//minimum, maxism attackDistance를 이용하여 공격 범위 설정가능
                         {
                             float dp = item.getD();
@@ -496,14 +497,14 @@ public class UnitScript : MonoBehaviour
 
 
                             heart -= totalAtk;
+                            Debug.Log("heart");
 
                             item.SetHP(heart);
                         }
-
-                        a++;
                     }
                     catch (System.IndexOutOfRangeException)
                     {
+                        Debug.Log("Aaa");
                         break;
                     }
                 }

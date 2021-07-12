@@ -480,9 +480,14 @@ MonoBehaviour:
   _shortestDistance: 10
   shortestForwardDistance: 10
   shortestBackwardDistance: 10
-  stopByEnemyDistance: 1.2
+  _stopByEnemyDistance: 1
   stopByObjectDistance: 1.4
   shortestForwardScript: {fileID: 0}
+  _shortestEnemyDistance: 10
+  moveBackSpeed: 5
+  moveBackDistance: 5
+  _attackAnimIsPlaying: 0
+  _isDead: 0
   isAttackOne: 1
   isFollow: 0
 --- !u!82 &3073379449823954690
