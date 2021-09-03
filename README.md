@@ -11,7 +11,10 @@ FusionHeroes의 대표적인 특징은 출전시킨 유닛들을 Merge시켜 더
 ![image](https://user-images.githubusercontent.com/70951786/131930854-936bb76e-5511-4f73-a96f-6fff9f9350f9.png)
 
 같은 레벨의 유닛을 Merge시키면 다음레벨의 유닛이 소환됩니다.
+
 소환되는 유닛은 이전 레벨의 유닛보다 강력하고, 모든 체력이 무조건 차있는 상태로 출전되므로, 적들과 싸워서 피가 적어진 딜러유닛을 탱커 뒤쪽의 유닛과 Merge시켜 전선을 더욱 튼튼하게 만들고, 선두에 있는 피가 적어진 탱커유닛을 뒤쪽에 있는 유닛과 Merge시켜 체력을 보충하여 병사들의 전선 유지력을 높이는 등 전략적인 플레이를 할 수 있습니다.
+
+Merge할 때 재료로 쓰이는 유닛의 레벨이 높을수록 Merge했을 때 상승하는 스탯의 폭이 커집니다.
 
 ![image](https://user-images.githubusercontent.com/70951786/131934546-4a04da29-2d9a-472f-815a-7c8c0eaecaef.png)
 
